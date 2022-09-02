@@ -76,21 +76,11 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vpTopMovies"
                 android:layout_width="match_parent"
-                android:layout_height="192dp"
+                android:layout_height="212dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <me.relex.circleindicator.CircleIndicator3
-                android:id="@+id/ciIndicatorTopMovies"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:ci_drawable="@drawable/bg_circle_indicator"
-                app:layout_constraintBottom_toBottomOf="@id/vpTopMovies"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvInTheatres"
@@ -171,7 +161,7 @@
                 android:layout_marginStart="18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvMostPopularMovies"
-                app:layout_constraintBottom_toTopOf="rvMostPopularSeries"/>
+                app:layout_constraintBottom_toTopOf="@id/rvMostPopularSeries"/>
 
             <TextView
                 android:id="@+id/tvSeeAllMostPopularSeries"
@@ -184,7 +174,7 @@
                 android:layout_marginEnd="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvMostPopularMovies"
-                app:layout_constraintBottom_toTopOf="rvMostPopularSeries"/>
+                app:layout_constraintBottom_toTopOf="@id/rvMostPopularSeries"/>
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -206,7 +196,7 @@
                 android:layout_marginStart="18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvMostPopularSeries"
-                app:layout_constraintBottom_toTopOf="rvComingSoon"/>
+                app:layout_constraintBottom_toTopOf="@id/rvComingSoon"/>
 
             <TextView
                 android:id="@+id/tvSeeAllComingSoon"
@@ -219,7 +209,7 @@
                 android:layout_marginEnd="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvMostPopularSeries"
-                app:layout_constraintBottom_toTopOf="rvComingSoon"/>
+                app:layout_constraintBottom_toTopOf="@id/rvComingSoon"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvComingSoon"

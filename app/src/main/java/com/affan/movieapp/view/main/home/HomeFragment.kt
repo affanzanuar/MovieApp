@@ -8,10 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.databinding.FragmentHomeBinding
-import com.affan.movieapp.model.TopMovies
+import com.affan.movieapp.model.MoviesOrSeries
 
 class HomeFragment : Fragment() {
 
@@ -33,41 +34,52 @@ class HomeFragment : Fragment() {
         handler = Handler(Looper.myLooper()!!)
         setTopMoviesViewPager()
         getPageChangeCallback()
+        setInTheaters()
     }
 
     override fun onPause() {
         super.onPause()
-        handler.removeCallbacks(getRunnable())
+        handler.removeCallbacks(getRunnable)
     }
 
     override fun onResume() {
         super.onResume()
-        handler.postDelayed(getRunnable(),2500)
+        handler.postDelayed(getRunnable,3000)
     }
 
     private fun getPageChangeCallback () {
         binding.vpTopMovies.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                handler.removeCallbacks(getRunnable())
-                handler.postDelayed(getRunnable(),2500)
+                handler.removeCallbacks(getRunnable)
+                handler.postDelayed(getRunnable,3000)
             }
         })
     }
 
-    private fun getRunnable () : Runnable {
-        return Runnable {
-            binding.vpTopMovies.currentItem = binding.vpTopMovies.currentItem + 1
-        }
+    private val getRunnable = Runnable {
+        binding.vpTopMovies.currentItem = binding.vpTopMovies.currentItem + 1
     }
 
     private fun setTopMoviesViewPager() {
         topMoviesAdapter = TopMoviesAdapter(
             Data.itemTopMovies,
-            {data: TopMovies -> getShortToast("Ke details ${data.topMoviesTitle}") },
+            {data: MoviesOrSeries -> getShortToast("Ke details ${data.moviesOrSeriesTitle}") },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
+    }
+
+    private fun setInTheaters () {
+        binding.rvInTheatres.adapter = HorizontalListAdapter(
+            Data.itemInTheaters
+        ) { data: MoviesOrSeries -> getShortToast("ke details ${data.moviesOrSeriesTitle}") }
+
+        binding.rvInTheatres.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
     }
 
     private fun getShortToast(message : String){
