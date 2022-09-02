@@ -14,8 +14,8 @@ class AccountFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentAccountBinding.inflate(layoutInflater, container, false)
+    ): View {
+        binding = FragmentAccountBinding.inflate(inflater, container, false)
         return binding.root
     }
 
