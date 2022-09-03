@@ -10,12 +10,26 @@ import com.affan.movieapp.model.MoviesOrSeries
 import com.bumptech.glide.Glide
 
 class TopMoviesAdapter (
-    private val item : ArrayList<MoviesOrSeries>,
     private val onClickToDetails : (data : MoviesOrSeries) -> Unit,
     private val viewPager2: ViewPager2
 ) : RecyclerView.Adapter<TopMoviesAdapter.TopMoviesViewHolder>(){
 
-    class TopMoviesViewHolder (val binding: ItemTopMoviesBinding) : RecyclerView.ViewHolder(binding.root)
+    private val item = arrayListOf<MoviesOrSeries>()
+
+    inner class TopMoviesViewHolder (val binding: ItemTopMoviesBinding)
+        : RecyclerView.ViewHolder(binding.root){
+            fun bind (item : MoviesOrSeries){
+                Glide.with(binding.root)
+                    .load(item.moviesOrSeriesImage)
+                    .into(binding.ivItemTopMovies)
+
+                binding.tvTopMoviesTitle.text = item.moviesOrSeriesTitle
+
+                binding.root.setOnClickListener {
+                    onClickToDetails(item)
+                }
+            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopMoviesViewHolder {
         return TopMoviesViewHolder(
@@ -27,19 +41,7 @@ class TopMoviesAdapter (
     }
 
     override fun onBindViewHolder(holder: TopMoviesViewHolder, position: Int) {
-        val item = item[position]
-
-        Glide.with(holder.binding.root)
-            .load(item.moviesOrSeriesImage)
-            .into(holder.binding.ivItemTopMovies)
-
-        holder.binding.apply {
-            tvTopMoviesTitle.text = item.moviesOrSeriesTitle
-
-            root.setOnClickListener {
-                onClickToDetails(item)
-            }
-        }
+        holder.bind(item[position])
         if (position==this.item.size-1){
             viewPager2.post(runnable)
         }
@@ -52,6 +54,12 @@ class TopMoviesAdapter (
     @SuppressLint("NotifyDataSetChanged")
     private val runnable = Runnable {
         item.addAll(item)
+        notifyDataSetChanged()
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData (item : List<MoviesOrSeries>){
+        this.item.clear()
+        this.item.addAll(item)
         notifyDataSetChanged()
     }
 }

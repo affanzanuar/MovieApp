@@ -35,6 +35,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         handler = Handler(Looper.myLooper()!!)
         setTopMoviesViewPager()
+        topMoviesAdapter.setData(Data.itemTopMovies)
         getPageChangeCallback()
         setHorizontalListAdapter(binding.rvInTheatres)
         horizontalListAdapter.setData(Data.itemInTheaters)
@@ -53,6 +54,7 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        topMoviesAdapter.setData(Data.itemTopMovies)
         handler.postDelayed(getRunnable,3000)
         horizontalListAdapter.setData(Data.itemInTheaters)
         horizontalListAdapter.setData(Data.itemMostPopularMovies)
@@ -76,7 +78,6 @@ class HomeFragment : Fragment() {
 
     private fun setTopMoviesViewPager() {
         topMoviesAdapter = TopMoviesAdapter(
-            Data.itemTopMovies,
             {data: MoviesOrSeries -> getShortToast("Ke details ${data.moviesOrSeriesTitle}") },
             binding.vpTopMovies
         )
@@ -94,7 +95,6 @@ class HomeFragment : Fragment() {
             false
         )
     }
-
 
     private fun getShortToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
