@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.databinding.FragmentHomeBinding
@@ -18,6 +19,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
     private lateinit var topMoviesAdapter: TopMoviesAdapter
+    private lateinit var horizontalListAdapter: HorizontalListAdapter
     private lateinit var handler: Handler
 
     override fun onCreateView(
@@ -34,9 +36,14 @@ class HomeFragment : Fragment() {
         handler = Handler(Looper.myLooper()!!)
         setTopMoviesViewPager()
         getPageChangeCallback()
-        setInTheaters()
-        setMostPopularMovies()
-        setMostPopularSeries()
+        setHorizontalListAdapter(binding.rvInTheatres)
+        horizontalListAdapter.setData(Data.itemInTheaters)
+        setHorizontalListAdapter(binding.rvMostPopularMovies)
+        horizontalListAdapter.setData(Data.itemMostPopularMovies)
+        setHorizontalListAdapter(binding.rvMostPopularSeries)
+        horizontalListAdapter.setData(Data.itemMostPopularSeries)
+        setHorizontalListAdapter(binding.rvComingSoon)
+        horizontalListAdapter.setData(Data.itemComingSoon)
     }
 
     override fun onPause() {
@@ -47,6 +54,10 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         handler.postDelayed(getRunnable,3000)
+        horizontalListAdapter.setData(Data.itemInTheaters)
+        horizontalListAdapter.setData(Data.itemMostPopularMovies)
+        horizontalListAdapter.setData(Data.itemMostPopularSeries)
+        horizontalListAdapter.setData(Data.itemComingSoon)
     }
 
     private fun getPageChangeCallback () {
@@ -72,41 +83,18 @@ class HomeFragment : Fragment() {
         binding.vpTopMovies.adapter = topMoviesAdapter
     }
 
-    private fun setInTheaters () {
-        binding.rvInTheatres.adapter = HorizontalListAdapter(
-            Data.itemInTheaters
-        ) { data: MoviesOrSeries -> getShortToast("ke details ${data.moviesOrSeriesTitle}") }
-
-        binding.rvInTheatres.layoutManager = LinearLayoutManager(
+    private fun setHorizontalListAdapter (rv : RecyclerView) {
+        horizontalListAdapter = HorizontalListAdapter {
+                data: MoviesOrSeries -> getShortToast("ke details ${data.moviesOrSeriesTitle}")
+        }
+        rv.adapter = horizontalListAdapter
+        rv.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.HORIZONTAL,
             false
         )
     }
 
-    private fun setMostPopularMovies () {
-        binding.rvMostPopularMovies.adapter = HorizontalListAdapter(
-            Data.itemMostPopularMovies
-        ) {data: MoviesOrSeries -> getShortToast("ke details ${data.moviesOrSeriesTitle}") }
-
-        binding.rvMostPopularMovies.layoutManager = LinearLayoutManager(
-            context,
-            LinearLayoutManager.HORIZONTAL,
-            false
-        )
-    }
-
-    private fun setMostPopularSeries () {
-        binding.rvMostPopularSeries.adapter = HorizontalListAdapter(
-            Data.itemMostPopularSeries
-        ) {data: MoviesOrSeries -> getShortToast("ke details ${data.moviesOrSeriesTitle}") }
-
-        binding.rvMostPopularSeries.layoutManager = LinearLayoutManager(
-            context,
-            LinearLayoutManager.HORIZONTAL,
-            false
-        )
-    }
 
     private fun getShortToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()

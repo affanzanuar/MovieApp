@@ -68,7 +68,21 @@ object Data {
     )
 
     val itemComingSoon : ArrayList<MoviesOrSeries> = arrayListOf(
-
+        MoviesOrSeries("Pray For The Devil",R.drawable.pray_for_the_devil),
+        MoviesOrSeries("Black Adam",R.drawable.black_adam),
+        MoviesOrSeries("Puss in Boots: The Last Wish",R.drawable.puss_in_boots_the_last_wish),
+        MoviesOrSeries("Spider-Man : Lotus",R.drawable.spiderman_lotus),
+        MoviesOrSeries("Aquaman and the Lost Kingdom",R.drawable.aquaman_and_the_lost_kingdom),
+        MoviesOrSeries("Lifemark",R.drawable.lifemark),
+        MoviesOrSeries("Ant-Man and the Wasp: Quantumania",R.drawable.ant_man_and_the_wasp_quantumania),
+        MoviesOrSeries("Roald Dahl's Matilda the Musical",R.drawable.matilda),
+        MoviesOrSeries("Smile",R.drawable.smile),
+        MoviesOrSeries("Ticket to Paradise",R.drawable.ticket_to_paradise),
+        MoviesOrSeries("Ends This Halloween",R.drawable.ends_this_halloween),
+        MoviesOrSeries("Jeepers Creepers : Reborn",R.drawable.jeepers_creepers_reborn),
+        MoviesOrSeries("Hocus Pocus 2",R.drawable.hocus_pocus_2),
+        MoviesOrSeries("Pinocchio",R.drawable.pinocchio),
+        MoviesOrSeries("John Wick : Chapter 4",R.drawable.john_wick_chapter_4)
     )
 
 }
