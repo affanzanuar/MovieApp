@@ -50,7 +50,21 @@ object Data {
     )
 
     val itemMostPopularSeries : ArrayList<MoviesOrSeries> = arrayListOf(
-
+        MoviesOrSeries("Breaking Bad",R.drawable.breaking_bad),
+        MoviesOrSeries("The 100",R.drawable.the_100),
+        MoviesOrSeries("Sherlock",R.drawable.sherlock),
+        MoviesOrSeries("Dark",R.drawable.dark),
+        MoviesOrSeries("13 Reason Why",R.drawable.m13_reason_why),
+        MoviesOrSeries("Lucifer",R.drawable.lucifer),
+        MoviesOrSeries("Friends",R.drawable.friends),
+        MoviesOrSeries("The Bigbang Theory",R.drawable.the_bigbang_theory),
+        MoviesOrSeries("House",R.drawable.house),
+        MoviesOrSeries("Shadowhunters",R.drawable.shadowhunters),
+        MoviesOrSeries("Gotham",R.drawable.gotham),
+        MoviesOrSeries("Narcos",R.drawable.narcos),
+        MoviesOrSeries("Vikings",R.drawable.vikings),
+        MoviesOrSeries("Money Heist",R.drawable.money_heist),
+        MoviesOrSeries("The Shield",R.drawable.the_shield)
     )
 
     val itemComingSoon : ArrayList<MoviesOrSeries> = arrayListOf(

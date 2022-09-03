@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
         getPageChangeCallback()
         setInTheaters()
         setMostPopularMovies()
+        setMostPopularSeries()
     }
 
     override fun onPause() {
@@ -89,6 +90,18 @@ class HomeFragment : Fragment() {
         ) {data: MoviesOrSeries -> getShortToast("ke details ${data.moviesOrSeriesTitle}") }
 
         binding.rvMostPopularMovies.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+    }
+
+    private fun setMostPopularSeries () {
+        binding.rvMostPopularSeries.adapter = HorizontalListAdapter(
+            Data.itemMostPopularSeries
+        ) {data: MoviesOrSeries -> getShortToast("ke details ${data.moviesOrSeriesTitle}") }
+
+        binding.rvMostPopularSeries.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.HORIZONTAL,
             false
