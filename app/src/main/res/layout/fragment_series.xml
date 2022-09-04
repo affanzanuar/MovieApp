@@ -7,6 +7,7 @@
     tools:context=".view.main.Series.SeriesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topSearchbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,5 +41,10 @@
             android:hint="Top 250 Movies" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/topSearchbar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
