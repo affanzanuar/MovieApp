@@ -1,4 +1,4 @@
-package com.affan.movieapp.view.main.home
+package com.affan.movieapp.view.main.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

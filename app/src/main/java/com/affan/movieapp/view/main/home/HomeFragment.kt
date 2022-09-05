@@ -11,16 +11,19 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.affan.movieapp.data.Data
 import com.affan.movieapp.databinding.FragmentHomeBinding
 import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.view.main.home.adapter.HorizontalListAdapter
+import com.affan.movieapp.view.main.home.adapter.TopMoviesAdapter
+import com.affan.movieapp.view.main.home.presenter.HomeView
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeView {
 
     private lateinit var binding : FragmentHomeBinding
     private lateinit var topMoviesAdapter: TopMoviesAdapter
     private lateinit var horizontalListAdapter: HorizontalListAdapter
     private lateinit var handler: Handler
+    private lateinit var homePresenter: HomePresenterImp
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,18 +36,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        createPresenter()
         handler = Handler(Looper.myLooper()!!)
         setTopMoviesViewPager()
-        topMoviesAdapter.setData(Data.itemTopMovies)
+        homePresenter.getTopMoviesOrSeries()
         getPageChangeCallback()
         setHorizontalListAdapter(binding.rvInTheatres)
-        horizontalListAdapter.setData(Data.itemInTheaters)
+        homePresenter.getInTheaters()
         setHorizontalListAdapter(binding.rvMostPopularMovies)
-        horizontalListAdapter.setData(Data.itemMostPopularMovies)
+        homePresenter.getMostPopularMovies()
         setHorizontalListAdapter(binding.rvMostPopularSeries)
-        horizontalListAdapter.setData(Data.itemMostPopularSeries)
+        homePresenter.getMostPopularSeries()
         setHorizontalListAdapter(binding.rvComingSoon)
-        horizontalListAdapter.setData(Data.itemComingSoon)
+        homePresenter.getComingSoon()
     }
 
     override fun onPause() {
@@ -54,12 +58,12 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        topMoviesAdapter.setData(Data.itemTopMovies)
+        homePresenter.getTopMoviesOrSeries()
         handler.postDelayed(getRunnable,3000)
-        horizontalListAdapter.setData(Data.itemInTheaters)
-        horizontalListAdapter.setData(Data.itemMostPopularMovies)
-        horizontalListAdapter.setData(Data.itemMostPopularSeries)
-        horizontalListAdapter.setData(Data.itemComingSoon)
+        homePresenter.getInTheaters()
+        homePresenter.getMostPopularMovies()
+        homePresenter.getMostPopularSeries()
+        homePresenter.getComingSoon()
     }
 
     private fun getPageChangeCallback () {
@@ -74,6 +78,10 @@ class HomeFragment : Fragment() {
 
     private val getRunnable = Runnable {
         binding.vpTopMovies.currentItem = binding.vpTopMovies.currentItem + 1
+    }
+
+    private fun createPresenter (){
+        homePresenter = HomePresenterImp(this)
     }
 
     private fun setTopMoviesViewPager() {
@@ -98,5 +106,13 @@ class HomeFragment : Fragment() {
 
     private fun getShortToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesOrSeries>) {
+        topMoviesAdapter.setData(moviesOrSeries)
+    }
+
+    override fun onReceiveHorizontalList(moviesOrSeries: List<MoviesOrSeries>) {
+        horizontalListAdapter.setData(moviesOrSeries)
     }
 }
