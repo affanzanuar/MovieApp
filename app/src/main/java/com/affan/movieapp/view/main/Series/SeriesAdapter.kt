@@ -14,7 +14,8 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
         private val binding: CardLayoutBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(seriesData: SeriesData) {
-
+            binding.tvMovieTitle.text = seriesData.seriesTitle
+            binding.tvDescription.text = seriesData.seriesDescription
         }
     }
 
