@@ -11,11 +11,11 @@
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 
-    <!--    <fragment-->
-    <!--        android:id="@+id/navigation_series"-->
-    <!--        android:name="com.affan.movieapp.view.main.account.AccountFragment"-->
-    <!--        android:label="Series"-->
-    <!--        tools:layout="@layout/fragment_account"  />-->
+    <fragment
+            android:id="@+id/navigation_series"
+            android:name="com.affan.movieapp.view.main.account.AccountFragment"
+            android:label="Series"
+            tools:layout="@layout/fragment_series"  />
 
     <fragment
         android:id="@+id/navigation_logo"
