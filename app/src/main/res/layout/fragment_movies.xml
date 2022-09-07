@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.main.series.SeriesFragment">
+    tools:context=".view.main.home.movies.MovieFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topSearchbar"
@@ -38,12 +38,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:queryBackground="@android:color/transparent"
-            android:hint="Top 250 Series" />
+            android:hint="Top 250 Movies" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSeries"
+        android:id="@+id/rvMovies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/topSearchbar" />
