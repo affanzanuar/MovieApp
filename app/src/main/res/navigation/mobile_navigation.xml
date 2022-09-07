@@ -17,11 +17,11 @@
         android:label="Series"
         tools:layout="@layout/fragment_series" />
 
-    <fragment
-        android:id="@+id/navigation_logo"
-        android:name="com.affan.movieapp.view.main.home.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home" />
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_logo"-->
+<!--        android:name="com.affan.movieapp.view.main.home.HomeFragment"-->
+<!--        android:label="Home"-->
+<!--        />-->
 
     <fragment
         android:id="@+id/navigation_movies"
