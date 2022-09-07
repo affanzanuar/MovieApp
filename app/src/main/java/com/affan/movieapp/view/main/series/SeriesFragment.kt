@@ -41,8 +41,7 @@ class SeriesFragment : Fragment() {
             SeriesData("TEST1", "DESC1"),
             SeriesData("TEST1", "DESC1"),
             SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-
+            SeriesData("TEST1", "DESC1")
         )
 
         val adapter = SeriesAdapter()
