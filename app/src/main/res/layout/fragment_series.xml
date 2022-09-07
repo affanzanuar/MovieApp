@@ -38,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:queryBackground="@android:color/transparent"
-            android:hint="Top 250 Movies" />
+            android:hint="Top 250 Series" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
