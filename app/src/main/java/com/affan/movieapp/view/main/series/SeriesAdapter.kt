@@ -1,7 +1,6 @@
-package com.affan.movieapp.view.main.Series
+package com.affan.movieapp.view.main.series
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.CardLayoutBinding

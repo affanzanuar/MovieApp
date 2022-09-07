@@ -3,13 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/bg_circle_indicator.xml" value="0.127" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/bg_search.xml" value="0.127" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_logo.xml" value="0.1" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_horizontal_container.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_top_movies.xml" value="0.22" />
+        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/card_layout.xml" value="0.3061594202898551" />
+        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/fragment_account.xml" value="0.2513586956521739" />
+        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/fragment_series.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/item_horizontal_container.xml" value="0.2513586956521739" />
+        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/item_top_movies.xml" value="0.2513586956521739" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_home.xml" value="0.14130434782608695" />
       </map>
     </option>
   </component>

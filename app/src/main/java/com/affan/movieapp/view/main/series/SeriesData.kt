@@ -1,4 +1,4 @@
-package com.affan.movieapp.view.main.Series
+package com.affan.movieapp.view.main.series
 
 data class SeriesData (
     var seriesTitle: String,
