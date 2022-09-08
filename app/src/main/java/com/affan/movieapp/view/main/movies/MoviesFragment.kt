@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import com.affan.movieapp.R
 import com.affan.movieapp.databinding.FragmentMoviesBinding
 
 
@@ -26,21 +27,21 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val items = listOf(
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1"),
-            MoviesData("TEST1", "DESC1")
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest),
+            MoviesData("TEST1", "DESC1", R.drawable.postertest)
         )
 
         val adapter = MoviesAdapter()
