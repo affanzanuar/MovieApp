@@ -1,13 +1,11 @@
-package com.affan.movieapp.view.main.home.movies
+package com.affan.movieapp.view.main.movies
 
-import android.graphics.Movie
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.affan.movieapp.R
 import com.affan.movieapp.databinding.FragmentMoviesBinding
 
 

@@ -25,7 +25,13 @@
 
     <fragment
         android:id="@+id/navigation_movies"
-        android:name="com.affan.movieapp.view.main.home.movies.MovieFragment"
+        android:name="com.affan.movieapp.view.main.account.AccountFragment"
+        android:label="Movies"
+        tools:layout="@layout/fragment_movies"  />
+
+    <fragment
+        android:id="@+id/navigation_movies"
+        android:name="com.affan.movieapp.view.main.movies.MovieFragment"
         android:label="Movies"
         tools:layout="@layout/fragment_movies" />
 

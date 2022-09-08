@@ -1,4 +1,4 @@
-package com.affan.movieapp.view.main.home.movies
+package com.affan.movieapp.view.main.movies
 
 class MoviesData(
     var moviesTitle: String,
