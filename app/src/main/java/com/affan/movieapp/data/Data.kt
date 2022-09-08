@@ -2,6 +2,7 @@ package com.affan.movieapp.data
 
 import com.affan.movieapp.R
 import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.view.main.movies.MoviesData
 
 object Data {
 
@@ -83,6 +84,23 @@ object Data {
         MoviesOrSeries("Hocus Pocus 2",R.drawable.hocus_pocus_2),
         MoviesOrSeries("Pinocchio",R.drawable.pinocchio),
         MoviesOrSeries("John Wick : Chapter 4",R.drawable.john_wick_chapter_4)
+    )
+
+    val itemMovies : ArrayList<MoviesData> = arrayListOf(
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
+        MoviesData("TEST1", "DESC1", R.drawable.postertest),
     )
 
 }
