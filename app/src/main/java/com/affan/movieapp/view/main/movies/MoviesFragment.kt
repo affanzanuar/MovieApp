@@ -27,30 +27,6 @@ class MovieFragment : Fragment(), MoviesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        val items = listOf(
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-////            MoviesData("TEST1", "DESC1", R.drawable.postertest),
-//            MoviesData("TEST1", "DESC1", R.drawable.postertest)
-//        )
-//
-//        val adapter = MoviesAdapter()
-//        binding.rvMovies.adapter = adapter
-//        binding.rvMovies.layoutManager = GridLayoutManager(context, 2)
-//        adapter.setData(items)
-
         createPresenter()
         setMoviesAdapter()
         moviesPresenter.getMovies()
