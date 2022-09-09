@@ -1,9 +1,10 @@
-package com.affan.movieapp.view.main.movies
+package com.affan.movieapp.view.main.movies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.CardLayoutBinding
+import com.affan.movieapp.view.main.movies.MoviesData
 import com.bumptech.glide.Glide
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {

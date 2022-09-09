@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.affan.movieapp.R
 import com.affan.movieapp.databinding.FragmentMoviesBinding
+import com.affan.movieapp.view.main.movies.adapter.MoviesAdapter
+import com.affan.movieapp.view.main.movies.presenter.MoviesPresenter
+import com.affan.movieapp.view.main.movies.presenter.MoviesView
 
 
 class MovieFragment : Fragment(), MoviesView {
