@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentSeriesBinding
+import com.affan.movieapp.view.main.series.adapter.SeriesAdapter
 
 class SeriesFragment : Fragment() {
 
