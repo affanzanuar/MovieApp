@@ -1,10 +1,11 @@
-package com.affan.movieapp.view.main.home.movies
+package com.affan.movieapp.view.main.movies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.CardLayoutBinding
-import com.affan.movieapp.databinding.FragmentMoviesBinding
+import com.affan.movieapp.view.main.movies.MoviesData
+import com.bumptech.glide.Glide
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
     private val movies = arrayListOf<MoviesData>()
@@ -13,6 +14,9 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
         private val binding: CardLayoutBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(moviesData: MoviesData) {
+            Glide.with(binding.root)
+                .load(moviesData.moviesPoster)
+                .into(binding.ivPoster)
             binding.tvMovieTitle.text = moviesData.moviesTitle
             binding.tvDescription.text = moviesData.moviesDescription
         }
@@ -20,7 +24,11 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         return MoviesViewHolder(
-            CardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CardLayoutBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
