@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentSeriesBinding
 import com.affan.movieapp.view.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.view.main.series.presenter.SeriesPresenter
+import com.affan.movieapp.view.main.series.presenter.SeriesView
 
-class SeriesFragment : Fragment() {
+class SeriesFragment : Fragment(), SeriesView{
 
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var seriesAdapter: SeriesAdapter
@@ -28,29 +29,24 @@ class SeriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        val items = listOf(
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1"),
-//            SeriesData("TEST1", "DESC1")
-//        )
-
-        val adapter = SeriesAdapter()
-        binding.rvSeries.adapter = adapter
-        binding.rvSeries.layoutManager = GridLayoutManager(context,2)
-        adapter.setData(items)
+        createPresenter()
+        setSeriesAdapter()
+        seriesPresenter.getMovies()
     }
+
+    private fun setSeriesAdapter() {
+        seriesAdapter = SeriesAdapter()
+        binding.rvSeries.adapter = seriesAdapter
+        binding.rvSeries.layoutManager = GridLayoutManager(context, 2)
+    }
+
+    private fun createPresenter() {
+        seriesPresenter = SeriesPresenterImpl(this)
+    }
+
+    override fun onReceiveSeries(series: List<SeriesData>) {
+        seriesAdapter.setData(series)
+    }
+
+
 }
