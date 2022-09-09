@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentSeriesBinding
 import com.affan.movieapp.view.main.series.adapter.SeriesAdapter
+import com.affan.movieapp.view.main.series.presenter.SeriesPresenter
 
 class SeriesFragment : Fragment() {
 
     private lateinit var binding: FragmentSeriesBinding
+    private lateinit var seriesAdapter: SeriesAdapter
+    private lateinit var seriesPresenter: SeriesPresenter
 
 
     override fun onCreateView(
@@ -26,24 +29,24 @@ class SeriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val items = listOf(
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1"),
-            SeriesData("TEST1", "DESC1")
-        )
+//        val items = listOf(
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1"),
+//            SeriesData("TEST1", "DESC1")
+//        )
 
         val adapter = SeriesAdapter()
         binding.rvSeries.adapter = adapter

@@ -3,6 +3,7 @@ package com.affan.movieapp.data
 import com.affan.movieapp.R
 import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.view.main.movies.MoviesData
+import com.affan.movieapp.view.main.series.SeriesData
 
 object Data {
 
@@ -101,6 +102,25 @@ object Data {
         MoviesData("TEST1", "DESC1", R.drawable.postertest),
         MoviesData("TEST1", "DESC1", R.drawable.postertest),
         MoviesData("TEST1", "DESC1", R.drawable.postertest),
+    )
+
+    val itemSeries : ArrayList<SeriesData> = arrayListOf(
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest),
+        SeriesData("TEST1", "DESC1", R.drawable.postertest)
     )
 
 }
