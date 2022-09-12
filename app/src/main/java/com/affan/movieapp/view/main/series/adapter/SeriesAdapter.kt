@@ -1,9 +1,11 @@
-package com.affan.movieapp.view.main.series
+package com.affan.movieapp.view.main.series.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.CardLayoutBinding
+import com.affan.movieapp.view.main.series.SeriesData
+import com.bumptech.glide.Glide
 
 class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
 
@@ -13,6 +15,9 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
         private val binding: CardLayoutBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(seriesData: SeriesData) {
+            Glide.with(binding.root)
+                .load(seriesData.seriesPoster)
+                .into(binding.ivPoster)
             binding.tvMovieTitle.text = seriesData.seriesTitle
             binding.tvDescription.text = seriesData.seriesDescription
         }
