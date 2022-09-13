@@ -20,7 +20,7 @@ class TopMoviesAdapter (
         : RecyclerView.ViewHolder(binding.root){
             fun bind (item : MoviesOrSeries){
                 Glide.with(binding.root)
-                    .load(item.moviesOrSeriesImage)
+                    .load(item.moviesOrSeriesBackDrop)
                     .into(binding.ivItemTopMovies)
 
                 binding.tvTopMoviesTitle.text = item.moviesOrSeriesTitle

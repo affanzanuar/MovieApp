@@ -18,7 +18,7 @@ class HorizontalListAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item : MoviesOrSeries){
             Glide.with(binding.root)
-                .load(item.moviesOrSeriesImage)
+                .load(item.moviesOrSeriesPoster)
                 .into(binding.ivMoviesOrSeries)
         }
     }
