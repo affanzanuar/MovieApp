@@ -1,5 +1,6 @@
 package com.affan.movieapp.view.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
 import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.view.main.details.DetailsActivity
 import com.affan.movieapp.view.main.home.adapter.HorizontalListAdapter
 import com.affan.movieapp.view.main.home.adapter.TopMoviesAdapter
 import com.affan.movieapp.view.main.home.presenter.HomeView
@@ -86,7 +88,8 @@ class HomeFragment : Fragment(), HomeView {
 
     private fun setTopMoviesViewPager() {
         topMoviesAdapter = TopMoviesAdapter(
-            {data: MoviesOrSeries -> getShortToast("Ke details ${data.moviesOrSeriesTitle}") },
+            {data: MoviesOrSeries -> intentToDetails(data)
+            },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
@@ -94,7 +97,7 @@ class HomeFragment : Fragment(), HomeView {
 
     private fun setHorizontalListAdapter (rv : RecyclerView) {
         horizontalListAdapter = HorizontalListAdapter {
-                data: MoviesOrSeries -> getShortToast("ke details ${data.moviesOrSeriesTitle}")
+                data: MoviesOrSeries -> intentToDetails(data)
         }
         rv.adapter = horizontalListAdapter
         rv.layoutManager = LinearLayoutManager(
@@ -102,6 +105,21 @@ class HomeFragment : Fragment(), HomeView {
             LinearLayoutManager.HORIZONTAL,
             false
         )
+    }
+
+    private fun intentToDetails ( item : MoviesOrSeries) {
+        val intent = Intent(context,DetailsActivity::class.java)
+        val parcelable = MoviesOrSeries(
+            item.moviesOrSeriesTitle,
+            item.moviesOrSeriesPoster,
+            item.moviesOrSeriesBackDrop,
+            item.moviesOrSeriesGenre,
+            item.moviesOrSeriesRating,
+            item.moviesOrSeriesIsAdult,
+            item.moviesOrSeriesDescription
+        )
+        intent.putExtra(EXTRA_DATA_MS,parcelable)
+        startActivity(intent)
     }
 
     private fun getShortToast(message : String){
@@ -114,5 +132,9 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun onReceiveHorizontalList(moviesOrSeries: List<MoviesOrSeries>) {
         horizontalListAdapter.setData(moviesOrSeries)
+    }
+
+    companion object {
+        const val EXTRA_DATA_MS = "extra data movies or series"
     }
 }
