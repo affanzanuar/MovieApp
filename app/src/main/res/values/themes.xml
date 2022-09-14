@@ -25,7 +25,7 @@
             300
         </item>
         <item name="postSplashScreenTheme">
-            @style/Theme.AppCompat
+            @style/Theme.AppCompat.DayNight.NoActionBar
         </item>
 
     </style>

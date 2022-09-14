@@ -1,5 +1,6 @@
 package com.affan.movieapp.welcoming
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -17,5 +18,8 @@ class LandingPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLandingPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnContinue.setOnClickListener {
+        }
     }
 }
