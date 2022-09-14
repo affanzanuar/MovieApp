@@ -22,7 +22,7 @@
             android:name=".view.main.details.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".welcoming.LoginActivity"
+            android:name=".welcoming.CredentialsActivity"
             android:exported="false" />
          <activity
             android:name=".view.main.MainActivity"
