@@ -19,8 +19,15 @@
             android:name=".view.main.details.DetailsActivity"
             android:exported="false" />
         <activity
+            android:name=".welcoming.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.MainActivity"
-            android:exported="true">
+            android:exported="false" />
+        <activity
+            android:name=".welcoming.LandingPage"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
