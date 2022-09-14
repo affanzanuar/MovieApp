@@ -1,5 +1,6 @@
 package com.affan.movieapp.view.main.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.affan.movieapp.databinding.FragmentAccountBinding
+import com.affan.movieapp.view.main.account.myfavorite.FavoriteActivity
 
 class AccountFragment : Fragment() {
 
@@ -26,7 +28,9 @@ class AccountFragment : Fragment() {
 //      (activity as AppCompatActivity).supportActionBar?.hide()
 
         binding.optMyFavorite.setOnClickListener {
-            // TODO: intent  MyFavoriteActivity
+            Intent(context,FavoriteActivity::class.java).also {
+                startActivity(it)
+            }
         }
         binding.optEditProfile.setOnClickListener {
             // TODO: intent  EditProfileActivity
