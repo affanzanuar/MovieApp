@@ -16,6 +16,15 @@
         android:theme="@style/Theme.MovieApp"
         tools:targetApi="31">
         <activity
+            android:name=".view.main.account.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.account.editprofile.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.account.about.AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".welcoming.RegisterActivity"
             android:exported="false" />
         <activity

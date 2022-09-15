@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.main.account.editprofile.EditProfileActivity">
+
+    <RelativeLayout
+        android:id="@+id/frame_profile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?colorSecondaryVariant"
+        app:layout_constraintBottom_toTopOf="@id/list_edit"
+        app:layout_constraintDimensionRatio="4:3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="0.4">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:id="@+id/img_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:background="?colorSecondary" />
+
+        <TextView
+            android:id="@+id/name_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_profile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="First Name Last Name"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/list_edit"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frame_profile"
+        app:layout_constraintVertical_weight="0.6">
+
+        <TextView
+            android:id="@+id/change_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="20dp"
+            android:text="Change Profile Picture"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d9d9d9" />
+
+        <TextView
+            android:id="@+id/change_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="20dp"
+            android:text="Change Password"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d9d9d9" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

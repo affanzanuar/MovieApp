@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.affan.movieapp.databinding.FragmentAccountBinding
 import com.affan.movieapp.view.main.account.myfavorite.FavoriteActivity
+import com.affan.movieapp.view.main.account.about.AboutActivity
+import com.affan.movieapp.view.main.account.editprofile.EditProfileActivity
 
 class AccountFragment : Fragment() {
 
@@ -33,10 +34,10 @@ class AccountFragment : Fragment() {
             }
         }
         binding.optEditProfile.setOnClickListener {
-            // TODO: intent  EditProfileActivity
+            startActivity(Intent(activity, EditProfileActivity::class.java))
         }
         binding.optAbout.setOnClickListener {
-            // TODO: intent  AboutActivity
+            startActivity(Intent(activity, AboutActivity::class.java))
         }
         binding.optLogout.setOnClickListener {
             // TODO: intent  Logout
