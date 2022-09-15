@@ -23,9 +23,10 @@
 
     <EditText
         android:id="@+id/etFirstName"
-        android:layout_width="150dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/bg_email_password"
         android:elegantTextHeight="true"
@@ -44,12 +45,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/bg_email_password"
         android:elegantTextHeight="true"
         android:elevation="10dp"
         android:hint="  Last Name"
         android:padding="10dp"
         android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/etFirstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintTop_toBottomOf="@id/tvRegister" />
@@ -108,7 +111,7 @@
         app:layout_constraintTop_toBottomOf="@id/etPasswordLogin" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
