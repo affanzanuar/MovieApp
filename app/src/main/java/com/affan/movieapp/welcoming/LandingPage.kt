@@ -19,7 +19,7 @@ class LandingPage : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnContinue.setOnClickListener {
-            startActivity(Intent(this, CredentialsActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 }
