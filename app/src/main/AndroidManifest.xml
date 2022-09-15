@@ -16,13 +16,17 @@
         android:theme="@style/Theme.MovieApp"
         tools:targetApi="31">
         <activity
+            android:name=".welcoming.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".welcoming.LoginActivity"
             android:name=".view.main.account.myfavorite.FavoriteActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.details.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".welcoming.CredentialsActivity"
+            android:name=".view.main.details.DetailsActivity"
             android:exported="false" />
          <activity
             android:name=".view.main.MainActivity"
