@@ -20,11 +20,9 @@
             android:exported="false" />
         <activity
             android:name=".welcoming.LoginActivity"
-            android:name=".view.main.account.myfavorite.FavoriteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.main.details.DetailsActivity"
-            android:exported="false" />
+            android:exported="false"/>
+        <activity android:name=".view.main.account.myfavorite.FavoriteActivity"
+            android:exported="false"/>
         <activity
             android:name=".view.main.details.DetailsActivity"
             android:exported="false" />
