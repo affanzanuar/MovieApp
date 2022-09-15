@@ -2,6 +2,7 @@ package com.affan.movieapp.view.main.account
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityChangePasswordBinding
@@ -45,6 +46,10 @@ class ChangePasswordActivity : AppCompatActivity(),ChangePasswordView {
     }
 
     override fun onSuccessUpdate(newPass: String) {
+        changePasswordPresenter = ChangePasswordPresenter(
+            changePasswordView = this,
+            pass = newPass
+        )
         Toast.makeText(this, "Password Updated!", Toast.LENGTH_SHORT).show()
     }
 
