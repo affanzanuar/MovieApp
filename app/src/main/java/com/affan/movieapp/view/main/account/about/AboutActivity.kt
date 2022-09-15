@@ -1,7 +1,6 @@
 package com.affan.movieapp.view.main.account.about
 
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityAboutBinding
