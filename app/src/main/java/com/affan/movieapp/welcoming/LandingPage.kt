@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityLandingPageBinding
 
 class LandingPage : AppCompatActivity() {

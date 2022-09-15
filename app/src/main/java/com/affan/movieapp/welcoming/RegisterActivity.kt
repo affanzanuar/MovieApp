@@ -4,25 +4,22 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.affan.movieapp.R
-import com.affan.movieapp.databinding.ActivityLoginBinding
+import com.affan.movieapp.databinding.ActivityRegisterBinding
 import com.affan.movieapp.view.main.MainActivity
+import kotlinx.android.synthetic.main.activity_register.*
 
-class LoginActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
-
+    private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        binding.tvRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
-        }
-        binding.btnLogin.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+
     }
 }
