@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.view.ViewGroup
 import android.webkit.URLUtil
+import android.widget.FrameLayout
 import android.widget.MediaController
 import android.widget.Toast
 import com.affan.movieapp.databinding.ActivityDetailsBinding
@@ -70,6 +72,8 @@ class DetailsActivity : AppCompatActivity() {
         val videoUri = getMedia(VIDEO_SAMPLE)
         binding.vvTrailer.setVideoURI(videoUri)
 
+        val mediaController = MediaController(this )
+
         binding.vvTrailer.setOnPreparedListener {
 
             binding.pbBuffering.visibility = View.GONE
@@ -84,13 +88,13 @@ class DetailsActivity : AppCompatActivity() {
 
         }
 
+        mediaController.setPadding(0,0,0,1050)
+
+        binding.vvTrailer.setMediaController(mediaController)
+
         binding.vvTrailer.setOnCompletionListener {
-            Toast.makeText(this,"Video Playback Complete", Toast.LENGTH_SHORT).show()
             binding.vvTrailer.seekTo(0)
         }
-
-        binding.vvTrailer.setMediaController(MediaController(this ))
-
     }
 
     private fun getDataMoviesOrSeries(): MoviesOrSeries {
