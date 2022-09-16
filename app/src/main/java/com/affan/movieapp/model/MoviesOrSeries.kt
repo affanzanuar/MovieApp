@@ -5,6 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class MoviesOrSeries(
+    var id : Int = 0,
     var moviesOrSeriesTitle : String = "",
     var moviesOrSeriesPoster : Int = 0,
     var moviesOrSeriesBackDrop : Int = 0,

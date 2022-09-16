@@ -9,6 +9,7 @@ object Data {
 
     val itemTopMovies : ArrayList<MoviesOrSeries> = arrayListOf(
         MoviesOrSeries(
+            0,
             "KKN Di Desa Penari",
             R.drawable.poster_kkn_di_desa_penari,
             R.drawable.kkn_di_desa_penari,
@@ -18,6 +19,7 @@ object Data {
             "Enam mahasiswa yang sedang melakukan kuliah kerja nyata di desa terpencil mendapatkan terror dari penaris mistis. Ternyata, salah satu dari mereka melanggar aturan paling fatal di desa tersebut."
         ),
         MoviesOrSeries(
+            1,
             "She-Hulk: Attorney at Law",
             R.drawable.poster_she_hulk,
             R.drawable.she_hulk,
@@ -26,7 +28,9 @@ object Data {
             false,
             "Jennifer Walters menavigasi kehidupan rumit seorang pengacara tunggal berusia 30-an yang juga merupakan raksasa superpowered hijau 6-kaki-7-inci."
         ),
-        MoviesOrSeries("Lightyear",
+        MoviesOrSeries(
+            2,
+            "Lightyear",
             R.drawable.poster_lightyear,
             R.drawable.lightyear,
             "Animasi",
@@ -34,7 +38,9 @@ object Data {
             false,
             "Space Ranger legendaris Buzz Lightyear memulai petualangan intergalaksi bersama sekelompok rekrutan ambisius dan pendamping robotnya Sox."
         ),
-        MoviesOrSeries("Doctor Strange in the Multiverse of Madness",
+        MoviesOrSeries(
+            3,
+            "Doctor Strange in the Multiverse of Madness",
             R.drawable.poster_doctor_strange,
             R.drawable.doctor_strange,
             "Fantasi, Aksi, Petualangan",
@@ -42,7 +48,9 @@ object Data {
             false,
             "Sinopsis Doctor Strange in the Multiverse of Madness mengisahkan Stephen Strange yang kedatangan tamu dari semesta lain, yaitu America Chavez. Kehadiran America ke semesta Strange yang berada di universe utama MCU adalah untuk meminta bantuan sang superhero"
         ),
-        MoviesOrSeries("Iron Fist:Season 2",
+        MoviesOrSeries(
+            4,
+            "Iron Fist:Season 2",
             R.drawable.poster_iron_fist,
             R.drawable.iron_fist,
             "Aksi & Petualangan, Drama, Sci-fi & Fantasy",
@@ -54,6 +62,7 @@ object Data {
 
     val itemInTheaters : ArrayList<MoviesOrSeries> = arrayListOf(
         MoviesOrSeries(
+            5,
             "The Invitation",
             R.drawable.the_invitation,
             0,
@@ -63,6 +72,7 @@ object Data {
             "After the death of her mother, Evie is approached by an unknown cousin who invites her to a lavish wedding in the English countryside. Soon, she realizes a gothic conspiracy is afoot and must fight for survival as she uncovers twisted secrets in her family’s history."
         ),
         MoviesOrSeries(
+            6,
             "Beast",
             R.drawable.beast,
             0,
@@ -73,6 +83,7 @@ object Data {
 
         ),
         MoviesOrSeries(
+            7,
             "Bullet Train",
             R.drawable.bullet_train,
             0,
@@ -82,6 +93,7 @@ object Data {
             "Unlucky assassin Ladybug is determined to do his job peacefully after one too many gigs gone off the rails. Fate, however, may have other plans, as Ladybug's latest mission puts him on a collision course with lethal adversaries from around the globe—all with connected, yet conflicting, objectives—on the world's fastest train."
         ),
         MoviesOrSeries(
+            8,
             "Top Gun Maverick",
             R.drawable.top_gun_maverick,
             0,
@@ -91,6 +103,7 @@ object Data {
             "Setelah lebih dari tiga puluh tahun mengabdi sebagai salah satu penerbang top Angkatan Laut, dan menghindari kenaikan pangkat yang akan menjatuhkannya, Pete \"Maverick\" Mitchell mendapati dirinya melatih satu detasemen lulusan TOP GUN untuk misi khusus yang tidak ada kehidupan. pilot pernah melihat."
         ),
         MoviesOrSeries(
+            9,
             "Dragon Ball Super",
             R.drawable.dragon_ball_super,
             0,
@@ -100,6 +113,7 @@ object Data {
             "The Red Ribbon Army, an evil organization that was once destroyed by Goku in the past, has been reformed by a group of people who have created new and mightier Androids, Gamma 1 and Gamma 2, and seek vengeance against Goku and his family."
         ),
         MoviesOrSeries(
+            10,
             "Honk for Jesus. Save Your Soul",
             R.drawable.honk_for_jesus,
             0,
@@ -109,6 +123,7 @@ object Data {
             "In the aftermath of a huge scandal, Trinitie Childs, the first lady of a prominent Southern Baptist Mega Church, attempts to help her pastor-husband, Lee-Curtis Childs, rebuild their congregation."
         ),
         MoviesOrSeries(
+            11,
             "DC League of Super Pets",
             R.drawable.dc_league_of_super_pets,
             0,
@@ -118,6 +133,7 @@ object Data {
             "When Superman and the rest of the Justice League are kidnapped, Krypto the Super-Dog must convince a rag-tag shelter pack - Ace the hound, PB the potbellied pig, Merton the turtle and Chip the squirrel - to master their own newfound powers and help him rescue the superheroes."
         ),
         MoviesOrSeries(
+            12,
             "Three Thousand Years of Longing",
             R.drawable.three_thousand_years_of_longing,
             0,
@@ -127,6 +143,7 @@ object Data {
             "A solitary scholar discovers an ancient bottle while on a trip to Istanbul and unleashes a djinn who offers her three wishes. Filled with reluctance, she is unable to come up with one until his stories spark in her a desire to be loved."
         ),
         MoviesOrSeries(
+            13,
             "Minions: The Rise of Gru",
             R.drawable.minions_the_rise_of_gru,
             0,
@@ -137,7 +154,8 @@ object Data {
 
         ),
         MoviesOrSeries(
-            "Thor Love And Thunder",
+            14,
+                "Thor Love And Thunder",
             R.drawable.thor_love_and_thunder,
             0,
             "Action, Sci-fi & Fantasy",
@@ -146,6 +164,7 @@ object Data {
             "Thor: Love and Thunder menceritakan Thor (Chris Hemsworth) dalam sebuah perjalanan yang belum pernah ia jalani – pencariankedamaian batin. Namun, masa pensiunnya terganggu oleh seorang pembunuh galaksi yang dikenal sebagai Gorr sang Dewa Jagal (Christian Bale), yang ingin memusnahkan para dewa. Untuk mengatasi ancaman, Thor meminta bantuan Raja Valkyrie (Tessa Thompson), Korg (Taika Waititi), dan mantan kekasihnya Jane Foster (Natalie Portman), yang secara mengejutkan dan misterius berhasil menggunakan palu ajaibnya, Mjolnir, sebagai Mighty Thor. Bersama, mereka memulai petualangan kosmik yang mendebarkan untuk mengungkap misteri pembalasan Dewa Jagal dan menghentikannya sebelum terlambat."
         ),
         MoviesOrSeries(
+            15,
             "Where The Crawdads Sing",
             R.drawable.where_the_crawdads_sing,
             0,
@@ -155,6 +174,7 @@ object Data {
             "Abandoned by her family, Kya raises herself all alone in the marshes outside of her small town. When her former boyfriend is found dead, Kya is instantly branded by the local townspeople and law enforcement as the prime suspect for his murder."
         ),
         MoviesOrSeries(
+            16,
             "Gigi And Nate",
             R.drawable.gigi_and_nate,
             0,
@@ -164,6 +184,7 @@ object Data {
             "A young man with a bright future suffers a near-fatal accident and recreates his new life with the help of an unlikely animal friend."
         ),
         MoviesOrSeries(
+            17,
             "Nope",
             R.drawable.nope,
             0,
@@ -173,6 +194,7 @@ object Data {
             "Penduduk di teluk pedalaman California yang sepi menjadi saksi atas penemuan yang luar biasa dan mengerikan"
         ),
         MoviesOrSeries(
+            18,
             "Breaking",
             R.drawable.breaking,
             0,
@@ -182,6 +204,7 @@ object Data {
             "A Marine war veteran faces mental and emotional challenges when he tries to reintegrate back into civilian life."
         ),
         MoviesOrSeries(
+            19,
             "Orphan First Kill",
             R.drawable.orphan_first_kill,
             0,
@@ -194,6 +217,7 @@ object Data {
 
     val itemMostPopularMovies : ArrayList<MoviesOrSeries> = arrayListOf(
         MoviesOrSeries(
+            20,
             "The Lord Of The Rings : The Return Of The King",
             R.drawable.the_lord_of_the_rings,
             0,
@@ -203,6 +227,7 @@ object Data {
             "Aragorn dinyatakan sebagai pewaris raja-raja kuno saat ia, Gandalf dan anggota-anggota lain dari persekutuan yang rusak berjuang untuk menyelamatkan Gondor dari pasukan Sauron. Sementara itu, Frodo dan Sam membawa cincin itu lebih dekat ke jantung Mordor, kerajaan penguasa gelap."
         ),
         MoviesOrSeries(
+            21,
             "Inception",
             R.drawable.inception,
             0,
@@ -212,6 +237,7 @@ object Data {
             "Cobb, seorang pencuri terampil yang melakukan spionase perusahaan dengan menyusup ke alam bawah sadar targetnya ditawarkan kesempatan untuk mendapatkan kembali kehidupan lamanya sebagai pembayaran untuk tugas yang dianggap mustahil: \"permulaan\", penanaman ide orang lain ke dalam alam bawah sadar target."
         ),
         MoviesOrSeries(
+            22,
             "The Dark Knight",
             R.drawable.the_dark_knight,
             0,
@@ -221,6 +247,7 @@ object Data {
             "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker."
         ),
         MoviesOrSeries(
+            23,
             "Pirates of the Caribbean: On Stranger Tides",
             R.drawable.pirates_of_the_caribbean,
             0,
@@ -230,6 +257,7 @@ object Data {
             "Captain Jack Sparrow crosses paths with a woman from his past, and he's not sure if it's love -- or if she's a ruthless con artist who's using him to find the fabled Fountain of Youth. When she forces him aboard the Queen Anne's Revenge, the ship of the formidable pirate Blackbeard, Jack finds himself on an unexpected adventure in which he doesn't know who to fear more: Blackbeard or the woman from his past."
         ),
         MoviesOrSeries(
+            24,
             "Avengers Endgame",
             R.drawable.avengers_endgame,
             0,
@@ -239,6 +267,7 @@ object Data {
             "Terdampar di luar angkasa tanpa persediaan makanan dan minuman, Tony Stark berusaha mengirim pesan untuk Pepper Potts dimana persediaan oksigen mulai menipis. Sementara itu para Avengers yang tersisa harus menemukan cara untuk mengembalikan 50% mahluk di seluruh dunia yang telah dilenyapkan oleh Thanos."
         ),
         MoviesOrSeries(
+            25,
             "Aquaman",
             R.drawable.aquaman,
             0,
@@ -248,6 +277,7 @@ object Data {
             "Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne."
         ),
         MoviesOrSeries(
+            26,
             "Captain Marvel",
             R.drawable.captain_marvel,
             0,
@@ -257,6 +287,7 @@ object Data {
             "Kisah ini mengikuti Carol Danvers saat ia menjadi salah satu pahlawan paling kuat di alam semesta ketika Bumi terperangkap di tengah perang galaksi antara dua ras alien. Bertempat di tahun 1990-an, Kapten Marvel adalah petualangan yang sepenuhnya baru dari periode yang sebelumnya tidak terlihat dalam sejarah Marvel Cinematic Universe."
         ),
         MoviesOrSeries(
+            27,
             "The Shawshank Redemption",
             R.drawable.the_shawshank_redemption,
             0,
@@ -267,6 +298,7 @@ object Data {
 
         ),
         MoviesOrSeries(
+            28,
             "Black Panther",
             R.drawable.black_panther,
             0,
@@ -276,6 +308,7 @@ object Data {
             "King T'Challa returns home to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new leader. However, T'Challa soon finds that he is challenged for the throne by factions within his own country as well as without. Using powers reserved to Wakandan kings, T'Challa assumes the Black Panther mantle to join with ex-girlfriend Nakia, the queen-mother, his princess-kid sister, members of the Dora Milaje (the Wakandan 'special forces') and an American secret agent, to prevent Wakanda from being dragged into a world war."
         ),
         MoviesOrSeries(
+            29,
             "Interstellar",
             R.drawable.interstellar,
             0,
@@ -286,6 +319,7 @@ object Data {
 
         ),
         MoviesOrSeries(
+            30,
             "Avengers Infinity War",
             R.drawable.avengers_infinity_war,
             0,
@@ -296,6 +330,7 @@ object Data {
 
         ),
         MoviesOrSeries(
+            31,
             "Transformers Dark Of The Moon",
             R.drawable.transformers_dark_of_the_moon,
             0,
@@ -305,6 +340,7 @@ object Data {
             "The Autobots continue to work for NEST, now no longer in secret. But after discovering a strange artifact during a mission in Chernobyl, it becomes apparent to Optimus Prime that the United States government has been less than forthright with them."
         ),
         MoviesOrSeries(
+            32,
             "Spider-Man : Far From Home",
             R.drawable.spiderman_far_from_home,
             0,
@@ -314,6 +350,7 @@ object Data {
             "Peter Parker dan teman-temannya melakukan perjalanan musim panas ke Eropa. Namun, mereka hampir tidak dapat beristirahat - Peter harus setuju untuk membantu Nick Fury mengungkap misteri makhluk yang menyebabkan bencana alam dan kehancuran di seluruh benua."
         ),
         MoviesOrSeries(
+            33,
             "Jaws",
             R.drawable.jaws,
             0,
@@ -323,6 +360,7 @@ object Data {
             "When an insatiable great white shark terrorizes the townspeople of Amity Island, the police chief, an oceanographer and a grizzled shark hunter seek to destroy the blood-thirsty beast."
         ),
         MoviesOrSeries(
+            34,
             "Joker",
             R.drawable.joker,
             0,
@@ -335,6 +373,7 @@ object Data {
 
     val itemMostPopularSeries : ArrayList<MoviesOrSeries> = arrayListOf(
         MoviesOrSeries(
+            35,
             "Breaking Bad",
             R.drawable.breaking_bad,
             0,
@@ -344,6 +383,7 @@ object Data {
             "Ketika Walter White, seorang guru kimia New Mexico, didiagnosis dengan kanker stadium III dan diberi prognosis hanya dua tahun lagi untuk hidup. Dia dipenuhi dengan rasa tidak takut dan keinginan yang tak henti-hentinya untuk mengamankan masa depan keuangan keluarganya dengan biaya berapa pun ketika dia memasuki dunia narkoba dan kejahatan yang berbahaya."
         ),
         MoviesOrSeries(
+            36,
             "The 100",
             R.drawable.the_100,
             0,
@@ -353,6 +393,7 @@ object Data {
             "100 tahun di masa depan, ketika Bumi telah ditinggalkan karena radioaktivitas, manusia terakhir yang masih hidup hidup di atas bahtera yang mengorbit planet ini - tetapi bahtera itu tidak akan bertahan selamanya. Jadi rezim represif memilih 100 kenakalan remaja untuk dikirim ke Bumi untuk melihat apakah planet ini masih layak huni."
         ),
         MoviesOrSeries(
+            37,
             "Sherlock",
             R.drawable.sherlock,
             0,
@@ -362,6 +403,7 @@ object Data {
             "A modern update finds the famous sleuth and his doctor partner solving crime in 21st century London."
         ),
         MoviesOrSeries(
+            38,
             "Dark",
             R.drawable.dark,
             0,
@@ -371,6 +413,7 @@ object Data {
             "Hilangnya seorang anak membuat empat keluarga berburu jawaban saat mereka menggali misteri rumit yang melibatkan tiga generasi."
         ),
         MoviesOrSeries(
+            39,
             "13 Reason Why",
             R.drawable.m13_reason_why,
             0,
@@ -380,6 +423,7 @@ object Data {
             "After a teenage girl's perplexing suicide, a classmate receives a series of tapes that unravel the mystery of her tragic choice."
         ),
         MoviesOrSeries(
+            40,
             "Lucifer",
             R.drawable.lucifer,
             0,
@@ -389,6 +433,7 @@ object Data {
             "Bosan dan tidak bahagia sebagai Penguasa Neraka, Lucifer Morningstar meninggalkan tahtanya dan pensiun ke Los Angeles, di mana ia telah bekerja sama dengan detektif LAPD Chloe Decker untuk menjatuhkan penjahat. Tapi semakin lama dia menjauh dari dunia bawah, semakin besar ancaman bahwa yang terburuk dari umat manusia dapat melarikan diri."
         ),
         MoviesOrSeries(
+            41,
             "Friends",
             R.drawable.friends,
             0,
@@ -398,6 +443,7 @@ object Data {
             "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life."
         ),
         MoviesOrSeries(
+            42,
             "The Bigbang Theory",
             R.drawable.the_bigbang_theory,
             0,
@@ -407,6 +453,7 @@ object Data {
             "Seorang neurosaintis yang bergabung dengan kelompok ini setelah dipertemukan dengan Sheldon lewat situs pencarian jodoh. "
         ),
         MoviesOrSeries(
+            43,
             "House",
             R.drawable.house,
             0,
@@ -416,7 +463,8 @@ object Data {
             "Dr. Gregory House, a drug-addicted, unconventional, misanthropic medical genius, leads a team of diagnosticians at the fictional Princeton–Plainsboro Teaching Hospital in New Jersey."
         ),
         MoviesOrSeries(
-                "Shadowhunters",
+            44,
+            "Shadowhunters",
             R.drawable.shadowhunters,
             0,
             " Action & Adventure, Drama, Sci-Fi & Fantasy ",
@@ -425,6 +473,7 @@ object Data {
             "When Clary Fray's mother has disappeared, Clary joins a band of Shadowhunters; demon killing hunters, and gets caught up in a plan to save the world."
         ),
         MoviesOrSeries(
+            45,
             "Gotham",
             R.drawable.gotham,
             0,
@@ -434,6 +483,7 @@ object Data {
             "Semua orang tahu nama Komisaris Gordon. Dia adalah salah satu musuh terbesar dunia kejahatan, seorang pria yang reputasinya identik dengan hukum dan ketertiban. Tapi apa yang diketahui tentang kisah Gordon dan kenaikannya dari detektif pemula ke Komisaris Polisi? Apa yang diperlukan untuk menavigasi berbagai lapisan korupsi yang diam-diam memerintah Kota Gotham, tempat bertelurnya penjahat paling ikonik di dunia? Dan keadaan apa yang menciptakan mereka - persona yang lebih besar dari kehidupan yang akan menjadi Catwoman, The Penguin, The Riddler, Two-Face dan The Joker?"
         ),
         MoviesOrSeries(
+            46,
             "Narcos",
             R.drawable.narcos,
             0,
@@ -443,6 +493,7 @@ object Data {
             "A gritty chronicle of the war against Colombia's infamously violent and powerful drug cartels."
         ),
         MoviesOrSeries(
+            47,
             "Vikings",
             R.drawable.vikings,
             0,
@@ -452,6 +503,7 @@ object Data {
             "Petualangan Ragnar Lothbrok, pahlawan terhebat di zamannya. Serial ini menceritakan kisah-kisah band Ragnar yang terdiri dari saudara-saudara Viking dan keluarganya, saat ia naik menjadi Raja suku Viking. Selain sebagai pejuang yang tak kenal takut, Ragnar mewujudkan tradisi pengabdian Norse kepada para dewa. Legenda mengatakan bahwa dia adalah keturunan langsung dari Odin, dewa perang dan pejuang."
         ),
         MoviesOrSeries(
+            48,
             "Money Heist",
             R.drawable.money_heist,
             0,
@@ -461,7 +513,8 @@ object Data {
             "To carry out the biggest heist in history, a mysterious man called The Professor recruits a band of eight robbers who have a single characteristic: none of them has anything to lose. Five months of seclusion - memorizing every step, every detail, every probability - culminate in eleven days locked up in the National Coinage and Stamp Factory of Spain, surrounded by police forces and with dozens of hostages in their power, to find out whether their suicide wager will lead to everything or nothing."
         ),
         MoviesOrSeries(
-                "The Shield",
+            49,
+            "The Shield",
             R.drawable.the_shield,
             0,
             " Crime, Drama, Action & Adventure ",
@@ -473,6 +526,7 @@ object Data {
 
     val itemComingSoon : ArrayList<MoviesOrSeries> = arrayListOf(
         MoviesOrSeries(
+            50,
             "Pray For The Devil",
             R.drawable.pray_for_the_devil,
             0,
@@ -482,6 +536,7 @@ object Data {
             "In response to a global rise in demonic possessions, the Catholic Church reopens exorcism schools to train priests in the Rite of Exorcism. On this spiritual battlefield, an unlikely warrior rises: a young nun, Sister Ann. Thrust onto the spiritual frontline with fellow student Father Dante, Sister Ann finds herself in a battle for the soul of a young girl and soon realizes the Devil has her right where he wants her."
         ),
         MoviesOrSeries(
+            51,
             "Black Adam",
             R.drawable.black_adam,
             0,
@@ -491,6 +546,7 @@ object Data {
             "Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods—and imprisoned just as quickly—Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world."
         ),
         MoviesOrSeries(
+            52,
             "Puss in Boots: The Last Wish",
             R.drawable.puss_in_boots_the_last_wish,
             0,
@@ -500,6 +556,7 @@ object Data {
             "Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight of his nine lives, leaving him with only one life left. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives."
         ),
         MoviesOrSeries(
+            53,
             "Spider-Man : Lotus",
             R.drawable.spiderman_lotus,
             0,
@@ -509,6 +566,7 @@ object Data {
             "Following the tragic death of his former girlfriend - seemingly caused by his own attempt to save her - Peter Parker lingers in his guilt of the past, questioning whether the curse of his alter ego should be buried for good. When he's met by the news that a terminally ill child has requested to meet Spider-Man, Peter contemplates the decision to comfort him in his final days."
         ),
         MoviesOrSeries(
+            54,
             "Aquaman and the Lost Kingdom",
             R.drawable.aquaman_and_the_lost_kingdom,
             0,
@@ -518,6 +576,7 @@ object Data {
             "When an ancient power is unleashed, Aquaman must forge an uneasy alliance with an unlikely ally to protect Atlantis, and the world, from irreversible devastation."
         ),
         MoviesOrSeries(
+            55,
             "Lifemark",
             R.drawable.lifemark,
             0,
@@ -527,6 +586,7 @@ object Data {
             "A true story highlighting the value of life in the womb and the beauty of adoption."
         ),
         MoviesOrSeries(
+            56,
             "Ant-Man and the Wasp: Quantumania",
             R.drawable.ant_man_and_the_wasp_quantumania,
             0,
@@ -536,6 +596,7 @@ object Data {
             "Superhero duo Scott Lang and Hope Van Dyne, together with Hope’s parents Hank Pym and Janet Van Dyne, find themselves exploring the Quantum Realm, interacting with strange new creatures, and embarking on an adventure that will push them beyond the limits of what they thought was possible."
         ),
         MoviesOrSeries(
+            57,
             "Roald Dahl's Matilda the Musical",
             R.drawable.matilda,
             0,
@@ -545,6 +606,7 @@ object Data {
             "The inspirational musical tale of an extraordinary girl who discovers her superpower and summons the remarkable courage, against all odds, to help others change their stories, whilst also taking charge of her own destiny. Standing up for what's right, she's met with miraculous results."
         ),
         MoviesOrSeries(
+            58,
             "Smile",
             R.drawable.smile,
             0,
@@ -554,6 +616,7 @@ object Data {
             "After witnessing a bizarre, traumatic incident involving a patient, Dr. Rose Cotter starts experiencing frightening occurrences that she can't explain. As an overwhelming terror begins taking over her life, Rose must confront her troubling past in order to survive and escape her horrifying new reality."
         ),
         MoviesOrSeries(
+            59,
             "Ticket to Paradise",
             R.drawable.ticket_to_paradise,
             0,
@@ -563,6 +626,7 @@ object Data {
             "A divorced couple teams up and travels to Bali to stop their daughter from making the same mistake they think they made 25 years ago."
         ),
         MoviesOrSeries(
+            60,
             "Halloween Ends",
             R.drawable.ends_this_halloween,
             0,
@@ -572,6 +636,7 @@ object Data {
             "Four years after the events of Halloween in 2018, Laurie has decided to liberate herself from fear and rage and embrace life. But when a young man is accused of killing a boy he was babysitting, it ignites a cascade of violence and terror that will force Laurie to finally confront the evil she can’t control, once and for all."
         ),
         MoviesOrSeries(
+            61,
             "Jeepers Creepers : Reborn",
             R.drawable.jeepers_creepers_reborn,
             0,
@@ -581,6 +646,7 @@ object Data {
             "Chase and Laine head to the Horror Hound festival where Laine begins to experience unexplained premonitions and disturbing visions associated with the town's past, and in particular, local legend The Creeper. As the festival gets underway and the blood-soaked entertainment builds to a frenzy, Laine believes that something unearthly has been summoned and that for the first time in 23 years... The Creeper is back."
         ),
         MoviesOrSeries(
+            62,
             "Hocus Pocus 2",
             R.drawable.hocus_pocus_2,
             0,
@@ -590,6 +656,7 @@ object Data {
             "It’s been 29 years since someone lit the Black Flame Candle and resurrected the 17th-century sisters, and they are looking for revenge. Now it is up to three high-school students to stop the ravenous witches from wreaking a new kind of havoc on Salem before dawn on All Hallow’s Eve."
         ),
         MoviesOrSeries(
+            63,
             "Pinocchio",
             R.drawable.pinocchio,
             0,
@@ -599,6 +666,7 @@ object Data {
             "Sebuah aksi langsung dan CGI yang menceritakan kembali kisah tercinta boneka kayu yang memulai petualangan mendebarkan untuk menjadi anak laki-laki sejati. Karakter lain termasuk Geppetto, pemahat kayu yang membangun dan memperlakukan Pinokio seolah-olah dia adalah putra kandungnya; Jiminy Cricket, yang menjadi pemandu Pinokio sekaligus \"hati nurani\"nya; Peri Biru; \"Jujur\" Yohanes; Sofia the Seagull dan The Coachman."
         ),
         MoviesOrSeries(
+            64,
             "John Wick : Chapter 4",
             R.drawable.john_wick_chapter_4,
             0,

@@ -88,8 +88,7 @@ class HomeFragment : Fragment(), HomeView {
 
     private fun setTopMoviesViewPager() {
         topMoviesAdapter = TopMoviesAdapter(
-            {data: MoviesOrSeries -> intentToDetails(data)
-            },
+            {data: MoviesOrSeries -> intentToDetails(data) },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
@@ -110,6 +109,7 @@ class HomeFragment : Fragment(), HomeView {
     private fun intentToDetails ( item : MoviesOrSeries) {
         val intent = Intent(context,DetailsActivity::class.java)
         val parcelable = MoviesOrSeries(
+            item.id,
             item.moviesOrSeriesTitle,
             item.moviesOrSeriesPoster,
             item.moviesOrSeriesBackDrop,
