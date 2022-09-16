@@ -39,6 +39,9 @@ class DetailsActivity : AppCompatActivity() {
 
         binding.tvTitleDetail.text = getDataMoviesOrSeries().moviesOrSeriesTitle
         binding.tvGenre.text = getDataMoviesOrSeries().moviesOrSeriesGenre
+        binding.tvReleaseDate.text = getDataMoviesOrSeries().releaseDate
+        binding.tvOriginalLanguage.text = getDataMoviesOrSeries().originalLanguage
+        binding.tvVoteCount.text = getDataMoviesOrSeries().voteCount.toString()
         binding.tvRatingResult.text = getDataMoviesOrSeries().moviesOrSeriesRating
         binding.tvDescriptionMS.text = getDataMoviesOrSeries().moviesOrSeriesDescription
 

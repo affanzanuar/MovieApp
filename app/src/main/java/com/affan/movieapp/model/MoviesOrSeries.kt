@@ -12,5 +12,8 @@ data class MoviesOrSeries(
     var moviesOrSeriesGenre : String = "",
     var moviesOrSeriesRating : String = "",
     var moviesOrSeriesIsAdult : Boolean = false,
-    var moviesOrSeriesDescription: String = ""
+    var moviesOrSeriesDescription: String = "",
+    var releaseDate : String = "",
+    var originalLanguage : String = "",
+    var voteCount : Int = 0,
 ) : Parcelable

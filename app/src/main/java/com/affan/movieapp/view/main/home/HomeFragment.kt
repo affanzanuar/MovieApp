@@ -116,7 +116,10 @@ class HomeFragment : Fragment(), HomeView {
             item.moviesOrSeriesGenre,
             item.moviesOrSeriesRating,
             item.moviesOrSeriesIsAdult,
-            item.moviesOrSeriesDescription
+            item.moviesOrSeriesDescription,
+            item.releaseDate,
+            item.originalLanguage,
+            item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
         startActivity(intent)

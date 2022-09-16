@@ -53,7 +53,10 @@ class FavoriteActivity : AppCompatActivity(),FavoriteView {
             item.moviesOrSeriesGenre,
             item.moviesOrSeriesRating,
             item.moviesOrSeriesIsAdult,
-            item.moviesOrSeriesDescription
+            item.moviesOrSeriesDescription,
+            item.releaseDate,
+            item.originalLanguage,
+            item.voteCount
         )
         intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
         startActivity(intent)
