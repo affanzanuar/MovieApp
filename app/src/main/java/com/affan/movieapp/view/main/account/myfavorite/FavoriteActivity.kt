@@ -46,6 +46,7 @@ class FavoriteActivity : AppCompatActivity(),FavoriteView {
     private fun intentToDetails ( item : MoviesOrSeries) {
         val intent = Intent(this, DetailsActivity::class.java)
         val parcelable = MoviesOrSeries(
+            item.id,
             item.moviesOrSeriesTitle,
             item.moviesOrSeriesPoster,
             item.moviesOrSeriesBackDrop,

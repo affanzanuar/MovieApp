@@ -33,6 +33,10 @@ class DetailsActivity : AppCompatActivity() {
             .load(getDataMoviesOrSeries().moviesOrSeriesPoster)
             .into(binding.ivPosterDetail)
 
+        Glide.with(this)
+            .load(getDataMoviesOrSeries().moviesOrSeriesBackDrop)
+            .into(binding.ivBackdropDetails)
+
         binding.tvTitleDetail.text = getDataMoviesOrSeries().moviesOrSeriesTitle
         binding.tvGenre.text = getDataMoviesOrSeries().moviesOrSeriesGenre
         binding.tvRatingResult.text = getDataMoviesOrSeries().moviesOrSeriesRating
