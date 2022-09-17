@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
-import android.view.ViewGroup
 import android.webkit.URLUtil
-import android.widget.FrameLayout
 import android.widget.MediaController
-import android.widget.Toast
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.view.main.home.HomeFragment
@@ -88,8 +85,9 @@ class DetailsActivity : AppCompatActivity() {
 
         }
 
-        mediaController.setPadding(0,0,0,1050)
+        mediaController.setPadding(0,-1000,0,0)
 
+        mediaController.setAnchorView(binding.flDummy)
         binding.vvTrailer.setMediaController(mediaController)
 
         binding.vvTrailer.setOnCompletionListener {
@@ -125,7 +123,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     companion object{
-        private const val VIDEO_SAMPLE = "https://rr3---sn-4g5lznl6.googlevideo.com/videoplayback?expire=1663362789&ei=hZIkY8mXAs-AgAfKjYbABw&ip=45.88.97.238&id=o-AF3eTc8OJTlagAmcpDDMhSSHHpQe0f6w1aOWN-VqV49C&itag=22&source=youtube&requiressl=yes&mh=HO&mm=31%2C26&mn=sn-4g5lznl6%2Csn-5hne6nsd&ms=au%2Conr&mv=m&mvi=3&pl=27&initcwndbps=605000&spc=yR2vp228cIqoppWryQ1rOLVtIyCkVDg&vprv=1&mime=video%2Fmp4&ns=KT7Fy9sX-t1CvMySOhwD5W8I&cnr=14&ratebypass=yes&dur=162.261&lmt=1661415550946038&mt=1663340704&fvip=3&fexp=24001373%2C24007246&beids=24239126&c=WEB&rbqsm=fr&txp=4532434&n=Fx4r6rXMdhxn6g&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIgA71nmsTJL2zgKRrrYCzC-solppTvo0y9LRoK7qw7-wICIQC7RIHKrpgCCslE5G59ul_5BiRoOplg-hgAQ3KxlWnTqg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgDqzH9P2DC74GN4n1_hHdV5TApi4dHyRFHzzVMr9I4coCIQCtZWGiWzmBiKFzPKsw6vbRAd8LH36OqU-H-U8_fl-fMg%3D%3D&title=FALL%20Official%20Trailer%20(2022)"
+        private const val VIDEO_SAMPLE = "https://rr5---sn-npoe7nsk.googlevideo.com/videoplayback?expire=1663430597&ei=ZZslY7LlIMqn0_wP0f6Y6AY&ip=216.151.191.183&id=o-ACRCEp5ZojUwv3gAsfNhhywaiNLrAueXt5EMQZIIRsbm&itag=18&source=youtube&requiressl=yes&bui=0&spc=yR2vp8Tj4huMzJMYarjHULTlxMNa6uI&vprv=1&mime=video%2Fmp4&ns=T-Z8TxbN1bvBbrUTqWdOpoEI&gir=yes&clen=10247860&ratebypass=yes&dur=136.597&lmt=1648744409420674&fexp=9420244,24001373,24007246&c=WEB&rbqsm=fr&txp=4530434&n=pfdV-DE2uWzW1Q&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cbui%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgJb98z5USI0JCtpOzhDLzE04X983nSghyhABIs68bx4ICIBWRUXRT-9VxGw_8g41iqFCFY4zY-Yy8MRLBLa2QryY1&rm=sn-p5qeey7l&req_id=bfc479f20a6fa3ee&redirect_counter=2&cm2rm=sn-2uuxa3vh-ngbz7l&cms_redirect=yes&cmsv=e&ipbypass=yes&mh=L0&mip=2001:448a:4000:37d4:c0d7:1c65:3866:ff7f&mm=29&mn=sn-npoe7nsk&ms=rdu&mt=1663408861&mv=m&mvi=5&pl=52&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRAIgJTRebRgBWbTLJfPUu7bubBWXkV6bbfeHMSjnwLs6KucCIA20kRWr9h1m48WeOzntCyO0efV_-s5A3AxXO6V36pmJ"
         private const val PLAYBACK_TIME = "play_time"
     }
 }
