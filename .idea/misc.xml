@@ -15,6 +15,7 @@
         <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/bg_circle_indicator.xml" value="0.127" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/bg_search.xml" value="0.127" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_details.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_horizontal_container.xml" value="0.14130434782608695" />
@@ -22,7 +23,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
