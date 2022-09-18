@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
 import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.trending.MoviesSeries
 import com.affan.movieapp.view.main.details.DetailsActivity
 import com.affan.movieapp.view.main.home.adapter.HorizontalListAdapter
 import com.affan.movieapp.view.main.home.adapter.TopMoviesAdapter
@@ -90,7 +91,7 @@ class HomeFragment : Fragment(), HomeView {
 
     private fun setTopMoviesViewPager() {
         topMoviesAdapter = TopMoviesAdapter(
-//            {data: MoviesOrSeries -> intentToDetails(data) },
+            {data: MoviesSeries -> intentKeDetails(data) },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
@@ -106,6 +107,28 @@ class HomeFragment : Fragment(), HomeView {
             LinearLayoutManager.HORIZONTAL,
             false
         )
+    }
+
+    private fun intentKeDetails ( item : MoviesSeries) {
+        val intent = Intent(context,DetailsActivity::class.java)
+        val parcelable = Movie (
+            item.adult,
+            item.backdropPath,
+            item.genreIds,
+            item.id,
+            item.originalLanguage,
+            item.originalTitle,
+            item.overview,
+            item.popularity,
+            item.posterPath,
+            item.releaseDate,
+            item.title,
+            item.video,
+            item.voteAverage,
+            item.voteCount
+        )
+        intent.putExtra(EXTRA_DATA_MS,parcelable)
+        startActivity(intent)
     }
 
     private fun intentToDetails ( item : Movie) {
@@ -133,7 +156,7 @@ class HomeFragment : Fragment(), HomeView {
     private fun getShortToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
-    override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesOrSeries>) {
+    override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesSeries?>) {
         topMoviesAdapter.setData(moviesOrSeries)
     }
 

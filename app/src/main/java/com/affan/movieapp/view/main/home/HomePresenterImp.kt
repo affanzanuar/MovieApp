@@ -3,6 +3,7 @@ package com.affan.movieapp.view.main.home
 import android.util.Log
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.model.movie.MovieResponse
+import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.network.ApiClient
 import com.affan.movieapp.view.main.home.presenter.HomePresenter
 import com.affan.movieapp.view.main.home.presenter.HomeView
@@ -20,9 +21,39 @@ class HomePresenterImp(
     ) : HomePresenter {
 
     override fun getTopMoviesOrSeries(){
-        homeView.onSuccessReceiveTopMoviesOrSeries(
-            Data.itemTopMovies
-        )
+        coroutineScope.launch {
+            withContext(Dispatchers.IO){
+                ApiClient.instance.getTopMoviesOrSeries(Data.apiKey)
+                    .enqueue(object : Callback<TrendingResponse> {
+                        override fun onResponse(
+                            call: Call<TrendingResponse>,
+                            response: Response<TrendingResponse>
+                        ) {
+                            val body = response.body()!!
+                            coroutineScope.launch {
+                                withContext(Dispatchers.Main){
+                                    body.results
+                                        .let {
+                                            if (it != null) {
+                                                homeView.onSuccessReceiveTopMoviesOrSeries(it)
+                                                Log.d("Main Presenter adalah",
+                                                    response.body()?.results.toString())
+                                            }
+                                        }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<TrendingResponse>, t: Throwable) {
+                            coroutineScope.launch {
+                                withContext(Dispatchers.Main){
+                                    homeView.onFailureReceiveTopMoviesOrSeries(t.message!!)
+                                }
+                            }
+                        }
+                    })
+            }
+        }
     }
 
     override fun getInTheaters(){

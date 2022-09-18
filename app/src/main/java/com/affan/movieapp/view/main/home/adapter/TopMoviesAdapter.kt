@@ -5,28 +5,37 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemTopMoviesBinding
 import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.trending.MoviesSeries
 import com.bumptech.glide.Glide
 
 class TopMoviesAdapter (
-//    private val onClickToDetails : (data : MoviesOrSeries) -> Unit,
+    private val onClickToDetails : (data : MoviesSeries) -> Unit,
     private val viewPager2: ViewPager2
 ) : RecyclerView.Adapter<TopMoviesAdapter.TopMoviesViewHolder>(){
 
-    private val item = arrayListOf<MoviesOrSeries>()
+    private val itemMoviesOrSeries = mutableListOf<MoviesSeries?>()
 
     inner class TopMoviesViewHolder (val binding: ItemTopMoviesBinding)
         : RecyclerView.ViewHolder(binding.root){
-            fun bind (item : MoviesOrSeries){
+            fun bind (item : MoviesSeries){
                 Glide.with(binding.root)
-                    .load(item.moviesOrSeriesBackDrop)
+                    .load(item.loadBackdrop())
+                    .placeholder(R.drawable.ic_default_top_movies)
                     .into(binding.ivItemTopMovies)
 
-                binding.tvTopMoviesTitle.text = item.moviesOrSeriesTitle
+                if (item.title?.isNotEmpty() == true){
+                    binding.tvTopMoviesTitle.text = item.title
+                } else {
+                    binding.tvTopMoviesTitle.text = item.name
+                }
+
 
                 binding.root.setOnClickListener {
-//                    onClickToDetails(item)
+                    onClickToDetails(item)
                 }
             }
         }
@@ -41,25 +50,25 @@ class TopMoviesAdapter (
     }
 
     override fun onBindViewHolder(holder: TopMoviesViewHolder, position: Int) {
-        holder.bind(item[position])
-        if (position==this.item.size-1){
+        itemMoviesOrSeries[position]?.let { holder.bind(it) }
+        if (position==this.itemMoviesOrSeries.size-1){
             viewPager2.post(runnable)
         }
     }
 
     override fun getItemCount(): Int {
-        return item.size
+        return itemMoviesOrSeries.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private val runnable = Runnable {
-        item.addAll(item)
+        itemMoviesOrSeries.addAll(itemMoviesOrSeries)
         notifyDataSetChanged()
     }
     @SuppressLint("NotifyDataSetChanged")
-    fun setData (item : List<MoviesOrSeries>){
-        this.item.clear()
-        this.item.addAll(item)
+    fun setData (item : List<MoviesSeries?>){
+        itemMoviesOrSeries.clear()
+        itemMoviesOrSeries.addAll(item)
         notifyDataSetChanged()
     }
 }
