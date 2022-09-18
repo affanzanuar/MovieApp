@@ -123,7 +123,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     companion object{
-        private const val VIDEO_SAMPLE = "https://rr5---sn-npoe7nsk.googlevideo.com/videoplayback?expire=1663430597&ei=ZZslY7LlIMqn0_wP0f6Y6AY&ip=216.151.191.183&id=o-ACRCEp5ZojUwv3gAsfNhhywaiNLrAueXt5EMQZIIRsbm&itag=18&source=youtube&requiressl=yes&bui=0&spc=yR2vp8Tj4huMzJMYarjHULTlxMNa6uI&vprv=1&mime=video%2Fmp4&ns=T-Z8TxbN1bvBbrUTqWdOpoEI&gir=yes&clen=10247860&ratebypass=yes&dur=136.597&lmt=1648744409420674&fexp=9420244,24001373,24007246&c=WEB&rbqsm=fr&txp=4530434&n=pfdV-DE2uWzW1Q&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cbui%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgJb98z5USI0JCtpOzhDLzE04X983nSghyhABIs68bx4ICIBWRUXRT-9VxGw_8g41iqFCFY4zY-Yy8MRLBLa2QryY1&rm=sn-p5qeey7l&req_id=bfc479f20a6fa3ee&redirect_counter=2&cm2rm=sn-2uuxa3vh-ngbz7l&cms_redirect=yes&cmsv=e&ipbypass=yes&mh=L0&mip=2001:448a:4000:37d4:c0d7:1c65:3866:ff7f&mm=29&mn=sn-npoe7nsk&ms=rdu&mt=1663408861&mv=m&mvi=5&pl=52&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRAIgJTRebRgBWbTLJfPUu7bubBWXkV6bbfeHMSjnwLs6KucCIA20kRWr9h1m48WeOzntCyO0efV_-s5A3AxXO6V36pmJ"
+        private const val VIDEO_SAMPLE = "https://joy.videvo.net/videvo_files/video/free/2014-07/large_watermarked/Run_5_wo_metadata_h264420_720p_UHQ_preview.mp4"
         private const val PLAYBACK_TIME = "play_time"
     }
 }
