@@ -10,7 +10,7 @@ import com.affan.movieapp.model.MoviesOrSeries
 import com.bumptech.glide.Glide
 
 class TopMoviesAdapter (
-    private val onClickToDetails : (data : MoviesOrSeries) -> Unit,
+//    private val onClickToDetails : (data : MoviesOrSeries) -> Unit,
     private val viewPager2: ViewPager2
 ) : RecyclerView.Adapter<TopMoviesAdapter.TopMoviesViewHolder>(){
 
@@ -26,7 +26,7 @@ class TopMoviesAdapter (
                 binding.tvTopMoviesTitle.text = item.moviesOrSeriesTitle
 
                 binding.root.setOnClickListener {
-                    onClickToDetails(item)
+//                    onClickToDetails(item)
                 }
             }
         }

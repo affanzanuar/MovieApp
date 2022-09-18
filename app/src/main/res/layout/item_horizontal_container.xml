@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
-    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_height="171dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="8dp"
     android:layout_margin="8dp"
-    android:elevation="8dp">
+    app:cardElevation="7dp">
 
     <ImageView
         android:id="@+id/ivMoviesOrSeries"
         android:layout_width="wrap_content"
         android:src="@drawable/ic_default_horizontal"
         android:adjustViewBounds="true"
+        android:maxHeight="171dp"
+        android:maxWidth="237dp"
+        android:scaleType="centerCrop"
         android:layout_height="wrap_content"/>
 
 </androidx.cardview.widget.CardView>

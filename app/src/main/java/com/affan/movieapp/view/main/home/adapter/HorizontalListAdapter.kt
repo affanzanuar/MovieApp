@@ -1,24 +1,28 @@
 package com.affan.movieapp.view.main.home.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemHorizontalContainerBinding
 import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.model.movie.Movie
 import com.bumptech.glide.Glide
 
 class HorizontalListAdapter(
-    private val onClickToDetails : (data : MoviesOrSeries) -> Unit
+    private val onClickToDetails : (data : Movie) -> Unit
 ) : RecyclerView.Adapter<HorizontalListAdapter.HorizontalGridViewHolder>() {
 
-    private val item = arrayListOf<MoviesOrSeries>()
+    private val itemMovie = mutableListOf<Movie?>()
 
     inner class HorizontalGridViewHolder (val binding: ItemHorizontalContainerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : MoviesOrSeries){
+        fun bind(item : Movie){
             Glide.with(binding.root)
-                .load(item.moviesOrSeriesPoster)
+                .load(item.loadPoster())
+                .placeholder(R.drawable.ic_default_horizontal)
                 .into(binding.ivMoviesOrSeries)
         }
     }
@@ -32,21 +36,22 @@ class HorizontalListAdapter(
     }
 
     override fun onBindViewHolder(holder: HorizontalGridViewHolder, position: Int) {
-        holder.bind(item[position])
+        itemMovie[position]?.let { holder.bind(it) }
 
         holder.binding.root.setOnClickListener {
-            onClickToDetails(item[position])
+            itemMovie[position]?.let { it1 -> onClickToDetails(it1) }
         }
     }
 
     override fun getItemCount(): Int {
-        return item.size
+        return itemMovie.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData (item : List<MoviesOrSeries>){
-        this.item.clear()
-        this.item.addAll(item)
+    fun setData (item : List<Movie?>){
+        Log.d("Main Adapter setData", item.toString())
+        itemMovie.clear()
+        itemMovie.addAll(item)
         notifyDataSetChanged()
     }
 }

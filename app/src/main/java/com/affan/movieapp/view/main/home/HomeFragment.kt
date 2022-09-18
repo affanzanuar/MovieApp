@@ -9,11 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
 import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.view.main.details.DetailsActivity
 import com.affan.movieapp.view.main.home.adapter.HorizontalListAdapter
 import com.affan.movieapp.view.main.home.adapter.TopMoviesAdapter
@@ -45,12 +47,12 @@ class HomeFragment : Fragment(), HomeView {
         getPageChangeCallback()
         setHorizontalListAdapter(binding.rvInTheatres)
         homePresenter.getInTheaters()
-        setHorizontalListAdapter(binding.rvMostPopularMovies)
-        homePresenter.getMostPopularMovies()
-        setHorizontalListAdapter(binding.rvMostPopularSeries)
-        homePresenter.getMostPopularSeries()
-        setHorizontalListAdapter(binding.rvComingSoon)
-        homePresenter.getComingSoon()
+//        setHorizontalListAdapter(binding.rvMostPopularMovies)
+//        homePresenter.getMostPopularMovies()
+//        setHorizontalListAdapter(binding.rvMostPopularSeries)
+//        homePresenter.getMostPopularSeries()
+//        setHorizontalListAdapter(binding.rvComingSoon)
+//        homePresenter.getComingSoon()
     }
 
     override fun onPause() {
@@ -83,12 +85,12 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     private fun createPresenter (){
-        homePresenter = HomePresenterImp(this)
+        homePresenter = HomePresenterImp(this,lifecycleScope)
     }
 
     private fun setTopMoviesViewPager() {
         topMoviesAdapter = TopMoviesAdapter(
-            {data: MoviesOrSeries -> intentToDetails(data) },
+//            {data: MoviesOrSeries -> intentToDetails(data) },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
@@ -96,7 +98,7 @@ class HomeFragment : Fragment(), HomeView {
 
     private fun setHorizontalListAdapter (rv : RecyclerView) {
         horizontalListAdapter = HorizontalListAdapter {
-                data: MoviesOrSeries -> intentToDetails(data)
+                data: Movie -> intentToDetails(data)
         }
         rv.adapter = horizontalListAdapter
         rv.layoutManager = LinearLayoutManager(
@@ -106,19 +108,22 @@ class HomeFragment : Fragment(), HomeView {
         )
     }
 
-    private fun intentToDetails ( item : MoviesOrSeries) {
+    private fun intentToDetails ( item : Movie) {
         val intent = Intent(context,DetailsActivity::class.java)
-        val parcelable = MoviesOrSeries(
+        val parcelable = Movie (
+            item.adult,
+            item.backdropPath,
+            item.genreIds,
             item.id,
-            item.moviesOrSeriesTitle,
-            item.moviesOrSeriesPoster,
-            item.moviesOrSeriesBackDrop,
-            item.moviesOrSeriesGenre,
-            item.moviesOrSeriesRating,
-            item.moviesOrSeriesIsAdult,
-            item.moviesOrSeriesDescription,
-            item.releaseDate,
             item.originalLanguage,
+            item.originalTitle,
+            item.overview,
+            item.popularity,
+            item.posterPath,
+            item.releaseDate,
+            item.title,
+            item.video,
+            item.voteAverage,
             item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
@@ -128,13 +133,20 @@ class HomeFragment : Fragment(), HomeView {
     private fun getShortToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
-
-    override fun onReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesOrSeries>) {
+    override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesOrSeries>) {
         topMoviesAdapter.setData(moviesOrSeries)
     }
 
-    override fun onReceiveHorizontalList(moviesOrSeries: List<MoviesOrSeries>) {
+    override fun onFailureReceiveTopMoviesOrSeries(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSuccessReceiveHorizontalList(moviesOrSeries: List<Movie?>) {
         horizontalListAdapter.setData(moviesOrSeries)
+    }
+
+    override fun onFailureReceiveHorizontalList(message: String) {
+        getShortToast(message)
     }
 
     companion object {
