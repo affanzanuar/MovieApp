@@ -27,11 +27,13 @@ class TopMoviesAdapter (
                     .placeholder(R.drawable.ic_default_top_movies)
                     .into(binding.ivItemTopMovies)
 
-                if (item.title?.isNotEmpty() == true){
-                    binding.tvTopMoviesTitle.text = item.title
-                } else {
-                    binding.tvTopMoviesTitle.text = item.name
-                }
+                binding.tvTopMoviesTitle.text = item.title ?: item.name
+
+//                if (item.title?.isNotEmpty() == true){
+//                    binding.tvTopMoviesTitle.text = item.title
+//                } else {
+//                    binding.tvTopMoviesTitle.text = item.name
+//                }
 
 
                 binding.root.setOnClickListener {

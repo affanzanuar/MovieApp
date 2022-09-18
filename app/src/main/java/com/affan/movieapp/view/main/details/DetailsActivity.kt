@@ -7,9 +7,11 @@ import android.os.PersistableBundle
 import android.view.View
 import android.webkit.URLUtil
 import android.widget.MediaController
+import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.trending.MoviesSeries
 import com.affan.movieapp.view.main.home.HomeFragment
 import com.bumptech.glide.Glide
 
@@ -101,16 +103,22 @@ class DetailsActivity : AppCompatActivity() {
                 as Movie
     }
 
+    private fun getDataTopMoviesOrSeries() : MoviesSeries {
+        return intent.getParcelableExtra<MoviesSeries>(HomeFragment.EXTRA_DATA_MS)
+                as MoviesSeries
+    }
+
     private fun setDataToDetail(){
         Glide.with(this)
             .load(getDataMoviesOrSeries().loadPoster())
+            .placeholder(R.drawable.ic_default_top_movies)
             .into(binding.ivPosterDetail)
 
         Glide.with(this)
             .load(getDataMoviesOrSeries().loadBackdrop())
             .into(binding.ivBackdropDetails)
 
-        binding.tvTitleDetail.text = getDataMoviesOrSeries().title
+        binding.tvTitleDetail.text = getDataMoviesOrSeries().title ?: getDataTopMoviesOrSeries().name
         binding.tvGenre.text = getDataMoviesOrSeries().genreIds.toString()
         binding.tvReleaseDate.text = getDataMoviesOrSeries().releaseDate
         binding.tvOriginalLanguage.text = getDataMoviesOrSeries().originalLanguage

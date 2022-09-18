@@ -111,12 +111,17 @@ class HomeFragment : Fragment(), HomeView {
 
     private fun intentKeDetails ( item : MoviesSeries) {
         val intent = Intent(context,DetailsActivity::class.java)
-        val parcelable = Movie (
+        val parcelable = MoviesSeries (
             item.adult,
             item.backdropPath,
+            item.firstAirDate,
             item.genreIds,
             item.id,
+            item.mediaType,
+            item.name,
+            item.originCountry,
             item.originalLanguage,
+            item.originalName,
             item.originalTitle,
             item.overview,
             item.popularity,

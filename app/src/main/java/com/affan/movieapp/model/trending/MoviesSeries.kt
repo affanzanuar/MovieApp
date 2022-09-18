@@ -1,8 +1,11 @@
 package com.affan.movieapp.model.trending
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MoviesSeries(
     @SerializedName("adult")
     val adult: Boolean?,
@@ -42,7 +45,7 @@ data class MoviesSeries(
     val voteAverage: Double?,
     @SerializedName("vote_count")
     val voteCount: Int?
-) {
+) : Parcelable {
     fun loadPoster() : String {
         return "https://image.tmdb.org/t/p/w500$posterPath"
     }
