@@ -39,4 +39,8 @@ data class Movie(
     fun loadPoster() : String {
         return "https://image.tmdb.org/t/p/w500$posterPath"
     }
+
+    fun loadBackdrop() : String {
+        return "https://image.tmdb.org/t/p/w500$backdropPath"
+    }
 }

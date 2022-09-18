@@ -9,6 +9,7 @@ import android.webkit.URLUtil
 import android.widget.MediaController
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.view.main.home.HomeFragment
 import com.bumptech.glide.Glide
 
@@ -85,7 +86,7 @@ class DetailsActivity : AppCompatActivity() {
 
         }
 
-        mediaController.setPadding(0,-1000,0,0)
+        mediaController.setPadding(0,0,0,0)
 
         mediaController.setAnchorView(binding.flDummy)
         binding.vvTrailer.setMediaController(mediaController)
@@ -95,29 +96,29 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDataMoviesOrSeries(): MoviesOrSeries {
-        return intent.getParcelableExtra<MoviesOrSeries>(HomeFragment.EXTRA_DATA_MS)
-                as MoviesOrSeries
+    private fun getDataMoviesOrSeries(): Movie {
+        return intent.getParcelableExtra<Movie>(HomeFragment.EXTRA_DATA_MS)
+                as Movie
     }
 
     private fun setDataToDetail(){
         Glide.with(this)
-            .load(getDataMoviesOrSeries().moviesOrSeriesPoster)
+            .load(getDataMoviesOrSeries().loadPoster())
             .into(binding.ivPosterDetail)
 
         Glide.with(this)
-            .load(getDataMoviesOrSeries().moviesOrSeriesBackDrop)
+            .load(getDataMoviesOrSeries().loadBackdrop())
             .into(binding.ivBackdropDetails)
 
-        binding.tvTitleDetail.text = getDataMoviesOrSeries().moviesOrSeriesTitle
-        binding.tvGenre.text = getDataMoviesOrSeries().moviesOrSeriesGenre
+        binding.tvTitleDetail.text = getDataMoviesOrSeries().title
+        binding.tvGenre.text = getDataMoviesOrSeries().genreIds.toString()
         binding.tvReleaseDate.text = getDataMoviesOrSeries().releaseDate
         binding.tvOriginalLanguage.text = getDataMoviesOrSeries().originalLanguage
         binding.tvVoteCount.text = getDataMoviesOrSeries().voteCount.toString()
-        binding.tvRatingResult.text = getDataMoviesOrSeries().moviesOrSeriesRating
-        binding.tvDescriptionMS.text = getDataMoviesOrSeries().moviesOrSeriesDescription
+        binding.tvRatingResult.text = getDataMoviesOrSeries().voteAverage.toString()
+        binding.tvDescriptionMS.text = getDataMoviesOrSeries().overview
 
-        if (!getDataMoviesOrSeries().moviesOrSeriesIsAdult){
+        if (!getDataMoviesOrSeries().adult!!){
             binding.tvIsAdult.visibility = View.GONE
         }
     }
