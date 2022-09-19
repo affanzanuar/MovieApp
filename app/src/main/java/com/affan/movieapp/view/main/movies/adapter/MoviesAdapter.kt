@@ -8,11 +8,13 @@ import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.view.main.movies.MoviesData
 import com.bumptech.glide.Glide
 
-class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
+class MoviesAdapter(
+    private val onClickToDetails : (data : Movie) -> Unit
+) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
     private val movies = mutableListOf<Movie?>()
 
     inner class MoviesViewHolder(
-        private val binding: CardLayoutBinding,
+        val binding: CardLayoutBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(moviesData: Movie) {
             Glide.with(binding.root)
@@ -35,6 +37,10 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         movies[position]?.let { holder.bind(it) }
+
+        holder.binding.root.setOnClickListener {
+            movies[position]?.let { it1 -> onClickToDetails(it1) }
+        }
     }
 
     override fun getItemCount(): Int {
