@@ -48,8 +48,8 @@ class HomeFragment : Fragment(), HomeView {
         getPageChangeCallback()
         setHorizontalListAdapter(binding.rvInTheatres)
         homePresenter.getInTheaters()
-//        setHorizontalListAdapter(binding.rvMostPopularMovies)
-//        homePresenter.getMostPopularMovies()
+        setHorizontalListAdapter(binding.rvMostPopularMovies)
+        homePresenter.getMostPopularMovies()
 //        setHorizontalListAdapter(binding.rvMostPopularSeries)
 //        homePresenter.getMostPopularSeries()
 //        setHorizontalListAdapter(binding.rvComingSoon)
@@ -65,10 +65,10 @@ class HomeFragment : Fragment(), HomeView {
         super.onResume()
         homePresenter.getTopMoviesOrSeries()
         handler.postDelayed(getRunnable,3000)
-        homePresenter.getInTheaters()
-        homePresenter.getMostPopularMovies()
-        homePresenter.getMostPopularSeries()
-        homePresenter.getComingSoon()
+//        homePresenter.getInTheaters()
+//        homePresenter.getMostPopularMovies()
+//        homePresenter.getMostPopularSeries()
+//        homePresenter.getComingSoon()
     }
 
     private fun getPageChangeCallback () {
@@ -91,7 +91,7 @@ class HomeFragment : Fragment(), HomeView {
 
     private fun setTopMoviesViewPager() {
         topMoviesAdapter = TopMoviesAdapter(
-            {data: MoviesSeries -> intentKeDetails(data) },
+            {data: MoviesSeries -> intentTopMsToDetails(data) },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
@@ -109,7 +109,7 @@ class HomeFragment : Fragment(), HomeView {
         )
     }
 
-    private fun intentKeDetails ( item : MoviesSeries) {
+    private fun intentTopMsToDetails ( item : MoviesSeries) {
         val intent = Intent(context,DetailsActivity::class.java)
         val parcelable = MoviesSeries (
             item.adult,
