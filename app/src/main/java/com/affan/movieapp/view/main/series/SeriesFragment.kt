@@ -11,7 +11,7 @@ import com.affan.movieapp.view.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.view.main.series.presenter.SeriesPresenter
 import com.affan.movieapp.view.main.series.presenter.SeriesView
 
-class SeriesFragment : Fragment(), SeriesView{
+class SeriesFragment : Fragment(), SeriesView {
 
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var seriesAdapter: SeriesAdapter
@@ -21,7 +21,7 @@ class SeriesFragment : Fragment(), SeriesView{
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSeriesBinding.inflate(layoutInflater, container, false)
         return binding.root
