@@ -19,7 +19,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
                 .load(moviesData.loadPoster())
                 .into(binding.ivPoster)
             binding.tvMovieTitle.text = moviesData.title
-            binding.tvDescription.text = moviesData.overview
+            binding.tvDescription.text = moviesData.voteAverage.toString() + "/10"
         }
     }
 
