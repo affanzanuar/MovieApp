@@ -6,8 +6,13 @@ import com.affan.movieapp.model.trending.MoviesSeries
 interface HomeView {
     fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesSeries?>)
     fun onFailureReceiveTopMoviesOrSeries(message: String)
+
     fun onSuccessGetInTheater(moviesOrSeries : List<Movie?>)
     fun onFailureGetInTheater(message : String)
+
     fun onSuccessGetPopularMovie(moviesOrSeries : List<Movie?>)
     fun onFailureGetPopularMovie(message : String)
+
+    fun onSuccessGetPopularSeries(moviesOrSeries : List<Movie?>)
+    fun onFailureGetPopularSeries(message : String)
 }

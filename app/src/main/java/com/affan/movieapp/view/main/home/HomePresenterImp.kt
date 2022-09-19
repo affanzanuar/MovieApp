@@ -129,7 +129,39 @@ class HomePresenterImp(
     }
 
     override fun getMostPopularSeries(){
+        coroutineScope.launch {
+            withContext(Dispatchers.IO){
+                ApiClient.instance.getMostPopularSeries(Data.apiKey)
+                    .enqueue(object : Callback<MovieResponse> {
+                        override fun onResponse(
+                            call: Call<MovieResponse>,
+                            response: Response<MovieResponse>
+                        ) {
+                            val body = response.body()!!
+                            coroutineScope.launch {
+                                withContext(Dispatchers.Main){
+                                    body.results
+                                        .let {
+                                            if (it != null) {
+                                                homeView.onSuccessGetPopularSeries(it)
+                                                Log.d("Main Presenter adalah",
+                                                    response.body()?.results.toString())
+                                            }
+                                        }
+                                }
+                            }
+                        }
 
+                        override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+                            coroutineScope.launch {
+                                withContext(Dispatchers.Main){
+                                    homeView.onFailureGetPopularSeries(t.message!!)
+                                }
+                            }
+                        }
+                    })
+            }
+        }
     }
 
     override fun getComingSoon(){

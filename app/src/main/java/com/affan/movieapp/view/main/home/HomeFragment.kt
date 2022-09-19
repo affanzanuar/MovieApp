@@ -26,7 +26,9 @@ class HomeFragment : Fragment(), HomeView {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var topMoviesAdapter: TopMoviesAdapter
     private lateinit var inTheaterAdapter: HorizontalListAdapter
-    private lateinit var mostPopularMovie: HorizontalListAdapter
+    private lateinit var mostPopularMovieAdapter: HorizontalListAdapter
+    private lateinit var mostPopularSeriesAdapter: HorizontalListAdapter
+    private lateinit var comingSoonAdapter: HorizontalListAdapter
     private lateinit var handler: Handler
     private lateinit var homePresenter: HomePresenterImp
 
@@ -47,9 +49,9 @@ class HomeFragment : Fragment(), HomeView {
         homePresenter.getTopMoviesOrSeries()
         getPageChangeCallback()
         inTheaterAdapter = setHorizontalListAdapter(binding.rvInTheatres)
-        homePresenter.getInTheaters()
-        mostPopularMovie = setHorizontalListAdapter(binding.rvMostPopularMovies)
-        homePresenter.getMostPopularMovies()
+        mostPopularMovieAdapter = setHorizontalListAdapter(binding.rvMostPopularMovies)
+        mostPopularSeriesAdapter= setHorizontalListAdapter(binding.rvMostPopularSeries)
+//        homePresenter.getMostPopularMovies()
 //        setHorizontalListAdapter(binding.rvInTheatres)
 //        setHorizontalListAdapter(binding.rvMostPopularMovies)
 //        setHorizontalListAdapter(binding.rvMostPopularSeries)
@@ -67,9 +69,9 @@ class HomeFragment : Fragment(), HomeView {
         super.onResume()
         homePresenter.getTopMoviesOrSeries()
         handler.postDelayed(getRunnable,3000)
-//        homePresenter.getInTheaters()
-//        homePresenter.getMostPopularMovies()
-//        homePresenter.getMostPopularSeries()
+        homePresenter.getInTheaters()
+        homePresenter.getMostPopularMovies()
+        homePresenter.getMostPopularSeries()
 //        homePresenter.getComingSoon()
     }
 
@@ -185,10 +187,18 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun onSuccessGetPopularMovie(moviesOrSeries: List<Movie?>) {
-        mostPopularMovie.setData(moviesOrSeries)
+        mostPopularMovieAdapter.setData(moviesOrSeries)
     }
 
     override fun onFailureGetPopularMovie(message: String) {
+        getShortToast(message)
+    }
+
+    override fun onSuccessGetPopularSeries(moviesOrSeries: List<Movie?>) {
+        mostPopularSeriesAdapter.setData(moviesOrSeries)
+    }
+
+    override fun onFailureGetPopularSeries(message: String) {
         getShortToast(message)
     }
 

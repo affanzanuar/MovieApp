@@ -23,6 +23,11 @@ interface ApiService {
         @Query("api_key") apiKey : String
     ) : Call<MovieResponse>
 
+    @GET("tv/popular")
+    fun getMostPopularSeries(
+        @Query("api_key") apiKey : String
+    ) : Call<MovieResponse>
+
 
 
 }
