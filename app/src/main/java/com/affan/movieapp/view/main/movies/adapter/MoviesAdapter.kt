@@ -4,21 +4,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.CardLayoutBinding
+import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.view.main.movies.MoviesData
 import com.bumptech.glide.Glide
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
-    private val movies = arrayListOf<MoviesData>()
+    private val movies = mutableListOf<Movie?>()
 
     inner class MoviesViewHolder(
         private val binding: CardLayoutBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(moviesData: MoviesData) {
+        fun bind(moviesData: Movie) {
             Glide.with(binding.root)
-                .load(moviesData.moviesPoster)
+                .load(moviesData.loadPoster())
                 .into(binding.ivPoster)
-            binding.tvMovieTitle.text = moviesData.moviesTitle
-            binding.tvDescription.text = moviesData.moviesDescription
+            binding.tvMovieTitle.text = moviesData.title
+            binding.tvDescription.text = moviesData.overview
         }
     }
 
@@ -33,14 +34,14 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        holder.bind(movies[position])
+        movies[position]?.let { holder.bind(it) }
     }
 
     override fun getItemCount(): Int {
         return movies.size
     }
 
-    fun setData(data: List<MoviesData>) {
+    fun setData(data: List<Movie?>) {
         movies.clear()
         movies.addAll(data)
         notifyDataSetChanged()
