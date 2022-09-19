@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemHorizontalContainerBinding
-import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.model.movie.Movie
 import com.bumptech.glide.Glide
 

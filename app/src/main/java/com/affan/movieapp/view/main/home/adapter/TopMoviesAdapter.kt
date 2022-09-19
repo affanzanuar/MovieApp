@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemTopMoviesBinding
-import com.affan.movieapp.model.MoviesOrSeries
-import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.trending.MoviesSeries
 import com.bumptech.glide.Glide
 

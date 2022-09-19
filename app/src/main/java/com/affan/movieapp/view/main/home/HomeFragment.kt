@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
-import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.trending.MoviesSeries
 import com.affan.movieapp.view.main.details.DetailsActivity
@@ -26,7 +25,8 @@ class HomeFragment : Fragment(), HomeView {
 
     private lateinit var binding : FragmentHomeBinding
     private lateinit var topMoviesAdapter: TopMoviesAdapter
-    private lateinit var horizontalListAdapter: HorizontalListAdapter
+    private lateinit var inTheaterAdapter: HorizontalListAdapter
+    private lateinit var mostPopularMovie: HorizontalListAdapter
     private lateinit var handler: Handler
     private lateinit var homePresenter: HomePresenterImp
 
@@ -43,13 +43,15 @@ class HomeFragment : Fragment(), HomeView {
         super.onViewCreated(view, savedInstanceState)
         createPresenter()
         handler = Handler(Looper.myLooper()!!)
-        setTopMoviesViewPager()
+        topMoviesAdapter = setTopMoviesViewPager()
         homePresenter.getTopMoviesOrSeries()
         getPageChangeCallback()
-        setHorizontalListAdapter(binding.rvInTheatres)
+        inTheaterAdapter = setHorizontalListAdapter(binding.rvInTheatres)
         homePresenter.getInTheaters()
-        setHorizontalListAdapter(binding.rvMostPopularMovies)
+        mostPopularMovie = setHorizontalListAdapter(binding.rvMostPopularMovies)
         homePresenter.getMostPopularMovies()
+//        setHorizontalListAdapter(binding.rvInTheatres)
+//        setHorizontalListAdapter(binding.rvMostPopularMovies)
 //        setHorizontalListAdapter(binding.rvMostPopularSeries)
 //        homePresenter.getMostPopularSeries()
 //        setHorizontalListAdapter(binding.rvComingSoon)
@@ -89,24 +91,27 @@ class HomeFragment : Fragment(), HomeView {
         homePresenter = HomePresenterImp(this,lifecycleScope)
     }
 
-    private fun setTopMoviesViewPager() {
+    private fun setTopMoviesViewPager() : TopMoviesAdapter {
         topMoviesAdapter = TopMoviesAdapter(
             {data: MoviesSeries -> intentTopMsToDetails(data) },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
+        return topMoviesAdapter
     }
 
-    private fun setHorizontalListAdapter (rv : RecyclerView) {
-        horizontalListAdapter = HorizontalListAdapter {
+    private fun setHorizontalListAdapter (rv : RecyclerView) : HorizontalListAdapter {
+         val horizontalListAdapter = HorizontalListAdapter {
                 data: Movie -> intentToDetails(data)
         }
         rv.adapter = horizontalListAdapter
+        rv.setHasFixedSize(true)
         rv.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.HORIZONTAL,
             false
         )
+        return horizontalListAdapter
     }
 
     private fun intentTopMsToDetails ( item : MoviesSeries) {
@@ -169,13 +174,25 @@ class HomeFragment : Fragment(), HomeView {
         TODO("Not yet implemented")
     }
 
-    override fun onSuccessReceiveHorizontalList(moviesOrSeries: List<Movie?>) {
-        horizontalListAdapter.setData(moviesOrSeries)
+//-----------------------------------------------------------------------------------------------
+
+    override fun onSuccessGetInTheater(moviesOrSeries: List<Movie?>) {
+        inTheaterAdapter.setData(moviesOrSeries)
     }
 
-    override fun onFailureReceiveHorizontalList(message: String) {
+    override fun onFailureGetInTheater(message: String) {
         getShortToast(message)
     }
+
+    override fun onSuccessGetPopularMovie(moviesOrSeries: List<Movie?>) {
+        mostPopularMovie.setData(moviesOrSeries)
+    }
+
+    override fun onFailureGetPopularMovie(message: String) {
+        getShortToast(message)
+    }
+
+//-----------------------------------------------------------------------------------------------
 
     companion object {
         const val EXTRA_DATA_MS = "extra data movies or series"

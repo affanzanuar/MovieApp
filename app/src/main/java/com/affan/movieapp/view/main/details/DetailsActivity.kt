@@ -9,7 +9,6 @@ import android.webkit.URLUtil
 import android.widget.MediaController
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
-import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.trending.MoviesSeries
 import com.affan.movieapp.view.main.home.HomeFragment

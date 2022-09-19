@@ -71,7 +71,7 @@ class HomePresenterImp(
                                     body.results
                                         .let {
                                             if (it != null) {
-                                                homeView.onSuccessReceiveHorizontalList(it)
+                                                homeView.onSuccessGetInTheater(it)
                                                 Log.d("Main Presenter adalah",
                                                     response.body()?.results.toString())
                                             }
@@ -83,7 +83,7 @@ class HomePresenterImp(
                         override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                             coroutineScope.launch {
                                 withContext(Dispatchers.Main){
-                                    homeView.onFailureReceiveHorizontalList(t.message!!)
+                                    homeView.onFailureGetInTheater(t.message!!)
                                 }
                             }
                         }
@@ -107,7 +107,7 @@ class HomePresenterImp(
                                     body.results
                                         .let {
                                             if (it != null) {
-                                                homeView.onSuccessReceiveHorizontalList(it)
+                                                homeView.onSuccessGetPopularMovie(it)
                                                 Log.d("Main Presenter adalah",
                                                     response.body()?.results.toString())
                                             }
@@ -119,7 +119,7 @@ class HomePresenterImp(
                         override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                             coroutineScope.launch {
                                 withContext(Dispatchers.Main){
-                                    homeView.onFailureReceiveHorizontalList(t.message!!)
+                                    homeView.onFailureGetPopularMovie(t.message!!)
                                 }
                             }
                         }
