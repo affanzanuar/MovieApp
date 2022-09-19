@@ -9,11 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
-import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.trending.MoviesSeries
 import com.affan.movieapp.view.main.details.DetailsActivity
 import com.affan.movieapp.view.main.home.adapter.HorizontalListAdapter
 import com.affan.movieapp.view.main.home.adapter.TopMoviesAdapter
@@ -23,7 +25,10 @@ class HomeFragment : Fragment(), HomeView {
 
     private lateinit var binding : FragmentHomeBinding
     private lateinit var topMoviesAdapter: TopMoviesAdapter
-    private lateinit var horizontalListAdapter: HorizontalListAdapter
+    private lateinit var inTheaterAdapter: HorizontalListAdapter
+    private lateinit var mostPopularMovieAdapter: HorizontalListAdapter
+    private lateinit var mostPopularSeriesAdapter: HorizontalListAdapter
+    private lateinit var comingSoonAdapter: HorizontalListAdapter
     private lateinit var handler: Handler
     private lateinit var homePresenter: HomePresenterImp
 
@@ -40,17 +45,19 @@ class HomeFragment : Fragment(), HomeView {
         super.onViewCreated(view, savedInstanceState)
         createPresenter()
         handler = Handler(Looper.myLooper()!!)
-        setTopMoviesViewPager()
+        topMoviesAdapter = setTopMoviesViewPager()
         homePresenter.getTopMoviesOrSeries()
         getPageChangeCallback()
-        setHorizontalListAdapter(binding.rvInTheatres)
-        homePresenter.getInTheaters()
-        setHorizontalListAdapter(binding.rvMostPopularMovies)
-        homePresenter.getMostPopularMovies()
-        setHorizontalListAdapter(binding.rvMostPopularSeries)
-        homePresenter.getMostPopularSeries()
-        setHorizontalListAdapter(binding.rvComingSoon)
-        homePresenter.getComingSoon()
+        inTheaterAdapter = setHorizontalListAdapter(binding.rvInTheatres)
+        mostPopularMovieAdapter = setHorizontalListAdapter(binding.rvMostPopularMovies)
+        mostPopularSeriesAdapter= setHorizontalListAdapter(binding.rvMostPopularSeries)
+//        homePresenter.getMostPopularMovies()
+//        setHorizontalListAdapter(binding.rvInTheatres)
+//        setHorizontalListAdapter(binding.rvMostPopularMovies)
+//        setHorizontalListAdapter(binding.rvMostPopularSeries)
+//        homePresenter.getMostPopularSeries()
+//        setHorizontalListAdapter(binding.rvComingSoon)
+//        homePresenter.getComingSoon()
     }
 
     override fun onPause() {
@@ -65,7 +72,7 @@ class HomeFragment : Fragment(), HomeView {
         homePresenter.getInTheaters()
         homePresenter.getMostPopularMovies()
         homePresenter.getMostPopularSeries()
-        homePresenter.getComingSoon()
+//        homePresenter.getComingSoon()
     }
 
     private fun getPageChangeCallback () {
@@ -83,42 +90,75 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     private fun createPresenter (){
-        homePresenter = HomePresenterImp(this)
+        homePresenter = HomePresenterImp(this,lifecycleScope)
     }
 
-    private fun setTopMoviesViewPager() {
+    private fun setTopMoviesViewPager() : TopMoviesAdapter {
         topMoviesAdapter = TopMoviesAdapter(
-            {data: MoviesOrSeries -> intentToDetails(data) },
+            {data: MoviesSeries -> intentTopMsToDetails(data) },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
+        return topMoviesAdapter
     }
 
-    private fun setHorizontalListAdapter (rv : RecyclerView) {
-        horizontalListAdapter = HorizontalListAdapter {
-                data: MoviesOrSeries -> intentToDetails(data)
+    private fun setHorizontalListAdapter (rv : RecyclerView) : HorizontalListAdapter {
+         val horizontalListAdapter = HorizontalListAdapter {
+                data: Movie -> intentToDetails(data)
         }
         rv.adapter = horizontalListAdapter
+        rv.setHasFixedSize(true)
         rv.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.HORIZONTAL,
             false
         )
+        return horizontalListAdapter
     }
 
-    private fun intentToDetails ( item : MoviesOrSeries) {
+    private fun intentTopMsToDetails ( item : MoviesSeries) {
         val intent = Intent(context,DetailsActivity::class.java)
-        val parcelable = MoviesOrSeries(
+        val parcelable = MoviesSeries (
+            item.adult,
+            item.backdropPath,
+            item.firstAirDate,
+            item.genreIds,
             item.id,
-            item.moviesOrSeriesTitle,
-            item.moviesOrSeriesPoster,
-            item.moviesOrSeriesBackDrop,
-            item.moviesOrSeriesGenre,
-            item.moviesOrSeriesRating,
-            item.moviesOrSeriesIsAdult,
-            item.moviesOrSeriesDescription,
-            item.releaseDate,
+            item.mediaType,
+            item.name,
+            item.originCountry,
             item.originalLanguage,
+            item.originalName,
+            item.originalTitle,
+            item.overview,
+            item.popularity,
+            item.posterPath,
+            item.releaseDate,
+            item.title,
+            item.video,
+            item.voteAverage,
+            item.voteCount
+        )
+        intent.putExtra(EXTRA_DATA_MS,parcelable)
+        startActivity(intent)
+    }
+
+    private fun intentToDetails ( item : Movie) {
+        val intent = Intent(context,DetailsActivity::class.java)
+        val parcelable = Movie (
+            item.adult,
+            item.backdropPath,
+            item.genreIds,
+            item.id,
+            item.originalLanguage,
+            item.originalTitle,
+            item.overview,
+            item.popularity,
+            item.posterPath,
+            item.releaseDate,
+            item.title,
+            item.video,
+            item.voteAverage,
             item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
@@ -128,14 +168,41 @@ class HomeFragment : Fragment(), HomeView {
     private fun getShortToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
-
-    override fun onReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesOrSeries>) {
+    override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesSeries?>) {
         topMoviesAdapter.setData(moviesOrSeries)
     }
 
-    override fun onReceiveHorizontalList(moviesOrSeries: List<MoviesOrSeries>) {
-        horizontalListAdapter.setData(moviesOrSeries)
+    override fun onFailureReceiveTopMoviesOrSeries(message: String) {
+        TODO("Not yet implemented")
     }
+
+//-----------------------------------------------------------------------------------------------
+
+    override fun onSuccessGetInTheater(moviesOrSeries: List<Movie?>) {
+        inTheaterAdapter.setData(moviesOrSeries)
+    }
+
+    override fun onFailureGetInTheater(message: String) {
+        getShortToast(message)
+    }
+
+    override fun onSuccessGetPopularMovie(moviesOrSeries: List<Movie?>) {
+        mostPopularMovieAdapter.setData(moviesOrSeries)
+    }
+
+    override fun onFailureGetPopularMovie(message: String) {
+        getShortToast(message)
+    }
+
+    override fun onSuccessGetPopularSeries(moviesOrSeries: List<Movie?>) {
+        mostPopularSeriesAdapter.setData(moviesOrSeries)
+    }
+
+    override fun onFailureGetPopularSeries(message: String) {
+        getShortToast(message)
+    }
+
+//-----------------------------------------------------------------------------------------------
 
     companion object {
         const val EXTRA_DATA_MS = "extra data movies or series"

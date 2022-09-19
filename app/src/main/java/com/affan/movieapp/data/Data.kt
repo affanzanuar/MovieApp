@@ -7,6 +7,8 @@ import com.affan.movieapp.view.main.series.SeriesData
 
 object Data {
 
+    const val apiKey = "b19b7218066efbe56b3d9d35f71e509a"
+
     val itemTopMovies : ArrayList<MoviesOrSeries> = arrayListOf(
         MoviesOrSeries(
             0,

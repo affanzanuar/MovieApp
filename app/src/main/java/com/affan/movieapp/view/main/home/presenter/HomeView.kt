@@ -1,8 +1,18 @@
 package com.affan.movieapp.view.main.home.presenter
 
-import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.trending.MoviesSeries
 
 interface HomeView {
-    fun onReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesOrSeries>)
-    fun onReceiveHorizontalList(moviesOrSeries: List<MoviesOrSeries>)
+    fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesSeries?>)
+    fun onFailureReceiveTopMoviesOrSeries(message: String)
+
+    fun onSuccessGetInTheater(moviesOrSeries : List<Movie?>)
+    fun onFailureGetInTheater(message : String)
+
+    fun onSuccessGetPopularMovie(moviesOrSeries : List<Movie?>)
+    fun onFailureGetPopularMovie(message : String)
+
+    fun onSuccessGetPopularSeries(moviesOrSeries : List<Movie?>)
+    fun onFailureGetPopularSeries(message : String)
 }
