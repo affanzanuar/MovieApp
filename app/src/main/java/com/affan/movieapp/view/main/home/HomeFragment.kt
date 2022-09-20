@@ -14,21 +14,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
+import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.trending.MoviesSeries
 import com.affan.movieapp.view.main.details.DetailsActivity
-import com.affan.movieapp.view.main.home.adapter.HorizontalListAdapter
-import com.affan.movieapp.view.main.home.adapter.TopMoviesAdapter
+import com.affan.movieapp.view.main.home.adapter.MovieAdapter
+import com.affan.movieapp.view.main.home.adapter.TrendingAdapter
 import com.affan.movieapp.view.main.home.presenter.HomeView
 
 class HomeFragment : Fragment(), HomeView {
 
     private lateinit var binding : FragmentHomeBinding
-    private lateinit var topMoviesAdapter: TopMoviesAdapter
-    private lateinit var inTheaterAdapter: HorizontalListAdapter
-    private lateinit var mostPopularMovieAdapter: HorizontalListAdapter
-    private lateinit var mostPopularSeriesAdapter: HorizontalListAdapter
-    private lateinit var comingSoonAdapter: HorizontalListAdapter
+    private lateinit var topMoviesAdapter: TrendingAdapter
+    private lateinit var inTheaterAdapter: MovieAdapter
+    private lateinit var mostPopularMovieAdapter: MovieAdapter
+    private lateinit var mostPopularSeriesAdapter: MovieAdapter
+    private lateinit var comingSoonAdapter: MovieAdapter
     private lateinit var handler: Handler
     private lateinit var homePresenter: HomePresenterImp
 
@@ -93,8 +94,8 @@ class HomeFragment : Fragment(), HomeView {
         homePresenter = HomePresenterImp(this,lifecycleScope)
     }
 
-    private fun setTopMoviesViewPager() : TopMoviesAdapter {
-        topMoviesAdapter = TopMoviesAdapter(
+    private fun setTopMoviesViewPager() : TrendingAdapter {
+        topMoviesAdapter = TrendingAdapter(
             {data: MoviesSeries -> intentTopMsToDetails(data) },
             binding.vpTopMovies
         )
@@ -102,8 +103,8 @@ class HomeFragment : Fragment(), HomeView {
         return topMoviesAdapter
     }
 
-    private fun setHorizontalListAdapter (rv : RecyclerView) : HorizontalListAdapter {
-         val horizontalListAdapter = HorizontalListAdapter {
+    private fun setHorizontalListAdapter (rv : RecyclerView) : MovieAdapter {
+         val horizontalListAdapter = MovieAdapter {
                 data: Movie -> intentToDetails(data)
         }
         rv.adapter = horizontalListAdapter
@@ -200,6 +201,14 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun onFailureGetPopularSeries(message: String) {
         getShortToast(message)
+    }
+
+    override fun onSuccessGetComingSoon(moviesOrSeries: List<ComingSoon?>) {
+        comingSoonAdapter.setData(moviesOrSeries)
+    }
+
+    override fun onFailureGetComingSoon(message: String) {
+        TODO("Not yet implemented")
     }
 
 //-----------------------------------------------------------------------------------------------

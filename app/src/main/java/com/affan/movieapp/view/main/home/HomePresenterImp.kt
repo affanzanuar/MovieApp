@@ -198,7 +198,7 @@ class HomePresenterImp(
                         override fun onFailure(call: Call<ComingSoonResponse>, t: Throwable) {
                             coroutineScope.launch {
                                 withContext(Dispatchers.Main){
-                                    homeView.onFailureGetPopularSeries(t.message!!)
+                                    homeView.onFailureGetComingSoon(t.message!!)
                                 }
                             }
                         }

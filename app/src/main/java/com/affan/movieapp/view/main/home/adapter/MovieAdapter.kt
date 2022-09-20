@@ -10,9 +10,9 @@ import com.affan.movieapp.databinding.ItemHorizontalContainerBinding
 import com.affan.movieapp.model.movie.Movie
 import com.bumptech.glide.Glide
 
-class HorizontalListAdapter(
+class MovieAdapter(
     private val onClickToDetails : (data : Movie) -> Unit
-) : RecyclerView.Adapter<HorizontalListAdapter.HorizontalGridViewHolder>() {
+) : RecyclerView.Adapter<MovieAdapter.HorizontalGridViewHolder>() {
 
     private val itemMovie = mutableListOf<Movie?>()
 

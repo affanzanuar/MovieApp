@@ -10,10 +10,10 @@ import com.affan.movieapp.databinding.ItemTopMoviesBinding
 import com.affan.movieapp.model.trending.MoviesSeries
 import com.bumptech.glide.Glide
 
-class TopMoviesAdapter (
+class TrendingAdapter (
     private val onClickToDetails : (data : MoviesSeries) -> Unit,
     private val viewPager2: ViewPager2
-) : RecyclerView.Adapter<TopMoviesAdapter.TopMoviesViewHolder>(){
+) : RecyclerView.Adapter<TrendingAdapter.TopMoviesViewHolder>(){
 
     private val itemMoviesOrSeries = mutableListOf<MoviesSeries?>()
 

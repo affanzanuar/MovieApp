@@ -32,4 +32,12 @@ data class ComingSoon(
     val voteAverage: Double?,
     @SerializedName("vote_count")
     val voteCount: Int?
-)
+) {
+    fun loadPoster() : String {
+        return "https://image.tmdb.org/t/p/w500$posterPath"
+    }
+
+    fun loadBackdrop() : String {
+        return "https://image.tmdb.org/t/p/w500$backdropPath"
+    }
+}
