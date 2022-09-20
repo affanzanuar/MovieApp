@@ -2,10 +2,10 @@ package com.affan.movieapp.view.main.home.presenter
 
 import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
-import com.affan.movieapp.model.trending.MoviesSeries
+import com.affan.movieapp.model.trending.Trending
 
 interface HomeView {
-    fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesSeries?>)
+    fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<Trending?>)
     fun onFailureReceiveTopMoviesOrSeries(message: String)
 
     fun onSuccessGetInTheater(moviesOrSeries : List<Movie?>)

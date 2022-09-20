@@ -16,7 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
 import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
-import com.affan.movieapp.model.trending.MoviesSeries
+import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.view.main.details.DetailsActivity
 import com.affan.movieapp.view.main.home.adapter.MovieAdapter
 import com.affan.movieapp.view.main.home.adapter.TrendingAdapter
@@ -96,7 +96,7 @@ class HomeFragment : Fragment(), HomeView {
 
     private fun setTopMoviesViewPager() : TrendingAdapter {
         topMoviesAdapter = TrendingAdapter(
-            {data: MoviesSeries -> intentTopMsToDetails(data) },
+            {data: Trending -> intentTopMsToDetails(data) },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
@@ -117,9 +117,9 @@ class HomeFragment : Fragment(), HomeView {
         return horizontalListAdapter
     }
 
-    private fun intentTopMsToDetails ( item : MoviesSeries) {
+    private fun intentTopMsToDetails ( item : Trending) {
         val intent = Intent(context,DetailsActivity::class.java)
-        val parcelable = MoviesSeries (
+        val parcelable = Trending (
             item.adult,
             item.backdropPath,
             item.firstAirDate,
@@ -169,7 +169,7 @@ class HomeFragment : Fragment(), HomeView {
     private fun getShortToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
-    override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<MoviesSeries?>) {
+    override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<Trending?>) {
         topMoviesAdapter.setData(moviesOrSeries)
     }
 

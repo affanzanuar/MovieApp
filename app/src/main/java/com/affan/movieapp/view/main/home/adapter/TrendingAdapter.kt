@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemTopMoviesBinding
-import com.affan.movieapp.model.trending.MoviesSeries
+import com.affan.movieapp.model.trending.Trending
 import com.bumptech.glide.Glide
 
 class TrendingAdapter (
-    private val onClickToDetails : (data : MoviesSeries) -> Unit,
+    private val onClickToDetails : (data : Trending) -> Unit,
     private val viewPager2: ViewPager2
 ) : RecyclerView.Adapter<TrendingAdapter.TopMoviesViewHolder>(){
 
-    private val itemMoviesOrSeries = mutableListOf<MoviesSeries?>()
+    private val itemMoviesOrSeries = mutableListOf<Trending?>()
 
     inner class TopMoviesViewHolder (val binding: ItemTopMoviesBinding)
         : RecyclerView.ViewHolder(binding.root){
-            fun bind (item : MoviesSeries){
+            fun bind (item : Trending){
                 Glide.with(binding.root)
                     .load(item.loadBackdrop())
                     .placeholder(R.drawable.ic_default_top_movies)
@@ -66,7 +66,7 @@ class TrendingAdapter (
         notifyDataSetChanged()
     }
     @SuppressLint("NotifyDataSetChanged")
-    fun setData (item : List<MoviesSeries?>){
+    fun setData (item : List<Trending?>){
         itemMoviesOrSeries.clear()
         itemMoviesOrSeries.addAll(item)
         notifyDataSetChanged()
