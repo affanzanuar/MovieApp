@@ -23,15 +23,15 @@
 <!--        android:label="Home"-->
 <!--        />-->
 
-    <fragment
-        android:id="@+id/navigation_movies"
-        android:name="com.affan.movieapp.view.main.account.AccountFragment"
-        android:label="Movies"
-        tools:layout="@layout/fragment_movies"  />
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_movies"-->
+<!--        android:name="com.affan.movieapp.view.main.account.AccountFragment"-->
+<!--        android:label="Movies"-->
+<!--        tools:layout="@layout/fragment_movies"  />-->
 
     <fragment
         android:id="@+id/navigation_movies"
-        android:name="com.affan.movieapp.view.main.movies.MovieFragment"
+        android:name="com.affan.movieapp.view.main.movies.MoviesFragment"
         android:label="Movies"
         tools:layout="@layout/fragment_movies" />
 

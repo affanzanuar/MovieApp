@@ -24,7 +24,14 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setDataToDetail()
+
+
+
+        if (getCategory()=="trending"){
+            setTrendingToDetail()
+        } else if (getCategory()=="movies") {
+            setMoviesToDetail()
+        }
 
         binding.ivBack.setOnClickListener {
             finish()
@@ -33,6 +40,10 @@ class DetailsActivity : AppCompatActivity() {
         if (savedInstanceState != null){
             currentPosition = savedInstanceState.getInt(PLAYBACK_TIME)
         }
+    }
+
+    private fun getCategory() : String{
+        return intent.getStringExtra(HomeFragment.CATEGORY)!!
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
@@ -97,35 +108,83 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDataMoviesOrSeries(): Movie {
+    private fun getDataTrending() : Trending {
+        return intent.getParcelableExtra<Trending>(HomeFragment.EXTRA_DATA_TRENDING)
+                as Trending
+    }
+
+    private fun getDataMovies(): Movie {
         return intent.getParcelableExtra<Movie>(HomeFragment.EXTRA_DATA_MS)
                 as Movie
     }
 
-    private fun getDataTopMoviesOrSeries() : Trending {
-        return intent.getParcelableExtra<Trending>(HomeFragment.EXTRA_DATA_MS)
-                as Trending
+    private fun setTrendingToDetail(){
+        Glide.with(this)
+            .load(getDataTrending().loadPoster())
+            .placeholder(R.drawable.ic_default_poster)
+            .into(binding.ivPosterDetail)
+
+        Glide.with(this)
+            .load(getDataTrending().loadBackdrop())
+            .placeholder(R.drawable.ic_default_top_movies)
+            .into(binding.ivBackdropDetails)
+
+        binding.tvTitleDetail.text = getDataTrending().title ?: getDataTrending().name
+        binding.tvGenre.text = getDataTrending().genreIds.toString()
+        binding.tvReleaseDate.text = getDataTrending().releaseDate ?: getDataTrending().firstAirDate
+        binding.tvOriginalLanguage.text = getDataTrending().originalLanguage
+        binding.tvVoteCount.text = getDataTrending().voteCount.toString()
+        binding.tvRatingResult.text = getDataTrending().voteAverage.toString()
+        binding.tvDescriptionMS.text = getDataTrending().overview
+
+        if (!getDataTrending().adult!!){
+            binding.tvIsAdult.visibility = View.GONE
+        }
     }
 
-    private fun setDataToDetail(){
+    private fun setMoviesToDetail(){
         Glide.with(this)
-            .load(getDataMoviesOrSeries().loadPoster())
+            .load(getDataMovies().loadPoster())
+            .placeholder(R.drawable.ic_default_poster)
+            .into(binding.ivPosterDetail)
+
+        Glide.with(this)
+            .load(getDataMovies().loadBackdrop())
+            .placeholder(R.drawable.ic_default_top_movies)
+            .into(binding.ivBackdropDetails)
+
+        binding.tvTitleDetail.text = getDataMovies().title
+        binding.tvGenre.text = getDataMovies().genreIds.toString()
+        binding.tvReleaseDate.text = getDataMovies().releaseDate
+        binding.tvOriginalLanguage.text = getDataMovies().originalLanguage
+        binding.tvVoteCount.text = getDataMovies().voteCount.toString()
+        binding.tvRatingResult.text = getDataMovies().voteAverage.toString()
+        binding.tvDescriptionMS.text = getDataMovies().overview
+
+        if (!getDataMovies().adult!!){
+            binding.tvIsAdult.visibility = View.GONE
+        }
+    }
+
+    private fun setSeriesToDetail(){
+        Glide.with(this)
+            .load(getDataMovies().loadPoster())
             .placeholder(R.drawable.ic_default_top_movies)
             .into(binding.ivPosterDetail)
 
         Glide.with(this)
-            .load(getDataMoviesOrSeries().loadBackdrop())
+            .load(getDataMovies().loadBackdrop())
             .into(binding.ivBackdropDetails)
 
-        binding.tvTitleDetail.text = getDataMoviesOrSeries().title ?: getDataTopMoviesOrSeries().name
-        binding.tvGenre.text = getDataMoviesOrSeries().genreIds.toString()
-        binding.tvReleaseDate.text = getDataMoviesOrSeries().releaseDate
-        binding.tvOriginalLanguage.text = getDataMoviesOrSeries().originalLanguage
-        binding.tvVoteCount.text = getDataMoviesOrSeries().voteCount.toString()
-        binding.tvRatingResult.text = getDataMoviesOrSeries().voteAverage.toString()
-        binding.tvDescriptionMS.text = getDataMoviesOrSeries().overview
+        binding.tvTitleDetail.text = getDataMovies().title
+        binding.tvGenre.text = getDataMovies().genreIds.toString()
+        binding.tvReleaseDate.text = getDataMovies().releaseDate
+        binding.tvOriginalLanguage.text = getDataMovies().originalLanguage
+        binding.tvVoteCount.text = getDataMovies().voteCount.toString()
+        binding.tvRatingResult.text = getDataMovies().voteAverage.toString()
+        binding.tvDescriptionMS.text = getDataMovies().overview
 
-        if (!getDataMoviesOrSeries().adult!!){
+        if (!getDataMovies().adult!!){
             binding.tvIsAdult.visibility = View.GONE
         }
     }

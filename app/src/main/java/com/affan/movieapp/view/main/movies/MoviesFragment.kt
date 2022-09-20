@@ -17,7 +17,7 @@ import com.affan.movieapp.view.main.movies.presenter.MoviesPresenter
 import com.affan.movieapp.view.main.movies.presenter.MoviesView
 
 
-class MovieFragment : Fragment(), MoviesView {
+class MoviesFragment : Fragment(), MoviesView {
 
     private lateinit var binding: FragmentMoviesBinding
     private lateinit var moviesAdapter: MoviesAdapter
@@ -66,6 +66,7 @@ class MovieFragment : Fragment(), MoviesView {
             movies.voteCount
         )
         intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
+        intent.putExtra(HomeFragment.CATEGORY,"movies")
         startActivity(intent)
     }
 

@@ -10,9 +10,9 @@ import com.affan.movieapp.databinding.ItemHorizontalContainerBinding
 import com.affan.movieapp.model.movie.Movie
 import com.bumptech.glide.Glide
 
-class MovieAdapter(
+class HomeMoviesAdapter(
     private val onClickToDetails : (data : Movie) -> Unit
-) : RecyclerView.Adapter<MovieAdapter.MovieListViewHolder>() {
+) : RecyclerView.Adapter<HomeMoviesAdapter.MovieListViewHolder>() {
 
     private val itemMovie = mutableListOf<Movie?>()
 
@@ -21,7 +21,7 @@ class MovieAdapter(
         fun bind(item : Movie){
             Glide.with(binding.root)
                 .load(item.loadPoster())
-                .placeholder(R.drawable.ic_default_horizontal)
+                .placeholder(R.drawable.ic_default_poster)
                 .into(binding.ivMoviesOrSeries)
         }
     }
