@@ -149,7 +149,7 @@ class HomeFragment : Fragment(), HomeView {
             item.voteAverage,
             item.voteCount
         )
-        intent.putExtra(EXTRA_DATA_TRENDING,parcelable)
+        intent.putExtra(EXTRA_DATA_MS,parcelable)
         intent.putExtra(CATEGORY,"trending")
         startActivity(intent)
     }
@@ -196,6 +196,7 @@ class HomeFragment : Fragment(), HomeView {
             item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
+        intent.putExtra(CATEGORY,"comingsoon")
         startActivity(intent)
     }
 

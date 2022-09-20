@@ -9,6 +9,7 @@ import android.webkit.URLUtil
 import android.widget.MediaController
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
+import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.view.main.home.HomeFragment
@@ -31,6 +32,8 @@ class DetailsActivity : AppCompatActivity() {
             setTrendingToDetail()
         } else if (getCategory()=="movies") {
             setMoviesToDetail()
+        } else if (getCategory()=="comingsoon"){
+            setComingSoonToDetail()
         }
 
         binding.ivBack.setOnClickListener {
@@ -109,13 +112,18 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun getDataTrending() : Trending {
-        return intent.getParcelableExtra<Trending>(HomeFragment.EXTRA_DATA_TRENDING)
+        return intent.getParcelableExtra<Trending>(HomeFragment.EXTRA_DATA_MS)
                 as Trending
     }
 
     private fun getDataMovies(): Movie {
         return intent.getParcelableExtra<Movie>(HomeFragment.EXTRA_DATA_MS)
                 as Movie
+    }
+
+    private fun getDataComingSoon(): ComingSoon {
+        return intent.getParcelableExtra<ComingSoon>(HomeFragment.EXTRA_DATA_MS)
+                as ComingSoon
     }
 
     private fun setTrendingToDetail(){
@@ -185,6 +193,30 @@ class DetailsActivity : AppCompatActivity() {
         binding.tvDescriptionMS.text = getDataMovies().overview
 
         if (!getDataMovies().adult!!){
+            binding.tvIsAdult.visibility = View.GONE
+        }
+    }
+
+    private fun setComingSoonToDetail(){
+        Glide.with(this)
+            .load(getDataComingSoon().loadPoster())
+            .placeholder(R.drawable.ic_default_poster)
+            .into(binding.ivPosterDetail)
+
+        Glide.with(this)
+            .load(getDataComingSoon().loadBackdrop())
+            .placeholder(R.drawable.ic_default_top_movies)
+            .into(binding.ivBackdropDetails)
+
+        binding.tvTitleDetail.text = getDataComingSoon().title
+        binding.tvGenre.text = getDataComingSoon().genreIds.toString()
+        binding.tvReleaseDate.text = getDataComingSoon().releaseDate
+        binding.tvOriginalLanguage.text = getDataComingSoon().originalLanguage
+        binding.tvVoteCount.text = getDataComingSoon().voteCount.toString()
+        binding.tvRatingResult.text = getDataComingSoon().voteAverage.toString()
+        binding.tvDescriptionMS.text = getDataComingSoon().overview
+
+        if (!getDataComingSoon().adult!!){
             binding.tvIsAdult.visibility = View.GONE
         }
     }
