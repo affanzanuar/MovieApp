@@ -31,7 +31,7 @@ class SeriesFragment : Fragment(), SeriesView {
         super.onViewCreated(view, savedInstanceState)
         createPresenter()
         setSeriesAdapter()
-        seriesPresenter.getMovies()
+        seriesPresenter.getPopularSeries()
     }
 
     private fun setSeriesAdapter() {

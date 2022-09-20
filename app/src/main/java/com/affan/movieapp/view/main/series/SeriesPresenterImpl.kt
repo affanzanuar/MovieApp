@@ -5,7 +5,7 @@ import com.affan.movieapp.view.main.series.presenter.SeriesPresenter
 import com.affan.movieapp.view.main.series.presenter.SeriesView
 
 class SeriesPresenterImpl (private val seriesView: SeriesView) : SeriesPresenter{
-    override fun getMovies() {
+    override fun getPopularSeries() {
         seriesView.onReceiveSeries(
             Data.itemSeries
         )
