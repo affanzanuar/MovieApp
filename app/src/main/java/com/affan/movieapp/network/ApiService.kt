@@ -34,8 +34,10 @@ interface ApiService {
         @Query("api_key") apiKey: String,
         @Query("language") language : String,
         @Query("sort_by") sortBy : String,
-        @Query("release_date.gte") releaseDateGte : String,
-        @Query("release_date.lte") releaseDateLte : String,
+        @Query("page") page : Int,
+        @Query("primary_release_date.gte") releaseDateGte : String,
+        @Query("primary_release_date.lte") releaseDateLte : String,
+        @Query("with_watch_monetization_types") monetizationTypes : String,
     ) : Call<ComingSoonResponse>
 
 }

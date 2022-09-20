@@ -172,8 +172,10 @@ class HomePresenterImp(
                     Data.apiKey,
                     Data.language,
                     Data.sortBy,
+                    Data.page,
                     Data.releaseDateGte,
-                    Data.releaseDateLte
+                    Data.releaseDateLte,
+                    Data.monetizationTypes
                 )
                     .enqueue(object : Callback<ComingSoonResponse> {
                         override fun onResponse(

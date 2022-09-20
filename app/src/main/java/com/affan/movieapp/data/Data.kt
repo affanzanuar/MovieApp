@@ -11,7 +11,8 @@ object Data {
 
     const val apiKey = "b19b7218066efbe56b3d9d35f71e509a"
     const val language = "en-US"
-    const val sortBy = "popularity.desc"
+    const val sortBy = "popularity.dsc"
+    const val page = 1
     val releaseDateGte: String = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now())
 
     private val currentYear0 = releaseDateGte[0]
@@ -24,6 +25,8 @@ object Data {
 
     val releaseDateLte : String = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(
         LocalDate.ofYearDay(twoYearsFromNow,12))
+
+    const val monetizationTypes = "flatrate"
 
     val itemTopMovies : ArrayList<MoviesOrSeries> = arrayListOf(
         MoviesOrSeries(
