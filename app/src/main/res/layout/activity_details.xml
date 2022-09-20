@@ -62,8 +62,8 @@
 
     <ImageView
         android:id="@+id/ivBackdropDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="230dp"
         android:src="@drawable/backdrop_dc_league_of_super_pets"
         android:layout_marginTop="48dp"
         android:adjustViewBounds="true"
