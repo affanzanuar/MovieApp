@@ -16,10 +16,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
 import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.view.main.details.DetailsActivity
 import com.affan.movieapp.view.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.view.main.home.adapter.HomeMoviesAdapter
+import com.affan.movieapp.view.main.home.adapter.HomeSeriesAdapter
 import com.affan.movieapp.view.main.home.adapter.TrendingAdapter
 import com.affan.movieapp.view.main.home.presenter.HomeView
 
@@ -29,7 +31,7 @@ class HomeFragment : Fragment(), HomeView {
     private lateinit var trendingAdapter: TrendingAdapter
     private lateinit var inTheaterAdapter: HomeMoviesAdapter
     private lateinit var mostPopularMovieAdapter: HomeMoviesAdapter
-    private lateinit var mostPopularSeriesAdapter: HomeMoviesAdapter
+    private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
     private lateinit var comingSoonAdapter: ComingSoonAdapter
     private lateinit var handler: Handler
     private lateinit var homePresenter: HomePresenterImp
@@ -52,7 +54,7 @@ class HomeFragment : Fragment(), HomeView {
         getPageChangeCallback()
         inTheaterAdapter = setMovieAdapter(binding.rvInTheatres)
         mostPopularMovieAdapter = setMovieAdapter(binding.rvMostPopularMovies)
-        mostPopularSeriesAdapter= setMovieAdapter(binding.rvMostPopularSeries)
+        mostPopularSeriesAdapter= setSeriesAdapter(binding.rvMostPopularSeries)
         comingSoonAdapter = setComingSoonAdapter(binding.rvComingSoon)
     }
 
@@ -99,17 +101,31 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     private fun setMovieAdapter (rv : RecyclerView) : HomeMoviesAdapter {
-         val horizontalListAdapter = HomeMoviesAdapter {
+         val moviesAdapter = HomeMoviesAdapter {
                 data: Movie -> intentMoviesToDetails(data)
         }
-        rv.adapter = horizontalListAdapter
+        rv.adapter = moviesAdapter
         rv.setHasFixedSize(true)
         rv.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.HORIZONTAL,
             false
         )
-        return horizontalListAdapter
+        return moviesAdapter
+    }
+
+    private fun setSeriesAdapter (rv : RecyclerView) : HomeSeriesAdapter {
+        val seriesAdapter = HomeSeriesAdapter {
+                data: Series -> intentSeriesToDetails(data)
+        }
+        rv.adapter = seriesAdapter
+        rv.setHasFixedSize(true)
+        rv.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        return seriesAdapter
     }
 
     private fun setComingSoonAdapter (rv : RecyclerView) : ComingSoonAdapter {
@@ -177,6 +193,28 @@ class HomeFragment : Fragment(), HomeView {
         startActivity(intent)
     }
 
+    private fun intentSeriesToDetails ( item : Series) {
+        val intent = Intent(context,DetailsActivity::class.java)
+        val parcelable = Series (
+            item.backdropPath,
+            item.firstAirDate,
+            item.genreIds,
+            item.id,
+            item.name,
+            item.originCountry,
+            item.originalLanguage,
+            item.originalName,
+            item.overview,
+            item.popularity,
+            item.posterPath,
+            item.voteAverage,
+            item.voteCount
+        )
+        intent.putExtra(EXTRA_DATA_MS,parcelable)
+        intent.putExtra(CATEGORY,"series")
+        startActivity(intent)
+    }
+
     private fun intentComingSoonToDetails ( item : ComingSoon) {
         val intent = Intent(context,DetailsActivity::class.java)
         val parcelable = ComingSoon (
@@ -208,7 +246,7 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun onFailureReceiveTopMoviesOrSeries(message: String) {
-        //TODO("Not yet implemented")
+        getShortToast(message)
     }
 
 //-----------------------------------------------------------------------------------------------
@@ -229,8 +267,8 @@ class HomeFragment : Fragment(), HomeView {
         getShortToast(message)
     }
 
-    override fun onSuccessGetPopularSeries(moviesOrSeries: List<Movie?>) {
-        mostPopularSeriesAdapter.setDataMovies(moviesOrSeries)
+    override fun onSuccessGetPopularSeries(moviesOrSeries: List<Series?>) {
+        mostPopularSeriesAdapter.setDataSeries(moviesOrSeries)
     }
 
     override fun onFailureGetPopularSeries(message: String) {
@@ -242,13 +280,12 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun onFailureGetComingSoon(message: String) {
-        TODO("Not yet implemented")
+        getShortToast(message)
     }
 
 //-----------------------------------------------------------------------------------------------
 
     companion object {
-        const val EXTRA_DATA_TRENDING = "extra data trending"
         const val EXTRA_DATA_MS = "extra data movies or series"
         const val CATEGORY = "category"
     }
