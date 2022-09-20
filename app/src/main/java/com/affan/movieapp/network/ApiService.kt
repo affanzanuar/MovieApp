@@ -38,6 +38,4 @@ interface ApiService {
         @Query("release_date.lte") releaseDateLte : String,
     ) : Call<ComingSoonResponse>
 
-
-
 }
