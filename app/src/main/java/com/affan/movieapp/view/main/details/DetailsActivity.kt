@@ -10,7 +10,7 @@ import android.widget.MediaController
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.model.movie.Movie
-import com.affan.movieapp.model.trending.MoviesSeries
+import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.view.main.home.HomeFragment
 import com.bumptech.glide.Glide
 
@@ -102,9 +102,9 @@ class DetailsActivity : AppCompatActivity() {
                 as Movie
     }
 
-    private fun getDataTopMoviesOrSeries() : MoviesSeries {
-        return intent.getParcelableExtra<MoviesSeries>(HomeFragment.EXTRA_DATA_MS)
-                as MoviesSeries
+    private fun getDataTopMoviesOrSeries() : Trending {
+        return intent.getParcelableExtra<Trending>(HomeFragment.EXTRA_DATA_MS)
+                as Trending
     }
 
     private fun setDataToDetail(){

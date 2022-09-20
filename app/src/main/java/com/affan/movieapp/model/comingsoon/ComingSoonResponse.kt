@@ -1,13 +1,13 @@
-package com.affan.movieapp.model.trending
+package com.affan.movieapp.model.comingsoon
 
 
 import com.google.gson.annotations.SerializedName
 
-data class TrendingResponse(
+data class ComingSoonResponse(
     @SerializedName("page")
     val page: Int?,
     @SerializedName("results")
-    val results: List<Trending?>?,
+    val results: List<ComingSoon?>?,
     @SerializedName("total_pages")
     val totalPages: Int?,
     @SerializedName("total_results")
