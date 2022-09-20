@@ -4,22 +4,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.CardLayoutBinding
+import com.affan.movieapp.view.main.series.Series
 import com.affan.movieapp.view.main.series.SeriesData
 import com.bumptech.glide.Glide
 
 class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
 
-    private val series = arrayListOf<SeriesData>()
+    private val series = mutableListOf<Series?>()
 
     inner class SeriesViewHolder(
         private val binding: CardLayoutBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(seriesData: SeriesData) {
+        fun bind(seriesData: Series) {
             Glide.with(binding.root)
-                .load(seriesData.seriesPoster)
+                .load(seriesData.loadPoster())
                 .into(binding.ivPoster)
-            binding.tvMovieTitle.text = seriesData.seriesTitle
-            binding.tvDescription.text = seriesData.seriesDescription
+            binding.tvMovieTitle.text = seriesData.name
+            binding.tvDescription.text = seriesData.voteAverage.toString() + "/10"
         }
     }
 
@@ -30,14 +31,14 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
-        holder.bind(series[position])
+        series[position]?.let { holder.bind(it) }
     }
 
     override fun getItemCount(): Int {
         return series.size
     }
 
-    fun setData(data: List<SeriesData>) {
+    fun setData(data: List<Series?>) {
         series.clear()
         series.addAll(data)
         notifyDataSetChanged()

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentSeriesBinding
 import com.affan.movieapp.view.main.series.adapter.SeriesAdapter
@@ -41,11 +42,19 @@ class SeriesFragment : Fragment(), SeriesView {
     }
 
     private fun createPresenter() {
-        seriesPresenter = SeriesPresenterImpl(this)
+        seriesPresenter = SeriesPresenterImpl(this, lifecycleScope)
     }
 
     override fun onReceiveSeries(series: List<SeriesData>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSuccessGetPopularSeries(series: List<Series?>) {
         seriesAdapter.setData(series)
+    }
+
+    override fun onFailGetPopularSeries(string: String) {
+        TODO("Not yet implemented")
     }
 
 

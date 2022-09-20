@@ -4,6 +4,7 @@ import android.util.Log
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.network.ApiClient
+import com.affan.movieapp.view.main.series.network.SeriesApiClient
 import com.affan.movieapp.view.main.series.presenter.SeriesPresenter
 import com.affan.movieapp.view.main.series.presenter.SeriesView
 import kotlinx.coroutines.CoroutineScope
@@ -21,7 +22,7 @@ class SeriesPresenterImpl(
     override fun getPopularSeries() {
         coroutineScope.launch {
             withContext(Dispatchers.IO) {
-                ApiClient.instance.getMostPopularSeries(Data.apiKey)
+                SeriesApiClient.instance.getMostPopularSeries(Data.apiKey)
                     .enqueue(object : Callback<SeriesResponse> {
                         override fun onResponse(
                             call: Call<SeriesResponse>,
@@ -30,13 +31,13 @@ class SeriesPresenterImpl(
                             val body = response.body()!!
                             coroutineScope.launch {
                                 withContext(Dispatchers.Main) {
-                                    body.results
+                                    body.series
                                         .let {
                                             if (it != null) {
                                                 seriesView.onSuccessGetPopularSeries(it)
                                                 Log.d(
                                                     "Main Presenter adalah",
-                                                    response.body()?.results.toString()
+                                                    response.body()?.series.toString()
                                                 )
                                             }
                                         }

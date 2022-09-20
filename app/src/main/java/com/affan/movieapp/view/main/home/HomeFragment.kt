@@ -212,7 +212,7 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun onFailureReceiveTopMoviesOrSeries(message: String) {
-        TODO("Not yet implemented")
+        //TODO("Not yet implemented")
     }
 
 //-----------------------------------------------------------------------------------------------
