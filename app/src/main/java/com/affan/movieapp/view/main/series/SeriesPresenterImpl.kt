@@ -2,8 +2,7 @@ package com.affan.movieapp.view.main.series
 
 import android.util.Log
 import com.affan.movieapp.data.Data
-import com.affan.movieapp.model.movie.MovieResponse
-import com.affan.movieapp.network.ApiClient
+import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.view.main.series.network.SeriesApiClient
 import com.affan.movieapp.view.main.series.presenter.SeriesPresenter
 import com.affan.movieapp.view.main.series.presenter.SeriesView

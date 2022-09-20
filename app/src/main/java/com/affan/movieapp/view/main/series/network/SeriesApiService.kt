@@ -1,6 +1,6 @@
 package com.affan.movieapp.view.main.series.network
 
-import com.affan.movieapp.view.main.series.SeriesResponse
+import com.affan.movieapp.model.series.SeriesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
