@@ -50,9 +50,10 @@ class HomeFragment : Fragment(), HomeView {
         topMoviesAdapter = setTopMoviesViewPager()
         homePresenter.getTopMoviesOrSeries()
         getPageChangeCallback()
-        inTheaterAdapter = setHorizontalListAdapter(binding.rvInTheatres)
-        mostPopularMovieAdapter = setHorizontalListAdapter(binding.rvMostPopularMovies)
-        mostPopularSeriesAdapter= setHorizontalListAdapter(binding.rvMostPopularSeries)
+        inTheaterAdapter = setMovieAdapter(binding.rvInTheatres)
+        mostPopularMovieAdapter = setMovieAdapter(binding.rvMostPopularMovies)
+        mostPopularSeriesAdapter= setMovieAdapter(binding.rvMostPopularSeries)
+        comingSoonAdapter = setComingSoonAdapter(binding.rvComingSoon)
 //        homePresenter.getMostPopularMovies()
 //        setHorizontalListAdapter(binding.rvInTheatres)
 //        setHorizontalListAdapter(binding.rvMostPopularMovies)
@@ -74,7 +75,7 @@ class HomeFragment : Fragment(), HomeView {
         homePresenter.getInTheaters()
         homePresenter.getMostPopularMovies()
         homePresenter.getMostPopularSeries()
-//        homePresenter.getComingSoon()
+        homePresenter.getComingSoon()
     }
 
     private fun getPageChangeCallback () {
@@ -97,16 +98,16 @@ class HomeFragment : Fragment(), HomeView {
 
     private fun setTopMoviesViewPager() : TrendingAdapter {
         topMoviesAdapter = TrendingAdapter(
-            {data: Trending -> intentTopMsToDetails(data) },
+            {data: Trending -> intentTrendingToDetails(data) },
             binding.vpTopMovies
         )
         binding.vpTopMovies.adapter = topMoviesAdapter
         return topMoviesAdapter
     }
 
-    private fun setHorizontalListAdapter (rv : RecyclerView) : MovieAdapter {
+    private fun setMovieAdapter (rv : RecyclerView) : MovieAdapter {
          val horizontalListAdapter = MovieAdapter {
-                data: Movie -> intentToDetails(data)
+                data: Movie -> intentMoviesToDetails(data)
         }
         rv.adapter = horizontalListAdapter
         rv.setHasFixedSize(true)
@@ -118,7 +119,21 @@ class HomeFragment : Fragment(), HomeView {
         return horizontalListAdapter
     }
 
-    private fun intentTopMsToDetails ( item : Trending) {
+    private fun setComingSoonAdapter (rv : RecyclerView) : ComingSoonAdapter {
+        val comingSoonAdapter = ComingSoonAdapter {
+                data: ComingSoon -> intentComingSoonToDetails(data)
+        }
+        rv.adapter = comingSoonAdapter
+        rv.setHasFixedSize(true)
+        rv.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        return comingSoonAdapter
+    }
+
+    private fun intentTrendingToDetails ( item : Trending) {
         val intent = Intent(context,DetailsActivity::class.java)
         val parcelable = Trending (
             item.adult,
@@ -145,7 +160,7 @@ class HomeFragment : Fragment(), HomeView {
         startActivity(intent)
     }
 
-    private fun intentToDetails ( item : Movie) {
+    private fun intentMoviesToDetails ( item : Movie) {
         val intent = Intent(context,DetailsActivity::class.java)
         val parcelable = Movie (
             item.adult,
@@ -164,6 +179,28 @@ class HomeFragment : Fragment(), HomeView {
             item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
+        startActivity(intent)
+    }
+
+    private fun intentComingSoonToDetails ( item : ComingSoon) {
+        val intent = Intent(context,DetailsActivity::class.java)
+        val parcelable = ComingSoon (
+            item.adult,
+            item.backdropPath,
+            item.genreIds,
+            item.id,
+            item.originalLanguage,
+            item.originalTitle,
+            item.overview,
+            item.popularity,
+            item.posterPath,
+            item.releaseDate,
+            item.title,
+            item.video,
+            item.voteAverage,
+            item.voteCount
+        )
+        intent.putExtra(COMING_SOON_DATA,parcelable)
         startActivity(intent)
     }
 
@@ -216,5 +253,6 @@ class HomeFragment : Fragment(), HomeView {
 
     companion object {
         const val EXTRA_DATA_MS = "extra data movies or series"
+        const val COMING_SOON_DATA = "coming soon data"
     }
 }

@@ -1,13 +1,13 @@
 package com.affan.movieapp.view.main.home.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemHorizontalContainerBinding
 import com.affan.movieapp.model.comingsoon.ComingSoon
-import com.affan.movieapp.model.movie.Movie
 import com.bumptech.glide.Glide
 
 class ComingSoonAdapter(
@@ -51,5 +51,6 @@ class ComingSoonAdapter(
         itemComingSoon.clear()
         itemComingSoon.addAll(data)
         notifyDataSetChanged()
+        Log.d("CS Adapter", data.toString())
     }
 }
