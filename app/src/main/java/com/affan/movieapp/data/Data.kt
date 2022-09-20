@@ -10,8 +10,8 @@ object Data {
     const val apiKey = "b19b7218066efbe56b3d9d35f71e509a"
     const val language = "en-US"
     const val sortBy = "popularity.desc"
-    const val releaseDateGte = "2023-12-01"
-    const val releaseDateLte = "2026-12-01"
+    const val releaseDateGte = "2022-10-01"
+    const val releaseDateLte = "2024-12-01"
 
     val itemTopMovies : ArrayList<MoviesOrSeries> = arrayListOf(
         MoviesOrSeries(
