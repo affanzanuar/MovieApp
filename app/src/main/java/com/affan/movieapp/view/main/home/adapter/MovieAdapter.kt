@@ -12,11 +12,11 @@ import com.bumptech.glide.Glide
 
 class MovieAdapter(
     private val onClickToDetails : (data : Movie) -> Unit
-) : RecyclerView.Adapter<MovieAdapter.HorizontalGridViewHolder>() {
+) : RecyclerView.Adapter<MovieAdapter.MovieListViewHolder>() {
 
     private val itemMovie = mutableListOf<Movie?>()
 
-    inner class HorizontalGridViewHolder (val binding: ItemHorizontalContainerBinding) :
+    inner class MovieListViewHolder (val binding: ItemHorizontalContainerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item : Movie){
             Glide.with(binding.root)
@@ -26,15 +26,15 @@ class MovieAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorizontalGridViewHolder {
-        return HorizontalGridViewHolder(ItemHorizontalContainerBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder {
+        return MovieListViewHolder(ItemHorizontalContainerBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false)
         )
     }
 
-    override fun onBindViewHolder(holder: HorizontalGridViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
         itemMovie[position]?.let { holder.bind(it) }
 
         holder.binding.root.setOnClickListener {
@@ -47,7 +47,7 @@ class MovieAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData (item : List<Movie?>){
+    fun setDataMovies (item : List<Movie?>){
         Log.d("Main Adapter setData", item.toString())
         itemMovie.clear()
         itemMovie.addAll(item)

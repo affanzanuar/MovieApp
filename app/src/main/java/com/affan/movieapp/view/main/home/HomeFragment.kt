@@ -18,6 +18,7 @@ import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.view.main.details.DetailsActivity
+import com.affan.movieapp.view.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.view.main.home.adapter.MovieAdapter
 import com.affan.movieapp.view.main.home.adapter.TrendingAdapter
 import com.affan.movieapp.view.main.home.presenter.HomeView
@@ -29,7 +30,7 @@ class HomeFragment : Fragment(), HomeView {
     private lateinit var inTheaterAdapter: MovieAdapter
     private lateinit var mostPopularMovieAdapter: MovieAdapter
     private lateinit var mostPopularSeriesAdapter: MovieAdapter
-    private lateinit var comingSoonAdapter: MovieAdapter
+    private lateinit var comingSoonAdapter: ComingSoonAdapter
     private lateinit var handler: Handler
     private lateinit var homePresenter: HomePresenterImp
 
@@ -180,7 +181,7 @@ class HomeFragment : Fragment(), HomeView {
 //-----------------------------------------------------------------------------------------------
 
     override fun onSuccessGetInTheater(moviesOrSeries: List<Movie?>) {
-        inTheaterAdapter.setData(moviesOrSeries)
+        inTheaterAdapter.setDataMovies(moviesOrSeries)
     }
 
     override fun onFailureGetInTheater(message: String) {
@@ -188,7 +189,7 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun onSuccessGetPopularMovie(moviesOrSeries: List<Movie?>) {
-        mostPopularMovieAdapter.setData(moviesOrSeries)
+        mostPopularMovieAdapter.setDataMovies(moviesOrSeries)
     }
 
     override fun onFailureGetPopularMovie(message: String) {
@@ -196,7 +197,7 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun onSuccessGetPopularSeries(moviesOrSeries: List<Movie?>) {
-        mostPopularSeriesAdapter.setData(moviesOrSeries)
+        mostPopularSeriesAdapter.setDataMovies(moviesOrSeries)
     }
 
     override fun onFailureGetPopularSeries(message: String) {
@@ -204,7 +205,7 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun onSuccessGetComingSoon(moviesOrSeries: List<ComingSoon?>) {
-        comingSoonAdapter.setData(moviesOrSeries)
+        comingSoonAdapter.setDataComingSoon(moviesOrSeries)
     }
 
     override fun onFailureGetComingSoon(message: String) {
