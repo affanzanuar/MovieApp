@@ -4,14 +4,26 @@ import com.affan.movieapp.R
 import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.view.main.movies.MoviesData
 import com.affan.movieapp.view.main.series.SeriesData
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 object Data {
 
     const val apiKey = "b19b7218066efbe56b3d9d35f71e509a"
     const val language = "en-US"
     const val sortBy = "popularity.desc"
-    const val releaseDateGte = "2022-10-01"
-    const val releaseDateLte = "2024-12-01"
+    val releaseDateGte: String = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now())
+
+    private val currentYear0 = releaseDateGte[0]
+    private val currentYear1 = releaseDateGte[1]
+    private val currentYear2 = releaseDateGte[2]
+    private val currentYear3 = releaseDateGte[3]
+
+    private val currentYear = "$currentYear0$currentYear1$currentYear2$currentYear3".toInt()
+    private val twoYearsFromNow = currentYear + 2
+
+    val releaseDateLte : String = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(
+        LocalDate.ofYearDay(twoYearsFromNow,12))
 
     val itemTopMovies : ArrayList<MoviesOrSeries> = arrayListOf(
         MoviesOrSeries(
