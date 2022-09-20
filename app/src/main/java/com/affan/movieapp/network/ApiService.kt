@@ -2,6 +2,7 @@ package com.affan.movieapp.network
 
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.movie.MovieResponse
+import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -27,7 +28,7 @@ interface ApiService {
     @GET("tv/popular")
     fun getMostPopularSeries(
         @Query("api_key") apiKey : String
-    ) : Call<MovieResponse>
+    ) : Call<SeriesResponse>
 
     @GET("discover/movie")
     fun getComingSoon(

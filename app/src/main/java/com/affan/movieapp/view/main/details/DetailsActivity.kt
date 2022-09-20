@@ -11,6 +11,7 @@ import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.view.main.home.HomeFragment
 import com.bumptech.glide.Glide
@@ -32,7 +33,9 @@ class DetailsActivity : AppCompatActivity() {
             setTrendingToDetail()
         } else if (getCategory()=="movies") {
             setMoviesToDetail()
-        } else if (getCategory()=="comingsoon"){
+        } else if (getCategory()=="series"){
+            setSeriesToDetail()
+        } else {
             setComingSoonToDetail()
         }
 
@@ -121,6 +124,11 @@ class DetailsActivity : AppCompatActivity() {
                 as Movie
     }
 
+    private fun getDataSeries(): Series {
+        return intent.getParcelableExtra<Series>(HomeFragment.EXTRA_DATA_MS)
+                as Series
+    }
+
     private fun getDataComingSoon(): ComingSoon {
         return intent.getParcelableExtra<ComingSoon>(HomeFragment.EXTRA_DATA_MS)
                 as ComingSoon
@@ -176,25 +184,25 @@ class DetailsActivity : AppCompatActivity() {
 
     private fun setSeriesToDetail(){
         Glide.with(this)
-            .load(getDataMovies().loadPoster())
-            .placeholder(R.drawable.ic_default_top_movies)
+            .load(getDataSeries().loadPoster())
+            .placeholder(R.drawable.ic_default_poster)
             .into(binding.ivPosterDetail)
 
         Glide.with(this)
-            .load(getDataMovies().loadBackdrop())
+            .load(getDataSeries().loadBackdrop())
+            .placeholder(R.drawable.ic_default_top_movies)
             .into(binding.ivBackdropDetails)
 
-        binding.tvTitleDetail.text = getDataMovies().title
-        binding.tvGenre.text = getDataMovies().genreIds.toString()
-        binding.tvReleaseDate.text = getDataMovies().releaseDate
-        binding.tvOriginalLanguage.text = getDataMovies().originalLanguage
-        binding.tvVoteCount.text = getDataMovies().voteCount.toString()
-        binding.tvRatingResult.text = getDataMovies().voteAverage.toString()
-        binding.tvDescriptionMS.text = getDataMovies().overview
+        binding.tvTitleDetail.text = getDataSeries().name
+        binding.tvGenre.text = getDataSeries().genreIds.toString()
+        binding.tvReleaseDate.text = getDataSeries().firstAirDate
+        binding.tvOriginalLanguage.text = getDataSeries().originalLanguage
+        binding.tvVoteCount.text = getDataSeries().voteCount.toString()
+        binding.tvRatingResult.text = getDataSeries().voteAverage.toString()
+        binding.tvDescriptionMS.text = getDataSeries().overview
 
-        if (!getDataMovies().adult!!){
-            binding.tvIsAdult.visibility = View.GONE
-        }
+        binding.tvIsAdult.visibility = View.GONE
+
     }
 
     private fun setComingSoonToDetail(){

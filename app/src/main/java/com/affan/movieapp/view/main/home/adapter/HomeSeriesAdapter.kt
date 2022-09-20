@@ -1,13 +1,11 @@
 package com.affan.movieapp.view.main.home.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemHorizontalContainerBinding
-import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.series.Series
 import com.bumptech.glide.Glide
 
