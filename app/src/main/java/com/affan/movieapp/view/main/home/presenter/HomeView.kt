@@ -1,5 +1,6 @@
 package com.affan.movieapp.view.main.home.presenter
 
+import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.trending.MoviesSeries
 
@@ -15,4 +16,7 @@ interface HomeView {
 
     fun onSuccessGetPopularSeries(moviesOrSeries : List<Movie?>)
     fun onFailureGetPopularSeries(message : String)
+
+    fun onSuccessGetComingSoon(moviesOrSeries : List<ComingSoon?>)
+    fun onFailureGetComingSoon(message : String)
 }

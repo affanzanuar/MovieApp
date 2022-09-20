@@ -2,6 +2,7 @@ package com.affan.movieapp.view.main.home
 
 import android.util.Log
 import com.affan.movieapp.data.Data
+import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.network.ApiClient
@@ -165,6 +166,44 @@ class HomePresenterImp(
     }
 
     override fun getComingSoon(){
+        coroutineScope.launch {
+            withContext(Dispatchers.IO){
+                ApiClient.instance.getComingSoon(
+                    Data.apiKey,
+                    Data.language,
+                    Data.sortBy,
+                    Data.releaseDateGte,
+                    Data.releaseDateLte
+                )
+                    .enqueue(object : Callback<ComingSoonResponse> {
+                        override fun onResponse(
+                            call: Call<ComingSoonResponse>,
+                            response: Response<ComingSoonResponse>
+                        ) {
+                            val body = response.body()!!
+                            coroutineScope.launch {
+                                withContext(Dispatchers.Main){
+                                    body.results
+                                        .let {
+                                            if (it != null) {
+                                                homeView.onSuccessGetComingSoon(it)
+                                                Log.d("Main Presenter adalah",
+                                                    response.body()?.results.toString())
+                                            }
+                                        }
+                                }
+                            }
+                        }
 
+                        override fun onFailure(call: Call<ComingSoonResponse>, t: Throwable) {
+                            coroutineScope.launch {
+                                withContext(Dispatchers.Main){
+                                    homeView.onFailureGetPopularSeries(t.message!!)
+                                }
+                            }
+                        }
+                    })
+            }
+        }
     }
 }
