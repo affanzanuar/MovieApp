@@ -7,12 +7,14 @@ import com.affan.movieapp.databinding.CardLayoutBinding
 import com.affan.movieapp.model.series.Series
 import com.bumptech.glide.Glide
 
-class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
+class SeriesAdapter(
+    private val onClickToDetails: (data: Series) -> Unit
+) : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
 
     private val series = mutableListOf<Series?>()
 
     inner class SeriesViewHolder(
-        private val binding: CardLayoutBinding,
+        val binding: CardLayoutBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(seriesData: Series) {
             Glide.with(binding.root)
@@ -25,12 +27,19 @@ class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeriesViewHolder {
         return SeriesViewHolder(
-            CardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CardLayoutBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false)
         )
     }
 
     override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
         series[position]?.let { holder.bind(it) }
+
+        holder.binding.root.setOnClickListener {
+            series[position]?.let { it1 -> onClickToDetails(it1) }
+        }
     }
 
     override fun getItemCount(): Int {
