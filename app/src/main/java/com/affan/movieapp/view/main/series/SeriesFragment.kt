@@ -40,14 +40,16 @@ class SeriesFragment : Fragment(), SeriesView {
     }
 
     private fun setSeriesAdapter() {
-        seriesAdapter = SeriesAdapter()
+        seriesAdapter = SeriesAdapter { series: Series ->
+            intentToDetails(series)
+        }
         binding.rvSeries.adapter = seriesAdapter
         binding.rvSeries.layoutManager = GridLayoutManager(context, 2)
     }
 
     private fun intentToDetails(series: Series) {
         val intent = Intent(context, DetailsActivity::class.java)
-        val parcelable = Series (
+        val parcelable = Series(
             series.backdropPath,
             series.firstAirDate,
             series.genreIds,
@@ -62,7 +64,7 @@ class SeriesFragment : Fragment(), SeriesView {
             series.voteAverage,
             series.voteCount
         )
-        intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
+        intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
         startActivity(intent)
     }
 
