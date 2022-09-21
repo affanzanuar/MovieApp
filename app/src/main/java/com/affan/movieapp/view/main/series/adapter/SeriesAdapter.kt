@@ -27,7 +27,10 @@ class SeriesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeriesViewHolder {
         return SeriesViewHolder(
-            CardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CardLayoutBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false)
         )
     }
 

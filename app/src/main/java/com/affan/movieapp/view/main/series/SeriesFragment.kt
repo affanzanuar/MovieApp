@@ -65,6 +65,7 @@ class SeriesFragment : Fragment(), SeriesView {
             series.voteCount
         )
         intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
+        intent.putExtra(HomeFragment.CATEGORY,"series")
         startActivity(intent)
     }
 
