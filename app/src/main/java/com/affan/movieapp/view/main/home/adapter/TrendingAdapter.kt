@@ -13,11 +13,11 @@ import com.bumptech.glide.Glide
 class TrendingAdapter (
     private val onClickToDetails : (data : Trending) -> Unit,
     private val viewPager2: ViewPager2
-) : RecyclerView.Adapter<TrendingAdapter.TopMoviesViewHolder>(){
+) : RecyclerView.Adapter<TrendingAdapter.TrendingViewHolder>(){
 
     private val itemMoviesOrSeries = mutableListOf<Trending?>()
 
-    inner class TopMoviesViewHolder (val binding: ItemTopMoviesBinding)
+    inner class TrendingViewHolder (val binding: ItemTopMoviesBinding)
         : RecyclerView.ViewHolder(binding.root){
             fun bind (item : Trending){
                 Glide.with(binding.root)
@@ -27,21 +27,14 @@ class TrendingAdapter (
 
                 binding.tvTopMoviesTitle.text = item.title ?: item.name
 
-//                if (item.title?.isNotEmpty() == true){
-//                    binding.tvTopMoviesTitle.text = item.title
-//                } else {
-//                    binding.tvTopMoviesTitle.text = item.name
-//                }
-
-
                 binding.root.setOnClickListener {
                     onClickToDetails(item)
                 }
             }
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopMoviesViewHolder {
-        return TopMoviesViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingViewHolder {
+        return TrendingViewHolder(
             ItemTopMoviesBinding.inflate(LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -49,7 +42,7 @@ class TrendingAdapter (
         )
     }
 
-    override fun onBindViewHolder(holder: TopMoviesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TrendingViewHolder, position: Int) {
         itemMoviesOrSeries[position]?.let { holder.bind(it) }
         if (position==this.itemMoviesOrSeries.size-1){
             viewPager2.post(runnable)

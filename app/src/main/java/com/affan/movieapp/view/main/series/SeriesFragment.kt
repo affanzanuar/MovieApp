@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentSeriesBinding
-import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.view.main.details.DetailsActivity
 import com.affan.movieapp.view.main.home.HomeFragment
 import com.affan.movieapp.view.main.series.adapter.SeriesAdapter

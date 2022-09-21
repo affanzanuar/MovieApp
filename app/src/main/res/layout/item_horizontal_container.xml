@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/ivMoviesOrSeries"
         android:layout_width="wrap_content"
-        android:src="@drawable/ic_default_horizontal"
+        android:src="@drawable/ic_default_poster"
         android:adjustViewBounds="true"
         android:maxHeight="171dp"
         android:maxWidth="237dp"

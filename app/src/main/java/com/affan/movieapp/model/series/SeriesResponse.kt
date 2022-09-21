@@ -1,4 +1,4 @@
-package com.affan.movieapp.view.main.series
+package com.affan.movieapp.model.series
 
 
 import com.google.gson.annotations.SerializedName

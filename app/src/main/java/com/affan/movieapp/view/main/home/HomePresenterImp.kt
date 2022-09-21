@@ -4,6 +4,7 @@ import android.util.Log
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.movie.MovieResponse
+import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.network.ApiClient
 import com.affan.movieapp.view.main.home.presenter.HomePresenter
@@ -133,27 +134,27 @@ class HomePresenterImp(
         coroutineScope.launch {
             withContext(Dispatchers.IO){
                 ApiClient.instance.getMostPopularSeries(Data.apiKey)
-                    .enqueue(object : Callback<MovieResponse> {
+                    .enqueue(object : Callback<SeriesResponse> {
                         override fun onResponse(
-                            call: Call<MovieResponse>,
-                            response: Response<MovieResponse>
+                            call: Call<SeriesResponse>,
+                            response: Response<SeriesResponse>
                         ) {
                             val body = response.body()!!
                             coroutineScope.launch {
                                 withContext(Dispatchers.Main){
-                                    body.results
+                                    body.series
                                         .let {
                                             if (it != null) {
                                                 homeView.onSuccessGetPopularSeries(it)
                                                 Log.d("Main Presenter adalah",
-                                                    response.body()?.results.toString())
+                                                    response.body()?.series.toString())
                                             }
                                         }
                                 }
                             }
                         }
 
-                        override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+                        override fun onFailure(call: Call<SeriesResponse>, t: Throwable) {
                             coroutineScope.launch {
                                 withContext(Dispatchers.Main){
                                     homeView.onFailureGetPopularSeries(t.message!!)
@@ -172,8 +173,10 @@ class HomePresenterImp(
                     Data.apiKey,
                     Data.language,
                     Data.sortBy,
+                    Data.page,
                     Data.releaseDateGte,
-                    Data.releaseDateLte
+                    Data.releaseDateLte,
+                    Data.monetizationTypes
                 )
                     .enqueue(object : Callback<ComingSoonResponse> {
                         override fun onResponse(

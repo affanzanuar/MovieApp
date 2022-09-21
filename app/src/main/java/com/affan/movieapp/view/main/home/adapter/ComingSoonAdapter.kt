@@ -21,7 +21,7 @@ class ComingSoonAdapter(
         fun bind(item : ComingSoon){
             Glide.with(binding.root)
                 .load(item.loadPoster())
-                .placeholder(R.drawable.ic_default_horizontal)
+                .placeholder(R.drawable.ic_default_poster)
                 .into(binding.ivMoviesOrSeries)
         }
     }
