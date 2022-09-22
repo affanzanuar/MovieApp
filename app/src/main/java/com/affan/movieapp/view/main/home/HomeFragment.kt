@@ -84,7 +84,7 @@ class HomeFragment : Fragment(), HomeView {
     override fun onResume() {
         super.onResume()
         homePresenter.getTopMoviesOrSeries()
-        handler.postDelayed(getRunnable,3000)
+        handler.postDelayed(getRunnable,5500)
         homePresenter.getInTheaters()
         homePresenter.getMostPopularMovies()
         homePresenter.getMostPopularSeries()
@@ -96,7 +96,7 @@ class HomeFragment : Fragment(), HomeView {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 handler.removeCallbacks(getRunnable)
-                handler.postDelayed(getRunnable,3000)
+                handler.postDelayed(getRunnable,5500)
             }
         })
     }
