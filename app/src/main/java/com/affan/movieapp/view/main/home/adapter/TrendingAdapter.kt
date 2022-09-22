@@ -61,7 +61,10 @@ class TrendingAdapter (
     @SuppressLint("NotifyDataSetChanged")
     fun setData (item : List<Trending?>){
         itemMoviesOrSeries.clear()
-        itemMoviesOrSeries.addAll(item)
+//        itemMoviesOrSeries.addAll(item)
+        for (i in 0..4){
+            itemMoviesOrSeries.add(item[i])
+        }
         notifyDataSetChanged()
     }
 }
