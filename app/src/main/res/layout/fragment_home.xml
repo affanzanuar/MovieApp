@@ -6,11 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".view.main.home.HomeFragment">
 
+    <ImageView
+        android:src="@drawable/id_background_app_movies"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bgSearch"
+        android:id="@+id/TopBar"
         android:layout_width="match_parent"
         android:layout_height="53dp"
-        android:background="@color/purple_200"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,27 +29,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:maxHeight="9dp"
             android:src="@drawable/ic_logo"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/edtSearchHome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/edtSearchHome"
-            android:layout_width="0dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/bg_search"
-            android:elegantTextHeight="true"
-            android:paddingStart="15dp"
-            android:hint="Movies or Series"
-            android:textSize="14sp"
+        <ImageView
+            android:id="@+id/ivBgSearchHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_circle_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/ivLogoSeach"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -51,11 +52,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:src="@drawable/ic_search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/edtSearchHome"
+            android:src="@drawable/ic_search_white"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBgSearchHome"
+            app:layout_constraintEnd_toEndOf="@+id/ivBgSearchHome"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/ivBgSearchHome"
+            app:layout_constraintTop_toTopOf="@+id/ivBgSearchHome" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -66,7 +68,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bgSearch">
+        app:layout_constraintTop_toBottomOf="@id/TopBar">
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clHome"
@@ -82,6 +86,45 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.cardview.widget.CardView
+                android:backgroundTint="@color/orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="9dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="-9dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintTop_toTopOf="parent">
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/ic_trending"
+                       android:maxHeight="35dp"
+                       android:layout_marginTop="1.5dp"
+                       android:adjustViewBounds="true"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="7dp"
+                       android:textColor="@color/white"
+                       android:textStyle="bold"
+                       android:elegantTextHeight="true"
+                       android:paddingEnd="13dp"
+                       android:text="Trending"/>
+
+               </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/tvInTheatres"
                 android:layout_width="wrap_content"
@@ -89,6 +132,7 @@
                 android:text="In Theatres"
                 android:textStyle="bold"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 android:layout_marginVertical="18dp"
                 android:layout_marginStart="18dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:text="See All"
                 android:textStyle="bold"
+                android:textColor="@color/orange"
                 android:textSize="12sp"
                 android:layout_marginVertical="18dp"
                 android:layout_marginEnd="18dp"
@@ -122,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:text="Most Popular Movies"
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_marginVertical="18dp"
                 android:layout_marginStart="18dp"
@@ -135,6 +181,7 @@
                 android:layout_height="wrap_content"
                 android:text="See All"
                 android:textStyle="bold"
+                android:textColor="@color/orange"
                 android:textSize="12sp"
                 android:layout_marginVertical="18dp"
                 android:layout_marginEnd="18dp"
@@ -155,6 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Most Popular Series"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginVertical="18dp"
@@ -169,6 +217,7 @@
                 android:layout_height="wrap_content"
                 android:text="See All"
                 android:textStyle="bold"
+                android:textColor="@color/orange"
                 android:textSize="12sp"
                 android:layout_marginVertical="18dp"
                 android:layout_marginEnd="18dp"
@@ -190,6 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Coming Soon"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginVertical="18dp"
@@ -205,6 +255,7 @@
                 android:text="See All"
                 android:textStyle="bold"
                 android:textSize="12sp"
+                android:textColor="@color/orange"
                 android:layout_marginVertical="18dp"
                 android:layout_marginEnd="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
