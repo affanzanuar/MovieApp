@@ -4,11 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +26,9 @@ import com.affan.movieapp.view.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.view.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.view.main.home.adapter.HomeSeriesAdapter
 import com.affan.movieapp.view.main.home.adapter.TrendingAdapter
+import com.affan.movieapp.view.main.home.presenter.HomePresenterImp
 import com.affan.movieapp.view.main.home.presenter.HomeView
+import com.affan.movieapp.view.main.home.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment(), HomeView {
 
@@ -35,6 +40,7 @@ class HomeFragment : Fragment(), HomeView {
     private lateinit var comingSoonAdapter: ComingSoonAdapter
     private lateinit var handler: Handler
     private lateinit var homePresenter: HomePresenterImp
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +49,7 @@ class HomeFragment : Fragment(), HomeView {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,6 +63,17 @@ class HomeFragment : Fragment(), HomeView {
         mostPopularMovieAdapter = setMovieAdapter(binding.rvMostPopularMovies)
         mostPopularSeriesAdapter= setSeriesAdapter(binding.rvMostPopularSeries)
         comingSoonAdapter = setComingSoonAdapter(binding.rvComingSoon)
+
+        homeViewModel.trending.observe(viewLifecycleOwner) { data ->
+            trendingAdapter.setData(data)
+            Log.d("Home Fragment",data.toString())
+        }
+
+        homeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            getShortToast(error)
+        }
+
+        homeViewModel.getTrending()
     }
 
     override fun onPause() {
@@ -242,7 +260,7 @@ class HomeFragment : Fragment(), HomeView {
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
     override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<Trending?>) {
-        trendingAdapter.setData(moviesOrSeries)
+
     }
 
     override fun onFailureReceiveTopMoviesOrSeries(message: String) {

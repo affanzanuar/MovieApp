@@ -1,4 +1,4 @@
-package com.affan.movieapp.view.main.home
+package com.affan.movieapp.view.main.home.presenter
 
 import android.util.Log
 import com.affan.movieapp.data.Data
@@ -7,8 +7,6 @@ import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.network.ApiClient
-import com.affan.movieapp.view.main.home.presenter.HomePresenter
-import com.affan.movieapp.view.main.home.presenter.HomeView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
