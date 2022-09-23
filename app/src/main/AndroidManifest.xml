@@ -16,13 +16,13 @@
         android:theme="@style/Theme.MovieApp"
         tools:targetApi="31">
         <activity
-            android:name=".view.main.account.ChangePasswordActivity"
+            android:name="com.affan.movieapp.main.account.ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.account.editprofile.EditProfileActivity"
+            android:name="com.affan.movieapp.main.account.editprofile.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.account.about.AboutActivity"
+            android:name="com.affan.movieapp.main.account.about.AboutActivity"
             android:exported="false" />
         <activity
             android:name=".welcoming.RegisterActivity"
@@ -30,13 +30,13 @@
         <activity
             android:name=".welcoming.LoginActivity"
             android:exported="false"/>
-        <activity android:name=".view.main.account.myfavorite.FavoriteActivity"
+        <activity android:name="com.affan.movieapp.main.account.myfavorite.FavoriteActivity"
             android:exported="false"/>
         <activity
-            android:name=".view.main.details.DetailsActivity"
+            android:name="com.affan.movieapp.main.details.DetailsActivity"
             android:exported="false" />
          <activity
-            android:name=".view.main.MainActivity"
+            android:name="com.affan.movieapp.main.MainActivity"
             android:exported="false" />
         <activity
             android:name=".welcoming.LandingPage"

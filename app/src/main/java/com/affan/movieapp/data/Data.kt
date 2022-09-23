@@ -2,8 +2,8 @@ package com.affan.movieapp.data
 
 import com.affan.movieapp.R
 import com.affan.movieapp.model.MoviesOrSeries
-import com.affan.movieapp.view.main.movies.MoviesData
-import com.affan.movieapp.view.main.series.SeriesData
+import com.affan.movieapp.main.movies.MoviesData
+import com.affan.movieapp.main.series.SeriesData
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
