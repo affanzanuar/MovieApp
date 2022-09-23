@@ -33,7 +33,7 @@ interface ApiService {
     @GET("tv/popular")
     suspend fun getMostPopularSeries2(
         @Query("api_key") apiKey : String
-    ) : Call<SeriesResponse>
+    ) : retrofit2.Response<SeriesResponse>
 
     @GET("discover/movie")
     fun getComingSoon(
