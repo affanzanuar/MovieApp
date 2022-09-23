@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.model.comingsoon.ComingSoon
+import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.Series
+import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.network.ApiClient
@@ -109,6 +111,128 @@ class HomeViewModel : ViewModel() {
                         }
 
                         override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+                            viewModelScope.launch {
+                                withContext(Dispatchers.Main){
+                                    _errorMessage.value = t.message
+                                }
+                            }
+                        }
+                    })
+            }
+        }
+    }
+
+    fun getPopularMovies(){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                ApiClient.instance.getMostPopularMovie(Data.apiKey)
+                    .enqueue(object : Callback<MovieResponse> {
+                        override fun onResponse(
+                            call: Call<MovieResponse>,
+                            response: Response<MovieResponse>
+                        ) {
+                            val body = response.body()!!
+                            Log.d("Home Presenter body",
+                                body.toString())
+                            viewModelScope.launch {
+                                withContext(Dispatchers.Main){
+                                    body.results
+                                        .let {
+                                            if (it != null) {
+                                                _popularMovies.value = it
+                                                Log.d("Home Presenter adalah",
+                                                    it.toString())
+                                            }
+                                        }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+                            viewModelScope.launch {
+                                withContext(Dispatchers.Main){
+                                    _errorMessage.value = t.message
+                                }
+                            }
+                        }
+                    })
+            }
+        }
+    }
+
+    fun getPopularSeries(){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                ApiClient.instance.getMostPopularSeries(Data.apiKey)
+                    .enqueue(object : Callback<SeriesResponse> {
+                        override fun onResponse(
+                            call: Call<SeriesResponse>,
+                            response: Response<SeriesResponse>
+                        ) {
+                            val body = response.body()!!
+                            Log.d("Home Presenter body",
+                                body.toString())
+                            viewModelScope.launch {
+                                withContext(Dispatchers.Main){
+                                    body.series
+                                        .let {
+                                            if (it != null) {
+                                                _popularSeries.value = it
+                                                Log.d("Home Presenter adalah",
+                                                    it.toString())
+                                            }
+                                        }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<SeriesResponse>, t: Throwable) {
+                            viewModelScope.launch {
+                                withContext(Dispatchers.Main){
+                                    _errorMessage.value = t.message
+                                }
+                            }
+                        }
+                    })
+            }
+        }
+    }
+
+    fun getComingSoon(){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                ApiClient.instance.getComingSoon(
+                    Data.apiKey,
+                    Data.language,
+                    Data.sortBy,
+                    Data.page,
+                    Data.releaseDateGte,
+                    Data.releaseDateLte,
+                    Data.monetizationTypes
+                )
+                    .enqueue(object : Callback<ComingSoonResponse> {
+                        override fun onResponse(
+                            call: Call<ComingSoonResponse>,
+                            response: Response<ComingSoonResponse>
+                        ) {
+                            val body = response.body()!!
+                            Log.d("Home Presenter body",
+                                body.toString())
+                            viewModelScope.launch {
+                                withContext(Dispatchers.Main){
+                                    body.results
+                                        .let {
+                                            if (it != null) {
+                                                _comingSoon.value = it
+                                                Log.d("Home Presenter adalah",
+                                                    it.toString())
+                                            }
+                                        }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<ComingSoonResponse>, t: Throwable) {
                             viewModelScope.launch {
                                 withContext(Dispatchers.Main){
                                     _errorMessage.value = t.message

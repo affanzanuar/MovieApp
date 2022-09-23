@@ -73,6 +73,21 @@ class HomeFragment : Fragment() {
             Log.d("Home Fragment",data.toString())
         }
 
+        homeViewModel.popularMovies.observe(viewLifecycleOwner) { data ->
+            mostPopularMovieAdapter.setDataMovies(data)
+            Log.d("Home Fragment",data.toString())
+        }
+
+        homeViewModel.popularSeries.observe(viewLifecycleOwner) { data ->
+            mostPopularSeriesAdapter.setDataSeries(data)
+            Log.d("Home Fragment",data.toString())
+        }
+
+        homeViewModel.comingSoon.observe(viewLifecycleOwner) { data ->
+            comingSoonAdapter.setDataComingSoon(data)
+            Log.d("Home Fragment",data.toString())
+        }
+
         homeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             getShortToast(error)
         }
@@ -96,6 +111,9 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getTrending()
         homeViewModel.getInTheater()
+        homeViewModel.getPopularMovies()
+        homeViewModel.getPopularSeries()
+        homeViewModel.getComingSoon()
     }
 
     private fun getPageChangeCallback () {
