@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".main.movies.MovieFragment">
+    tools:context=".main.movies.MoviesFragment"
+    android:background="@drawable/id_background_app_movies">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topSearchbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/gray"
+        android:background="@color/black"
         android:padding="8dp">
 
         <ImageView

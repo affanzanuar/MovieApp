@@ -14,6 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@Deprecated("IMPLEMENT MVVM")
 class MoviesPresenterImpl(
     private val moviesView: MoviesView,
     private val coroutineScope: CoroutineScope
