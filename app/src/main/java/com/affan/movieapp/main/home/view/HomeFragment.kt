@@ -70,22 +70,19 @@ class HomeFragment : Fragment() {
         homeViewModel.getPopularSeries()
         homeViewModel.getComingSoon()
 
-        binding.ciTrending.setViewPager(binding.vpTopMovies)
+//        binding.ciTrending.setViewPager(binding.vpTopMovies)
         trendingAdapter = TrendingAdapter { data: Trending -> intentTrendingToDetails(data) }
-        binding.vpTopMovies.adapter = trendingAdapter
-//        binding.ciTrending.setViewPager(binding.vpTopMovies)
-        binding.vpTopMovies.autoScroll(binding.vpTopMovies,lifecycleScope,5000)
 //        binding.ciTrending.setViewPager(binding.vpTopMovies)
 
 
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        lifecycleScope.launchWhenStarted {
-            binding.ciTrending.setViewPager(binding.vpTopMovies)
-        }
-    }
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        lifecycleScope.launchWhenStarted {
+//            binding.ciTrending.setViewPager(binding.vpTopMovies)
+//        }
+//    }
 
     override fun onStart() {
         super.onStart()
@@ -100,12 +97,12 @@ class HomeFragment : Fragment() {
     private fun ViewPager2.autoScroll(viewPager2 : ViewPager2, lifecycleScope : LifecycleCoroutineScope, interval : Long){
 //        binding.ciTrending.setViewPager(binding.vpTopMovies)
         lifecycleScope.launchWhenResumed {
-
+            binding.ciTrending.setViewPager(viewPager2)
             scrollIndefinitely(interval)
         }
         lifecycleScope.launch {
             withContext(Dispatchers.Main){
-                binding.ciTrending.setViewPager(viewPager2)
+
             }
         }
     }
@@ -148,6 +145,7 @@ class HomeFragment : Fragment() {
 
         homeViewModel.trending.observe(viewLifecycleOwner) { data ->
             trendingAdapter.setData(data)
+            binding.vpTopMovies.autoScroll(binding.vpTopMovies,lifecycleScope,5000)
             Log.d("Home Fragment",data.toString())
         }
 
