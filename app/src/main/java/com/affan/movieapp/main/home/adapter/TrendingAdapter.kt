@@ -43,11 +43,6 @@ class TrendingAdapter (
     }
 
     override fun onBindViewHolder(holder: TrendingViewHolder, position: Int) {
-//        itemMoviesOrSeries[position]?.let { holder.bind(it) }
-//        if (position==this.itemMoviesOrSeries.size-1){
-//            viewPager2.post(runnable)
-//        }
-
         itemMoviesOrSeries[position]?.let { holder.bind(it) }
     }
 
@@ -55,15 +50,9 @@ class TrendingAdapter (
         return itemMoviesOrSeries.size
     }
 
-//    @SuppressLint("NotifyDataSetChanged")
-//    private val runnable = Runnable {
-//        itemMoviesOrSeries.addAll(itemMoviesOrSeries)
-//        notifyDataSetChanged()
-//    }
     @SuppressLint("NotifyDataSetChanged")
     fun setData (item : List<Trending?>){
         itemMoviesOrSeries.clear()
-//        itemMoviesOrSeries.addAll(item)
         for (i in 0..4){
             itemMoviesOrSeries.add(item[i])
         }
