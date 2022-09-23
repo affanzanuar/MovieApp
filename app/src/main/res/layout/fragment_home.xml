@@ -97,18 +97,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <me.relex.circleindicator.CircleIndicator3
-                android:id="@+id/ciTrending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:ci_width="7.5dp"
-                app:ci_height="7.5dp"
-                app:ci_drawable="@drawable/bg_circle_indicator"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvTranding"
                 android:layout_width="wrap_content"
@@ -148,6 +136,17 @@
 
 
             </androidx.cardview.widget.CardView>
+
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/ciTrending"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                app:ci_width="5dp"
+                app:ci_height="5dp"
+                app:ci_drawable="@drawable/background_white_rounded"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vpTopMovies"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvInTheatres"
