@@ -5,28 +5,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentMoviesBinding
-import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.main.movies.adapter.MoviesAdapter
-import com.affan.movieapp.main.movies.presenter.MoviesPresenter
-import com.affan.movieapp.main.movies.presenter.MoviesView
+import com.affan.movieapp.main.movies.viewmodel.MoviesViewModel
+import com.affan.movieapp.model.movie.Movie
 
 
-class MoviesFragment : Fragment(), MoviesView {
+class MoviesFragment : Fragment() {
 
     private lateinit var binding: FragmentMoviesBinding
     private lateinit var moviesAdapter: MoviesAdapter
-    private lateinit var moviesPresenter: MoviesPresenter
+
+    private val moviesViewModel: MoviesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentMoviesBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -34,9 +35,16 @@ class MoviesFragment : Fragment(), MoviesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createPresenter()
         setMoviesAdapter()
-        moviesPresenter.getPopularMovies()
+
+        moviesViewModel.movies.observe(requireActivity()) {
+            it.results?.let { data ->
+                moviesAdapter.setData(data)
+            }
+        }
+        moviesViewModel.errorMessage.observe(requireActivity()) {
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setMoviesAdapter() {
@@ -49,7 +57,7 @@ class MoviesFragment : Fragment(), MoviesView {
 
     private fun intentToDetails(movies: Movie) {
         val intent = Intent(context, DetailsActivity::class.java)
-        val parcelable = Movie (
+        val parcelable = Movie(
             movies.adult,
             movies.backdropPath,
             movies.genreIds,
@@ -65,24 +73,8 @@ class MoviesFragment : Fragment(), MoviesView {
             movies.voteAverage,
             movies.voteCount
         )
-        intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
-        intent.putExtra(HomeFragment.CATEGORY,"movies")
+        intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
+        intent.putExtra(HomeFragment.CATEGORY, "movies")
         startActivity(intent)
-    }
-
-    private fun createPresenter() {
-        moviesPresenter = MoviesPresenterImpl(this,lifecycleScope)
-    }
-
-    override fun onReceiveMovies(movies: List<MoviesData>) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSuccessGetPopularMovies(movies: List<Movie?>) {
-        moviesAdapter.setData(movies)
-    }
-
-    override fun onFailGetPopularMovies(string: String) {
-        //Toast.makeText(this, string, Toast.LENGTH_SHORT).show()
     }
 }

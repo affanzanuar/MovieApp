@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class MoviesViewModel : ViewModel() {
     private val _movies = MutableLiveData<MovieResponse>()
     val errorMessage = MutableLiveData<String>()
-    val series: LiveData<MovieResponse>
+    val movies: LiveData<MovieResponse>
         get() = _movies
 
     init {
