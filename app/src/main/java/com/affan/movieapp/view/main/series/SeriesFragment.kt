@@ -2,26 +2,27 @@ package com.affan.movieapp.view.main.series
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentSeriesBinding
 import com.affan.movieapp.model.series.Series
+import com.affan.movieapp.model.series.SeriesResponseViewModel
 import com.affan.movieapp.view.main.details.DetailsActivity
 import com.affan.movieapp.view.main.home.HomeFragment
 import com.affan.movieapp.view.main.series.adapter.SeriesAdapter
-import com.affan.movieapp.view.main.series.presenter.SeriesPresenter
 import com.affan.movieapp.view.main.series.presenter.SeriesView
 
 class SeriesFragment : Fragment(), SeriesView {
 
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var seriesAdapter: SeriesAdapter
-    private lateinit var seriesPresenter: SeriesPresenter
 
+    private val seriesResponseViewModel: SeriesResponseViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,9 +35,17 @@ class SeriesFragment : Fragment(), SeriesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createPresenter()
+//        createPresenter()
         setSeriesAdapter()
-        seriesPresenter.getPopularSeries()
+//        seriesPresenter.getPopularSeries()
+        seriesResponseViewModel.series.observe(requireActivity()){
+            it.series?.let { data->
+                seriesAdapter.setData(data)
+            }
+        }
+        seriesResponseViewModel.errorMessage.observe(requireActivity()){
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setSeriesAdapter() {
@@ -67,10 +76,6 @@ class SeriesFragment : Fragment(), SeriesView {
         intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
         intent.putExtra(HomeFragment.CATEGORY,"series")
         startActivity(intent)
-    }
-
-    private fun createPresenter() {
-        seriesPresenter = SeriesPresenterImpl(this, lifecycleScope)
     }
 
     override fun onReceiveSeries(series: List<SeriesData>) {
