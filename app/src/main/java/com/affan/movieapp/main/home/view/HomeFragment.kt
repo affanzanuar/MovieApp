@@ -1,5 +1,6 @@
 package com.affan.movieapp.main.home.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -25,6 +28,10 @@ import com.affan.movieapp.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.main.home.adapter.HomeSeriesAdapter
 import com.affan.movieapp.main.home.adapter.TrendingAdapter
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
@@ -34,7 +41,7 @@ class HomeFragment : Fragment() {
     private lateinit var mostPopularMovieAdapter: HomeMoviesAdapter
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
     private lateinit var comingSoonAdapter: ComingSoonAdapter
-    private lateinit var handler: Handler
+//    private lateinit var handler: Handler
     private val homeViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -49,9 +56,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        handler = Handler(Looper.myLooper()!!)
-        trendingAdapter = setTopMoviesViewPager()
-        getPageChangeCallback()
+//        handler = Handler(Looper.myLooper()!!)
+//        trendingAdapter = setTopMoviesViewPager()
+//        getPageChangeCallback()
         inTheaterAdapter = setMovieAdapter(binding.rvInTheatres)
         mostPopularMovieAdapter = setMovieAdapter(binding.rvMostPopularMovies)
         mostPopularSeriesAdapter= setSeriesAdapter(binding.rvMostPopularSeries)
@@ -62,13 +69,57 @@ class HomeFragment : Fragment() {
         homeViewModel.getPopularMovies()
         homeViewModel.getPopularSeries()
         homeViewModel.getComingSoon()
+
         binding.ciTrending.setViewPager(binding.vpTopMovies)
+        trendingAdapter = TrendingAdapter { data: Trending -> intentTrendingToDetails(data) }
+        binding.vpTopMovies.adapter = trendingAdapter
+//        binding.ciTrending.setViewPager(binding.vpTopMovies)
+        binding.vpTopMovies.autoScroll(binding.vpTopMovies,lifecycleScope,5000)
+//        binding.ciTrending.setViewPager(binding.vpTopMovies)
+
 
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        lifecycleScope.launchWhenStarted {
+            binding.ciTrending.setViewPager(binding.vpTopMovies)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+//        binding.ciTrending.setViewPager(binding.vpTopMovies)
+//        lifecycleScope.launch {
+//            withContext(Dispatchers.Main){
+//                binding.ciTrending.setViewPager(binding.vpTopMovies)
+//            }
+//        }
+    }
+
+    private fun ViewPager2.autoScroll(viewPager2 : ViewPager2, lifecycleScope : LifecycleCoroutineScope, interval : Long){
+//        binding.ciTrending.setViewPager(binding.vpTopMovies)
+        lifecycleScope.launchWhenResumed {
+
+            scrollIndefinitely(interval)
+        }
+        lifecycleScope.launch {
+            withContext(Dispatchers.Main){
+                binding.ciTrending.setViewPager(viewPager2)
+            }
+        }
+    }
+
+    private suspend fun ViewPager2.scrollIndefinitely(interval : Long) {
+        delay(interval)
+        val numberOfItems = adapter?.itemCount ?: 0
+        val lasIndex = if (numberOfItems>0) numberOfItems-1 else 0
+        val nextItem = if (currentItem==lasIndex) 0 else currentItem + 1
+        setCurrentItem(nextItem,true)
+        scrollIndefinitely(interval)
+    }
 
     private fun getObserveLiveData(){
-
         homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading){
                 binding.cvTranding.visibility = View.GONE
@@ -127,36 +178,36 @@ class HomeFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        handler.removeCallbacks(getRunnable)
+//        handler.removeCallbacks(getRunnable)
     }
 
     override fun onResume() {
         super.onResume()
-        handler.postDelayed(getRunnable,5500)
+//        handler.postDelayed(getRunnable,5500)
     }
 
-    private fun getPageChangeCallback () {
-        binding.vpTopMovies.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                handler.removeCallbacks(getRunnable)
-                handler.postDelayed(getRunnable,5500)
-            }
-        })
-    }
+//    private fun getPageChangeCallback () {
+//        binding.vpTopMovies.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                handler.removeCallbacks(getRunnable)
+//                handler.postDelayed(getRunnable,5500)
+//            }
+//        })
+//    }
 
-    private val getRunnable = Runnable {
-        binding.vpTopMovies.currentItem = binding.vpTopMovies.currentItem + 1
-    }
+//    private val getRunnable = Runnable {
+//        binding.vpTopMovies.currentItem = binding.vpTopMovies.currentItem + 1
+//        binding.ciTrending.adapterDataObserver.onChanged()
+//
+//    }
 
-    private fun setTopMoviesViewPager() : TrendingAdapter {
-        trendingAdapter = TrendingAdapter(
-            {data: Trending -> intentTrendingToDetails(data) },
-            binding.vpTopMovies
-        )
-        binding.vpTopMovies.adapter = trendingAdapter
-        return trendingAdapter
-    }
+//    private fun setTopMoviesViewPager() : TrendingAdapter {
+//        trendingAdapter = TrendingAdapter { data: Trending -> intentTrendingToDetails(data) }
+//
+//        binding.vpTopMovies.adapter = trendingAdapter
+//        return trendingAdapter
+//    }
 
     private fun setMovieAdapter (rv : RecyclerView) : HomeMoviesAdapter {
          val moviesAdapter = HomeMoviesAdapter {

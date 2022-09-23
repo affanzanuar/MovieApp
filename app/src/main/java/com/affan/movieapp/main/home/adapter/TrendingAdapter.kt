@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 
 class TrendingAdapter (
     private val onClickToDetails : (data : Trending) -> Unit,
-    private val viewPager2: ViewPager2
+//    private val viewPager2: ViewPager2
 ) : RecyclerView.Adapter<TrendingAdapter.TrendingViewHolder>(){
 
     private val itemMoviesOrSeries = mutableListOf<Trending?>()
@@ -43,21 +43,23 @@ class TrendingAdapter (
     }
 
     override fun onBindViewHolder(holder: TrendingViewHolder, position: Int) {
+//        itemMoviesOrSeries[position]?.let { holder.bind(it) }
+//        if (position==this.itemMoviesOrSeries.size-1){
+//            viewPager2.post(runnable)
+//        }
+
         itemMoviesOrSeries[position]?.let { holder.bind(it) }
-        if (position==this.itemMoviesOrSeries.size-1){
-            viewPager2.post(runnable)
-        }
     }
 
     override fun getItemCount(): Int {
         return itemMoviesOrSeries.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private val runnable = Runnable {
-        itemMoviesOrSeries.addAll(itemMoviesOrSeries)
-        notifyDataSetChanged()
-    }
+//    @SuppressLint("NotifyDataSetChanged")
+//    private val runnable = Runnable {
+//        itemMoviesOrSeries.addAll(itemMoviesOrSeries)
+//        notifyDataSetChanged()
+//    }
     @SuppressLint("NotifyDataSetChanged")
     fun setData (item : List<Trending?>){
         itemMoviesOrSeries.clear()
