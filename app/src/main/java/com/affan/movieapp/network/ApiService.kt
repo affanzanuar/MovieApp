@@ -1,10 +1,13 @@
 package com.affan.movieapp.network
 
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
+import com.affan.movieapp.model.details.movies.DetailsMovieResponse
+import com.affan.movieapp.model.details.tv.DetailsTvResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -37,5 +40,17 @@ interface ApiService {
         @Query("release_date.gte") releaseDateGte : String,
         @Query("release_date.lte") releaseDateLte : String,
     ) : Call<ComingSoonResponse>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetails(
+        @Path("movie_id") id:Int,
+        @Query("api_key") apiKey: String,
+    ): DetailsMovieResponse
+
+    @GET("tv/{tv_id}")
+    suspend fun getTvDetails(
+        @Path("tv_id") id:Int,
+        @Query("api_key") apiKey: String,
+    ): DetailsMovieResponse
 
 }

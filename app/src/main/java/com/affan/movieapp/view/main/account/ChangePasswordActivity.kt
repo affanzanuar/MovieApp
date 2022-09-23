@@ -1,9 +1,8 @@
 package com.affan.movieapp.view.main.account
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityChangePasswordBinding
 import com.affan.movieapp.view.main.ChangePasswordView
@@ -36,7 +35,6 @@ class ChangePasswordActivity : AppCompatActivity(),ChangePasswordView {
                 chpass2 = binding.confirmNewPass.text.toString()
             )
         }
-
 
     }
 

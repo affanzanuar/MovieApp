@@ -157,6 +157,8 @@ class HomeFragment : Fragment(), HomeView {
             item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
+        intent.putExtra("id",item.id)
+        intent.putExtra("category","series")
         startActivity(intent)
     }
 
@@ -179,6 +181,8 @@ class HomeFragment : Fragment(), HomeView {
             item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
+        intent.putExtra("id",item.id)
+        intent.putExtra("category","movies")
         startActivity(intent)
     }
 
@@ -201,6 +205,8 @@ class HomeFragment : Fragment(), HomeView {
             item.voteCount
         )
         intent.putExtra(COMING_SOON_DATA,parcelable)
+        intent.putExtra("id",item.id)
+        intent.putExtra("category","movies")
         startActivity(intent)
     }
 

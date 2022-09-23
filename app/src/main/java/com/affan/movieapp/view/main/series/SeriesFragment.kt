@@ -40,7 +40,9 @@ class SeriesFragment : Fragment(), SeriesView {
     }
 
     private fun setSeriesAdapter() {
-        seriesAdapter = SeriesAdapter()
+        seriesAdapter = SeriesAdapter(
+
+        )
         binding.rvSeries.adapter = seriesAdapter
         binding.rvSeries.layoutManager = GridLayoutManager(context, 2)
     }
@@ -63,6 +65,8 @@ class SeriesFragment : Fragment(), SeriesView {
             series.voteCount
         )
         intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
+        intent.putExtra("id",series.id)
+        intent.putExtra("category","series")
         startActivity(intent)
     }
 

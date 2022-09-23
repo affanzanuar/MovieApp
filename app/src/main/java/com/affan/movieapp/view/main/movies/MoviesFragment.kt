@@ -66,6 +66,8 @@ class MovieFragment : Fragment(), MoviesView {
             movies.voteCount
         )
         intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
+        intent.putExtra("id",movies.id)
+        intent.putExtra("category","movies")
         startActivity(intent)
     }
 
