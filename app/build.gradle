@@ -89,4 +89,7 @@ dependencies {
     implementation 'androidx.activity:activity-ktx:1.5.1'
     implementation 'androidx.fragment:fragment-ktx:1.5.1'
 
+    //Dots Loading Bar
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
 }
