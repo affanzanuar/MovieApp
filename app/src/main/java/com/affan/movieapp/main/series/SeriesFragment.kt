@@ -35,15 +35,13 @@ class SeriesFragment : Fragment(), SeriesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        createPresenter()
         setSeriesAdapter()
-//        seriesPresenter.getPopularSeries()
-        seriesViewModel.series.observe(requireActivity()){
-            it.series?.let { data->
+        seriesViewModel.series.observe(requireActivity()) {
+            it.series?.let { data ->
                 seriesAdapter.setData(data)
             }
         }
-        seriesViewModel.errorMessage.observe(requireActivity()){
+        seriesViewModel.errorMessage.observe(requireActivity()) {
             Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
         }
     }
@@ -74,7 +72,7 @@ class SeriesFragment : Fragment(), SeriesView {
             series.voteCount
         )
         intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
-        intent.putExtra(HomeFragment.CATEGORY,"series")
+        intent.putExtra(HomeFragment.CATEGORY, "series")
         startActivity(intent)
     }
 
