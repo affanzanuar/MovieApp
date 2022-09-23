@@ -15,14 +15,14 @@ import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.main.series.presenter.SeriesView
-import com.affan.movieapp.model.series.SeriesResponseViewModel
+import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
 
-class SeriesFragment : Fragment(), SeriesView {
+class SeriesFragment : Fragment(){
 
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var seriesAdapter: SeriesAdapter
 
-    private val seriesResponseViewModel: SeriesResponseViewModel by viewModels()
+    private val seriesViewModel: SeriesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,15 +35,13 @@ class SeriesFragment : Fragment(), SeriesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        createPresenter()
         setSeriesAdapter()
-//        seriesPresenter.getPopularSeries()
-        seriesResponseViewModel.series.observe(requireActivity()){
-            it.series?.let { data->
+        seriesViewModel.series.observe(requireActivity()) {
+            it.series?.let { data ->
                 seriesAdapter.setData(data)
             }
         }
-        seriesResponseViewModel.errorMessage.observe(requireActivity()){
+        seriesViewModel.errorMessage.observe(requireActivity()) {
             Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
         }
     }
@@ -74,21 +72,7 @@ class SeriesFragment : Fragment(), SeriesView {
             series.voteCount
         )
         intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
-        intent.putExtra(HomeFragment.CATEGORY,"series")
+        intent.putExtra(HomeFragment.CATEGORY, "series")
         startActivity(intent)
     }
-
-    override fun onReceiveSeries(series: List<SeriesData>) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSuccessGetPopularSeries(series: List<Series?>) {
-        seriesAdapter.setData(series)
-    }
-
-    override fun onFailGetPopularSeries(string: String) {
-        TODO("Not yet implemented")
-    }
-
-
 }

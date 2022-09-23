@@ -30,7 +30,8 @@ class SeriesAdapter(
             CardLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false)
+                false
+            )
         )
     }
 
