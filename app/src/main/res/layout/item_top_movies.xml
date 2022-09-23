@@ -24,19 +24,27 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/tvTopMoviesTitle"
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Movies Title"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:background="@color/black_transparent"
-            android:textStyle="bold"
-            android:layout_marginStart="15dp"
-            android:layout_marginBottom="22dp"
+            app:cardBackgroundColor="@color/black_transparent"
+            app:cardCornerRadius="5dp"
             app:layout_constraintStart_toStartOf="@id/ivItemTopMovies"
-            app:layout_constraintBottom_toBottomOf="@id/ivItemTopMovies"/>
+            app:layout_constraintBottom_toBottomOf="@id/ivItemTopMovies">
+
+            <TextView
+                android:id="@+id/tvTopMoviesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Movies Title"
+                android:layout_margin="5dp"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+        </androidx.cardview.widget.CardView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

@@ -3,9 +3,8 @@ package com.affan.movieapp.welcoming
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityLoginBinding
-import com.affan.movieapp.view.main.MainActivity
+import com.affan.movieapp.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
