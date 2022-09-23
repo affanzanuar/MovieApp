@@ -13,7 +13,17 @@
         android:scaleType="centerCrop"
         android:src="@drawable/id_background_app_movies" />
 
-
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/skHomeFragment"
+        style="@style/SpinKitView.Large.DoubleBounce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:SpinKit_Color="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/TopBar"

@@ -56,8 +56,12 @@ class HomeFragment : Fragment() {
         mostPopularMovieAdapter = setMovieAdapter(binding.rvMostPopularMovies)
         mostPopularSeriesAdapter= setSeriesAdapter(binding.rvMostPopularSeries)
         comingSoonAdapter = setComingSoonAdapter(binding.rvComingSoon)
-
         getObserveLiveData()
+        homeViewModel.getTrending()
+        homeViewModel.getInTheater()
+        homeViewModel.getPopularMovies()
+        homeViewModel.getPopularSeries()
+        homeViewModel.getComingSoon()
 
     }
 
@@ -75,6 +79,7 @@ class HomeFragment : Fragment() {
                 binding.tvSeeAllMostPopularMovies.visibility = View.GONE
                 binding.tvSeeAllMostPopularSeries.visibility = View.GONE
                 binding.tvSeeAllComingSoon.visibility = View.GONE
+                binding.skHomeFragment.visibility = View.VISIBLE
             } else {
                 binding.cvTranding.visibility = View.VISIBLE
                 binding.tvInTheatres.visibility = View.VISIBLE
@@ -85,6 +90,7 @@ class HomeFragment : Fragment() {
                 binding.tvSeeAllMostPopularMovies.visibility = View.VISIBLE
                 binding.tvSeeAllMostPopularSeries.visibility = View.VISIBLE
                 binding.tvSeeAllComingSoon.visibility = View.VISIBLE
+                binding.skHomeFragment.visibility = View.GONE
             }
         }
 
@@ -126,11 +132,6 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         handler.postDelayed(getRunnable,5500)
-        homeViewModel.getTrending()
-        homeViewModel.getInTheater()
-        homeViewModel.getPopularMovies()
-        homeViewModel.getPopularSeries()
-        homeViewModel.getComingSoon()
     }
 
     private fun getPageChangeCallback () {
