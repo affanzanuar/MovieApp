@@ -15,14 +15,14 @@ import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.main.series.presenter.SeriesView
-import com.affan.movieapp.model.series.SeriesResponseViewModel
+import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
 
 class SeriesFragment : Fragment(), SeriesView {
 
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var seriesAdapter: SeriesAdapter
 
-    private val seriesResponseViewModel: SeriesResponseViewModel by viewModels()
+    private val seriesViewModel: SeriesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +38,12 @@ class SeriesFragment : Fragment(), SeriesView {
 //        createPresenter()
         setSeriesAdapter()
 //        seriesPresenter.getPopularSeries()
-        seriesResponseViewModel.series.observe(requireActivity()){
+        seriesViewModel.series.observe(requireActivity()){
             it.series?.let { data->
                 seriesAdapter.setData(data)
             }
         }
-        seriesResponseViewModel.errorMessage.observe(requireActivity()){
+        seriesViewModel.errorMessage.observe(requireActivity()){
             Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
         }
     }
