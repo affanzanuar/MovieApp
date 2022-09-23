@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentMoviesBinding
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.main.details.DetailsActivity
-import com.affan.movieapp.main.home.HomeFragment
+import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.main.movies.adapter.MoviesAdapter
 import com.affan.movieapp.main.movies.presenter.MoviesPresenter
 import com.affan.movieapp.main.movies.presenter.MoviesView

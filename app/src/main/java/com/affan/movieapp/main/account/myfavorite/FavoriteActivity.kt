@@ -10,7 +10,7 @@ import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.main.account.myfavorite.adapter.FavoriteAdapter
 import com.affan.movieapp.main.account.myfavorite.presenter.FavoriteView
 import com.affan.movieapp.main.details.DetailsActivity
-import com.affan.movieapp.main.home.HomeFragment
+import com.affan.movieapp.main.home.view.HomeFragment
 
 class FavoriteActivity : AppCompatActivity(),FavoriteView {
 

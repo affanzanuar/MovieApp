@@ -1,4 +1,4 @@
-package com.affan.movieapp.main.home
+package com.affan.movieapp.main.home.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -29,7 +29,7 @@ import com.affan.movieapp.main.home.presenter.HomePresenterImp
 import com.affan.movieapp.main.home.presenter.HomeView
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 
-class HomeFragment : Fragment(), HomeView {
+class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
     private lateinit var trendingAdapter: TrendingAdapter
@@ -38,7 +38,7 @@ class HomeFragment : Fragment(), HomeView {
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
     private lateinit var comingSoonAdapter: ComingSoonAdapter
     private lateinit var handler: Handler
-    private lateinit var homePresenter: HomePresenterImp
+//    private lateinit var homePresenter: HomePresenterImp
     private val homeViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -53,10 +53,10 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createPresenter()
+//        createPresenter()
         handler = Handler(Looper.myLooper()!!)
         trendingAdapter = setTopMoviesViewPager()
-        homePresenter.getTopMoviesOrSeries()
+//        homePresenter.getTopMoviesOrSeries()
         getPageChangeCallback()
         inTheaterAdapter = setMovieAdapter(binding.rvInTheatres)
         mostPopularMovieAdapter = setMovieAdapter(binding.rvMostPopularMovies)
@@ -68,11 +68,16 @@ class HomeFragment : Fragment(), HomeView {
             Log.d("Home Fragment",data.toString())
         }
 
+        homeViewModel.inTheater.observe(viewLifecycleOwner) { data ->
+            inTheaterAdapter.setDataMovies(data)
+            Log.d("Home Fragment",data.toString())
+        }
+
         homeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             getShortToast(error)
         }
 
-        homeViewModel.getTrending()
+
     }
 
     override fun onPause() {
@@ -82,12 +87,15 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun onResume() {
         super.onResume()
-        homePresenter.getTopMoviesOrSeries()
+//        homePresenter.getTopMoviesOrSeries()
         handler.postDelayed(getRunnable,5500)
-        homePresenter.getInTheaters()
-        homePresenter.getMostPopularMovies()
-        homePresenter.getMostPopularSeries()
-        homePresenter.getComingSoon()
+//        homePresenter.getInTheaters()
+//        homePresenter.getMostPopularMovies()
+//        homePresenter.getMostPopularSeries()
+//        homePresenter.getComingSoon()
+
+        homeViewModel.getTrending()
+        homeViewModel.getInTheater()
     }
 
     private fun getPageChangeCallback () {
@@ -104,9 +112,9 @@ class HomeFragment : Fragment(), HomeView {
         binding.vpTopMovies.currentItem = binding.vpTopMovies.currentItem + 1
     }
 
-    private fun createPresenter (){
-        homePresenter = HomePresenterImp(this,lifecycleScope)
-    }
+//    private fun createPresenter (){
+//        homePresenter = HomePresenterImp(this,lifecycleScope)
+//    }
 
     private fun setTopMoviesViewPager() : TrendingAdapter {
         trendingAdapter = TrendingAdapter(
@@ -258,47 +266,47 @@ class HomeFragment : Fragment(), HomeView {
     private fun getShortToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
-    override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<Trending?>) {
-
-    }
-
-    override fun onFailureReceiveTopMoviesOrSeries(message: String) {
-        getShortToast(message)
-    }
+//    override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<Trending?>) {
+//
+//    }
+//
+//    override fun onFailureReceiveTopMoviesOrSeries(message: String) {
+//        getShortToast(message)
+//    }
 
 //-----------------------------------------------------------------------------------------------
 
-    override fun onSuccessGetInTheater(moviesOrSeries: List<Movie?>) {
-        inTheaterAdapter.setDataMovies(moviesOrSeries)
-    }
-
-    override fun onFailureGetInTheater(message: String) {
-        getShortToast(message)
-    }
-
-    override fun onSuccessGetPopularMovie(moviesOrSeries: List<Movie?>) {
-        mostPopularMovieAdapter.setDataMovies(moviesOrSeries)
-    }
-
-    override fun onFailureGetPopularMovie(message: String) {
-        getShortToast(message)
-    }
-
-    override fun onSuccessGetPopularSeries(moviesOrSeries: List<Series?>) {
-        mostPopularSeriesAdapter.setDataSeries(moviesOrSeries)
-    }
-
-    override fun onFailureGetPopularSeries(message: String) {
-        getShortToast(message)
-    }
-
-    override fun onSuccessGetComingSoon(moviesOrSeries: List<ComingSoon?>) {
-        comingSoonAdapter.setDataComingSoon(moviesOrSeries)
-    }
-
-    override fun onFailureGetComingSoon(message: String) {
-        getShortToast(message)
-    }
+//    override fun onSuccessGetInTheater(moviesOrSeries: List<Movie?>) {
+//        inTheaterAdapter.setDataMovies(moviesOrSeries)
+//    }
+//
+//    override fun onFailureGetInTheater(message: String) {
+//        getShortToast(message)
+//    }
+//
+//    override fun onSuccessGetPopularMovie(moviesOrSeries: List<Movie?>) {
+//        mostPopularMovieAdapter.setDataMovies(moviesOrSeries)
+//    }
+//
+//    override fun onFailureGetPopularMovie(message: String) {
+//        getShortToast(message)
+//    }
+//
+//    override fun onSuccessGetPopularSeries(moviesOrSeries: List<Series?>) {
+//        mostPopularSeriesAdapter.setDataSeries(moviesOrSeries)
+//    }
+//
+//    override fun onFailureGetPopularSeries(message: String) {
+//        getShortToast(message)
+//    }
+//
+//    override fun onSuccessGetComingSoon(moviesOrSeries: List<ComingSoon?>) {
+//        comingSoonAdapter.setDataComingSoon(moviesOrSeries)
+//    }
+//
+//    override fun onFailureGetComingSoon(message: String) {
+//        getShortToast(message)
+//    }
 
 //-----------------------------------------------------------------------------------------------
 

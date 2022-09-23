@@ -13,7 +13,7 @@ import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.trending.Trending
-import com.affan.movieapp.main.home.HomeFragment
+import com.affan.movieapp.main.home.view.HomeFragment
 import com.bumptech.glide.Glide
 
 class DetailsActivity : AppCompatActivity() {

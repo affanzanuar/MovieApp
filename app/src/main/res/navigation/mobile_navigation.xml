@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.affan.movieapp.main.home.HomeFragment"
+        android:name="com.affan.movieapp.main.home.view.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 
@@ -19,7 +19,7 @@
 
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_logo"-->
-<!--        android:name="com.affan.movieapp.main.home.HomeFragment"-->
+<!--        android:name="com.affan.movieapp.main.home.view.HomeFragment"-->
 <!--        android:label="Home"-->
 <!--        />-->
 
