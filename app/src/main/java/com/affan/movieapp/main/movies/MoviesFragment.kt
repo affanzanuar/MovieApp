@@ -75,6 +75,8 @@ class MoviesFragment : Fragment() {
         )
         intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
         intent.putExtra(HomeFragment.CATEGORY, "movies")
+        intent.putExtra("id",movies.id)
+        intent.putExtra("category","movies")
         startActivity(intent)
     }
 }
