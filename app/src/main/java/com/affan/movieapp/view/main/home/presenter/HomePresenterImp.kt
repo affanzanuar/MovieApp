@@ -15,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@Deprecated("not used anymore")
 class HomePresenterImp(
     private val homeView: HomeView,
     private val coroutineScope : CoroutineScope

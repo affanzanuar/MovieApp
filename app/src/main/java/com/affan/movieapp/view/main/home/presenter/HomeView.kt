@@ -5,6 +5,7 @@ import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.trending.Trending
 
+@Deprecated("not used anymore")
 interface HomeView {
     fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<Trending?>)
     fun onFailureReceiveTopMoviesOrSeries(message: String)
