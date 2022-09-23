@@ -49,6 +49,9 @@ class HomeViewModel : ViewModel() {
     fun getTrending(){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
+                withContext(Dispatchers.Main){
+                    _isLoading.value = true
+                }
                 ApiClient.instance.getTopMoviesOrSeries(Data.apiKey)
                     .enqueue(object : Callback<TrendingResponse> {
                         override fun onResponse(
@@ -63,6 +66,7 @@ class HomeViewModel : ViewModel() {
                                     body.results
                                         .let {
                                             if (it != null) {
+                                                _isLoading.value = false
                                                 _trending.value = it
                                                 Log.d("Home Presenter adalah",
                                                     it.toString())
@@ -75,6 +79,7 @@ class HomeViewModel : ViewModel() {
                         override fun onFailure(call: Call<TrendingResponse>, t: Throwable) {
                             viewModelScope.launch {
                                 withContext(Dispatchers.Main){
+                                    _isLoading.value = false
                                     _errorMessage.value = t.message
                                 }
                             }
@@ -86,6 +91,9 @@ class HomeViewModel : ViewModel() {
 
     fun getInTheater(){
         viewModelScope.launch {
+            withContext(Dispatchers.Main){
+                _isLoading.value = true
+            }
             withContext(Dispatchers.IO){
                 ApiClient.instance.getNowPlaying(Data.apiKey)
                     .enqueue(object : Callback<MovieResponse> {
@@ -101,6 +109,7 @@ class HomeViewModel : ViewModel() {
                                     body.results
                                         .let {
                                             if (it != null) {
+                                                _isLoading.value = false
                                                 _inTheater.value = it
                                                 Log.d("Home Presenter adalah",
                                                     it.toString())
@@ -113,6 +122,7 @@ class HomeViewModel : ViewModel() {
                         override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                             viewModelScope.launch {
                                 withContext(Dispatchers.Main){
+                                    _isLoading.value = false
                                     _errorMessage.value = t.message
                                 }
                             }
@@ -124,6 +134,9 @@ class HomeViewModel : ViewModel() {
 
     fun getPopularMovies(){
         viewModelScope.launch {
+            withContext(Dispatchers.Main){
+                _isLoading.value = true
+            }
             withContext(Dispatchers.IO){
                 ApiClient.instance.getMostPopularMovie(Data.apiKey)
                     .enqueue(object : Callback<MovieResponse> {
@@ -139,6 +152,7 @@ class HomeViewModel : ViewModel() {
                                     body.results
                                         .let {
                                             if (it != null) {
+                                                _isLoading.value = false
                                                 _popularMovies.value = it
                                                 Log.d("Home Presenter adalah",
                                                     it.toString())
@@ -151,6 +165,7 @@ class HomeViewModel : ViewModel() {
                         override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                             viewModelScope.launch {
                                 withContext(Dispatchers.Main){
+                                    _isLoading.value = false
                                     _errorMessage.value = t.message
                                 }
                             }
@@ -162,6 +177,9 @@ class HomeViewModel : ViewModel() {
 
     fun getPopularSeries(){
         viewModelScope.launch {
+            withContext(Dispatchers.Main){
+                _isLoading.value = true
+            }
             withContext(Dispatchers.IO){
                 ApiClient.instance.getMostPopularSeries(Data.apiKey)
                     .enqueue(object : Callback<SeriesResponse> {
@@ -177,6 +195,7 @@ class HomeViewModel : ViewModel() {
                                     body.series
                                         .let {
                                             if (it != null) {
+                                                _isLoading.value = false
                                                 _popularSeries.value = it
                                                 Log.d("Home Presenter adalah",
                                                     it.toString())
@@ -189,6 +208,7 @@ class HomeViewModel : ViewModel() {
                         override fun onFailure(call: Call<SeriesResponse>, t: Throwable) {
                             viewModelScope.launch {
                                 withContext(Dispatchers.Main){
+                                    _isLoading.value = false
                                     _errorMessage.value = t.message
                                 }
                             }
@@ -200,6 +220,9 @@ class HomeViewModel : ViewModel() {
 
     fun getComingSoon(){
         viewModelScope.launch {
+            withContext(Dispatchers.Main){
+                _isLoading.value = true
+            }
             withContext(Dispatchers.IO){
                 ApiClient.instance.getComingSoon(
                     Data.apiKey,
@@ -223,6 +246,7 @@ class HomeViewModel : ViewModel() {
                                     body.results
                                         .let {
                                             if (it != null) {
+                                                _isLoading.value = false
                                                 _comingSoon.value = it
                                                 Log.d("Home Presenter adalah",
                                                     it.toString())
@@ -235,6 +259,7 @@ class HomeViewModel : ViewModel() {
                         override fun onFailure(call: Call<ComingSoonResponse>, t: Throwable) {
                             viewModelScope.launch {
                                 withContext(Dispatchers.Main){
+                                    _isLoading.value = false
                                     _errorMessage.value = t.message
                                 }
                             }

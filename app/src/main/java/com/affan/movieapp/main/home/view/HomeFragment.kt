@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -25,8 +24,6 @@ import com.affan.movieapp.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.main.home.adapter.HomeSeriesAdapter
 import com.affan.movieapp.main.home.adapter.TrendingAdapter
-import com.affan.movieapp.main.home.presenter.HomePresenterImp
-import com.affan.movieapp.main.home.presenter.HomeView
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -38,7 +35,6 @@ class HomeFragment : Fragment() {
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
     private lateinit var comingSoonAdapter: ComingSoonAdapter
     private lateinit var handler: Handler
-//    private lateinit var homePresenter: HomePresenterImp
     private val homeViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -53,15 +49,44 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        createPresenter()
         handler = Handler(Looper.myLooper()!!)
         trendingAdapter = setTopMoviesViewPager()
-//        homePresenter.getTopMoviesOrSeries()
         getPageChangeCallback()
         inTheaterAdapter = setMovieAdapter(binding.rvInTheatres)
         mostPopularMovieAdapter = setMovieAdapter(binding.rvMostPopularMovies)
         mostPopularSeriesAdapter= setSeriesAdapter(binding.rvMostPopularSeries)
         comingSoonAdapter = setComingSoonAdapter(binding.rvComingSoon)
+
+        getObserveLiveData()
+
+    }
+
+
+    private fun getObserveLiveData(){
+
+        homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading){
+                binding.cvTranding.visibility = View.GONE
+                binding.tvInTheatres.visibility = View.GONE
+                binding.tvMostPopularMovies.visibility = View.GONE
+                binding.tvMostPopularSeries.visibility = View.GONE
+                binding.tvComingSoon.visibility = View.GONE
+                binding.tvSeAllInTheatres.visibility = View.GONE
+                binding.tvSeeAllMostPopularMovies.visibility = View.GONE
+                binding.tvSeeAllMostPopularSeries.visibility = View.GONE
+                binding.tvSeeAllComingSoon.visibility = View.GONE
+            } else {
+                binding.cvTranding.visibility = View.VISIBLE
+                binding.tvInTheatres.visibility = View.VISIBLE
+                binding.tvMostPopularMovies.visibility = View.VISIBLE
+                binding.tvMostPopularSeries.visibility = View.VISIBLE
+                binding.tvComingSoon.visibility = View.VISIBLE
+                binding.tvSeAllInTheatres.visibility = View.VISIBLE
+                binding.tvSeeAllMostPopularMovies.visibility = View.VISIBLE
+                binding.tvSeeAllMostPopularSeries.visibility = View.VISIBLE
+                binding.tvSeeAllComingSoon.visibility = View.VISIBLE
+            }
+        }
 
         homeViewModel.trending.observe(viewLifecycleOwner) { data ->
             trendingAdapter.setData(data)
@@ -91,8 +116,6 @@ class HomeFragment : Fragment() {
         homeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             getShortToast(error)
         }
-
-
     }
 
     override fun onPause() {
@@ -102,13 +125,7 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-//        homePresenter.getTopMoviesOrSeries()
         handler.postDelayed(getRunnable,5500)
-//        homePresenter.getInTheaters()
-//        homePresenter.getMostPopularMovies()
-//        homePresenter.getMostPopularSeries()
-//        homePresenter.getComingSoon()
-
         homeViewModel.getTrending()
         homeViewModel.getInTheater()
         homeViewModel.getPopularMovies()
@@ -129,10 +146,6 @@ class HomeFragment : Fragment() {
     private val getRunnable = Runnable {
         binding.vpTopMovies.currentItem = binding.vpTopMovies.currentItem + 1
     }
-
-//    private fun createPresenter (){
-//        homePresenter = HomePresenterImp(this,lifecycleScope)
-//    }
 
     private fun setTopMoviesViewPager() : TrendingAdapter {
         trendingAdapter = TrendingAdapter(
@@ -284,49 +297,6 @@ class HomeFragment : Fragment() {
     private fun getShortToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
-//    override fun onSuccessReceiveTopMoviesOrSeries(moviesOrSeries: List<Trending?>) {
-//
-//    }
-//
-//    override fun onFailureReceiveTopMoviesOrSeries(message: String) {
-//        getShortToast(message)
-//    }
-
-//-----------------------------------------------------------------------------------------------
-
-//    override fun onSuccessGetInTheater(moviesOrSeries: List<Movie?>) {
-//        inTheaterAdapter.setDataMovies(moviesOrSeries)
-//    }
-//
-//    override fun onFailureGetInTheater(message: String) {
-//        getShortToast(message)
-//    }
-//
-//    override fun onSuccessGetPopularMovie(moviesOrSeries: List<Movie?>) {
-//        mostPopularMovieAdapter.setDataMovies(moviesOrSeries)
-//    }
-//
-//    override fun onFailureGetPopularMovie(message: String) {
-//        getShortToast(message)
-//    }
-//
-//    override fun onSuccessGetPopularSeries(moviesOrSeries: List<Series?>) {
-//        mostPopularSeriesAdapter.setDataSeries(moviesOrSeries)
-//    }
-//
-//    override fun onFailureGetPopularSeries(message: String) {
-//        getShortToast(message)
-//    }
-//
-//    override fun onSuccessGetComingSoon(moviesOrSeries: List<ComingSoon?>) {
-//        comingSoonAdapter.setDataComingSoon(moviesOrSeries)
-//    }
-//
-//    override fun onFailureGetComingSoon(message: String) {
-//        getShortToast(message)
-//    }
-
-//-----------------------------------------------------------------------------------------------
 
     companion object {
         const val EXTRA_DATA_MS = "extra data movies or series"
