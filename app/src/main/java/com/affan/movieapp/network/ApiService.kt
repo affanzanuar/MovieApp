@@ -30,6 +30,11 @@ interface ApiService {
         @Query("api_key") apiKey : String
     ) : Call<SeriesResponse>
 
+    @GET("tv/popular")
+    suspend fun getMostPopularSeries2(
+        @Query("api_key") apiKey : String
+    ) : Call<SeriesResponse>
+
     @GET("discover/movie")
     fun getComingSoon(
         @Query("api_key") apiKey: String,
