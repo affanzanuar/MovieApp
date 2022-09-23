@@ -72,11 +72,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <ProgressBar
+    <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/pbBuffering"
+        style="@style/SpinKitView.Large.Wave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        app:SpinKit_Color="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/flDummy"
         app:layout_constraintEnd_toEndOf="@+id/flDummy"
         app:layout_constraintStart_toStartOf="@+id/flDummy"

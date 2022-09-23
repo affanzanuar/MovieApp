@@ -62,6 +62,7 @@ class HomeFragment : Fragment() {
         homeViewModel.getPopularMovies()
         homeViewModel.getPopularSeries()
         homeViewModel.getComingSoon()
+        binding.ciTrending.setViewPager(binding.vpTopMovies)
 
     }
 
