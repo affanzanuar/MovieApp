@@ -143,6 +143,8 @@
                 android:layout_height="68dp"
                 app:ci_width="5dp"
                 app:ci_height="5dp"
+                app:ci_margin="3dp"
+                android:layout_marginTop="-20dp"
                 app:ci_drawable="@drawable/background_white_rounded"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vpTopMovies"
