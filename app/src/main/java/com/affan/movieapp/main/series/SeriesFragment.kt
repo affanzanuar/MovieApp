@@ -17,7 +17,7 @@ import com.affan.movieapp.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.main.series.presenter.SeriesView
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
 
-class SeriesFragment : Fragment(), SeriesView {
+class SeriesFragment : Fragment(){
 
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var seriesAdapter: SeriesAdapter
@@ -75,18 +75,4 @@ class SeriesFragment : Fragment(), SeriesView {
         intent.putExtra(HomeFragment.CATEGORY, "series")
         startActivity(intent)
     }
-
-    override fun onReceiveSeries(series: List<SeriesData>) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSuccessGetPopularSeries(series: List<Series?>) {
-        seriesAdapter.setData(series)
-    }
-
-    override fun onFailGetPopularSeries(string: String) {
-        TODO("Not yet implemented")
-    }
-
-
 }

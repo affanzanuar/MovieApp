@@ -14,6 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@Deprecated("Moved to MVVM")
 class SeriesPresenterImpl(
     private val seriesView: SeriesView,
     private val coroutineScope: CoroutineScope
