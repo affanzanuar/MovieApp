@@ -14,13 +14,8 @@ import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.main.series.adapter.SeriesAdapter
-import com.affan.movieapp.main.series.presenter.SeriesPresenter
 import com.affan.movieapp.main.series.presenter.SeriesView
 import com.affan.movieapp.model.series.SeriesResponseViewModel
-import com.affan.movieapp.view.main.details.DetailsActivity
-import com.affan.movieapp.view.main.home.HomeFragment
-import com.affan.movieapp.view.main.series.adapter.SeriesAdapter
-import com.affan.movieapp.view.main.series.presenter.SeriesView
 
 class SeriesFragment : Fragment(), SeriesView {
 
