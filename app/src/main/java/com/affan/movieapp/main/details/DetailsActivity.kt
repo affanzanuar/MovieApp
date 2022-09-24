@@ -139,26 +139,51 @@ class DetailsActivity : AppCompatActivity() {
         detailsViewModel.detailResponse.observe(this) { data ->
             Glide.with(this)
                 .load(BASE_URL + data.posterPath)
-                .placeholder(R.drawable.ic_default_top_movies)
+                .placeholder(R.drawable.ic_default_poster)
                 .into(binding.ivPosterDetail)
 
             Glide.with(this)
                 .load(BASE_URL + data.backdropPath)
+                .placeholder(R.drawable.ic_default_backdrop)
                 .into(binding.ivBackdropDetails)
 
             binding.tvVoteCount.text = data.voteCount.toString()
-            binding.tvRatingResult.text = data.voteAverage.toString()
+
+            val voteRating = data.voteAverage
+
+            val ratingTwoComa = String.format("%.1f", voteRating)
+
+            binding.tvRatingResult.text = ratingTwoComa
             binding.tvDescriptionMS.text = data.overview
 //            binding.tvOriginalLanguage.text = data.originalLanguage
 
 
             binding.tvTitleDetail.text = data.title
-            binding.tvReleaseDate.text = data.releaseDate
+
+            var currentDate = data.releaseDate
+
+            val year0 = currentDate?.get(0)
+            val year1 = currentDate?.get(1)
+            val year2 = currentDate?.get(2)
+            val year3 = currentDate?.get(3)
+            val year = "$year0$year1$year2$year3"
+
+            val month0 = currentDate?.get(5)
+            val month1 = currentDate?.get(6)
+            val month = "$month0$month1"
+
+            val date0 = currentDate?.get(8)
+            val date1 = currentDate?.get(9)
+            val date = "$date0$date1"
+
+            binding.tvReleaseDate.text = "$date-$month-$year"
 
 //            feature to full name language
             val languageName = data.spokenLanguages?.map { it?.englishName }
 
-            if (languageName?.isEmpty() == true){
+            if (languageName!!.isNotEmpty()) {
+                binding.tvOriginalLanguage.text = languageName[0]
+            } else {
                 binding.tvOriginalLanguage.text = "No Language"
             }
 

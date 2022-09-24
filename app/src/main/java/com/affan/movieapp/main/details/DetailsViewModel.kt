@@ -46,13 +46,9 @@ class DetailsViewModel(
                 withContext(Dispatchers.Main) {
                     _loading.value = false
                     _error.value = error.message
-//                    if (error.message == "404"){
-//                        apiService.getMovieDetails(id, Data.apiKey)
-//                    }
                 }
             }
         }
     }
-
 }
 
