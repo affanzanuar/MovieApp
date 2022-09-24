@@ -7,8 +7,6 @@
     tools:context=".main.movies.MoviesFragment"
     android:background="@drawable/id_background_app_movies">
 
-
-
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/skMoviesFragment"
         style="@style/SpinKitView.Large.DoubleBounce"
