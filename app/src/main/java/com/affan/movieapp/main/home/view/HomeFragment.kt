@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -25,7 +26,7 @@ import com.affan.movieapp.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.main.home.adapter.HomeSeriesAdapter
 import com.affan.movieapp.main.home.adapter.TrendingAdapter
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 
 class HomeFragment : Fragment() {
 
@@ -49,6 +50,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        trendingAdapter = TrendingAdapter { data: Trending -> intentTrendingToDetails(data) }
+        binding.vpTopMovies.adapter = trendingAdapter
         inTheaterAdapter = setMovieAdapter(binding.rvInTheatres)
         mostPopularMovieAdapter = setMovieAdapter(binding.rvMostPopularMovies)
         mostPopularSeriesAdapter= setSeriesAdapter(binding.rvMostPopularSeries)
@@ -59,12 +62,11 @@ class HomeFragment : Fragment() {
         homeViewModel.getPopularMovies()
         homeViewModel.getPopularSeries()
         homeViewModel.getComingSoon()
-        trendingAdapter = TrendingAdapter { data: Trending -> intentTrendingToDetails(data) }
+
     }
 
-    private fun ViewPager2.autoScroll(viewPager2 : ViewPager2, lifecycleScope : LifecycleCoroutineScope, interval : Long){
-        lifecycleScope.launchWhenResumed {
-            binding.ciTrending.setViewPager(viewPager2)
+    private fun ViewPager2.autoScroll(lifecycleScope : CoroutineScope, interval : Long){
+        lifecycleScope.launch {
             scrollIndefinitely(interval)
         }
     }
@@ -106,10 +108,9 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel.trending.observe(viewLifecycleOwner) { data ->
-            trendingAdapter.setData(data)
-
-            binding.vpTopMovies.adapter = trendingAdapter
-            binding.vpTopMovies.autoScroll(binding.vpTopMovies,lifecycleScope,5000)
+            trendingAdapter.setDataTrending(data)
+            binding.vpTopMovies.autoScroll(lifecycleScope,5000L)
+            binding.ciTrending.setViewPager(binding.vpTopMovies)
             Log.d("Home Fragment",data.toString())
         }
 

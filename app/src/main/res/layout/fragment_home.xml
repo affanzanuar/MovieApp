@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".main.home.view.HomeFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/id_background_app_movies" />
-
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/skHomeFragment"
         style="@style/SpinKitView.Large.DoubleBounce"
