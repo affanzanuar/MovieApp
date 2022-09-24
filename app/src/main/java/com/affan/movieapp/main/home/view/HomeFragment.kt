@@ -224,7 +224,8 @@ class HomeFragment : Fragment() {
             item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
-        intent.putExtra(CATEGORY,"trending")
+        intent.putExtra(CATEGORY,"series")
+        intent.putExtra(ID,item.id)
         startActivity(intent)
     }
 
@@ -248,6 +249,7 @@ class HomeFragment : Fragment() {
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
         intent.putExtra(CATEGORY,"movies")
+        intent.putExtra(ID,item.id)
         startActivity(intent)
     }
 
@@ -270,6 +272,7 @@ class HomeFragment : Fragment() {
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
         intent.putExtra(CATEGORY,"series")
+        intent.putExtra(ID,item.id)
         startActivity(intent)
     }
 
@@ -292,7 +295,8 @@ class HomeFragment : Fragment() {
             item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
-        intent.putExtra(CATEGORY,"comingsoon")
+        intent.putExtra(CATEGORY,"movies")
+        intent.putExtra(ID,item.id)
         startActivity(intent)
     }
 
@@ -303,5 +307,6 @@ class HomeFragment : Fragment() {
     companion object {
         const val EXTRA_DATA_MS = "extra data movies or series"
         const val CATEGORY = "category"
+        const val ID = "id"
     }
 }

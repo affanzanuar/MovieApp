@@ -1,4 +1,4 @@
-package com.affan.movieapp.view.main.details
+package com.affan.movieapp.main.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
-import com.affan.movieapp.model.details.tv.DetailsTvResponse
 import com.affan.movieapp.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,6 +46,9 @@ class DetailsViewModel(
                 withContext(Dispatchers.Main) {
                     _loading.value = false
                     _error.value = error.message
+//                    if (error.message == "404"){
+//                        apiService.getMovieDetails(id, Data.apiKey)
+//                    }
                 }
             }
         }

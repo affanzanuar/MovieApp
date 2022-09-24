@@ -1,18 +1,20 @@
 package com.affan.movieapp.main.details
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.View
 import android.webkit.URLUtil
 import android.widget.MediaController
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
-import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
-import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.trending.Trending
+import com.affan.movieapp.network.ApiClient
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.bumptech.glide.Glide
 
@@ -20,37 +22,42 @@ class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
 
+    private lateinit var detailsViewModel: DetailsViewModel
+
     private var currentPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
-        if (getCategory()=="trending"){
-            setTrendingToDetail()
-        } else if (getCategory()=="movies") {
-            setMoviesToDetail()
-        } else if (getCategory()=="series"){
-            setSeriesToDetail()
-        } else {
-            setComingSoonToDetail()
-        }
+//        setDataToDetail()
 
         binding.ivBack.setOnClickListener {
             finish()
         }
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(PLAYBACK_TIME)
         }
+
+        val id = intent.getIntExtra(HomeFragment.ID, 0)
+        val category = intent.getStringExtra(HomeFragment.CATEGORY).orEmpty()
+
+        Log.d("cekid", id.toString())
+        Log.d("cekcategory", category)
+
+        detailsViewModel = ViewModelProvider(
+            this,
+            DetailsModelFactory(
+                ApiClient.instance,
+            )
+        ).get(DetailsViewModel::class.java)
+
+        observeLiveData()
+        detailsViewModel.getDetailsMovie(id,category)
+
     }
 
-    private fun getCategory() : String{
-        return intent.getStringExtra(HomeFragment.CATEGORY)!!
-    }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
@@ -72,7 +79,7 @@ class DetailsActivity : AppCompatActivity() {
         binding.vvTrailer.stopPlayback()
     }
 
-    private fun getMedia (mediaName : String) : Uri {
+    private fun getMedia(mediaName: String): Uri {
         return if (URLUtil.isValidUrl(mediaName)) {
             Uri.parse(mediaName)
         } else {
@@ -82,13 +89,13 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun initializePlayer(){
+    private fun initializePlayer() {
 
         binding.pbBuffering.visibility = View.VISIBLE
         val videoUri = getMedia(VIDEO_SAMPLE)
         binding.vvTrailer.setVideoURI(videoUri)
 
-        val mediaController = MediaController(this )
+        val mediaController = MediaController(this)
 
         binding.vvTrailer.setOnPreparedListener {
 
@@ -104,7 +111,7 @@ class DetailsActivity : AppCompatActivity() {
 
         }
 
-        mediaController.setPadding(0,0,0,0)
+        mediaController.setPadding(0, 0, 0, 0)
 
         mediaController.setAnchorView(binding.flDummy)
         binding.vvTrailer.setMediaController(mediaController)
@@ -114,123 +121,64 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDataTrending() : Trending {
-        return intent.getParcelableExtra<Trending>(HomeFragment.EXTRA_DATA_MS)
-                as Trending
-    }
-
-    private fun getDataMovies(): Movie {
+    private fun getDataMoviesOrSeries(): Movie {
         return intent.getParcelableExtra<Movie>(HomeFragment.EXTRA_DATA_MS)
                 as Movie
     }
 
-    private fun getDataSeries(): Series {
-        return intent.getParcelableExtra<Series>(HomeFragment.EXTRA_DATA_MS)
-                as Series
+    private fun getDataTopMoviesOrSeries(): Trending {
+        return intent.getParcelableExtra<Trending>(HomeFragment.EXTRA_DATA_MS)
+                as Trending
     }
 
-    private fun getDataComingSoon(): ComingSoon {
-        return intent.getParcelableExtra<ComingSoon>(HomeFragment.EXTRA_DATA_MS)
-                as ComingSoon
-    }
+    private fun observeLiveData() {
+        detailsViewModel.loading.observe(this) { isLoading ->
+            // TODO:
+        }
 
-    private fun setTrendingToDetail(){
-        Glide.with(this)
-            .load(getDataTrending().loadPoster())
-            .placeholder(R.drawable.ic_default_poster)
-            .into(binding.ivPosterDetail)
+        detailsViewModel.detailResponse.observe(this) { data ->
+            Glide.with(this)
+                .load(BASE_URL + data.posterPath)
+                .placeholder(R.drawable.ic_default_top_movies)
+                .into(binding.ivPosterDetail)
 
-        Glide.with(this)
-            .load(getDataTrending().loadBackdrop())
-            .placeholder(R.drawable.ic_default_top_movies)
-            .into(binding.ivBackdropDetails)
+            Glide.with(this)
+                .load(BASE_URL + data.backdropPath)
+                .into(binding.ivBackdropDetails)
 
-        binding.tvTitleDetail.text = getDataTrending().title ?: getDataTrending().name
-        binding.tvGenre.text = getDataTrending().genreIds.toString()
-        binding.tvReleaseDate.text = getDataTrending().releaseDate ?: getDataTrending().firstAirDate
-        binding.tvOriginalLanguage.text = getDataTrending().originalLanguage
-        binding.tvVoteCount.text = getDataTrending().voteCount.toString()
-        binding.tvRatingResult.text = getDataTrending().voteAverage.toString()
-        binding.tvDescriptionMS.text = getDataTrending().overview
+            binding.tvVoteCount.text = data.voteCount.toString()
+            binding.tvRatingResult.text = data.voteAverage.toString()
+            binding.tvDescriptionMS.text = data.overview
+            binding.tvOriginalLanguage.text = data.originalLanguage
 
-        if (!getDataTrending().adult!!){
-            binding.tvIsAdult.visibility = View.GONE
+
+            binding.tvTitleDetail.text = data.title
+            binding.tvReleaseDate.text = data.releaseDate
+
+//            feature to full name language
+//            val languageName = data.spokenLanguages?.map { it?.englishName }
+//            binding.tvOriginalLanguage.text = languageName?.get(0) ?: "null"
+
+            val genreName = data.genres?.map { it?.name }?.toTypedArray()
+            val sbGenre = StringBuilder()
+            for (i in 0 until (genreName?.size ?: 0)) {
+                sbGenre.append(genreName?.get(i).toString() + "\n")
+            }
+            binding.tvGenre.text = (sbGenre.toString())
+
+        }
+        detailsViewModel.error.observe(this) { error ->
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun setMoviesToDetail(){
-        Glide.with(this)
-            .load(getDataMovies().loadPoster())
-            .placeholder(R.drawable.ic_default_poster)
-            .into(binding.ivPosterDetail)
 
-        Glide.with(this)
-            .load(getDataMovies().loadBackdrop())
-            .placeholder(R.drawable.ic_default_top_movies)
-            .into(binding.ivBackdropDetails)
-
-        binding.tvTitleDetail.text = getDataMovies().title
-        binding.tvGenre.text = getDataMovies().genreIds.toString()
-        binding.tvReleaseDate.text = getDataMovies().releaseDate
-        binding.tvOriginalLanguage.text = getDataMovies().originalLanguage
-        binding.tvVoteCount.text = getDataMovies().voteCount.toString()
-        binding.tvRatingResult.text = getDataMovies().voteAverage.toString()
-        binding.tvDescriptionMS.text = getDataMovies().overview
-
-        if (!getDataMovies().adult!!){
-            binding.tvIsAdult.visibility = View.GONE
-        }
-    }
-
-    private fun setSeriesToDetail(){
-        Glide.with(this)
-            .load(getDataSeries().loadPoster())
-            .placeholder(R.drawable.ic_default_poster)
-            .into(binding.ivPosterDetail)
-
-        Glide.with(this)
-            .load(getDataSeries().loadBackdrop())
-            .placeholder(R.drawable.ic_default_top_movies)
-            .into(binding.ivBackdropDetails)
-
-        binding.tvTitleDetail.text = getDataSeries().name
-        binding.tvGenre.text = getDataSeries().genreIds.toString()
-        binding.tvReleaseDate.text = getDataSeries().firstAirDate
-        binding.tvOriginalLanguage.text = getDataSeries().originalLanguage
-        binding.tvVoteCount.text = getDataSeries().voteCount.toString()
-        binding.tvRatingResult.text = getDataSeries().voteAverage.toString()
-        binding.tvDescriptionMS.text = getDataSeries().overview
-
-        binding.tvIsAdult.visibility = View.GONE
-
-    }
-
-    private fun setComingSoonToDetail(){
-        Glide.with(this)
-            .load(getDataComingSoon().loadPoster())
-            .placeholder(R.drawable.ic_default_poster)
-            .into(binding.ivPosterDetail)
-
-        Glide.with(this)
-            .load(getDataComingSoon().loadBackdrop())
-            .placeholder(R.drawable.ic_default_top_movies)
-            .into(binding.ivBackdropDetails)
-
-        binding.tvTitleDetail.text = getDataComingSoon().title
-        binding.tvGenre.text = getDataComingSoon().genreIds.toString()
-        binding.tvReleaseDate.text = getDataComingSoon().releaseDate
-        binding.tvOriginalLanguage.text = getDataComingSoon().originalLanguage
-        binding.tvVoteCount.text = getDataComingSoon().voteCount.toString()
-        binding.tvRatingResult.text = getDataComingSoon().voteAverage.toString()
-        binding.tvDescriptionMS.text = getDataComingSoon().overview
-
-        if (!getDataComingSoon().adult!!){
-            binding.tvIsAdult.visibility = View.GONE
-        }
-    }
-
-    companion object{
-        private const val VIDEO_SAMPLE = "https://joy.videvo.net/videvo_files/video/free/2014-07/large_watermarked/Run_5_wo_metadata_h264420_720p_UHQ_preview.mp4"
+    companion object {
+        private const val VIDEO_SAMPLE =
+            "https://joy.videvo.net/videvo_files/video/free/2014-07/large_watermarked/Run_5_wo_metadata_h264420_720p_UHQ_preview.mp4"
         private const val PLAYBACK_TIME = "play_time"
+        private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
     }
+
+
 }

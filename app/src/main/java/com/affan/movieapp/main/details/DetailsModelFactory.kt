@@ -1,8 +1,7 @@
-package com.affan.movieapp.view.main.details
+package com.affan.movieapp.main.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.affan.movieapp.network.ApiClient
 import com.affan.movieapp.network.ApiService
 
 class DetailsModelFactory(
