@@ -1,6 +1,7 @@
 package com.affan.movieapp.main.series
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +38,9 @@ class SeriesFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         setSeriesAdapter()
         seriesViewModel.series.observe(requireActivity()) {
+            binding.skSeriesFragment.visibility = View.VISIBLE
             it.series?.let { data ->
+                binding.skSeriesFragment.visibility = View.GONE
                 seriesAdapter.setData(data)
             }
         }

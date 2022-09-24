@@ -38,7 +38,9 @@ class MoviesFragment : Fragment() {
         setMoviesAdapter()
 
         moviesViewModel.movies.observe(requireActivity()) {
+            binding.skMoviesFragment.visibility = View.VISIBLE
             it.results?.let { data ->
+                binding.skMoviesFragment.visibility = View.GONE
                 moviesAdapter.setData(data)
             }
         }

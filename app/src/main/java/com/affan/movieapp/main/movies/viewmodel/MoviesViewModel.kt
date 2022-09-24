@@ -16,6 +16,7 @@ class MoviesViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
+
             val response = MoviesRepository().getPopularMovies()
             if (response.isSuccessful) {
                 _movies.postValue(response.body())
