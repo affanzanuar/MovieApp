@@ -1,5 +1,6 @@
 package com.affan.movieapp.main.details
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,8 +26,6 @@ class DetailsViewModel(
     private val _detailResponse: MutableLiveData<DetailsMovieResponse> = MutableLiveData()
     val detailResponse: LiveData<DetailsMovieResponse> = _detailResponse
 
-    private val _videoResponse: MutableLiveData<VideosResponse> = MutableLiveData()
-    val videoResponse: LiveData<VideosResponse> = _videoResponse
     private val _videoKey: MutableLiveData<String?> = MutableLiveData()
     val videoKey: LiveData<String?> = _videoKey
 
@@ -73,26 +72,39 @@ class DetailsViewModel(
             }.onSuccess { data ->
                 withContext(Dispatchers.Main) {
                     _loading.value = false
-                    _videoResponse.value = data
-                    _videoKey.value =
-                        if (data.results.isNullOrEmpty()){
-                            "Video is not Available"
-                        }else{
-                            data.results.orEmpty().takeOfficialTrailer()?.key
-                        }
+                    _videoKey.value = data.results?.takeOfficialTrailer()?.key ?: "Pick Youtube"
+
+                    if (_videoKey.value == "Pick Youtube"){
+                        _videoKey.value = data.results?.takeYoutubeSite()?.key ?: "Not Available"
+                    }
+
+                    Log.d("DetailViewModel Key", _videoKey.value.toString())
+                    
                 }
             }.onFailure { error ->
                 withContext(Dispatchers.Main) {
                     _loading.value = false
                     _error.value = error.message
+                    _videoKey.value = "Not Available"
                 }
             }
         }
     }
 
-    fun List<VideosResult?>.takeOfficialTrailer(): VideosResult? {
-        return filter {
+    private fun List<VideosResult?>.takeOfficialTrailer(): VideosResult? {
+        return firstOrNull {
             it?.name == "Official Trailer"
-        }.first()
+                    || it?.name == "Official Trailer 1"
+                    || it?.name == "Official Trailer 2"
+                    || it?.name == "Official Trailer 3"
+                    || it?.name == "Official Teaser Trailer"
+                    || it?.name == "Official Teaser"
+        }
+    }
+
+    private fun List<VideosResult?>.takeYoutubeSite(): VideosResult? {
+        return firstOrNull {
+            it?.iso6391 == "en"
+        }
     }
 }

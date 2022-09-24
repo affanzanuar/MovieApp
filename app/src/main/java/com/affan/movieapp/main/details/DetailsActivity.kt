@@ -11,6 +11,8 @@ import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.network.ApiClient
 import com.bumptech.glide.Glide
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -49,16 +51,6 @@ class DetailsActivity : AppCompatActivity() {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-        binding.vvTrailer.pause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        binding.vvTrailer.stopPlayback()
-    }
-
 //  VIDEO LAYOUT
 
 //    private fun initializePlayer() {
@@ -82,20 +74,18 @@ class DetailsActivity : AppCompatActivity() {
 //            binding.vvTrailer.start()
 //
 //        }
-//
-//        mediaController.setPadding(0, 0, 0, 0)
-//
-//        mediaController.setAnchorView(binding.flDummy)
-//        binding.vvTrailer.setMediaController(mediaController)
-//
-//        binding.vvTrailer.setOnCompletionListener {
-//            binding.vvTrailer.seekTo(0)
-//        }
 //    }
 
     private fun observeLiveData() {
         detailsViewModel.loading.observe(this) { isLoading ->
             // TODO:
+            if (isLoading){
+                binding.pbBuffering.visibility = View.VISIBLE
+                binding.ivBackdropDetails.visibility  = View.VISIBLE
+            } else {
+                binding.pbBuffering.visibility = View.GONE
+                binding.ivBackdropDetails.visibility  = View.GONE
+            }
         }
 
 
@@ -121,7 +111,7 @@ class DetailsActivity : AppCompatActivity() {
             binding.tvDescriptionMS.text = data.overview
             binding.tvTitleDetail.text = data.title
 
-            var currentDate = data.releaseDate
+            val currentDate = data.releaseDate
 
             val year0 = currentDate?.get(0)
             val year1 = currentDate?.get(1)
@@ -168,17 +158,35 @@ class DetailsActivity : AppCompatActivity() {
         //Videos response
         detailsViewModel.videoKey.observe(this) { data ->
 
-            binding.tvTitleDetail.text = data
+//            binding.tvTitleDetail.text = data
 
-            Log.d("videokey", data.toString())
+            Log.d("DetailActivity key", data.toString())
 
 
+            binding.tvNotAvail.visibility = View.GONE
+            binding.ytTrailer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    super.onReady(youTubePlayer)
+                    youTubePlayer.loadVideo(data!!,0F)
+                }
+            })
             // TODO: pasang youtube play library
+//            if (data!!.isNotEmpty()){
+//
+//            } else {
+//                binding.tvNotAvail.visibility = View.VISIBLE
+//                binding.ytTrailer.visibility = View.GONE
+//            }
 
+//            binding.ytTrailer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+//                override fun onReady(youTubePlayer: YouTubePlayer) {
+//                    super.onReady(youTubePlayer)
+//                    youTubePlayer.loadVideo(data!!,0F)
+//                }
+//            })
         }
-
-
     }
+
     companion object {
         private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
     }
