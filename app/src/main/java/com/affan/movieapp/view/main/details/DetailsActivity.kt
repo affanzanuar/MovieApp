@@ -132,7 +132,6 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun observeLiveData() {
-
         detailsViewModel.loading.observe(this) { isLoading ->
             // TODO:
         }
@@ -151,7 +150,8 @@ class DetailsActivity : AppCompatActivity() {
             binding.tvRatingResult.text = data.voteAverage.toString()
             binding.tvDescriptionMS.text = data.overview
             binding.tvOriginalLanguage.text = data.originalLanguage
-            //
+
+
             binding.tvTitleDetail.text = data.title
             binding.tvReleaseDate.text = data.releaseDate
 
