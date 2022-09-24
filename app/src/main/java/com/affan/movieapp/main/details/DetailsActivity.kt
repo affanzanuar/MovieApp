@@ -51,30 +51,6 @@ class DetailsActivity : AppCompatActivity() {
 
     }
 
-//  VIDEO LAYOUT
-
-//    private fun initializePlayer() {
-//
-//        binding.pbBuffering.visibility = View.VISIBLE
-//        val videoUri = getMedia(VIDEO_SAMPLE)
-//        binding.vvTrailer.setVideoURI(videoUri)
-//
-//        val mediaController = MediaController(this)
-//
-//        binding.vvTrailer.setOnPreparedListener {
-//
-//            binding.pbBuffering.visibility = View.GONE
-//            binding.ivBackdropDetails.visibility = View.GONE
-//
-//            if (currentPosition > 0) {
-//                binding.vvTrailer.seekTo(currentPosition)
-//            } else {
-//                binding.vvTrailer.seekTo(1)
-//            }
-//            binding.vvTrailer.start()
-//
-//        }
-//    }
 
     private fun observeLiveData() {
         detailsViewModel.loading.observe(this) { isLoading ->
@@ -158,32 +134,16 @@ class DetailsActivity : AppCompatActivity() {
         //Videos response
         detailsViewModel.videoKey.observe(this) { data ->
 
-//            binding.tvTitleDetail.text = data
-
             Log.d("DetailActivity key", data.toString())
 
-
-            binding.tvNotAvail.visibility = View.GONE
+            // TODO: pasang youtube play library
+//            binding.tvNotAvail.visibility = View.GONE
             binding.ytTrailer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     super.onReady(youTubePlayer)
                     youTubePlayer.loadVideo(data!!,0F)
                 }
             })
-            // TODO: pasang youtube play library
-//            if (data!!.isNotEmpty()){
-//
-//            } else {
-//                binding.tvNotAvail.visibility = View.VISIBLE
-//                binding.ytTrailer.visibility = View.GONE
-//            }
-
-//            binding.ytTrailer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
-//                override fun onReady(youTubePlayer: YouTubePlayer) {
-//                    super.onReady(youTubePlayer)
-//                    youTubePlayer.loadVideo(data!!,0F)
-//                }
-//            })
         }
     }
 

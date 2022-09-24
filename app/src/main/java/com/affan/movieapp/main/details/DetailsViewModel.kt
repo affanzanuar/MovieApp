@@ -72,14 +72,12 @@ class DetailsViewModel(
             }.onSuccess { data ->
                 withContext(Dispatchers.Main) {
                     _loading.value = false
-                    _videoKey.value = data.results?.takeOfficialTrailer()?.key ?: "Pick Youtube"
-
-                    if (_videoKey.value == "Pick Youtube"){
-                        _videoKey.value = data.results?.takeYoutubeSite()?.key ?: "Not Available"
-                    }
+                    _videoKey.value = data.results?.takeOfficialTrailer()?.key
+                        ?: data.results?.takeYoutubeSite()?.key
+                                ?: "Not Available"
 
                     Log.d("DetailViewModel Key", _videoKey.value.toString())
-                    
+
                 }
             }.onFailure { error ->
                 withContext(Dispatchers.Main) {
@@ -104,7 +102,7 @@ class DetailsViewModel(
 
     private fun List<VideosResult?>.takeYoutubeSite(): VideosResult? {
         return firstOrNull {
-            it?.iso6391 == "en"
+            it?.site == "YouTube"
         }
     }
 }
