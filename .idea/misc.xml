@@ -8,30 +8,24 @@
         <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/drawable/nav_background_curved.xml" value="0.157" />
         <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/activity_about.xml" value="0.2" />
         <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/activity_change_password.xml" value="0.2" />
+        <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/activity_details.xml" value="0.20863616930312098" />
         <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/activity_edit_profile.xml" value="0.20863616930312098" />
+        <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/activity_login.xml" value="0.20863616930312098" />
         <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/activity_register.xml" value="0.20863616930312098" />
         <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/fragment_account.xml" value="0.2" />
-        <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/fragment_home.xml" value="0.10196406184705391" />
+        <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Bootcamp Android/ch7/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20863616930312098" />
-        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/card_layout.xml" value="0.17831813576494426" />
-        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/fragment_home.xml" value="0.17831813576494426" />
-        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/fragment_movies.xml" value="0.17831813576494426" />
-        <entry key="..\:/Project/Kotlin/MovieApp/app/src/main/res/layout/fragment_series.xml" value="0.36277173913043476" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/bg_circle_indicator.xml" value="0.127" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/bg_email_password.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/bg_search.xml" value="0.127" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_circle_search.xml" value="0.1" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ictry.xml" value="0.11" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_details.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_home.xml" value="0.14953271028037382" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_movies.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_horizontal_container.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_top_movies.xml" value="0.22" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

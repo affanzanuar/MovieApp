@@ -71,7 +71,9 @@ class SeriesFragment : Fragment(){
             series.voteAverage,
             series.voteCount
         )
-        intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
+        intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
+        intent.putExtra("id",series.id)
+        intent.putExtra("category","series")
         intent.putExtra(HomeFragment.CATEGORY, "series")
         startActivity(intent)
     }
