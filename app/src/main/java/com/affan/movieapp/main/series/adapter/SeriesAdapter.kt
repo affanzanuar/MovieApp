@@ -20,8 +20,8 @@ class SeriesAdapter(
             Glide.with(binding.root)
                 .load(seriesData.loadPoster())
                 .into(binding.ivPoster)
-            binding.tvMovieTitle.text = seriesData.name
-            binding.tvDescription.text = seriesData.voteAverage.toString() + "/10"
+            binding.tvTitle.text = seriesData.name
+//            binding.tvDescription.text = seriesData.voteAverage.toString() + "/10"
         }
     }
 

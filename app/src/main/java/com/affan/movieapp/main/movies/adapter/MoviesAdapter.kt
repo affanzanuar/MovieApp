@@ -19,8 +19,8 @@ class MoviesAdapter(
             Glide.with(binding.root)
                 .load(moviesData.loadPoster())
                 .into(binding.ivPoster)
-            binding.tvMovieTitle.text = moviesData.title
-            binding.tvDescription.text = moviesData.voteAverage.toString() + "/10"
+            binding.tvTitle.text = moviesData.title
+//            binding.tvDescription.text = moviesData.voteAverage.toString() + "/10"
         }
     }
 
