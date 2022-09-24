@@ -37,7 +37,7 @@ data class DetailsMovieResponse(
     @SerializedName("release_date", alternate = ["first_air_date"])
     val releaseDate: String?,
     @SerializedName("revenue")
-    val revenue: Int?,
+    val revenue: Long?,
     @SerializedName("runtime")
     val runtime: Int?,
     @SerializedName("spoken_languages")

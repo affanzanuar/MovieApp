@@ -54,7 +54,7 @@ class DetailsActivity : AppCompatActivity() {
         ).get(DetailsViewModel::class.java)
 
         observeLiveData()
-        detailsViewModel.getDetailsMovie(id,category)
+        detailsViewModel.getDetailsMovie(id, category)
 
     }
 
@@ -149,26 +149,31 @@ class DetailsActivity : AppCompatActivity() {
             binding.tvVoteCount.text = data.voteCount.toString()
             binding.tvRatingResult.text = data.voteAverage.toString()
             binding.tvDescriptionMS.text = data.overview
-            binding.tvOriginalLanguage.text = data.originalLanguage
+//            binding.tvOriginalLanguage.text = data.originalLanguage
 
 
             binding.tvTitleDetail.text = data.title
             binding.tvReleaseDate.text = data.releaseDate
 
 //            feature to full name language
-//            val languageName = data.spokenLanguages?.map { it?.englishName }
-//            binding.tvOriginalLanguage.text = languageName?.get(0) ?: "null"
+            val languageName = data.spokenLanguages?.map { it?.englishName }
+            binding.tvOriginalLanguage.text = languageName?.get(0) ?: "null"
 
             val genreName = data.genres?.map { it?.name }?.toTypedArray()
             val sbGenre = StringBuilder()
             for (i in 0 until (genreName?.size ?: 0)) {
                 sbGenre.append(genreName?.get(i).toString() + "\n")
+
+                if (!data.adult!!) {
+                    binding.tvIsAdult.visibility = View.GONE
+                }
             }
             binding.tvGenre.text = (sbGenre.toString())
 
         }
         detailsViewModel.error.observe(this) { error ->
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            Log.d("asdasd",error)
         }
     }
 
