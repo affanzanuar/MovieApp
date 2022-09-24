@@ -205,7 +205,11 @@ class HomeFragment : Fragment() {
             item.voteCount
         )
         intent.putExtra(EXTRA_DATA_MS,parcelable)
-        intent.putExtra(CATEGORY,"series")
+        if (item.title.isNullOrEmpty()){
+            intent.putExtra(CATEGORY,"series")
+        } else {
+            intent.putExtra(CATEGORY,"movies")
+        }
         intent.putExtra(ID,item.id)
         startActivity(intent)
     }

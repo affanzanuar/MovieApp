@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemTopMoviesBinding
 import com.affan.movieapp.model.trending.Trending
@@ -22,7 +21,7 @@ class TrendingAdapter (
             fun bind (item : Trending){
                 Glide.with(binding.root)
                     .load(item.loadBackdrop())
-                    .placeholder(R.drawable.ic_default_top_movies)
+                    .placeholder(R.drawable.ic_default_backdrop)
                     .into(binding.ivItemTopMovies)
 
                 binding.tvTopMoviesTitle.text = item.title ?: item.name

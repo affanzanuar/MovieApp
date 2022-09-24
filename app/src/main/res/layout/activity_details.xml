@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/id_background_detail_movies"
     tools:context=".main.details.DetailsActivity">
 
     <ImageView
@@ -64,7 +65,7 @@
         android:id="@+id/ivBackdropDetails"
         android:layout_width="wrap_content"
         android:layout_height="230dp"
-        android:src="@drawable/backdrop_dc_league_of_super_pets"
+        android:src="@drawable/ic_default_backdrop"
         android:layout_marginTop="48dp"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,7 +123,7 @@
                 android:layout_marginTop="17dp"
                 android:maxLines="2"
                 android:text="Movies Or Series Title"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/cvPosterDetail"
@@ -136,6 +137,7 @@
                 android:maxLines="3"
                 android:text="Genre "
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/cvPosterDetail"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitleDetail" />
 
@@ -146,6 +148,7 @@
                 android:layout_marginStart="10dp"
                 android:text="Release :"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/tvLanguage"
                 app:layout_constraintStart_toEndOf="@+id/cvPosterDetail" />
 
@@ -154,8 +157,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="2022-06-11"
+                android:text="00-00-0000"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/tvLanguage"
                 app:layout_constraintStart_toEndOf="@id/tvRelease" />
 
@@ -166,6 +170,7 @@
                 android:layout_marginStart="10dp"
                 android:text="Language :"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/tvRatingResult"
                 app:layout_constraintStart_toEndOf="@+id/cvPosterDetail" />
 
@@ -174,8 +179,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="en"
+                android:text="not loaded"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/tvRatingResult"
                 app:layout_constraintStart_toEndOf="@+id/tvLanguage" />
 
@@ -197,6 +203,7 @@
                 android:layout_marginStart="5dp"
                 android:text="8.5 "
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/ivRating"
                 app:layout_constraintStart_toEndOf="@+id/ivRating"
                 app:layout_constraintTop_toTopOf="@id/ivRating" />
@@ -208,6 +215,7 @@
                 android:layout_marginStart="5dp"
                 android:text="/"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/ivRating"
                 app:layout_constraintStart_toEndOf="@+id/tvRatingResult"
                 app:layout_constraintTop_toTopOf="@id/ivRating" />
@@ -219,6 +227,7 @@
                 android:layout_marginStart="5dp"
                 android:text="14K "
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/ivRating"
                 app:layout_constraintStart_toEndOf="@+id/tvSlash"
                 app:layout_constraintTop_toTopOf="@id/ivRating" />
@@ -232,6 +241,7 @@
                 android:text="17+"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/ivRating"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/ivRating" />
@@ -244,7 +254,7 @@
                 android:layout_marginTop="26dp"
                 android:justificationMode="inter_word"
                 android:text="Overview"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -260,8 +270,8 @@
                 android:layout_marginTop="4dp"
                 android:justificationMode="inter_word"
                 android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
-                android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
