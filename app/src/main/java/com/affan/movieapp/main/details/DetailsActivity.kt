@@ -157,7 +157,10 @@ class DetailsActivity : AppCompatActivity() {
 
 //            feature to full name language
             val languageName = data.spokenLanguages?.map { it?.englishName }
-            binding.tvOriginalLanguage.text = languageName?.get(0) ?: "null"
+
+            if (languageName?.isEmpty() == true){
+                binding.tvOriginalLanguage.text = "No Language"
+            }
 
             val genreName = data.genres?.map { it?.name }?.toTypedArray()
             val sbGenre = StringBuilder()
