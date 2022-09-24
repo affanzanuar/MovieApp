@@ -1,4 +1,4 @@
-package com.affan.movieapp.view.main.series
+package com.affan.movieapp.main.series
 
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.model.series.SeriesResponse

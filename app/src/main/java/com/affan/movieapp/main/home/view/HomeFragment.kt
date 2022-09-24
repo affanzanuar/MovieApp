@@ -3,30 +3,30 @@ package com.affan.movieapp.main.home.view
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
-import com.affan.movieapp.model.comingsoon.ComingSoon
-import com.affan.movieapp.model.movie.Movie
-import com.affan.movieapp.model.series.Series
-import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.main.home.adapter.HomeSeriesAdapter
 import com.affan.movieapp.main.home.adapter.TrendingAdapter
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
-import kotlinx.coroutines.*
+import com.affan.movieapp.model.comingsoon.ComingSoon
+import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.series.Series
+import com.affan.movieapp.model.trending.Trending
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 

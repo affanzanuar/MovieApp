@@ -2,7 +2,7 @@ package com.affan.movieapp.network
 
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
-import com.affan.movieapp.model.details.tv.DetailsTvResponse
+import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
@@ -65,5 +65,18 @@ interface ApiService {
         @Path("tv_id") id:Int,
         @Query("api_key") apiKey: String,
     ): DetailsMovieResponse
+
+
+    @GET("movie/{movie_id}/videos")
+    suspend fun getMovieVideos(
+        @Path("movie_id") id:Int,
+        @Query("api_key") apiKey: String,
+    ): VideosResponse
+
+    @GET("tv/{tv_id}/videos")
+    suspend fun getTvVideos(
+        @Path("tv_id") id:Int,
+        @Query("api_key") apiKey: String,
+    ): VideosResponse
 
 }
