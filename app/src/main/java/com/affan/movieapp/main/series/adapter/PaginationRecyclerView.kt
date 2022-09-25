@@ -21,6 +21,7 @@ abstract class PaginationRecyclerView(private val layoutManager: GridLayoutManag
     }
 
     protected abstract fun loadMoreItems()
+    protected abstract fun loadPreviousItems()
     abstract val isLastPage: Boolean
     abstract val isLoading: Boolean
 }
