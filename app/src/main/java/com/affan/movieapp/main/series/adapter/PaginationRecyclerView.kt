@@ -14,7 +14,7 @@ abstract class PaginationRecyclerView(private val layoutManager: GridLayoutManag
         if (!isLoading && !isLastPage) {
             if (visibleItemCount + currentFirstVisible >= totalItemCount
                 && currentFirstVisible >= 0
-            ) else {
+            ) {
                 loadMoreItems()
             }
         }
