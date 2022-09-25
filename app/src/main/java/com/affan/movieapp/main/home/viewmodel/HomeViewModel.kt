@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
@@ -21,7 +20,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel () : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private val _isLoading : MutableLiveData<Boolean> = MutableLiveData()
     val isLoading : LiveData<Boolean> = _isLoading

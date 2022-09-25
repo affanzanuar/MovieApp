@@ -10,8 +10,7 @@ import com.affan.movieapp.model.trending.Trending
 import com.bumptech.glide.Glide
 
 class TrendingAdapter (
-    private val onClickToDetails : (data : Trending) -> Unit,
-//    private val viewPager2: ViewPager2
+    private val onClickToDetails : (data : Trending) -> Unit
 ) : RecyclerView.Adapter<TrendingAdapter.TrendingViewHolder>(){
 
     private val itemMoviesOrSeries = mutableListOf<Trending?>()
