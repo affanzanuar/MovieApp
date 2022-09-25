@@ -1,11 +1,11 @@
-package com.affan.movieapp.main.home
+package com.affan.movieapp.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.affan.movieapp.main.details.DetailsViewModel
-import com.affan.movieapp.main.home.domain.Repository
+import com.affan.movieapp.data.remote.RemoteDataSource
+import com.affan.movieapp.domain.RepositoryImp
+import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
-import com.affan.movieapp.network.ApiClient
 import com.affan.movieapp.network.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -39,7 +39,7 @@ class ViewModelFactory(
             .addInterceptor(logging)
             .build()
 
-        private val instance : ApiService by lazy {
+        private val remoteDataSource : ApiService by lazy {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(client)
@@ -48,13 +48,19 @@ class ViewModelFactory(
             retrofit.create(ApiService::class.java)
         }
 
+//        private val moviesDao = MovieDaoImp()
+
+        private val remote = RemoteDataSource(remoteDataSource)
+//        private val local = LocalDataSource(moviesDao)
+
         @Volatile
         private var INSTANCE : ViewModelFactory? = null
         fun getInstance()= synchronized(ViewModelFactory::class.java){
             INSTANCE ?: ViewModelFactory(
-                RepositoryImp(instance)
+                RepositoryImp(
+                    remoteDataSource = remote
+                )
             ). also { INSTANCE = it }
         }
     }
-
 }

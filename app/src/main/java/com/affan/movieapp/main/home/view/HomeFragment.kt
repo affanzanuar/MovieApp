@@ -15,8 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
 import com.affan.movieapp.main.details.DetailsActivity
-import com.affan.movieapp.main.home.RepositoryImp
-import com.affan.movieapp.main.home.ViewModelFactory
+import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.main.home.adapter.HomeSeriesAdapter
@@ -26,14 +25,10 @@ import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.trending.Trending
-import com.affan.movieapp.network.ApiClient
-import com.affan.movieapp.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeFragment : Fragment() {
 

@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
-import com.affan.movieapp.main.home.domain.Repository
+import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.movie.Movie
