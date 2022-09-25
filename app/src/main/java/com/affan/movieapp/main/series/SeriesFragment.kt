@@ -72,13 +72,6 @@ class SeriesFragment : Fragment() {
                 isLoadDataOnProgress = true
                 seriesViewModel.getPopularSeries(page)
             }
-
-            override fun loadPreviousItems() {
-                page--
-                isLoadDataOnProgress = true
-                seriesViewModel.getPopularSeries(page)
-            }
-
             override val isLastPage: Boolean
                 get() = false
             override val isLoading: Boolean
