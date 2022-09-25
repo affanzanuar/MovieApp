@@ -35,6 +35,12 @@ interface ApiService {
         @Query("api_key") apiKey : String
     ) : retrofit2.Response<MovieResponse>
 
+    @GET("movie/popular")
+    suspend fun getMostPopularMovies3(
+        @Query("api_key") apiKey : String,
+        @Query("page") page: Int
+    ) : retrofit2.Response<MovieResponse>
+
     @GET("tv/popular")
     fun getMostPopularSeries(
         @Query("api_key") apiKey : String
