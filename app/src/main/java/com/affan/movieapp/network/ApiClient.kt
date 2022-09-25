@@ -5,6 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+@Deprecated("not used anymore")
 object ApiClient {
 
     private const val BASE_URL = "https://api.themoviedb.org/3/"
