@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
+import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.details.videos.VideosResult
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class DetailsViewModel(
-    private val apiService: ApiService,
+    private val repository: Repository,
 ) : ViewModel() {
 
     private val _defaultCategory = "movies"
@@ -38,9 +39,9 @@ class DetailsViewModel(
                 withContext(Dispatchers.Main) {
                     _loading.value = true
                     if (category == _defaultCategory) {
-                        apiService.getMovieDetails(id, Data.apiKey)
+                        repository.getMovieDetails(id, Data.apiKey)
                     } else {
-                        apiService.getTvDetails(id, Data.apiKey)
+                        repository.getTvDetails(id, Data.apiKey)
                     }
                 }
             }.onSuccess { data ->
@@ -64,9 +65,9 @@ class DetailsViewModel(
                 withContext(Dispatchers.Main) {
                     _loading.value = true
                     if (category == _defaultCategory) {
-                        apiService.getMovieVideos(id, Data.apiKey)
+                        repository.getMovieVideos(id, Data.apiKey)
                     } else {
-                        apiService.getTvVideos(id, Data.apiKey)
+                        repository.getTvVideos(id, Data.apiKey)
                     }
                 }
             }.onSuccess { data ->
