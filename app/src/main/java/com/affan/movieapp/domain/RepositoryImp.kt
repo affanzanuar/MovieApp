@@ -82,4 +82,8 @@ class RepositoryImp (
     override suspend fun getPopularSeries(page: Int, apiKey: String): Response<SeriesResponse> {
         return remoteDataSource.getMostPopularSeries3(apiKey, page)
     }
+
+    override suspend fun getPopularMovies(page: Int, apiKey: String): Response<MovieResponse> {
+        return remoteDataSource.getMostPopularMovies3(apiKey, page)
+    }
 }

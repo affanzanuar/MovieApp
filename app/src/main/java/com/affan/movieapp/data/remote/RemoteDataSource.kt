@@ -81,4 +81,8 @@ class RemoteDataSource (
     ): Response<SeriesResponse> {
         return apiService.getMostPopularSeries3(apiKey, page)
     }
+
+    override suspend fun getMostPopularMovies3(apiKey: String, page: Int): Response<MovieResponse> {
+        return apiService.getMostPopularMovies3(apiKey, page)
+    }
 }

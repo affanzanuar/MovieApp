@@ -57,4 +57,9 @@ interface DataSource {
         apiKey : String,
         page: Int
     ) : retrofit2.Response<SeriesResponse>
+
+    suspend fun getMostPopularMovies3(
+        apiKey : String,
+        page: Int
+    ) : retrofit2.Response<MovieResponse>
 }

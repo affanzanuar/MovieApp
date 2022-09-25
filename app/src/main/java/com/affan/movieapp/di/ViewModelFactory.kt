@@ -7,6 +7,7 @@ import com.affan.movieapp.domain.RepositoryImp
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.main.details.DetailsViewModel
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
+import com.affan.movieapp.main.movies.viewmodel.MoviesViewModel
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
 import com.affan.movieapp.network.ApiService
 import okhttp3.OkHttpClient
@@ -23,6 +24,7 @@ class ViewModelFactory(
             HomeViewModel::class.java -> HomeViewModel(repository) as T
             DetailsViewModel::class.java -> DetailsViewModel(repository) as T
             SeriesViewModel::class.java -> SeriesViewModel(repository) as T
+            MoviesViewModel::class.java -> MoviesViewModel(repository) as T
             else -> throw UnsupportedOperationException()
         }
     }
