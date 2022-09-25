@@ -58,5 +58,5 @@ interface Repository {
         id: Int
     ) : MoviesOrSeries
 
-    suspend fun getPopularSeries(page: Int): Response<SeriesResponse>
+    suspend fun getPopularSeries(page: Int, apiKey: String): Response<SeriesResponse>
 }

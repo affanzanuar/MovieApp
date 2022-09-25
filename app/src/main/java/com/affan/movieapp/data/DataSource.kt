@@ -8,6 +8,7 @@ import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 import retrofit2.Call
+import retrofit2.http.Query
 
 interface DataSource {
     fun getTopMoviesOrSeries(apiKey: String,) : Call<TrendingResponse>
@@ -51,4 +52,9 @@ interface DataSource {
     suspend fun deleteFavorite(
         id: Int
     ) : MoviesOrSeries
+
+    suspend fun getMostPopularSeries3(
+        apiKey : String,
+        page: Int
+    ) : retrofit2.Response<SeriesResponse>
 }

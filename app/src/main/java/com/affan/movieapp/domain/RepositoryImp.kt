@@ -79,7 +79,7 @@ class RepositoryImp (
         throw UnsupportedOperationException("ereor")
     }
 
-    override suspend fun getPopularSeries(page: Int): Response<SeriesResponse> {
-        return ApiClient.instance.getMostPopularSeries3(Data.apiKey, page)
+    override suspend fun getPopularSeries(page: Int, apiKey: String): Response<SeriesResponse> {
+        return remoteDataSource.getMostPopularSeries3(apiKey, page)
     }
 }
