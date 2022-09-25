@@ -44,19 +44,10 @@ class HomeFragment : Fragment() {
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
     private lateinit var comingSoonAdapter: ComingSoonAdapter
 
-
-    private val retrofit : Retrofit = Retrofit.Builder()
-        .baseUrl(ApiClient.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(ApiClient.client)
-        .build()
-
-    private val apiService = retrofit.create(ApiService::class.java)
-
-    private val repository = RepositoryImp(apiService)
-
     private val homeViewModel: HomeViewModel by activityViewModels(
-        factoryProducer = {ViewModelFactory(repository)}
+        factoryProducer = {
+            ViewModelFactory.getInstance()
+        }
     )
 
     override fun onCreateView(
