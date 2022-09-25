@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
 
-    private const val BASE_URL = "https://api.themoviedb.org/3/"
+    const val BASE_URL = "https://api.themoviedb.org/3/"
 
     private val logging : HttpLoggingInterceptor
         get() {
@@ -17,7 +17,7 @@ object ApiClient {
             }
         }
 
-    private val client = OkHttpClient.Builder()
+    val client = OkHttpClient.Builder()
         .addInterceptor(logging)
         .build()
 
