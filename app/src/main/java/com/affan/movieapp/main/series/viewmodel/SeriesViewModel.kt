@@ -16,10 +16,20 @@ class SeriesViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            val response = SeriesRepository().getPopularSeries()
+            val response = SeriesRepository().getPopularSeries(1)
             if (response.isSuccessful) {
                 _series.postValue(response.body())
             } else {
+                errorMessage.postValue(response.message())
+            }
+        }
+    }
+    fun getPopularSeries(page: Int){
+        viewModelScope.launch {
+            val response = SeriesRepository().getPopularSeries(page)
+            if (response.isSuccessful) {
+                _series.postValue(response.body())
+            }else{
                 errorMessage.postValue(response.message())
             }
         }
