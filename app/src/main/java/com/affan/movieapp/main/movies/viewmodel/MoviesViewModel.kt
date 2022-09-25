@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.domain.Repository
-import com.affan.movieapp.main.movies.MoviesRepository
 import com.affan.movieapp.model.movie.MovieResponse
 import kotlinx.coroutines.launch
 
