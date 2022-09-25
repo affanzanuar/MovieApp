@@ -10,6 +10,7 @@ import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.network.ApiService
 import retrofit2.Call
+import retrofit2.Response
 
 class RemoteDataSource (
     private val apiService: ApiService
@@ -72,5 +73,12 @@ class RemoteDataSource (
 
     override suspend fun deleteFavorite(id: Int): MoviesOrSeries {
         throw UnsupportedOperationException("Use Local Data Source!")
+    }
+
+    override suspend fun getMostPopularSeries3(
+        apiKey: String,
+        page: Int
+    ): Response<SeriesResponse> {
+        return apiService.getMostPopularSeries3(apiKey, page)
     }
 }
