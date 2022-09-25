@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
 import com.affan.movieapp.main.details.DetailsActivity
+import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.main.home.adapter.HomeSeriesAdapter
@@ -24,8 +25,10 @@ import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.trending.Trending
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
@@ -35,7 +38,12 @@ class HomeFragment : Fragment() {
     private lateinit var mostPopularMovieAdapter: HomeMoviesAdapter
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
     private lateinit var comingSoonAdapter: ComingSoonAdapter
-    private val homeViewModel: HomeViewModel by activityViewModels()
+
+    private val homeViewModel: HomeViewModel by activityViewModels(
+        factoryProducer = {
+            ViewModelFactory.getInstance()
+        }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +70,9 @@ class HomeFragment : Fragment() {
         homeViewModel.getPopularSeries()
         homeViewModel.getComingSoon()
         homeViewModel.viewModelScope.launch {
-            binding.vpTopMovies.scrollIndefinitely(5000)
+            withContext(Dispatchers.Main){
+                binding.vpTopMovies.scrollIndefinitely(5000)
+            }
         }
     }
 

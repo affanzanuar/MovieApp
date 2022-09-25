@@ -35,6 +35,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+    kotlinOptions{
+        freeCompilerArgs += [
+                "-Xjvm-default=all",
+        ]
+    }
 }
 
 dependencies {
@@ -95,5 +100,9 @@ dependencies {
     //Youtube Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.26'
+
+//    //Room Library
+//    implementation "android.arch.persistence.room:runtime:1.1.1"
+//    kapt "android.arch.persistence.room:compiler:1.1.1"
 
 }

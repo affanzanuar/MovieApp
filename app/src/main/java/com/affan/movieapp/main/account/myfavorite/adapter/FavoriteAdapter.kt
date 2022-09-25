@@ -18,10 +18,10 @@ class FavoriteAdapter(
         : RecyclerView.ViewHolder(binding.root) {
             fun bind (position: Int){
                 val item = itemFavorite[position]
-                Glide.with(binding.root)
-                    .load(item.moviesOrSeriesPoster)
-                    .into(binding.ivPosterFavorite)
-                binding.tvTitleFavorite.text = item.moviesOrSeriesTitle
+//                Glide.with(binding.root)
+////                    .load(item.moviesOrSeriesPoster)
+//                    .into(binding.ivPosterFavorite)
+//                binding.tvTitleFavorite.text = item.moviesOrSeriesTitle
 
                 binding.root.setOnClickListener {
                     onClickFavorite(item)
