@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.affan.movieapp.data.remote.RemoteDataSource
 import com.affan.movieapp.domain.RepositoryImp
 import com.affan.movieapp.domain.Repository
+import com.affan.movieapp.main.details.DetailsViewModel
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 import com.affan.movieapp.network.ApiService
 import okhttp3.OkHttpClient
@@ -19,6 +20,7 @@ class ViewModelFactory(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when(modelClass) {
             HomeViewModel::class.java -> HomeViewModel(repository) as T
+            DetailsViewModel::class.java -> DetailsViewModel(repository) as T
             else -> throw UnsupportedOperationException()
         }
     }
