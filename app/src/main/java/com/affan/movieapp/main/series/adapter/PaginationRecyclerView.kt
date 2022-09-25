@@ -10,11 +10,11 @@ abstract class PaginationRecyclerView(private val layoutManager: GridLayoutManag
         super.onScrolled(recyclerView, dx, dy)
         val visibleItemCount = layoutManager.childCount
         val totalItemCount = layoutManager.itemCount
-        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+        val currentFirstVisible = layoutManager.findFirstVisibleItemPosition()
         if (!isLoading && !isLastPage) {
-            if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
-                && firstVisibleItemPosition >= 0
-            ) {
+            if (visibleItemCount + currentFirstVisible >= totalItemCount
+                && currentFirstVisible >= 0
+            ) else {
                 loadMoreItems()
             }
         }
