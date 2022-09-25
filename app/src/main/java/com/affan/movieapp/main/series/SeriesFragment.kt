@@ -14,6 +14,7 @@ import com.affan.movieapp.databinding.FragmentSeriesBinding
 import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
+import com.affan.movieapp.main.series.adapter.PaginationRecyclerView
 import com.affan.movieapp.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.main.series.presenter.SeriesView
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
@@ -24,6 +25,10 @@ class SeriesFragment : Fragment(){
     private lateinit var seriesAdapter: SeriesAdapter
 
     private val seriesViewModel: SeriesViewModel by viewModels()
+
+    private  var page=1
+    private val seriesModelView: SeriesViewModel by viewModels()
+    private var isLoadDataOnProgress = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +59,22 @@ class SeriesFragment : Fragment(){
             intentToDetails(series)
         }
         binding.rvSeries.adapter = seriesAdapter
-        binding.rvSeries.layoutManager = GridLayoutManager(context, 2)
+        val layoutManager = GridLayoutManager(context, 2)
+
+        binding.rvSeries.layoutManager = layoutManager
+        binding.rvSeries.addOnScrollListener(object : PaginationRecyclerView(layoutManager){
+            override fun loadMoreItems() {
+                page++
+                isLoadDataOnProgress= true
+                seriesModelView.get(page)
+            }
+
+            override val isLastPage: Boolean
+                get() = false
+            override val isLoading: Boolean
+                get() =isLoadDataOnProgress
+
+        })
     }
 
     private fun intentToDetails(series: Series) {

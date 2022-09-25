@@ -48,7 +48,7 @@ interface ApiService {
     suspend fun getMostPopularSeries3(
         @Query("api_key") apiKey : String,
         @Query("page") page: Int
-    ) : SeriesResponse
+    ) : retrofit2.Response<SeriesResponse>
 
     @GET("discover/movie")
     fun getComingSoon(
