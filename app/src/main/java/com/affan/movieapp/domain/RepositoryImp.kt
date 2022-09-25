@@ -1,5 +1,6 @@
 package com.affan.movieapp.domain
 
+import com.affan.movieapp.data.Data
 import com.affan.movieapp.data.DataSource
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.MoviesOrSeries
@@ -9,8 +10,10 @@ import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
+import com.affan.movieapp.network.ApiClient
 import com.affan.movieapp.network.ApiService
 import retrofit2.Call
+import retrofit2.Response
 
 class RepositoryImp (
 //    private val localDataSource: DataSource,
@@ -74,5 +77,9 @@ class RepositoryImp (
 
     override suspend fun deleteFavorite(id: Int): MoviesOrSeries {
         throw UnsupportedOperationException("ereor")
+    }
+
+    override suspend fun getPopularSeries(page: Int): Response<SeriesResponse> {
+        return ApiClient.instance.getMostPopularSeries3(Data.apiKey, page)
     }
 }
