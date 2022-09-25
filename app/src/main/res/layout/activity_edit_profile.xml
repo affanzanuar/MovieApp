@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.account.editprofile.EditProfileActivity">
+    tools:context=".main.account.editprofile.EditProfileActivity"
+    android:background="@drawable/id_background_app_movies">
 
     <RelativeLayout
         android:id="@+id/frame_profile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="?colorSecondaryVariant"
+        android:background="@drawable/id_background_app_movies"
         app:layout_constraintBottom_toTopOf="@id/list_edit"
         app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,17 +21,18 @@
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"/>
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/arrow_left" />
 
         <ImageView
             android:id="@+id/img_profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-            android:background="?colorSecondary" />
+            android:background="@color/gray"
+            android:src="@drawable/ic_baseline_person_24"/>
 
         <TextView
             android:id="@+id/name_profile"
@@ -40,7 +42,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:text="First Name Last Name"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -59,7 +62,8 @@
             android:background="?attr/selectableItemBackground"
             android:padding="20dp"
             android:text="Change Profile Picture"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
 
         <View
             android:layout_width="match_parent"
@@ -73,7 +77,8 @@
             android:background="?attr/selectableItemBackground"
             android:padding="20dp"
             android:text="Change Password"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
 
         <View
             android:layout_width="match_parent"
