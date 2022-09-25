@@ -25,7 +25,6 @@ class SeriesFragment : Fragment(){
     private val seriesViewModel: SeriesViewModel by viewModels()
 
     private  var page=1
-    private val seriesModelView: SeriesViewModel by viewModels()
     private var isLoadDataOnProgress = false
 
     override fun onCreateView(
@@ -64,13 +63,13 @@ class SeriesFragment : Fragment(){
             override fun loadMoreItems() {
                 page++
                 isLoadDataOnProgress= true
-                seriesModelView.getPopularSeries(page)
+                seriesViewModel.getPopularSeries(page)
             }
 
             override fun loadPreviousItems() {
                 page--
                 isLoadDataOnProgress=true
-                seriesModelView.getPopularSeries(page)
+                seriesViewModel.getPopularSeries(page)
             }
 
             override val isLastPage: Boolean
