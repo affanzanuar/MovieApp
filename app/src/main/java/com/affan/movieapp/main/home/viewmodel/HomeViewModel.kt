@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
+import com.affan.movieapp.main.home.domain.Repository
 import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.movie.Movie
@@ -14,13 +15,14 @@ import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.model.trending.TrendingResponse
-import com.affan.movieapp.network.ApiClient
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel (
+    private val repository: Repository
+        ) : ViewModel() {
 
     private val _isLoading : MutableLiveData<Boolean> = MutableLiveData()
     val isLoading : LiveData<Boolean> = _isLoading
@@ -49,7 +51,7 @@ class HomeViewModel : ViewModel() {
                 withContext(Dispatchers.Main){
                     _isLoading.value = true
                 }
-                ApiClient.instance.getTopMoviesOrSeries(Data.apiKey)
+                repository.getTopMoviesOrSeries(Data.apiKey)
                     .enqueue(object : Callback<TrendingResponse> {
                         override fun onResponse(
                             call: Call<TrendingResponse>,
@@ -92,7 +94,7 @@ class HomeViewModel : ViewModel() {
                 _isLoading.value = true
             }
             withContext(Dispatchers.IO){
-                ApiClient.instance.getNowPlaying(Data.apiKey)
+                repository.getNowPlaying(Data.apiKey)
                     .enqueue(object : Callback<MovieResponse> {
                         override fun onResponse(
                             call: Call<MovieResponse>,
@@ -135,7 +137,7 @@ class HomeViewModel : ViewModel() {
                 _isLoading.value = true
             }
             withContext(Dispatchers.IO){
-                ApiClient.instance.getMostPopularMovie(Data.apiKey)
+                repository.getMostPopularMovie(Data.apiKey)
                     .enqueue(object : Callback<MovieResponse> {
                         override fun onResponse(
                             call: Call<MovieResponse>,
@@ -178,7 +180,7 @@ class HomeViewModel : ViewModel() {
                 _isLoading.value = true
             }
             withContext(Dispatchers.IO){
-                ApiClient.instance.getMostPopularSeries(Data.apiKey)
+                repository.getMostPopularSeries(Data.apiKey)
                     .enqueue(object : Callback<SeriesResponse> {
                         override fun onResponse(
                             call: Call<SeriesResponse>,
@@ -221,7 +223,7 @@ class HomeViewModel : ViewModel() {
                 _isLoading.value = true
             }
             withContext(Dispatchers.IO){
-                ApiClient.instance.getComingSoon(
+                repository.getComingSoon(
                     Data.apiKey,
                     Data.language,
                     Data.sortBy,
