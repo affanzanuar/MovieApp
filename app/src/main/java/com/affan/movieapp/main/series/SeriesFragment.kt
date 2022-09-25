@@ -42,7 +42,7 @@ class SeriesFragment : Fragment(){
         setSeriesAdapter()
         seriesViewModel.series.observe(requireActivity()) {
             binding.skSeriesFragment.visibility = View.VISIBLE
-            it.series?.let { data ->
+            it.series.let { data ->
                 binding.skSeriesFragment.visibility = View.GONE
                 seriesAdapter.setData(data)
             }
@@ -64,7 +64,7 @@ class SeriesFragment : Fragment(){
             override fun loadMoreItems() {
                 page++
                 isLoadDataOnProgress= true
-                seriesModelView.get(page)
+                seriesModelView.getPopularSeries(page)
             }
 
             override val isLastPage: Boolean
