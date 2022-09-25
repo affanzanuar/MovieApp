@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.account.myfavorite.FavoriteActivity">
+    tools:context=".main.account.myfavorite.FavoriteActivity"
+    android:background="@drawable/id_background_app_movies">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbFavorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_200"
+        android:background="@color/black"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="My Favorite"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 

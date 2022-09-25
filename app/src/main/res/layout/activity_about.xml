@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="4"
-    tools:context=".main.account.about.AboutActivity">
+    tools:context=".main.account.about.AboutActivity"
+    android:background="@drawable/id_background_app_movies">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -17,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:src="@drawable/ic_baseline_arrow_back_24" />
+            android:src="@drawable/arrow_left" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -29,7 +30,8 @@
         android:gravity="bottom"
         android:text="About"
         android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,7 +41,8 @@
         android:gravity="bottom"
         android:text="Challenge Chapter 6"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,7 +51,8 @@
         android:padding="20dp"
         android:text="@string/devs"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,7 +62,8 @@
         android:gravity="bottom"
         android:text="@string/app_version"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
 
 
 </LinearLayout>
