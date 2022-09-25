@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentSeriesBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
-import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 import com.affan.movieapp.main.series.adapter.PaginationRecyclerView
 import com.affan.movieapp.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel

@@ -8,7 +8,6 @@ abstract class PaginationRecyclerView(private val layoutManager: GridLayoutManag
     RecyclerView.OnScrollListener() {
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
-        var lastVisibleItem = 0
         val visibleItemCount = layoutManager.childCount
         val totalItemCount = layoutManager.itemCount
         val currentFirstVisible = layoutManager.findFirstVisibleItemPosition()
