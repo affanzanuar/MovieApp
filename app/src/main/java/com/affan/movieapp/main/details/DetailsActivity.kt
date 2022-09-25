@@ -6,11 +6,17 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.network.ApiClient
 import com.bumptech.glide.Glide
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import kotlinx.coroutines.launch
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -18,13 +24,10 @@ class DetailsActivity : AppCompatActivity() {
 
     private lateinit var detailsViewModel: DetailsViewModel
 
-    private var currentPosition = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        setDataToDetail()
 
         binding.ivBack.setOnClickListener {
             finish()
@@ -49,53 +52,19 @@ class DetailsActivity : AppCompatActivity() {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-        binding.vvTrailer.pause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        binding.vvTrailer.stopPlayback()
-    }
-
-//  VIDEO LAYOUT
-
-//    private fun initializePlayer() {
-//
-//        binding.pbBuffering.visibility = View.VISIBLE
-//        val videoUri = getMedia(VIDEO_SAMPLE)
-//        binding.vvTrailer.setVideoURI(videoUri)
-//
-//        val mediaController = MediaController(this)
-//
-//        binding.vvTrailer.setOnPreparedListener {
-//
-//            binding.pbBuffering.visibility = View.GONE
-//            binding.ivBackdropDetails.visibility = View.GONE
-//
-//            if (currentPosition > 0) {
-//                binding.vvTrailer.seekTo(currentPosition)
-//            } else {
-//                binding.vvTrailer.seekTo(1)
-//            }
-//            binding.vvTrailer.start()
-//
-//        }
-//
-//        mediaController.setPadding(0, 0, 0, 0)
-//
-//        mediaController.setAnchorView(binding.flDummy)
-//        binding.vvTrailer.setMediaController(mediaController)
-//
-//        binding.vvTrailer.setOnCompletionListener {
-//            binding.vvTrailer.seekTo(0)
-//        }
-//    }
 
     private fun observeLiveData() {
         detailsViewModel.loading.observe(this) { isLoading ->
             // TODO:
+            if (isLoading){
+                binding.pbBuffering.visibility = View.VISIBLE
+                binding.ivBackdropDetails.visibility  = View.VISIBLE
+                binding.ytTrailer.visibility = View.GONE
+            } else {
+                binding.pbBuffering.visibility = View.GONE
+                binding.ivBackdropDetails.visibility  = View.GONE
+                binding.ytTrailer.visibility = View.VISIBLE
+            }
         }
 
 
@@ -121,7 +90,7 @@ class DetailsActivity : AppCompatActivity() {
             binding.tvDescriptionMS.text = data.overview
             binding.tvTitleDetail.text = data.title
 
-            var currentDate = data.releaseDate
+            val currentDate = data.releaseDate
 
             val year0 = currentDate?.get(0)
             val year1 = currentDate?.get(1)
@@ -166,19 +135,20 @@ class DetailsActivity : AppCompatActivity() {
         }
 
         //Videos response
+        lifecycle.addObserver(binding.ytTrailer)
         detailsViewModel.videoKey.observe(this) { data ->
 
-            binding.tvTitleDetail.text = data
+            Log.d("DetailActivity key", data.toString())
 
-            Log.d("videokey", data.toString())
-
-
-            // TODO: pasang youtube play library
-
+            binding.ytTrailer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    super.onReady(youTubePlayer)
+                    youTubePlayer.loadVideo(data!!,0F)
+                }
+            })
         }
-
-
     }
+
     companion object {
         private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
     }

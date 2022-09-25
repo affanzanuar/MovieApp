@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -24,7 +24,6 @@ import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.trending.Trending
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -62,12 +61,8 @@ class HomeFragment : Fragment() {
         homeViewModel.getPopularMovies()
         homeViewModel.getPopularSeries()
         homeViewModel.getComingSoon()
-
-    }
-
-    private fun ViewPager2.autoScroll(lifecycleScope : CoroutineScope, interval : Long){
-        lifecycleScope.launch {
-            scrollIndefinitely(interval)
+        homeViewModel.viewModelScope.launch {
+            binding.vpTopMovies.scrollIndefinitely(5000)
         }
     }
 
@@ -107,9 +102,10 @@ class HomeFragment : Fragment() {
             }
         }
 
+
+
         homeViewModel.trending.observe(viewLifecycleOwner) { data ->
             trendingAdapter.setDataTrending(data)
-            binding.vpTopMovies.autoScroll(lifecycleScope,5000L)
             binding.ciTrending.setViewPager(binding.vpTopMovies)
             Log.d("Home Fragment",data.toString())
         }
@@ -137,6 +133,7 @@ class HomeFragment : Fragment() {
         homeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             getShortToast(error)
         }
+
     }
 
     private fun setMovieAdapter (rv : RecyclerView) : HomeMoviesAdapter {

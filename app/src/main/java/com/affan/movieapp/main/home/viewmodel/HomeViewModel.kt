@@ -15,9 +15,7 @@ import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.network.ApiClient
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,7 +42,6 @@ class HomeViewModel : ViewModel() {
 
     private val _errorMessage : MutableLiveData<String> = MutableLiveData()
     val errorMessage : LiveData<String> = _errorMessage
-
 
     fun getTrending(){
         viewModelScope.launch {
@@ -268,5 +265,4 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
-
 }
