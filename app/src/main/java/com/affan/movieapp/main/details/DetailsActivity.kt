@@ -6,13 +6,17 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.network.ApiClient
 import com.bumptech.glide.Glide
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import kotlinx.coroutines.launch
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -20,13 +24,10 @@ class DetailsActivity : AppCompatActivity() {
 
     private lateinit var detailsViewModel: DetailsViewModel
 
-    private var currentPosition = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        setDataToDetail()
 
         binding.ivBack.setOnClickListener {
             finish()
@@ -58,9 +59,11 @@ class DetailsActivity : AppCompatActivity() {
             if (isLoading){
                 binding.pbBuffering.visibility = View.VISIBLE
                 binding.ivBackdropDetails.visibility  = View.VISIBLE
+                binding.ytTrailer.visibility = View.GONE
             } else {
                 binding.pbBuffering.visibility = View.GONE
                 binding.ivBackdropDetails.visibility  = View.GONE
+                binding.ytTrailer.visibility = View.VISIBLE
             }
         }
 
@@ -132,12 +135,11 @@ class DetailsActivity : AppCompatActivity() {
         }
 
         //Videos response
+        lifecycle.addObserver(binding.ytTrailer)
         detailsViewModel.videoKey.observe(this) { data ->
 
             Log.d("DetailActivity key", data.toString())
 
-            // TODO: pasang youtube play library
-//            binding.tvNotAvail.visibility = View.GONE
             binding.ytTrailer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     super.onReady(youTubePlayer)
