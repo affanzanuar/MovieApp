@@ -6,7 +6,7 @@ import com.affan.movieapp.network.ApiClient
 import retrofit2.Response
 
 class SeriesRepository {
-    suspend fun getPopularSeries(): Response<SeriesResponse> {
-        return ApiClient.instance.getMostPopularSeries2(Data.apiKey)
+    suspend fun getPopularSeries(page: Int): Response<SeriesResponse> {
+        return ApiClient.instance.getMostPopularSeries3(Data.apiKey, page)
     }
 }
