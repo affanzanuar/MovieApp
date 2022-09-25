@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentMoviesBinding
+import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.main.movies.adapter.MoviesAdapter
 import com.affan.movieapp.main.movies.viewmodel.MoviesViewModel
+import com.affan.movieapp.main.series.adapter.PaginationRecyclerView
+import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
 import com.affan.movieapp.model.movie.Movie
 
 
@@ -22,7 +26,14 @@ class MoviesFragment : Fragment() {
     private lateinit var binding: FragmentMoviesBinding
     private lateinit var moviesAdapter: MoviesAdapter
 
-    private val moviesViewModel: MoviesViewModel by viewModels()
+    private val moviesViewModel: MoviesViewModel by activityViewModels(
+        factoryProducer = {
+            ViewModelFactory.getInstance()
+        }
+    )
+
+    private var page = 1
+    private var isLoadDataOnProgress = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +65,21 @@ class MoviesFragment : Fragment() {
             intentToDetails(data)
         }
         binding.rvMovies.adapter = moviesAdapter
-        binding.rvMovies.layoutManager = GridLayoutManager(context, 2)
+        val layoutManager = GridLayoutManager(context, 2)
+
+        binding.rvMovies.layoutManager = layoutManager
+        binding.rvMovies.addOnScrollListener(object : PaginationRecyclerView(layoutManager) {
+            override fun loadMoreItems() {
+                page++
+                isLoadDataOnProgress = true
+                moviesViewModel.getPopularMovies(page)
+            }
+            override val isLastPage: Boolean
+                get() = false
+            override val isLoading: Boolean
+                get() = isLoadDataOnProgress
+
+        })
     }
 
     private fun intentToDetails(movies: Movie) {
