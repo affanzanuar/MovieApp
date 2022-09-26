@@ -63,6 +63,10 @@ class LocalDataSource(
         return moviesDatabase.moviesDao().getAllFavorit()
     }
 
+    override suspend fun insertFavorite(favoriteMovies: FavoriteMovies) {
+        moviesDatabase.moviesDao().insertFavorite(favoriteMovies)
+    }
+
     override suspend fun deleteFavorite(favoriteMovies: FavoriteMovies) {
         moviesDatabase.moviesDao().deleteFavorite(favoriteMovies)
     }

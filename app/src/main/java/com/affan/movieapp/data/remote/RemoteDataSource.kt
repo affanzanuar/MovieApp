@@ -71,6 +71,10 @@ class RemoteDataSource (
         throw UnsupportedOperationException("Use Local Data Source!")
     }
 
+    override suspend fun insertFavorite(favoriteMovies: FavoriteMovies) {
+        throw UnsupportedOperationException("Use Local Data Source!")
+    }
+
     override suspend fun deleteFavorite(favoriteMovies: FavoriteMovies) {
         throw UnsupportedOperationException("Use Local Data Source!")
     }
