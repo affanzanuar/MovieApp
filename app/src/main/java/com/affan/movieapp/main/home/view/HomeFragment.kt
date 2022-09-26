@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
-import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.di.ViewModelFactory
+import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.main.home.adapter.HomeSeriesAdapter
@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by activityViewModels(
         factoryProducer = {
-            ViewModelFactory.getInstance()
+            ViewModelFactory.getInstance(requireContext())
         }
     )
 

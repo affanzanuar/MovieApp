@@ -6,21 +6,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.home.view.HomeFragment
-import com.affan.movieapp.main.home.viewmodel.HomeViewModel
-import com.affan.movieapp.network.ApiClient
 import com.bumptech.glide.Glide
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import kotlinx.coroutines.launch
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -28,7 +20,7 @@ class DetailsActivity : AppCompatActivity() {
 
     private val detailsViewModel by viewModels<DetailsViewModel>(
         factoryProducer = {
-            ViewModelFactory.getInstance()
+            ViewModelFactory.getInstance(this)
         }
     )
     override fun onCreate(savedInstanceState: Bundle?) {

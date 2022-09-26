@@ -1,7 +1,10 @@
 package com.affan.movieapp.di
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.affan.movieapp.data.local.LocalDataSource
+import com.affan.movieapp.data.local.room.MovieDatabase
 import com.affan.movieapp.data.remote.RemoteDataSource
 import com.affan.movieapp.domain.RepositoryImp
 import com.affan.movieapp.domain.Repository
@@ -57,14 +60,15 @@ class ViewModelFactory(
 //        private val moviesDao = MovieDaoImp()
 
         private val remote = RemoteDataSource(remoteDataSource)
-//        private val local = LocalDataSource(moviesDao)
+//        private val local = LocalDataSource(MovieDatabase.getInstance())
 
         @Volatile
         private var INSTANCE : ViewModelFactory? = null
-        fun getInstance()= synchronized(ViewModelFactory::class.java){
+        fun getInstance(context : Context)= synchronized(ViewModelFactory::class.java){
             INSTANCE ?: ViewModelFactory(
                 RepositoryImp(
-                    remoteDataSource = remote
+                    remoteDataSource = remote,
+                    localDataSource = LocalDataSource(MovieDatabase.getInstance(context))
                 )
             ). also { INSTANCE = it }
         }
