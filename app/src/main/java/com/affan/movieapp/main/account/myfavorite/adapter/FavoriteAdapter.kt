@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.ItemContainerFavoriteBinding
 import com.affan.movieapp.data.local.room.FavoriteMovies
+import com.bumptech.glide.Glide
 
 class FavoriteAdapter(
     private val onClickFavorite : (data : FavoriteMovies) -> Unit
@@ -17,10 +18,15 @@ class FavoriteAdapter(
         : RecyclerView.ViewHolder(binding.root) {
             fun bind (position: Int){
                 val item = itemFavorite[position]
-//                Glide.with(binding.root)
-////                    .load(item.moviesOrSeriesPoster)
-//                    .into(binding.ivPosterFavorite)
-//                binding.tvTitleFavorite.text = item.moviesOrSeriesTitle
+                Glide.with(binding.root)
+                    .load(BASE_URL+item.poster)
+                    .into(binding.ivPosterFavorite)
+
+                if (item.name.isNullOrEmpty()){
+                    binding.tvTitleFavorite.text = item.title
+                } else {
+                    binding.tvTitleFavorite.text = item.name
+                }
 
                 binding.root.setOnClickListener {
                     onClickFavorite(item)
@@ -48,5 +54,9 @@ class FavoriteAdapter(
         itemFavorite.clear()
         itemFavorite.addAll(data)
         notifyDataSetChanged()
+    }
+
+    companion object {
+        private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
     }
 }

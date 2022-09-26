@@ -59,10 +59,7 @@ class ViewModelFactory(
             retrofit.create(ApiService::class.java)
         }
 
-//        private val moviesDao = MovieDaoImp()
-
         private val remote = RemoteDataSource(remoteDataSource)
-//        private val local = LocalDataSource(MovieDatabase.getInstance())
 
         @Volatile
         private var INSTANCE : ViewModelFactory? = null
