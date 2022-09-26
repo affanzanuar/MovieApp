@@ -10,10 +10,10 @@ import com.affan.movieapp.model.trending.TrendingResponse
 import retrofit2.Call
 
 interface DataSource {
-    fun getTopMoviesOrSeries(apiKey: String,) : Call<TrendingResponse>
-    fun getNowPlaying(apiKey: String,) : Call<MovieResponse>
-    fun getMostPopularMovie(apiKey: String,) : Call<MovieResponse>
-    fun getMostPopularSeries(apiKey: String,) : Call<SeriesResponse>
+    fun getTopMoviesOrSeries(apiKey: String) : Call<TrendingResponse>
+    fun getNowPlaying(apiKey: String) : Call<MovieResponse>
+    fun getMostPopularMovie(apiKey: String) : Call<MovieResponse>
+    fun getMostPopularSeries(apiKey: String) : Call<SeriesResponse>
     fun getComingSoon(
         apiKey: String,
         language : String,
