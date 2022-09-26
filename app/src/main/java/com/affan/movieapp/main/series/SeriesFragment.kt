@@ -69,6 +69,7 @@ class SeriesFragment : Fragment() {
         binding.rvSeries.addOnScrollListener(object : PaginationRecyclerView(layoutManager) {
             override fun loadMoreItems() {
                 page++
+                Log.d("checkPageMoreItems", "$page ")
                 isLoadDataOnProgress = true
                 seriesViewModel.getPopularSeries(page)
             }
