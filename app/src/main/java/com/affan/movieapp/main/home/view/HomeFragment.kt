@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,11 +40,9 @@ class HomeFragment : Fragment() {
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
     private lateinit var comingSoonAdapter: ComingSoonAdapter
 
-    private val homeViewModel: HomeViewModel by activityViewModels(
-        factoryProducer = {
-            ViewModelFactory.getInstance(requireContext())
-        }
-    )
+    private lateinit var homeViewModel: HomeViewModel
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +56,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        homeViewModel: HomeViewModel = ViewModelProvider(this, ViewModelFactory.get)[HomeViewModel::class.java]
+
         trendingAdapter = TrendingAdapter { data: Trending -> intentTrendingToDetails(data) }
         binding.vpTopMovies.adapter = trendingAdapter
         inTheaterAdapter = setMovieAdapter(binding.rvInTheatres)
