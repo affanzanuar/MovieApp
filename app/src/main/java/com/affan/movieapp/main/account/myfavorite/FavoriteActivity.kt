@@ -30,6 +30,7 @@ class FavoriteActivity : AppCompatActivity() {
         )[FavoriteViewModel::class.java]
 
         setAdapter()
+        getObserveLiveData()
 
         binding.ivBack.setOnClickListener {
             finish()
@@ -42,7 +43,7 @@ class FavoriteActivity : AppCompatActivity() {
         Log.d("cek category", category)
     }
 
-    private fun getObserve(){
+    private fun getObserveLiveData(){
         favoriteViewModel.cinemaFavorite.observe(this) { data ->
             if (data != null) {
                 favoriteViewModel.getDataFavorite()

@@ -8,6 +8,7 @@ import com.affan.movieapp.data.local.room.MovieDatabase
 import com.affan.movieapp.data.remote.RemoteDataSource
 import com.affan.movieapp.domain.RepositoryImp
 import com.affan.movieapp.domain.Repository
+import com.affan.movieapp.main.account.myfavorite.viewmodel.FavoriteViewModel
 import com.affan.movieapp.main.details.DetailsViewModel
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 import com.affan.movieapp.main.movies.viewmodel.MoviesViewModel
@@ -28,6 +29,7 @@ class ViewModelFactory(
             DetailsViewModel::class.java -> DetailsViewModel(repository) as T
             SeriesViewModel::class.java -> SeriesViewModel(repository) as T
             MoviesViewModel::class.java -> MoviesViewModel(repository) as T
+            FavoriteViewModel::class.java -> FavoriteViewModel(repository) as T
             else -> throw UnsupportedOperationException()
         }
     }
