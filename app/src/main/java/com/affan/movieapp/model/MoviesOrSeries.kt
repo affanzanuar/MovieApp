@@ -1,14 +1,14 @@
 package com.affan.movieapp.model
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 //@Entity
 @Parcelize
 @Entity
 data class MoviesOrSeries(
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = false)
     var id : Int = 0,
 ) : Parcelable

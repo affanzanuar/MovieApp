@@ -1,6 +1,7 @@
 package com.affan.movieapp.data.local.room
 
-import android.arch.persistence.room.*
+
+import androidx.room.*
 import com.affan.movieapp.model.MoviesOrSeries
 
 @Dao
