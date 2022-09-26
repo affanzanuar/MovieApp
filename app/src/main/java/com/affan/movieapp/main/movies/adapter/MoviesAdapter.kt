@@ -47,7 +47,7 @@ class MoviesAdapter(
         return movies.size
     }
 
-    fun add(dataMovies: Movie?) {
+    private fun add(dataMovies: Movie?) {
         movies.add(dataMovies)
         notifyItemInserted(movies.size - 1)
     }

@@ -47,7 +47,7 @@ class SeriesAdapter(
         return series.size
     }
 
-    fun add(dataSeries: Series?) {
+    private fun add(dataSeries: Series?) {
         series.add(dataSeries)
         notifyItemInserted(series.size - 1)
     }
