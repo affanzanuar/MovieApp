@@ -1,7 +1,8 @@
 package com.affan.movieapp.data.local
 
 import com.affan.movieapp.data.DataSource
-import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.data.local.room.Favorite
+import com.affan.movieapp.data.local.room.FavoriteDao
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse
@@ -11,7 +12,9 @@ import com.affan.movieapp.model.trending.TrendingResponse
 import retrofit2.Call
 import retrofit2.Response
 
-class LocalDataSource : DataSource {
+class LocalDataSource(
+    private val favoriteDao : FavoriteDao
+) : DataSource {
     override fun getTopMoviesOrSeries(apiKey: String): Call<TrendingResponse> {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
@@ -56,13 +59,18 @@ class LocalDataSource : DataSource {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
-    override suspend fun getFavorite(id: Int): List<MoviesOrSeries> {
-        TODO("Not yet implemented")
+    override suspend fun getFavorite(id: Int): List<Favorite> {
+        return favoriteDao.getAllFavorite()
     }
 
-    override suspend fun deleteFavorite(id: Int): MoviesOrSeries {
-        TODO("Not yet implemented")
+    override suspend fun insertFavorite(id: Int): Favorite {
+        return favoriteDao.insertFavorite(id)
     }
+
+    override suspend fun deleteFavorite(id: Int): Favorite {
+        return favoriteDao.deleteFavorite(id)
+    }
+
 
     override suspend fun getMostPopularSeries3(
         apiKey: String,

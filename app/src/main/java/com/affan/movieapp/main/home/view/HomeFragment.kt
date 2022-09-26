@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by activityViewModels(
         factoryProducer = {
-            ViewModelFactory.getInstance()
+            ViewModelFactory.getInstance(context)
         }
     )
 

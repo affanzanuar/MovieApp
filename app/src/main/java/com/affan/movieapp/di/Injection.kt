@@ -1,6 +1,11 @@
 package com.affan.movieapp.di
 
+import android.content.Context
+import androidx.room.Room
 import com.affan.movieapp.data.DataSource
+import com.affan.movieapp.data.local.LocalDataSource
+import com.affan.movieapp.data.local.room.FavoriteDao
+import com.affan.movieapp.data.local.room.FavoriteDatabase
 import com.affan.movieapp.data.remote.RemoteDataSource
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.domain.RepositoryImp
@@ -12,11 +17,14 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+//Remote
 fun provideRepository(
-    remoteDataSource : DataSource
+    remoteDataSource : DataSource,
+    localDataSource : DataSource
 ) : Repository{
     return RepositoryImp(
-        remoteDataSource
+        remoteDataSource,
+        localDataSource
     )
 }
 
@@ -57,3 +65,31 @@ fun provideOkHttpClient (
 fun provideHttpLoggingInterceptor() : Interceptor {
     return HttpLoggingInterceptor()
 }
+
+
+
+
+
+
+//Local
+
+fun provideLocalDataSource (favoriteDao: FavoriteDao) : DataSource{
+    return LocalDataSource(
+        favoriteDao
+    )
+}
+
+fun provideFavoriteDao (
+    favoriteDatabase: FavoriteDatabase
+) : FavoriteDao {
+    return favoriteDatabase.favoriteDao()
+}
+
+fun provideFavoriteDatabase (
+    context: Context
+) : FavoriteDatabase {
+    return Room.databaseBuilder(
+        context.applicationContext,FavoriteDatabase::class.java,"favorite_db"
+    ).build()
+}
+

@@ -1,5 +1,6 @@
 package com.affan.movieapp.data
 
+import com.affan.movieapp.data.local.room.Favorite
 import com.affan.movieapp.model.MoviesOrSeries
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
@@ -46,11 +47,15 @@ interface DataSource {
 
     suspend fun getFavorite(
         id: Int
-    ) : List<MoviesOrSeries>
+    ) : List<Favorite>
+
+    suspend fun insertFavorite(
+        id: Int
+    ) : Favorite
 
     suspend fun deleteFavorite(
         id: Int
-    ) : MoviesOrSeries
+    ) : Favorite
 
     suspend fun getMostPopularSeries3(
         apiKey : String,

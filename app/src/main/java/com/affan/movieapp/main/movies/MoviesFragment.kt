@@ -26,7 +26,7 @@ class MoviesFragment : Fragment() {
 
     private val moviesViewModel: MoviesViewModel by activityViewModels(
         factoryProducer = {
-            ViewModelFactory.getInstance()
+            ViewModelFactory.getInstance(context)
         }
     )
 

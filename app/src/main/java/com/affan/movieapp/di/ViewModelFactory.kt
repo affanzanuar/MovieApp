@@ -1,5 +1,6 @@
 package com.affan.movieapp.di
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.affan.movieapp.domain.Repository
@@ -26,7 +27,7 @@ class ViewModelFactory(
 
         @Volatile
         private var INSTANCE : ViewModelFactory? = null
-        fun getInstance()= synchronized(ViewModelFactory::class.java){
+        fun getInstance(context: Context?)= synchronized(ViewModelFactory::class.java){
             INSTANCE ?: ViewModelFactory(
             repository = provideRepository(
                 remoteDataSource = provideRemoteDataSource(
@@ -36,6 +37,13 @@ class ViewModelFactory(
                             okHttpClient = provideOkHttpClient(
                                 httpLoggingInterceptor = provideHttpLoggingInterceptor()
                             )
+                        )
+                    )
+                ),
+                localDataSource = provideLocalDataSource(
+                    favoriteDao = provideFavoriteDao(
+                        favoriteDatabase = provideFavoriteDatabase(
+                            context = context!!
                         )
                     )
                 )
