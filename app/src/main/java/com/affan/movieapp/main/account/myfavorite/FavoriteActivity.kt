@@ -12,7 +12,7 @@ import com.affan.movieapp.main.account.myfavorite.presenter.FavoriteView
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 
-class FavoriteActivity : AppCompatActivity(),FavoriteView {
+class FavoriteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFavoriteBinding
     private lateinit var favoriteAdapter: FavoriteAdapter
@@ -22,7 +22,7 @@ class FavoriteActivity : AppCompatActivity(),FavoriteView {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setAdapterAndPresenterFavorite()
+//        setAdapterAndPresenterFavorite()
 
 
         binding.ivBack.setOnClickListener {
@@ -35,13 +35,13 @@ class FavoriteActivity : AppCompatActivity(),FavoriteView {
         favoritePresenterImp.getContentListFavorite()
     }
 
-    private fun setAdapterAndPresenterFavorite(){
-        favoriteAdapter = FavoriteAdapter { data: FavoriteMovies -> intentToDetails(data) }
-        favoritePresenterImp = FavoritePresenterImp(this)
-        binding.rvFavorite.adapter = favoriteAdapter
-        binding.rvFavorite.layoutManager = LinearLayoutManager(this)
-
-    }
+//    private fun setAdapterAndPresenterFavorite(){
+//        favoriteAdapter = FavoriteAdapter { data: FavoriteMovies -> intentToDetails(data) }
+//        favoritePresenterImp = FavoritePresenterImp(this)
+//        binding.rvFavorite.adapter = favoriteAdapter
+//        binding.rvFavorite.layoutManager = LinearLayoutManager(this)
+//
+//    }
 
     private fun intentToDetails ( item : FavoriteMovies) {
         val intent = Intent(this, DetailsActivity::class.java)
@@ -61,12 +61,5 @@ class FavoriteActivity : AppCompatActivity(),FavoriteView {
 //        intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
         startActivity(intent)
     }
-
-    override fun onGetDataFavoriteSuccess(data: List<FavoriteMovies>) {
-        favoriteAdapter.setDataFavorite(data)
-    }
-
-    override fun onGetDataFavoriteFailure(message: String) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
-    }
+    
 }
