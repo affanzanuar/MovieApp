@@ -47,10 +47,15 @@ class SeriesAdapter(
         return series.size
     }
 
-    fun setData(data: List<Series?>) {
-        series.clear()
-        series.addAll(data)
-        notifyDataSetChanged()
+    fun add(movie: Series?) {
+        series.add(movie)
+        notifyItemInserted(series.size - 1)
+    }
+
+    fun addAll(moveResults: List<Series?>) {
+        for (result in moveResults) {
+            add(result)
+        }
     }
 
 }
