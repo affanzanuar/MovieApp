@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.CardLayoutBinding
 import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.model.series.Series
 import com.bumptech.glide.Glide
 
 class MoviesAdapter(
@@ -46,10 +47,15 @@ class MoviesAdapter(
         return movies.size
     }
 
-    fun setData(data: List<Movie?>) {
-        movies.clear()
-        movies.addAll(data)
-        notifyDataSetChanged()
+    fun add(dataMovies: Movie?) {
+        movies.add(dataMovies)
+        notifyItemInserted(movies.size - 1)
+    }
+
+    fun addAll(movieResults: List<Movie?>) {
+        for (result in movieResults) {
+            add(result)
+        }
     }
 
 
