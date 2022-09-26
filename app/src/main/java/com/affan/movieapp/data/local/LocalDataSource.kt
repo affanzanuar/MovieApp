@@ -2,8 +2,7 @@ package com.affan.movieapp.data.local
 
 import com.affan.movieapp.data.DataSource
 import com.affan.movieapp.data.local.room.MovieDatabase
-import com.affan.movieapp.data.local.room.MoviesDao
-import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse
@@ -60,12 +59,12 @@ class LocalDataSource(
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
-    override suspend fun getFavorite(id: Int): List<MoviesOrSeries> {
+    override suspend fun getFavorite(id: Int): List<FavoriteMovies> {
         return moviesDatabase.moviesDao().getAllFavorit()
     }
 
-    override suspend fun deleteFavorite(moviesOrSeries: MoviesOrSeries) {
-        moviesDatabase.moviesDao().deleteFavorite(moviesOrSeries)
+    override suspend fun deleteFavorite(favoriteMovies: FavoriteMovies) {
+        moviesDatabase.moviesDao().deleteFavorite(favoriteMovies)
     }
 
     override suspend fun getMostPopularSeries3(

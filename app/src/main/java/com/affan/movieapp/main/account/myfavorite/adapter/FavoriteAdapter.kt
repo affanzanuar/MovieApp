@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.ItemContainerFavoriteBinding
-import com.affan.movieapp.model.MoviesOrSeries
-import com.bumptech.glide.Glide
+import com.affan.movieapp.data.local.room.FavoriteMovies
 
 class FavoriteAdapter(
-    private val onClickFavorite : (data : MoviesOrSeries) -> Unit
+    private val onClickFavorite : (data : FavoriteMovies) -> Unit
 ) : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
-    private val itemFavorite = arrayListOf<MoviesOrSeries>()
+    private val itemFavorite = arrayListOf<FavoriteMovies>()
 
     inner class FavoriteViewHolder (private val binding: ItemContainerFavoriteBinding)
         : RecyclerView.ViewHolder(binding.root) {
@@ -45,7 +44,7 @@ class FavoriteAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setDataFavorite (data : List<MoviesOrSeries>){
+    fun setDataFavorite (data : List<FavoriteMovies>){
         itemFavorite.clear()
         itemFavorite.addAll(data)
         notifyDataSetChanged()

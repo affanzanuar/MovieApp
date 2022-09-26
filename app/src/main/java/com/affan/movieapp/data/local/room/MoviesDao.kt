@@ -2,18 +2,17 @@ package com.affan.movieapp.data.local.room
 
 
 import androidx.room.*
-import com.affan.movieapp.model.MoviesOrSeries
 
 @Dao
 interface MoviesDao {
 
-    @Query("SELECT * FROM MoviesOrSeries")
-    suspend fun getAllFavorit() : List<MoviesOrSeries>
+    @Query("SELECT * FROM FavoriteMovies")
+    suspend fun getAllFavorit() : List<FavoriteMovies>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFavorite(cinema : MoviesOrSeries)
+    suspend fun insertFavorite(cinema : FavoriteMovies)
 
     @Delete
-    suspend fun deleteFavorite(cinema: MoviesOrSeries)
+    suspend fun deleteFavorite(cinema: FavoriteMovies)
 
 }

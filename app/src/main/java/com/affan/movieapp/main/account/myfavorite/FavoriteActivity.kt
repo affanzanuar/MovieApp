@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.affan.movieapp.databinding.ActivityFavoriteBinding
-import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.affan.movieapp.main.account.myfavorite.adapter.FavoriteAdapter
 import com.affan.movieapp.main.account.myfavorite.presenter.FavoriteView
 import com.affan.movieapp.main.details.DetailsActivity
@@ -36,16 +36,16 @@ class FavoriteActivity : AppCompatActivity(),FavoriteView {
     }
 
     private fun setAdapterAndPresenterFavorite(){
-        favoriteAdapter = FavoriteAdapter { data: MoviesOrSeries -> intentToDetails(data) }
+        favoriteAdapter = FavoriteAdapter { data: FavoriteMovies -> intentToDetails(data) }
         favoritePresenterImp = FavoritePresenterImp(this)
         binding.rvFavorite.adapter = favoriteAdapter
         binding.rvFavorite.layoutManager = LinearLayoutManager(this)
 
     }
 
-    private fun intentToDetails ( item : MoviesOrSeries) {
+    private fun intentToDetails ( item : FavoriteMovies) {
         val intent = Intent(this, DetailsActivity::class.java)
-        val parcelable = MoviesOrSeries(
+        val parcelable = FavoriteMovies(
             item.id,
 //            item.moviesOrSeriesTitle,
 //            item.moviesOrSeriesPoster,
@@ -62,7 +62,7 @@ class FavoriteActivity : AppCompatActivity(),FavoriteView {
         startActivity(intent)
     }
 
-    override fun onGetDataFavoriteSuccess(data: List<MoviesOrSeries>) {
+    override fun onGetDataFavoriteSuccess(data: List<FavoriteMovies>) {
         favoriteAdapter.setDataFavorite(data)
     }
 

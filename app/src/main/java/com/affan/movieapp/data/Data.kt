@@ -1,7 +1,7 @@
 package com.affan.movieapp.data
 
 import com.affan.movieapp.R
-import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.affan.movieapp.main.movies.MoviesData
 import com.affan.movieapp.main.series.SeriesData
 import java.time.LocalDate
@@ -28,20 +28,20 @@ object Data {
 
     const val monetizationTypes = "flatrate"
 
-    val itemTopMovies : ArrayList<MoviesOrSeries> = arrayListOf(
-        MoviesOrSeries(
+    val itemTopMovies : ArrayList<FavoriteMovies> = arrayListOf(
+        FavoriteMovies(
             0,
         ),
-        MoviesOrSeries(
+        FavoriteMovies(
             1,
         ),
-        MoviesOrSeries(
+        FavoriteMovies(
             2,
         ),
-        MoviesOrSeries(
+        FavoriteMovies(
             3,
         ),
-        MoviesOrSeries(
+        FavoriteMovies(
             4,
         )
     )

@@ -5,11 +5,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.affan.movieapp.model.MoviesOrSeries
 
 
 @Database(
-    entities =[MoviesOrSeries::class],
+    entities =[FavoriteMovies::class],
     version = 1
 )
 abstract class MovieDatabase : RoomDatabase() {
