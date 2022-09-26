@@ -6,10 +6,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.home.view.HomeFragment
+import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 import com.bumptech.glide.Glide
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -18,15 +20,14 @@ class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
 
-    private val detailsViewModel by viewModels<DetailsViewModel>(
-        factoryProducer = {
-            ViewModelFactory.getInstance(this)
-        }
-    )
+    private lateinit var detailsViewModel: DetailsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        detailsViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this))[DetailsViewModel::class.java]
 
         binding.ivBack.setOnClickListener {
             finish()
