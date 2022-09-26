@@ -9,7 +9,8 @@ import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.bumptech.glide.Glide
 
 class FavoriteAdapter(
-    private val onClickFavorite : (data : FavoriteMovies) -> Unit
+    private val onClickFavorite : (data : FavoriteMovies) -> Unit,
+    private val onClickDelete : (data : FavoriteMovies) -> Unit
 ) : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
     private val itemFavorite = arrayListOf<FavoriteMovies>()
@@ -30,6 +31,10 @@ class FavoriteAdapter(
 
                 binding.root.setOnClickListener {
                     onClickFavorite(item)
+                }
+
+                binding.ivDeleteFavorite.setOnClickListener {
+                    onClickDelete(item)
                 }
             }
     }

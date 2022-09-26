@@ -50,10 +50,20 @@ class FavoriteActivity : AppCompatActivity() {
                 favoriteAdapter.setDataFavorite(data)
             }
         }
+        favoriteViewModel.deleteFavorite.observe(this) {data ->
+
+//            favoriteAdapter.setDataFavorite(data as FavoriteMovies)
+
+        }
     }
 
     private fun setAdapter(){
-        favoriteAdapter = FavoriteAdapter { data: FavoriteMovies -> intentToDetails(data) }
+        favoriteAdapter = FavoriteAdapter (
+            { data: FavoriteMovies -> intentToDetails(data) },
+            { data : FavoriteMovies -> favoriteViewModel.deleteDataFavorite(
+                FavoriteMovies(data.id,data.name,data.title,data.poster)
+            )}
+                )
         binding.rvFavorite.adapter = favoriteAdapter
         binding.rvFavorite.layoutManager = LinearLayoutManager(this)
 
