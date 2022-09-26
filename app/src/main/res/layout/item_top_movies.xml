@@ -15,7 +15,7 @@
             android:id="@+id/ivItemTopMovies"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:src="@drawable/backdrop_dc_league_of_super_pets"
+            android:src="@drawable/ic_default_backdrop"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:maxHeight="500dp"
