@@ -25,30 +25,30 @@ class ViewModelFactory(
 
     companion object {
 
-        @Volatile
-        private var INSTANCE : ViewModelFactory? = null
-        fun getInstance(context: Context?)= synchronized(ViewModelFactory::class.java){
-            INSTANCE ?: ViewModelFactory(
-            repository = provideRepository(
-                remoteDataSource = provideRemoteDataSource(
-                    apiService = provideApiService(
-                        retrofit = provideRetrofit(
-                            gsonConverterFactory = provideGsonConverterFactory(),
-                            okHttpClient = provideOkHttpClient(
-                                httpLoggingInterceptor = provideHttpLoggingInterceptor()
-                            )
-                        )
-                    )
-                ),
-                localDataSource = provideLocalDataSource(
-                    favoriteDao = provideFavoriteDao(
-                        favoriteDatabase = provideFavoriteDatabase(
-                            context = context!!
-                        )
-                    )
-                )
-            )
-            ). also { INSTANCE = it }
-        }
+//        @Volatile
+//        private var INSTANCE : ViewModelFactory? = null
+//        fun getInstance(context: Context?)= synchronized(ViewModelFactory::class.java){
+//            INSTANCE ?: ViewModelFactory(
+//            repository = provideRepository(
+//                remoteDataSource = provideRemoteDataSource(
+//                    apiService = provideApiService(
+//                        retrofit = provideRetrofit(
+//                            gsonConverterFactory = provideGsonConverterFactory(),
+//                            okHttpClient = provideOkHttpClient(
+//                                httpLoggingInterceptor = provideHttpLoggingInterceptor()
+//                            )
+//                        )
+//                    )
+//                ),
+//                localDataSource = provideLocalDataSource(
+//                    favoriteDao = provideFavoriteDao(
+//                        favoriteDatabase = provideFavoriteDatabase(
+//                            context = context!!
+//                        )
+//                    )
+//                )
+//            )
+//            ). also { INSTANCE = it }
+//        }
     }
 }

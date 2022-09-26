@@ -13,16 +13,21 @@ import com.affan.movieapp.main.home.view.HomeFragment
 import com.bumptech.glide.Glide
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
 
-    private val detailsViewModel by viewModels<DetailsViewModel>(
-        factoryProducer = {
-            ViewModelFactory.getInstance(this)
-        }
-    )
+//    private val detailsViewModel by viewModels<DetailsViewModel>(
+//        factoryProducer = {
+//            ViewModelFactory.getInstance(this)
+//        }
+//    )
+
+    private val detailsViewModel : DetailsViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)

@@ -1,5 +1,6 @@
 package com.affan.movieapp.domain
 
+import androidx.lifecycle.LiveData
 import com.affan.movieapp.data.local.room.Favorite
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
@@ -47,7 +48,7 @@ interface Repository {
 
     suspend fun getFavorite(
         id: Int
-    ) : List<Favorite>
+    ) : LiveData<List<Favorite>>
 
     suspend fun insertFavorite(
         id: Int

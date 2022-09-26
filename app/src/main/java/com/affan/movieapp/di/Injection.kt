@@ -18,15 +18,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 //Remote
-fun provideRepository(
-    remoteDataSource : DataSource,
-    localDataSource : DataSource
-) : Repository{
-    return RepositoryImp(
-        remoteDataSource,
-        localDataSource
-    )
-}
+//fun provideRepository(
+//    remoteDataSource : DataSource,
+//    localDataSource : DataSource
+//) : Repository{
+//    return RepositoryImp(
+//        remoteDataSource,
+//        localDataSource
+//    )
+//}
 
 fun provideRemoteDataSource (apiService: ApiService) : DataSource{
     return RemoteDataSource(

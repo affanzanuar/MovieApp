@@ -17,18 +17,20 @@ import com.affan.movieapp.main.movies.adapter.MoviesAdapter
 import com.affan.movieapp.main.movies.viewmodel.MoviesViewModel
 import com.affan.movieapp.main.series.adapter.PaginationRecyclerView
 import com.affan.movieapp.model.movie.Movie
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MoviesFragment : Fragment() {
 
     private lateinit var binding: FragmentMoviesBinding
     private lateinit var moviesAdapter: MoviesAdapter
 
-    private val moviesViewModel: MoviesViewModel by activityViewModels(
-        factoryProducer = {
-            ViewModelFactory.getInstance(context)
-        }
-    )
+//    private val moviesViewModel: MoviesViewModel by activityViewModels(
+//        factoryProducer = {
+//            ViewModelFactory.getInstance(context)
+//        }
+//    )
+    private val moviesViewModel : MoviesViewModel by activityViewModels()
 
     private var page = 1
     private var isLoadDataOnProgress = false

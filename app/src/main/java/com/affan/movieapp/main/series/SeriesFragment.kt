@@ -17,17 +17,20 @@ import com.affan.movieapp.main.series.adapter.PaginationRecyclerView
 import com.affan.movieapp.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
 import com.affan.movieapp.model.series.Series
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SeriesFragment : Fragment() {
 
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var seriesAdapter: SeriesAdapter
 
-    private val seriesViewModel: SeriesViewModel by activityViewModels(
-        factoryProducer = {
-            ViewModelFactory.getInstance(context)
-        }
-    )
+//    private val seriesViewModel: SeriesViewModel by activityViewModels(
+//        factoryProducer = {
+//            ViewModelFactory.getInstance(context)
+//        }
+//    )
+    private val seriesViewModel: SeriesViewModel by activityViewModels()
 
     private var page = 1
     private var isLoadDataOnProgress = false

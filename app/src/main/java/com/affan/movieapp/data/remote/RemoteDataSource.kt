@@ -1,5 +1,6 @@
 package com.affan.movieapp.data.remote
 
+import androidx.lifecycle.LiveData
 import com.affan.movieapp.data.DataSource
 import com.affan.movieapp.data.local.room.Favorite
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
@@ -11,8 +12,9 @@ import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.network.ApiService
 import retrofit2.Call
 import retrofit2.Response
+import javax.inject.Inject
 
-class RemoteDataSource (
+class RemoteDataSource @Inject constructor (
     private val apiService: ApiService
         ) : DataSource {
     override fun getTopMoviesOrSeries(apiKey: String): Call<TrendingResponse> {
@@ -67,7 +69,7 @@ class RemoteDataSource (
         return apiService.getTvVideos(id,apiKey)
     }
 
-    override suspend fun getFavorite(id: Int): List<Favorite> {
+    override suspend fun getFavorite(id: Int): LiveData<List<Favorite>> {
         throw UnsupportedOperationException("Use Local Data Source!")
     }
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,11 +26,13 @@ import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
 import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.trending.Trending
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
@@ -39,11 +42,12 @@ class HomeFragment : Fragment() {
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
     private lateinit var comingSoonAdapter: ComingSoonAdapter
 
-    private val homeViewModel: HomeViewModel by activityViewModels(
-        factoryProducer = {
-            ViewModelFactory.getInstance(context)
-        }
-    )
+//    private val homeViewModel: HomeViewModel by activityViewModels(
+//        factoryProducer = {
+//            ViewModelFactory.getInstance(context)
+//        }
+//    )
+    private val homeViewModel : HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,6 +90,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun getObserveLiveData(){
+
+//        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+
         homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading){
                 binding.cvTranding.visibility = View.GONE

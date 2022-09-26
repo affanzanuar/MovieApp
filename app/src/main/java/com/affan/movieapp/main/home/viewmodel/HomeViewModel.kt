@@ -15,12 +15,15 @@ import com.affan.movieapp.model.series.Series
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.Trending
 import com.affan.movieapp.model.trending.TrendingResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class HomeViewModel (
+@HiltViewModel
+class HomeViewModel @Inject constructor (
     private val repository: Repository
         ) : ViewModel() {
 

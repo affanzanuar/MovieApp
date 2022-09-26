@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -108,6 +109,11 @@ dependencies {
 //    implementation "androidx.room:room-ktx:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
 //    kapt "androidx.room:room-compiler:2.3.0"
+
+    //Dagger
+    implementation 'com.google.dagger:hilt-android:2.44'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.44'
+    kapt 'com.google.dagger:hilt-compiler:2.44'
 
 
 }

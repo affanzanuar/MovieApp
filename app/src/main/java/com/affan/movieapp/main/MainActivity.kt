@@ -7,7 +7,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

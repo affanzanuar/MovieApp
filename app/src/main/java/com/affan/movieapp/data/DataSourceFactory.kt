@@ -1,8 +1,6 @@
-package com.affan.movieapp.domain
+package com.affan.movieapp.data
 
 import androidx.lifecycle.LiveData
-import com.affan.movieapp.data.DataSource
-import com.affan.movieapp.data.DataSourceFactory
 import com.affan.movieapp.data.local.LocalDataSource
 import com.affan.movieapp.data.local.room.Favorite
 import com.affan.movieapp.data.remote.RemoteDataSource
@@ -16,35 +14,36 @@ import retrofit2.Call
 import retrofit2.Response
 import javax.inject.Inject
 
-class RepositoryImp @Inject constructor (
-    private val dataSourceFactory: DataSourceFactory
-        ) : Repository {
+class DataSourceFactory @Inject constructor(
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource
+) : DataSource {
     override fun getTopMoviesOrSeries(apiKey: String): Call<TrendingResponse> {
-        return dataSourceFactory.getTopMoviesOrSeries(apiKey)
+        return remoteDataSource.getTopMoviesOrSeries(apiKey)
     }
 
     override fun getNowPlaying(apiKey: String): Call<MovieResponse> {
-        return dataSourceFactory.getNowPlaying(apiKey)
+        return remoteDataSource.getNowPlaying(apiKey)
     }
 
     override fun getMostPopularMovie(apiKey: String): Call<MovieResponse> {
-        return dataSourceFactory.getMostPopularMovie(apiKey)
+        return remoteDataSource.getMostPopularMovie(apiKey)
     }
 
     override fun getMostPopularSeries(apiKey: String): Call<SeriesResponse> {
-        return dataSourceFactory.getMostPopularSeries(apiKey)
+        return remoteDataSource.getMostPopularSeries(apiKey)
     }
 
     override fun getComingSoon(
         apiKey: String,
-        language : String,
-        sortBy : String,
-        page : Int,
-        releaseDateGte : String,
-        releaseDateLte : String,
-        monetizationTypes : String,
+        language: String,
+        sortBy: String,
+        page: Int,
+        releaseDateGte: String,
+        releaseDateLte: String,
+        monetizationTypes: String
     ): Call<ComingSoonResponse> {
-        return dataSourceFactory.getComingSoon(
+        return remoteDataSource.getComingSoon(
             apiKey,
             language,
             sortBy,
@@ -56,38 +55,42 @@ class RepositoryImp @Inject constructor (
     }
 
     override suspend fun getMovieDetails(id: Int, apiKey: String): DetailsMovieResponse {
-        return dataSourceFactory.getMovieDetails(id,apiKey)
+        return remoteDataSource.getMovieDetails(id,apiKey)
     }
 
     override suspend fun getTvDetails(id: Int, apiKey: String): DetailsMovieResponse {
-        return dataSourceFactory.getTvDetails(id,apiKey)
+        return remoteDataSource.getTvDetails(id,apiKey)
     }
 
     override suspend fun getMovieVideos(id: Int, apiKey: String): VideosResponse {
-        return dataSourceFactory.getMovieVideos(id,apiKey)
+        return remoteDataSource.getMovieVideos(id,apiKey)
     }
 
     override suspend fun getTvVideos(id: Int, apiKey: String): VideosResponse {
-        return dataSourceFactory.getTvVideos(id,apiKey)
+        return remoteDataSource.getTvVideos(id,apiKey)
     }
 
     override suspend fun getFavorite(id: Int): LiveData<List<Favorite>> {
-        return dataSourceFactory.getFavorite(id)
+        return localDataSource.getFavorite(id)
     }
 
     override suspend fun insertFavorite(id: Int): Favorite {
-        return dataSourceFactory.insertFavorite(id)
+        return localDataSource.insertFavorite(id)
     }
 
     override suspend fun deleteFavorite(id: Int): Favorite {
-        return dataSourceFactory.deleteFavorite(id)
+        return localDataSource.deleteFavorite(id)
     }
 
-    override suspend fun getPopularSeries(page: Int, apiKey: String): Response<SeriesResponse> {
-        return dataSourceFactory.getMostPopularSeries3(apiKey, page)
+    override suspend fun getMostPopularSeries3(
+        apiKey: String,
+        page: Int
+    ): Response<SeriesResponse> {
+        return remoteDataSource.getMostPopularSeries3(apiKey, page)
     }
 
-    override suspend fun getPopularMovies(page: Int, apiKey: String): Response<MovieResponse> {
-        return dataSourceFactory.getMostPopularMovies3(apiKey, page)
+    override suspend fun getMostPopularMovies3(apiKey: String, page: Int): Response<MovieResponse> {
+        return remoteDataSource.getMostPopularMovies3(apiKey, page)
     }
+
 }

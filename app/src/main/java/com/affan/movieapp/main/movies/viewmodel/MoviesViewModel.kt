@@ -7,9 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.movie.MovieResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MoviesViewModel(private val repository: Repository) : ViewModel() {
+@HiltViewModel
+class MoviesViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
     private val _movies = MutableLiveData<MovieResponse>()
     val errorMessage = MutableLiveData<String>()
     val movies: LiveData<MovieResponse>

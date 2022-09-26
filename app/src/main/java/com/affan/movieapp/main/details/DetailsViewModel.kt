@@ -11,11 +11,14 @@ import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.details.videos.VideosResult
 import com.affan.movieapp.network.ApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class DetailsViewModel(
+@HiltViewModel
+class DetailsViewModel @Inject constructor (
     private val repository: Repository,
 ) : ViewModel() {
 

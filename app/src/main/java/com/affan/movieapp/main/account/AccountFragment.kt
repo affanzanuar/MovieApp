@@ -10,7 +10,9 @@ import com.affan.movieapp.databinding.FragmentAccountBinding
 import com.affan.movieapp.main.account.myfavorite.FavoriteActivity
 import com.affan.movieapp.main.account.about.AboutActivity
 import com.affan.movieapp.main.account.editprofile.EditProfileActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AccountFragment : Fragment() {
 
     private lateinit var binding: FragmentAccountBinding
