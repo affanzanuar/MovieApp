@@ -50,8 +50,8 @@ interface DataSource {
     ) : List<MoviesOrSeries>
 
     suspend fun deleteFavorite(
-        id: Int
-    ) : MoviesOrSeries
+        moviesOrSeries: MoviesOrSeries
+    )
 
     suspend fun getMostPopularSeries3(
         apiKey : String,

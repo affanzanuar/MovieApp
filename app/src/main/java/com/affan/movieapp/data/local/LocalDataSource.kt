@@ -61,11 +61,11 @@ class LocalDataSource(
     }
 
     override suspend fun getFavorite(id: Int): List<MoviesOrSeries> {
-        return moviesDatabase.moviesDao().getAllFavorit(id)
+        return moviesDatabase.moviesDao().getAllFavorit()
     }
 
-    override suspend fun deleteFavorite(id: Int): MoviesOrSeries {
-        return moviesDatabase.moviesDao().deleteFavorite(id)
+    override suspend fun deleteFavorite(moviesOrSeries: MoviesOrSeries) {
+        moviesDatabase.moviesDao().deleteFavorite(moviesOrSeries)
     }
 
     override suspend fun getMostPopularSeries3(

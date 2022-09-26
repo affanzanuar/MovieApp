@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeViewModel: HomeViewModel = ViewModelProvider(this, ViewModelFactory.get)[HomeViewModel::class.java]
+        homeViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[HomeViewModel::class.java]
 
         trendingAdapter = TrendingAdapter { data: Trending -> intentTrendingToDetails(data) }
         binding.vpTopMovies.adapter = trendingAdapter

@@ -8,12 +8,12 @@ import com.affan.movieapp.model.MoviesOrSeries
 interface MoviesDao {
 
     @Query("SELECT * FROM MoviesOrSeries")
-    suspend fun getAllFavorit(id : Int) : List<MoviesOrSeries>
+    suspend fun getAllFavorit() : List<MoviesOrSeries>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFavorite(cinema : MoviesOrSeries) : Long
+    suspend fun insertFavorite(cinema : MoviesOrSeries)
 
     @Delete
-    suspend fun deleteFavorite(id: Int) : MoviesOrSeries
+    suspend fun deleteFavorite(cinema: MoviesOrSeries)
 
 }
