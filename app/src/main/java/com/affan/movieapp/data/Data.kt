@@ -1,9 +1,5 @@
 package com.affan.movieapp.data
 
-import com.affan.movieapp.R
-import com.affan.movieapp.data.local.room.FavoriteMovies
-import com.affan.movieapp.main.movies.MoviesData
-import com.affan.movieapp.main.series.SeriesData
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -28,58 +24,5 @@ object Data {
 
     const val monetizationTypes = "flatrate"
 
-    val itemTopMovies : ArrayList<FavoriteMovies> = arrayListOf(
-        FavoriteMovies(
-            0,
-        ),
-        FavoriteMovies(
-            1,
-        ),
-        FavoriteMovies(
-            2,
-        ),
-        FavoriteMovies(
-            3,
-        ),
-        FavoriteMovies(
-            4,
-        )
-    )
-
-    val itemMovies : ArrayList<MoviesData> = arrayListOf(
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-        MoviesData("TEST1", "DESC1", R.drawable.postertest),
-    )
-
-    val itemSeries : ArrayList<SeriesData> = arrayListOf(
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest),
-        SeriesData("TEST1", "DESC1", R.drawable.postertest)
-    )
 
 }

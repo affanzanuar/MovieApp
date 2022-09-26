@@ -22,6 +22,12 @@ class FavoriteViewModel(
     private val _cinemaFavorite = MutableLiveData<List<FavoriteMovies>>()
     val cinemaFavorite : LiveData<List<FavoriteMovies>> = _cinemaFavorite
 
+    private val _insertFavorite = MutableLiveData<Unit>()
+    val insertFavorite : LiveData<Unit> = _insertFavorite
+
+    private val _deleteFavorite = MutableLiveData<Unit>()
+    val deleteFavorite : LiveData<Unit> = _deleteFavorite
+
     fun getDataFavorite (id : Int) {
         viewModelScope.launch {
             withContext(Dispatchers.Main){
@@ -32,13 +38,13 @@ class FavoriteViewModel(
 
     fun setDataMovies (favoriteMovies: FavoriteMovies){
         viewModelScope.launch {
-            _cinemaFavorite.value = repository.insertFavorite(favoriteMovies)
+            _insertFavorite.value = repository.insertFavorite(favoriteMovies)
         }
     }
 
     fun deleteDataFavorite (favoriteMovies: FavoriteMovies){
         viewModelScope.launch {
-            _cinemaFavorite.value = repository.deleteFavorite(favoriteMovies)
+            _deleteFavorite.value = repository.deleteFavorite(favoriteMovies)
         }
     }
 

@@ -45,20 +45,20 @@ class FavoriteActivity : AppCompatActivity(),FavoriteView {
 
     private fun intentToDetails ( item : FavoriteMovies) {
         val intent = Intent(this, DetailsActivity::class.java)
-        val parcelable = FavoriteMovies(
-            item.id,
-//            item.moviesOrSeriesTitle,
-//            item.moviesOrSeriesPoster,
-//            item.moviesOrSeriesBackDrop,
-//            item.moviesOrSeriesGenre,
-//            item.moviesOrSeriesRating,
-//            item.moviesOrSeriesIsAdult,
-//            item.moviesOrSeriesDescription,
-//            item.releaseDate,
-//            item.originalLanguage,
-//            item.voteCount
-        )
-        intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
+//        val parcelable = FavoriteMovies(
+//            item.id,
+////            item.moviesOrSeriesTitle,
+////            item.moviesOrSeriesPoster,
+////            item.moviesOrSeriesBackDrop,
+////            item.moviesOrSeriesGenre,
+////            item.moviesOrSeriesRating,
+////            item.moviesOrSeriesIsAdult,
+////            item.moviesOrSeriesDescription,
+////            item.releaseDate,
+////            item.originalLanguage,
+////            item.voteCount
+//        )
+//        intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
         startActivity(intent)
     }
 
