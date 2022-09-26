@@ -42,18 +42,15 @@ class FavoriteActivity : AppCompatActivity() {
 
         Log.d("cek id", id.toString())
         Log.d("cek category", category)
+
     }
 
     private fun getObserveLiveData(){
         favoriteViewModel.cinemaFavorite.observe(this) { data ->
-            if (data != null) {
-                favoriteAdapter.setDataFavorite(data)
-            }
+            favoriteAdapter.setDataFavorite(data)
         }
-        favoriteViewModel.deleteFavorite.observe(this) {data ->
-
-//            favoriteAdapter.setDataFavorite(data as FavoriteMovies)
-
+        favoriteViewModel.deleteFavorite.observe(this) { _ ->
+//            favoriteAdapter.setDataFavorite(data)
         }
     }
 

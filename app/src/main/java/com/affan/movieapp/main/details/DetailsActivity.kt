@@ -1,5 +1,6 @@
 package com.affan.movieapp.main.details
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,8 +11,10 @@ import com.affan.movieapp.R
 import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
+import com.affan.movieapp.main.account.myfavorite.FavoriteActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -135,6 +138,7 @@ class DetailsActivity : AppCompatActivity() {
                     title = data.title,
                     poster = data.posterPath
                 ))
+                setCustomSnackBar()
             }
         }
         detailsViewModel.error.observe(this) { error ->
@@ -155,6 +159,18 @@ class DetailsActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun setCustomSnackBar () {
+        val snackBar = binding.root.let {
+            Snackbar.make(
+                it,
+                "Has Been Added in Your Favorite",
+                Snackbar.LENGTH_LONG)
+        }
+        snackBar.setAction("OPEN") { snackBar.also { startActivity(Intent(this,FavoriteActivity::class.java)) } }
+        snackBar.setActionTextColor(applicationContext.getColor(R.color.white))
+        snackBar.show()
     }
 
     companion object {
