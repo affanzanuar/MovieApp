@@ -75,10 +75,10 @@ class LocalDataSource(
         apiKey: String,
         page: Int
     ): Response<SeriesResponse> {
-        TODO("Not yet implemented")
+        throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
     override suspend fun getMostPopularMovies3(apiKey: String, page: Int): Response<MovieResponse> {
-        TODO("Not yet implemented")
+        throw UnsupportedOperationException("Use Remote Data Source!")
     }
 }
