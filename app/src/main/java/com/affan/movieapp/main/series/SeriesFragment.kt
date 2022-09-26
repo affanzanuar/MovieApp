@@ -50,7 +50,7 @@ class SeriesFragment : Fragment() {
             it.series.let { data ->
                 isLoadDataOnProgress = false
                 binding.skSeriesFragment.visibility = View.GONE
-                seriesAdapter.setData(data)
+                seriesAdapter.addAll(data)
             }
         }
         seriesViewModel.errorMessage.observe(requireActivity()) {

@@ -52,7 +52,7 @@ class MoviesFragment : Fragment() {
             it.results?.let { data ->
                 binding.skMoviesFragment.visibility = View.GONE
                 isLoadDataOnProgress = false
-                moviesAdapter.setData(data)
+                moviesAdapter.addAll(data)
             }
         }
         moviesViewModel.errorMessage.observe(requireActivity()) {

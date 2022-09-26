@@ -47,10 +47,15 @@ class SeriesAdapter(
         return series.size
     }
 
-    fun setData(data: List<Series?>) {
-        series.clear()
-        series.addAll(data)
-        notifyDataSetChanged()
+    private fun add(dataSeries: Series?) {
+        series.add(dataSeries)
+        notifyItemInserted(series.size - 1)
+    }
+
+    fun addAll(seriesResult: List<Series?>) {
+        for (result in seriesResult) {
+            add(result)
+        }
     }
 
 }
