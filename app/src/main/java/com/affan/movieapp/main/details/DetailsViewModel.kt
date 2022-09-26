@@ -40,7 +40,7 @@ class DetailsViewModel(
 
     fun setDataMovies (favoriteMovies: FavoriteMovies){
         viewModelScope.launch {
-            _insertFavorite.value = repository.insertFavorite(favoriteMovies)
+            repository.insertFavorite(favoriteMovies)
         }
     }
 

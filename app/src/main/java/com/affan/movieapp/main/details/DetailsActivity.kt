@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.affan.movieapp.R
@@ -12,7 +11,6 @@ import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.home.view.HomeFragment
-import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 import com.bumptech.glide.Glide
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -22,8 +20,6 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
 
     private lateinit var detailsViewModel: DetailsViewModel
-
-    private var favoriteMovies : FavoriteMovies? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +38,6 @@ class DetailsActivity : AppCompatActivity() {
         Log.d("cekid", id.toString())
         Log.d("cekcategory", category)
 
-
         observeLiveData()
         detailsViewModel.getDetailsMovie(id, category)
         detailsViewModel.getVideos(id, category)
@@ -55,7 +50,6 @@ class DetailsActivity : AppCompatActivity() {
         detailsViewModel.insertFavorite.observe(this) { data ->
 
             binding.ivFavorite.setOnClickListener {
-
             }
 
         }
@@ -134,6 +128,14 @@ class DetailsActivity : AppCompatActivity() {
             }
             binding.tvGenre.text = (sbGenre.toString())
 
+            binding.ivFavorite.setOnClickListener {
+                detailsViewModel.setDataMovies(FavoriteMovies(
+                    id=data.id,
+                    name = data.title,
+                    title = data.title,
+                    poster = data.posterPath
+                ))
+            }
         }
         detailsViewModel.error.observe(this) { error ->
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
