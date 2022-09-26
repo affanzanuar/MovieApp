@@ -7,7 +7,7 @@ import androidx.room.*
 interface MoviesDao {
 
     @Query("SELECT * FROM FavoriteMovies")
-    suspend fun getAllFavorit() : List<FavoriteMovies>
+    suspend fun getAllFavorite() : List<FavoriteMovies>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavorite(cinema : FavoriteMovies)

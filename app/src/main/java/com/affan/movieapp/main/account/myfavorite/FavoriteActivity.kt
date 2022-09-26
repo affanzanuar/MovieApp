@@ -12,7 +12,6 @@ import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.account.myfavorite.adapter.FavoriteAdapter
 import com.affan.movieapp.main.account.myfavorite.viewmodel.FavoriteViewModel
 import com.affan.movieapp.main.details.DetailsActivity
-import com.affan.movieapp.main.details.DetailsViewModel
 import com.affan.movieapp.main.home.view.HomeFragment
 
 class FavoriteActivity : AppCompatActivity() {
@@ -65,20 +64,13 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun intentToDetails ( item : FavoriteMovies) {
         val intent = Intent(this, DetailsActivity::class.java)
-//        val parcelable = FavoriteMovies(
-//            item.id,
-////            item.moviesOrSeriesTitle,
-////            item.moviesOrSeriesPoster,
-////            item.moviesOrSeriesBackDrop,
-////            item.moviesOrSeriesGenre,
-////            item.moviesOrSeriesRating,
-////            item.moviesOrSeriesIsAdult,
-////            item.moviesOrSeriesDescription,
-////            item.releaseDate,
-////            item.originalLanguage,
-////            item.voteCount
-//        )
-//        intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
+        val parcelable = FavoriteMovies(
+            id = item.id,
+            name = item.name,
+            title = item.title,
+            poster = item.poster
+        )
+        intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
         startActivity(intent)
     }
 

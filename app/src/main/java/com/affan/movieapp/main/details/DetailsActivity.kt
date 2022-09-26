@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.affan.movieapp.R
+import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.home.view.HomeFragment
@@ -21,6 +22,8 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
 
     private lateinit var detailsViewModel: DetailsViewModel
+
+    private var favoriteMovies : FavoriteMovies? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,15 @@ class DetailsActivity : AppCompatActivity() {
 
 
     private fun observeLiveData() {
+
+        detailsViewModel.insertFavorite.observe(this) { data ->
+
+            binding.ivFavorite.setOnClickListener {
+
+            }
+
+        }
+
         detailsViewModel.loading.observe(this) { isLoading ->
             // TODO:
             if (isLoading){

@@ -12,5 +12,6 @@ data class FavoriteMovies(
     @PrimaryKey (autoGenerate = false)
     var id : Int = 0,
     var name : String?,
-    var title : String
+    var title : String,
+    var poster : String
 ) : Parcelable
