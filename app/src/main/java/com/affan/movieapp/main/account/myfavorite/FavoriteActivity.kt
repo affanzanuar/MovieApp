@@ -74,7 +74,7 @@ class FavoriteActivity : AppCompatActivity() {
             title = item.title,
             poster = item.poster
         )
-        if (item.title.isNullOrEmpty()){
+        if (item.name == item.title+"."){
             intent.putExtra(HomeFragment.CATEGORY,"series")
         } else {
             intent.putExtra(HomeFragment.CATEGORY,"movies")

@@ -134,7 +134,7 @@ class DetailsActivity : AppCompatActivity() {
             binding.ivFavorite.setOnClickListener {
                 detailsViewModel.setDataMovies(FavoriteMovies(
                     id=data.id,
-                    name = data.title,
+                    name = data.title+".",
                     title = data.title,
                     poster = data.posterPath
                 ))

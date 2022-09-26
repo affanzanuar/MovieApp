@@ -23,11 +23,7 @@ class FavoriteAdapter(
                     .load(BASE_URL+item.poster)
                     .into(binding.ivPosterFavorite)
 
-                if (item.name.isNullOrEmpty()){
-                    binding.tvTitleFavorite.text = item.title
-                } else {
-                    binding.tvTitleFavorite.text = item.name
-                }
+                binding.tvTitleFavorite.text = item.name ?: item.title
 
                 binding.root.setOnClickListener {
                     onClickFavorite(item)
