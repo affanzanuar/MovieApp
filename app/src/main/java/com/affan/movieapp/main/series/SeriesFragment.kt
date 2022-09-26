@@ -2,6 +2,7 @@ package com.affan.movieapp.main.series
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,7 @@ class SeriesFragment : Fragment() {
         seriesViewModel.series.observe(requireActivity()) {
             binding.skSeriesFragment.visibility = View.VISIBLE
             it.series.let { data ->
+                isLoadDataOnProgress = false
                 binding.skSeriesFragment.visibility = View.GONE
                 seriesAdapter.setData(data)
             }
@@ -67,11 +69,14 @@ class SeriesFragment : Fragment() {
         binding.rvSeries.addOnScrollListener(object : PaginationRecyclerView(layoutManager) {
             override fun loadMoreItems() {
                 page++
+                Log.d("checkPageMoreItems", "$page ")
                 isLoadDataOnProgress = true
                 seriesViewModel.getPopularSeries(page)
             }
+
             override val isLastPage: Boolean
                 get() = false
+
             override val isLoading: Boolean
                 get() = isLoadDataOnProgress
 
