@@ -67,7 +67,7 @@ class RemoteDataSource (
         return apiService.getTvVideos(id,apiKey)
     }
 
-    override suspend fun getFavorite(id: Int): List<FavoriteMovies> {
+    override suspend fun getFavorite(): List<FavoriteMovies> {
         throw UnsupportedOperationException("Use Local Data Source!")
     }
 

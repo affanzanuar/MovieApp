@@ -28,10 +28,10 @@ class FavoriteViewModel(
     private val _deleteFavorite = MutableLiveData<Unit>()
     val deleteFavorite : LiveData<Unit> = _deleteFavorite
 
-    fun getDataFavorite (id : Int) {
+    fun getDataFavorite () {
         viewModelScope.launch {
             withContext(Dispatchers.Main){
-                _cinemaFavorite.value = repository.getFavorite(id)
+                _cinemaFavorite.value = repository.getFavorite()
             }
         }
     }

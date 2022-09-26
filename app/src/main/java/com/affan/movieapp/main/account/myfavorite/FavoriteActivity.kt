@@ -42,15 +42,10 @@ class FavoriteActivity : AppCompatActivity() {
         Log.d("cek category", category)
     }
 
-    override fun onResume() {
-        super.onResume()
-        favoriteViewModel.getDataFavorite(123456)
-    }
-
     private fun getObserve(){
         favoriteViewModel.cinemaFavorite.observe(this) { data ->
             if (data != null) {
-                favoriteAdapter.setDataFavorite(data)
+                favoriteViewModel.getDataFavorite()
             }
         }
     }
@@ -70,6 +65,12 @@ class FavoriteActivity : AppCompatActivity() {
             title = item.title,
             poster = item.poster
         )
+        if (item.title.isNullOrEmpty()){
+            intent.putExtra(HomeFragment.CATEGORY,"series")
+        } else {
+            intent.putExtra(HomeFragment.CATEGORY,"movies")
+        }
+        intent.putExtra(HomeFragment.ID,item.id)
         intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
         startActivity(intent)
     }

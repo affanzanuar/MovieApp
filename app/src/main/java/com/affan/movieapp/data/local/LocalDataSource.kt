@@ -59,7 +59,7 @@ class LocalDataSource(
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
-    override suspend fun getFavorite(id: Int): List<FavoriteMovies> {
+    override suspend fun getFavorite(): List<FavoriteMovies> {
         return moviesDatabase.moviesDao().getAllFavorite()
     }
 

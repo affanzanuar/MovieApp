@@ -45,7 +45,6 @@ interface DataSource {
     ): VideosResponse
 
     suspend fun getFavorite(
-        id: Int
     ) : List<FavoriteMovies>
 
     suspend fun insertFavorite(

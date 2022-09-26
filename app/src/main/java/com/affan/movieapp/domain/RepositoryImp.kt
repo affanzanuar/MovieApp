@@ -67,8 +67,8 @@ class RepositoryImp (
         return remoteDataSource.getTvVideos(id,apiKey)
     }
 
-    override suspend fun getFavorite(id: Int): List<FavoriteMovies> {
-        return localDataSource.getFavorite(id)
+    override suspend fun getFavorite(): List<FavoriteMovies> {
+        return localDataSource.getFavorite()
     }
 
     override suspend fun insertFavorite(favoriteMovies: FavoriteMovies) {

@@ -10,8 +10,8 @@ import kotlinx.android.parcel.Parcelize
 @Entity
 data class FavoriteMovies(
     @PrimaryKey (autoGenerate = false)
-    var id : Int = 0,
+    var id : Int?,
     var name : String?,
-    var title : String,
-    var poster : String
+    var title : String?,
+    var poster : String?
 ) : Parcelable
