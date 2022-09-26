@@ -11,10 +11,22 @@ import retrofit2.Call
 import retrofit2.Response
 
 interface Repository {
-    fun getTopMoviesOrSeries(apiKey: String,) : Call<TrendingResponse>
-    fun getNowPlaying(apiKey: String,) : Call<MovieResponse>
-    fun getMostPopularMovie(apiKey: String,) : Call<MovieResponse>
-    fun getMostPopularSeries(apiKey: String,) : Call<SeriesResponse>
+    fun getTopMoviesOrSeries(
+        apiKey: String
+    ) : Call<TrendingResponse>
+
+    fun getNowPlaying(
+        apiKey: String
+    ) : Call<MovieResponse>
+
+    fun getMostPopularMovie(
+        apiKey: String
+    ) : Call<MovieResponse>
+
+    fun getMostPopularSeries(
+        apiKey: String
+    ) : Call<SeriesResponse>
+
     fun getComingSoon(
         apiKey: String,
         language : String,
@@ -56,7 +68,13 @@ interface Repository {
         favoriteMovies: FavoriteMovies
     )
 
-    suspend fun getPopularSeries(page: Int, apiKey: String): Response<SeriesResponse>
+    suspend fun getPopularSeries(
+        page: Int,
+        apiKey: String
+    ): Response<SeriesResponse>
 
-    suspend fun getPopularMovies(page: Int, apiKey: String): Response<MovieResponse>
+    suspend fun getPopularMovies(
+        page: Int,
+        apiKey: String
+    ): Response<MovieResponse>
 }
