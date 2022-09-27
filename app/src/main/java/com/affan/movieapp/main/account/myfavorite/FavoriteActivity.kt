@@ -67,6 +67,9 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun intentToDetails ( item : FavoriteMovies) {
+
+        val category = intent.getStringExtra(HomeFragment.CATEGORY).orEmpty()
+
         val intent = Intent(this, DetailsActivity::class.java)
         val parcelable = FavoriteMovies(
             id = item.id,
@@ -74,11 +77,8 @@ class FavoriteActivity : AppCompatActivity() {
             title = item.title,
             poster = item.poster
         )
-        if (item.name == item.title+"."){
-            intent.putExtra(HomeFragment.CATEGORY,"series")
-        } else {
-            intent.putExtra(HomeFragment.CATEGORY,"movies")
-        }
+        intent.putExtra(HomeFragment.CATEGORY,category)
+        Log.d("FavoriteActivity",item.name.toString())
         intent.putExtra(HomeFragment.ID,item.id)
         intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
         startActivity(intent)

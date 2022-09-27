@@ -32,10 +32,6 @@ class DetailsViewModel(
     private val _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String> = _error
 
-    private val _insertFavorite = MutableLiveData<Unit>()
-    val insertFavorite : LiveData<Unit> = _insertFavorite
-
-
     fun setDataMovies (favoriteMovies: FavoriteMovies){
         viewModelScope.launch {
             repository.insertFavorite(favoriteMovies)

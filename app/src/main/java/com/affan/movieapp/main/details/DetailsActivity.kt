@@ -24,6 +24,8 @@ class DetailsActivity : AppCompatActivity() {
 
     private lateinit var detailsViewModel: DetailsViewModel
 
+    private lateinit var category : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
@@ -36,7 +38,9 @@ class DetailsActivity : AppCompatActivity() {
         }
 
         val id = intent.getIntExtra(HomeFragment.ID, 0)
-        val category = intent.getStringExtra(HomeFragment.CATEGORY).orEmpty()
+
+        category = intent.getStringExtra(HomeFragment.CATEGORY).orEmpty()
+
 
         Log.d("cekid", id.toString())
         Log.d("cekcategory", category)
@@ -49,13 +53,6 @@ class DetailsActivity : AppCompatActivity() {
 
 
     private fun observeLiveData() {
-
-        detailsViewModel.insertFavorite.observe(this) { data ->
-
-            binding.ivFavorite.setOnClickListener {
-            }
-
-        }
 
         detailsViewModel.loading.observe(this) { isLoading ->
             // TODO:
@@ -132,14 +129,26 @@ class DetailsActivity : AppCompatActivity() {
             binding.tvGenre.text = (sbGenre.toString())
 
             binding.ivFavorite.setOnClickListener {
-                detailsViewModel.setDataMovies(
-                    FavoriteMovies(
-                    id=data.id,
-                    name = data.title+".",
-                    title = data.title,
-                    poster = data.posterPath
-                )
-                )
+                if (category=="movies"){
+                    detailsViewModel.setDataMovies(
+                        FavoriteMovies(
+                            id = data.id,
+                            name = null,
+                            title = data.title,
+                            poster = data.posterPath
+                        )
+                    )
+                } else {
+                    detailsViewModel.setDataMovies(
+                        FavoriteMovies(
+                            id = data.id,
+                            name = data.title,
+                            title = null,
+                            poster = data.posterPath
+                        )
+                    )
+                }
+                Log.d("Detail Activity",data.title!!)
                 setCustomSnackBar()
             }
         }
@@ -170,7 +179,12 @@ class DetailsActivity : AppCompatActivity() {
                 "Has Been Added in Your Favorite",
                 Snackbar.LENGTH_LONG)
         }
-        snackBar.setAction("OPEN") { snackBar.also { startActivity(Intent(this,FavoriteActivity::class.java)) } }
+        snackBar.setAction("OPEN") { snackBar.also {
+                val intent = Intent(this,FavoriteActivity::class.java)
+                intent.putExtra(HomeFragment.CATEGORY,"movies")
+                startActivity(intent)
+            }
+        }
         snackBar.setActionTextColor(applicationContext.getColor(R.color.white))
         snackBar.show()
     }
