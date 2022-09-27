@@ -1,40 +1,35 @@
 package com.affan.movieapp.main.details
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.R
+import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
+import com.affan.movieapp.main.account.myfavorite.FavoriteActivity
 import com.affan.movieapp.main.home.view.HomeFragment
-import com.affan.movieapp.main.home.viewmodel.HomeViewModel
-import com.affan.movieapp.network.ApiClient
 import com.bumptech.glide.Glide
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
+import com.google.android.material.snackbar.Snackbar
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import kotlinx.coroutines.launch
 
 class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
 
-    private val detailsViewModel by viewModels<DetailsViewModel>(
-        factoryProducer = {
-            ViewModelFactory.getInstance()
-        }
-    )
+    private lateinit var detailsViewModel: DetailsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        detailsViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this))[DetailsViewModel::class.java]
 
         binding.ivBack.setOnClickListener {
             finish()
@@ -46,7 +41,6 @@ class DetailsActivity : AppCompatActivity() {
         Log.d("cekid", id.toString())
         Log.d("cekcategory", category)
 
-
         observeLiveData()
         detailsViewModel.getDetailsMovie(id, category)
         detailsViewModel.getVideos(id, category)
@@ -55,6 +49,14 @@ class DetailsActivity : AppCompatActivity() {
 
 
     private fun observeLiveData() {
+
+        detailsViewModel.insertFavorite.observe(this) { data ->
+
+            binding.ivFavorite.setOnClickListener {
+            }
+
+        }
+
         detailsViewModel.loading.observe(this) { isLoading ->
             // TODO:
             if (isLoading){
@@ -129,6 +131,15 @@ class DetailsActivity : AppCompatActivity() {
             }
             binding.tvGenre.text = (sbGenre.toString())
 
+            binding.ivFavorite.setOnClickListener {
+                detailsViewModel.setDataMovies(FavoriteMovies(
+                    id=data.id,
+                    name = data.title+".",
+                    title = data.title,
+                    poster = data.posterPath
+                ))
+                setCustomSnackBar()
+            }
         }
         detailsViewModel.error.observe(this) { error ->
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
@@ -148,6 +159,18 @@ class DetailsActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun setCustomSnackBar () {
+        val snackBar = binding.root.let {
+            Snackbar.make(
+                it,
+                "Has Been Added in Your Favorite",
+                Snackbar.LENGTH_LONG)
+        }
+        snackBar.setAction("OPEN") { snackBar.also { startActivity(Intent(this,FavoriteActivity::class.java)) } }
+        snackBar.setActionTextColor(applicationContext.getColor(R.color.white))
+        snackBar.show()
     }
 
     companion object {

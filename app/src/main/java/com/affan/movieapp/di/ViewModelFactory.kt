@@ -1,10 +1,14 @@
 package com.affan.movieapp.di
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.affan.movieapp.data.local.LocalDataSource
+import com.affan.movieapp.data.local.room.MovieDatabase
 import com.affan.movieapp.data.remote.RemoteDataSource
 import com.affan.movieapp.domain.RepositoryImp
 import com.affan.movieapp.domain.Repository
+import com.affan.movieapp.main.account.myfavorite.viewmodel.FavoriteViewModel
 import com.affan.movieapp.main.details.DetailsViewModel
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 import com.affan.movieapp.main.movies.viewmodel.MoviesViewModel
@@ -25,6 +29,7 @@ class ViewModelFactory(
             DetailsViewModel::class.java -> DetailsViewModel(repository) as T
             SeriesViewModel::class.java -> SeriesViewModel(repository) as T
             MoviesViewModel::class.java -> MoviesViewModel(repository) as T
+            FavoriteViewModel::class.java -> FavoriteViewModel(repository) as T
             else -> throw UnsupportedOperationException()
         }
     }
@@ -54,17 +59,15 @@ class ViewModelFactory(
             retrofit.create(ApiService::class.java)
         }
 
-//        private val moviesDao = MovieDaoImp()
-
         private val remote = RemoteDataSource(remoteDataSource)
-//        private val local = LocalDataSource(moviesDao)
 
         @Volatile
         private var INSTANCE : ViewModelFactory? = null
-        fun getInstance()= synchronized(ViewModelFactory::class.java){
+        fun getInstance(context : Context)= synchronized(ViewModelFactory::class.java){
             INSTANCE ?: ViewModelFactory(
                 RepositoryImp(
-                    remoteDataSource = remote
+                    remoteDataSource = remote,
+                    localDataSource = LocalDataSource(MovieDatabase.getInstance(context))
                 )
             ). also { INSTANCE = it }
         }

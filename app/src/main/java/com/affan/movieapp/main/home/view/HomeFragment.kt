@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
-import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.di.ViewModelFactory
+import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.main.home.adapter.HomeSeriesAdapter
@@ -39,11 +39,9 @@ class HomeFragment : Fragment() {
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
     private lateinit var comingSoonAdapter: ComingSoonAdapter
 
-    private val homeViewModel: HomeViewModel by activityViewModels(
-        factoryProducer = {
-            ViewModelFactory.getInstance()
-        }
-    )
+    private lateinit var homeViewModel: HomeViewModel
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +55,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        homeViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[HomeViewModel::class.java]
+
         trendingAdapter = TrendingAdapter { data: Trending -> intentTrendingToDetails(data) }
         binding.vpTopMovies.adapter = trendingAdapter
         inTheaterAdapter = setMovieAdapter(binding.rvInTheatres)

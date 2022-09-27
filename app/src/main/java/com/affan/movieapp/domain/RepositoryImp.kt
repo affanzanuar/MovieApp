@@ -1,22 +1,18 @@
 package com.affan.movieapp.domain
 
-import com.affan.movieapp.data.Data
 import com.affan.movieapp.data.DataSource
-import com.affan.movieapp.domain.Repository
-import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
-import com.affan.movieapp.network.ApiClient
-import com.affan.movieapp.network.ApiService
 import retrofit2.Call
 import retrofit2.Response
 
 class RepositoryImp (
-//    private val localDataSource: DataSource,
+    private val localDataSource: DataSource,
     private val remoteDataSource : DataSource
         ) : Repository {
     override fun getTopMoviesOrSeries(apiKey: String): Call<TrendingResponse> {
@@ -71,12 +67,16 @@ class RepositoryImp (
         return remoteDataSource.getTvVideos(id,apiKey)
     }
 
-    override suspend fun getFavorite(id: Int): List<MoviesOrSeries> {
-        throw UnsupportedOperationException("ereor")
+    override suspend fun getFavorite(): List<FavoriteMovies> {
+        return localDataSource.getFavorite()
     }
 
-    override suspend fun deleteFavorite(id: Int): MoviesOrSeries {
-        throw UnsupportedOperationException("ereor")
+    override suspend fun insertFavorite(favoriteMovies: FavoriteMovies) {
+        return localDataSource.insertFavorite(favoriteMovies)
+    }
+
+    override suspend fun deleteFavorite(favoriteMovies: FavoriteMovies) {
+        return localDataSource.deleteFavorite(favoriteMovies)
     }
 
     override suspend fun getPopularSeries(page: Int, apiKey: String): Response<SeriesResponse> {

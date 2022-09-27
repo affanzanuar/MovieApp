@@ -1,7 +1,7 @@
 package com.affan.movieapp.data.remote
 
 import com.affan.movieapp.data.DataSource
-import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.data.local.room.FavoriteMovies
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse
@@ -67,11 +67,15 @@ class RemoteDataSource (
         return apiService.getTvVideos(id,apiKey)
     }
 
-    override suspend fun getFavorite(id: Int): List<MoviesOrSeries> {
+    override suspend fun getFavorite(): List<FavoriteMovies> {
         throw UnsupportedOperationException("Use Local Data Source!")
     }
 
-    override suspend fun deleteFavorite(id: Int): MoviesOrSeries {
+    override suspend fun insertFavorite(favoriteMovies: FavoriteMovies) {
+        throw UnsupportedOperationException("Use Local Data Source!")
+    }
+
+    override suspend fun deleteFavorite(favoriteMovies: FavoriteMovies) {
         throw UnsupportedOperationException("Use Local Data Source!")
     }
 

@@ -3,70 +3,85 @@ package com.affan.movieapp.main.account.myfavorite
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.affan.movieapp.databinding.ActivityFavoriteBinding
-import com.affan.movieapp.model.MoviesOrSeries
+import com.affan.movieapp.data.local.room.FavoriteMovies
+import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.account.myfavorite.adapter.FavoriteAdapter
-import com.affan.movieapp.main.account.myfavorite.presenter.FavoriteView
+import com.affan.movieapp.main.account.myfavorite.viewmodel.FavoriteViewModel
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 
-class FavoriteActivity : AppCompatActivity(),FavoriteView {
+class FavoriteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFavoriteBinding
     private lateinit var favoriteAdapter: FavoriteAdapter
-    private lateinit var favoritePresenterImp: FavoritePresenterImp
+    private lateinit var favoriteViewModel: FavoriteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setAdapterAndPresenterFavorite()
+        favoriteViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory.getInstance(this)
+        )[FavoriteViewModel::class.java]
 
+        setAdapter()
+        getObserveLiveData()
+        favoriteViewModel.getDataFavorite()
 
         binding.ivBack.setOnClickListener {
             finish()
         }
+
+        val id = intent.getIntExtra(HomeFragment.ID, 0)
+        val category = intent.getStringExtra(HomeFragment.CATEGORY).orEmpty()
+
+        Log.d("cek id", id.toString())
+        Log.d("cek category", category)
+
     }
 
-    override fun onResume() {
-        super.onResume()
-        favoritePresenterImp.getContentListFavorite()
+    private fun getObserveLiveData(){
+        favoriteViewModel.cinemaFavorite.observe(this) { data ->
+            favoriteAdapter.setDataFavorite(data)
+        }
+        favoriteViewModel.deleteFavorite.observe(this) { _ ->
+//            favoriteAdapter.setDataFavorite(data)
+        }
     }
 
-    private fun setAdapterAndPresenterFavorite(){
-        favoriteAdapter = FavoriteAdapter { data: MoviesOrSeries -> intentToDetails(data) }
-        favoritePresenterImp = FavoritePresenterImp(this)
+    private fun setAdapter(){
+        favoriteAdapter = FavoriteAdapter (
+            { data: FavoriteMovies -> intentToDetails(data) },
+            { data : FavoriteMovies -> favoriteViewModel.deleteDataFavorite(
+                FavoriteMovies(data.id,data.name,data.title,data.poster)
+            )}
+                )
         binding.rvFavorite.adapter = favoriteAdapter
         binding.rvFavorite.layoutManager = LinearLayoutManager(this)
 
     }
 
-    private fun intentToDetails ( item : MoviesOrSeries) {
+    private fun intentToDetails ( item : FavoriteMovies) {
         val intent = Intent(this, DetailsActivity::class.java)
-        val parcelable = MoviesOrSeries(
-            item.id,
-//            item.moviesOrSeriesTitle,
-//            item.moviesOrSeriesPoster,
-//            item.moviesOrSeriesBackDrop,
-//            item.moviesOrSeriesGenre,
-//            item.moviesOrSeriesRating,
-//            item.moviesOrSeriesIsAdult,
-//            item.moviesOrSeriesDescription,
-//            item.releaseDate,
-//            item.originalLanguage,
-//            item.voteCount
+        val parcelable = FavoriteMovies(
+            id = item.id,
+            name = item.name,
+            title = item.title,
+            poster = item.poster
         )
+        if (item.name == item.title+"."){
+            intent.putExtra(HomeFragment.CATEGORY,"series")
+        } else {
+            intent.putExtra(HomeFragment.CATEGORY,"movies")
+        }
+        intent.putExtra(HomeFragment.ID,item.id)
         intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
         startActivity(intent)
     }
 
-    override fun onGetDataFavoriteSuccess(data: List<MoviesOrSeries>) {
-        favoriteAdapter.setDataFavorite(data)
-    }
-
-    override fun onGetDataFavoriteFailure(message: String) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
-    }
 }

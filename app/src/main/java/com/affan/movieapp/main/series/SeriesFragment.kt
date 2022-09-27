@@ -26,7 +26,7 @@ class SeriesFragment : Fragment() {
 
     private val seriesViewModel: SeriesViewModel by activityViewModels(
         factoryProducer = {
-            ViewModelFactory.getInstance()
+            ViewModelFactory.getInstance(requireContext())
         }
     )
 
