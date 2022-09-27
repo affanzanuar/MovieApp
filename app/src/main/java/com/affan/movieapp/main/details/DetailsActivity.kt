@@ -129,7 +129,7 @@ class DetailsActivity : AppCompatActivity() {
             binding.tvGenre.text = (sbGenre.toString())
 
             binding.ivFavorite.setOnClickListener {
-                var mCategory = category
+                val mCategory = category
 
                 if (mCategory=="movies"){
                     detailsViewModel.setDataMovies(
@@ -140,7 +140,6 @@ class DetailsActivity : AppCompatActivity() {
                             poster = data.posterPath
                         )
                     )
-                    detailsViewModel.getDetailsMovie(data.id!!,"movies")
                 } else {
                     detailsViewModel.setDataMovies(
                         FavoriteMovies(
@@ -150,7 +149,6 @@ class DetailsActivity : AppCompatActivity() {
                             poster = data.posterPath
                         )
                     )
-                    detailsViewModel.getDetailsMovie(data.id!!,"series")
                 }
                 Log.d("Detail Activity",data.title!!)
                 Log.d("Snack Detail",category)
@@ -163,7 +161,6 @@ class DetailsActivity : AppCompatActivity() {
 
                 snackBar.setAction("OPEN") { snackBar.also {
                     val intent = Intent(this,FavoriteActivity::class.java)
-                    intent.putExtra(MCATEGORY,mCategory)
                     startActivity(intent)
                 }
                 }
