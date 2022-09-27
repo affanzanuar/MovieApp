@@ -129,7 +129,9 @@ class DetailsActivity : AppCompatActivity() {
             binding.tvGenre.text = (sbGenre.toString())
 
             binding.ivFavorite.setOnClickListener {
-                if (category=="movies"){
+                var mCategory = category
+
+                if (mCategory=="movies"){
                     detailsViewModel.setDataMovies(
                         FavoriteMovies(
                             id = data.id,
@@ -138,6 +140,7 @@ class DetailsActivity : AppCompatActivity() {
                             poster = data.posterPath
                         )
                     )
+                    detailsViewModel.getDetailsMovie(data.id!!,"movies")
                 } else {
                     detailsViewModel.setDataMovies(
                         FavoriteMovies(
@@ -147,9 +150,25 @@ class DetailsActivity : AppCompatActivity() {
                             poster = data.posterPath
                         )
                     )
+                    detailsViewModel.getDetailsMovie(data.id!!,"series")
                 }
                 Log.d("Detail Activity",data.title!!)
-                setCustomSnackBar()
+                Log.d("Snack Detail",category)
+                val snackBar = binding.root.let {
+                    Snackbar.make(
+                        it,
+                        "Has Been Added in Your Favorite",
+                        Snackbar.LENGTH_LONG)
+                }
+
+                snackBar.setAction("OPEN") { snackBar.also {
+                    val intent = Intent(this,FavoriteActivity::class.java)
+                    intent.putExtra(MCATEGORY,mCategory)
+                    startActivity(intent)
+                }
+                }
+                snackBar.setActionTextColor(applicationContext.getColor(R.color.white))
+                snackBar.show()
             }
         }
         detailsViewModel.error.observe(this) { error ->
@@ -172,24 +191,8 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCustomSnackBar () {
-        val snackBar = binding.root.let {
-            Snackbar.make(
-                it,
-                "Has Been Added in Your Favorite",
-                Snackbar.LENGTH_LONG)
-        }
-        snackBar.setAction("OPEN") { snackBar.also {
-                val intent = Intent(this,FavoriteActivity::class.java)
-                intent.putExtra(HomeFragment.CATEGORY,"movies")
-                startActivity(intent)
-            }
-        }
-        snackBar.setActionTextColor(applicationContext.getColor(R.color.white))
-        snackBar.show()
-    }
-
     companion object {
         private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
+        const val MCATEGORY = "mcategory"
     }
 }
