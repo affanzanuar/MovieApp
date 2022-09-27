@@ -11,7 +11,7 @@ import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.details.videos.VideosResult
-import com.affan.movieapp.network.ApiService
+import com.affan.movieapp.data.remote.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

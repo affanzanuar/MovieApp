@@ -1,4 +1,4 @@
-package com.affan.movieapp.network
+package com.affan.movieapp.data.remote.network
 
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse

@@ -1,4 +1,4 @@
-package com.affan.movieapp.network
+package com.affan.movieapp.data.remote.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

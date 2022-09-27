@@ -13,7 +13,7 @@ import com.affan.movieapp.main.details.DetailsViewModel
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 import com.affan.movieapp.main.movies.viewmodel.MoviesViewModel
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
-import com.affan.movieapp.network.ApiService
+import com.affan.movieapp.data.remote.network.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

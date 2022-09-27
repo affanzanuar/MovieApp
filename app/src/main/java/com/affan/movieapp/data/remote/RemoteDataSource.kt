@@ -8,7 +8,7 @@ import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
-import com.affan.movieapp.network.ApiService
+import com.affan.movieapp.data.remote.network.ApiService
 import retrofit2.Call
 import retrofit2.Response
 

@@ -3,7 +3,7 @@ package com.affan.movieapp.main.series
 import android.util.Log
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.model.series.SeriesResponse
-import com.affan.movieapp.network.ApiClient
+import com.affan.movieapp.data.remote.network.ApiClient
 import com.affan.movieapp.main.series.presenter.SeriesPresenter
 import com.affan.movieapp.main.series.presenter.SeriesView
 import kotlinx.coroutines.CoroutineScope

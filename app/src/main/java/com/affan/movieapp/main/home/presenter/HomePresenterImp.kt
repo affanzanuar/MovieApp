@@ -6,7 +6,7 @@ import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
-import com.affan.movieapp.network.ApiClient
+import com.affan.movieapp.data.remote.network.ApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
