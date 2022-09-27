@@ -50,7 +50,7 @@ class FavoriteActivity : AppCompatActivity() {
             favoriteAdapter.setDataFavorite(data)
         }
         favoriteViewModel.deleteFavorite.observe(this) { data ->
-
+            favoriteViewModel.getDataFavorite()
         }
     }
 
