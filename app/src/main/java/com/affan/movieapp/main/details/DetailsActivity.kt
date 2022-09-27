@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.affan.movieapp.R
-import com.affan.movieapp.data.local.room.FavoriteMovies
+import com.affan.movieapp.model.FavoriteMovies
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.account.myfavorite.FavoriteActivity
@@ -132,12 +132,14 @@ class DetailsActivity : AppCompatActivity() {
             binding.tvGenre.text = (sbGenre.toString())
 
             binding.ivFavorite.setOnClickListener {
-                detailsViewModel.setDataMovies(FavoriteMovies(
+                detailsViewModel.setDataMovies(
+                    FavoriteMovies(
                     id=data.id,
                     name = data.title+".",
                     title = data.title,
                     poster = data.posterPath
-                ))
+                )
+                )
                 setCustomSnackBar()
             }
         }

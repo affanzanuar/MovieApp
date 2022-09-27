@@ -2,6 +2,7 @@ package com.affan.movieapp.data.local.room
 
 
 import androidx.room.*
+import com.affan.movieapp.model.FavoriteMovies
 
 @Dao
 interface MoviesDao {
