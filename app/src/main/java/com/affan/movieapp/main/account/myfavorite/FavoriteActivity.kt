@@ -49,8 +49,8 @@ class FavoriteActivity : AppCompatActivity() {
         favoriteViewModel.cinemaFavorite.observe(this) { data ->
             favoriteAdapter.setDataFavorite(data)
         }
-        favoriteViewModel.deleteFavorite.observe(this) { _ ->
-//            favoriteAdapter.setDataFavorite(data)
+        favoriteViewModel.deleteFavorite.observe(this) { data ->
+
         }
     }
 
@@ -68,7 +68,7 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun intentToDetails ( item : FavoriteMovies) {
 
-        var category = intent.getStringExtra(DetailsActivity.MCATEGORY).orEmpty()
+        val category : String
 
         val intent = Intent(this, DetailsActivity::class.java)
         val parcelable = FavoriteMovies(
