@@ -21,6 +21,7 @@ class FavoriteActivity : AppCompatActivity() {
     private lateinit var favoriteAdapter: FavoriteAdapter
     private lateinit var favoriteViewModel: FavoriteViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
@@ -64,12 +65,17 @@ class FavoriteActivity : AppCompatActivity() {
         }
     }
 
+    private fun setDialog(favoriteMovies: FavoriteMovies){
+        val dialogFragment = DeleteDialogFragment(
+            {favoriteViewModel.deleteDataFavorite(favoriteMovies)},
+        )
+        dialogFragment.show(supportFragmentManager,null)
+    }
+
     private fun setAdapter(){
         favoriteAdapter = FavoriteAdapter (
             { data: FavoriteMovies -> intentToDetails(data) },
-            { data : FavoriteMovies -> favoriteViewModel.deleteDataFavorite(
-                FavoriteMovies(data.id,data.name,data.title,data.poster)
-            )}
+            { data : FavoriteMovies -> setDialog(FavoriteMovies(data.id,data.name,data.title,data.poster))}
                 )
         binding.rvFavorite.adapter = favoriteAdapter
         binding.rvFavorite.layoutManager = LinearLayoutManager(this)
