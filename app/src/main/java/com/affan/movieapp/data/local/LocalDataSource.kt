@@ -2,7 +2,7 @@ package com.affan.movieapp.data.local
 
 import com.affan.movieapp.data.DataSource
 import com.affan.movieapp.data.local.room.MovieDatabase
-import com.affan.movieapp.data.local.room.FavoriteMovies
+import com.affan.movieapp.model.FavoriteMovies
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse

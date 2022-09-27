@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.domain.Repository
-import com.affan.movieapp.data.local.room.FavoriteMovies
+import com.affan.movieapp.model.FavoriteMovies
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,37 +14,31 @@ class FavoriteViewModel(
     private val repository: Repository
 ) : ViewModel() {
 
-    private val defaultCategory = "movies"
-
-    private val _loading = MutableLiveData<Boolean>()
-    val loading: LiveData<Boolean> = _loading
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _cinemaFavorite = MutableLiveData<List<FavoriteMovies>>()
     val cinemaFavorite : LiveData<List<FavoriteMovies>> = _cinemaFavorite
-
-//    private val _insertFavorite = MutableLiveData<Unit>()
-//    val insertFavorite : LiveData<Unit> = _insertFavorite
 
     private val _deleteFavorite = MutableLiveData<Unit>()
     val deleteFavorite : LiveData<Unit> = _deleteFavorite
 
     fun getDataFavorite () {
+        _isLoading.value = true
         viewModelScope.launch {
             withContext(Dispatchers.Main){
+                _isLoading.value = false
                 _cinemaFavorite.value = repository.getFavorite()
             }
         }
     }
 
-//    fun setDataMovies (favoriteMovies: FavoriteMovies){
-//        viewModelScope.launch {
-//            _insertFavorite.value = repository.insertFavorite(favoriteMovies)
-//        }
-//    }
-
     fun deleteDataFavorite (favoriteMovies: FavoriteMovies){
+        _isLoading.value = true
         viewModelScope.launch {
+            _isLoading.value = false
             _deleteFavorite.value = repository.deleteFavorite(favoriteMovies)
+
         }
     }
 

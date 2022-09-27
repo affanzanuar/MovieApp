@@ -6,12 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
-import com.affan.movieapp.data.local.room.FavoriteMovies
+import com.affan.movieapp.model.FavoriteMovies
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
-import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.details.videos.VideosResult
-import com.affan.movieapp.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -33,10 +31,6 @@ class DetailsViewModel(
 
     private val _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String> = _error
-
-    private val _insertFavorite = MutableLiveData<Unit>()
-    val insertFavorite : LiveData<Unit> = _insertFavorite
-
 
     fun setDataMovies (favoriteMovies: FavoriteMovies){
         viewModelScope.launch {

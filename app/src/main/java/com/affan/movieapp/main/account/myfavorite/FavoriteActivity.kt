@@ -4,10 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.affan.movieapp.databinding.ActivityFavoriteBinding
-import com.affan.movieapp.data.local.room.FavoriteMovies
+import com.affan.movieapp.model.FavoriteMovies
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.account.myfavorite.adapter.FavoriteAdapter
 import com.affan.movieapp.main.account.myfavorite.viewmodel.FavoriteViewModel
@@ -19,6 +20,7 @@ class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
     private lateinit var favoriteAdapter: FavoriteAdapter
     private lateinit var favoriteViewModel: FavoriteViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,20 +48,34 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun getObserveLiveData(){
+
+        favoriteViewModel.isLoading.observe(this) { isLoading ->
+            if (isLoading){
+                binding.rvFavorite.visibility = View.GONE
+            } else {
+                binding.rvFavorite.visibility = View.VISIBLE
+            }
+        }
+
         favoriteViewModel.cinemaFavorite.observe(this) { data ->
             favoriteAdapter.setDataFavorite(data)
         }
-        favoriteViewModel.deleteFavorite.observe(this) { _ ->
-//            favoriteAdapter.setDataFavorite(data)
+        favoriteViewModel.deleteFavorite.observe(this) {
+            favoriteViewModel.getDataFavorite()
         }
+    }
+
+    private fun setDialog(favoriteMovies: FavoriteMovies){
+        val dialogFragment = DeleteDialogFragment(
+            {favoriteViewModel.deleteDataFavorite(favoriteMovies)},
+        )
+        dialogFragment.show(supportFragmentManager,null)
     }
 
     private fun setAdapter(){
         favoriteAdapter = FavoriteAdapter (
             { data: FavoriteMovies -> intentToDetails(data) },
-            { data : FavoriteMovies -> favoriteViewModel.deleteDataFavorite(
-                FavoriteMovies(data.id,data.name,data.title,data.poster)
-            )}
+            { data : FavoriteMovies -> setDialog(FavoriteMovies(data.id,data.name,data.title,data.poster))}
                 )
         binding.rvFavorite.adapter = favoriteAdapter
         binding.rvFavorite.layoutManager = LinearLayoutManager(this)
@@ -67,6 +83,9 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun intentToDetails ( item : FavoriteMovies) {
+
+        val category : String
+
         val intent = Intent(this, DetailsActivity::class.java)
         val parcelable = FavoriteMovies(
             id = item.id,
@@ -74,11 +93,16 @@ class FavoriteActivity : AppCompatActivity() {
             title = item.title,
             poster = item.poster
         )
-        if (item.name == item.title+"."){
-            intent.putExtra(HomeFragment.CATEGORY,"series")
+
+        if (item.name?.isNotEmpty() == true){
+            category = "series"
         } else {
-            intent.putExtra(HomeFragment.CATEGORY,"movies")
+            category = "movies"
         }
+
+        Log.d("FavoriteActivity",item.name.toString())
+        Log.d("FavoriteActivity category",category)
+        intent.putExtra(HomeFragment.CATEGORY,category)
         intent.putExtra(HomeFragment.ID,item.id)
         intent.putExtra(HomeFragment.EXTRA_DATA_MS,parcelable)
         startActivity(intent)

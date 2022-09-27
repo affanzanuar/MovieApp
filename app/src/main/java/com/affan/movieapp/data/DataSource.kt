@@ -1,6 +1,6 @@
 package com.affan.movieapp.data
 
-import com.affan.movieapp.data.local.room.FavoriteMovies
+import com.affan.movieapp.model.FavoriteMovies
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse

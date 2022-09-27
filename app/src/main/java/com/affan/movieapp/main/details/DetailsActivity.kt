@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.affan.movieapp.R
-import com.affan.movieapp.data.local.room.FavoriteMovies
+import com.affan.movieapp.model.FavoriteMovies
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.account.myfavorite.FavoriteActivity
@@ -24,6 +24,8 @@ class DetailsActivity : AppCompatActivity() {
 
     private lateinit var detailsViewModel: DetailsViewModel
 
+    private lateinit var category : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
@@ -36,7 +38,9 @@ class DetailsActivity : AppCompatActivity() {
         }
 
         val id = intent.getIntExtra(HomeFragment.ID, 0)
-        val category = intent.getStringExtra(HomeFragment.CATEGORY).orEmpty()
+
+        category = intent.getStringExtra(HomeFragment.CATEGORY).orEmpty()
+
 
         Log.d("cekid", id.toString())
         Log.d("cekcategory", category)
@@ -49,13 +53,6 @@ class DetailsActivity : AppCompatActivity() {
 
 
     private fun observeLiveData() {
-
-        detailsViewModel.insertFavorite.observe(this) { data ->
-
-            binding.ivFavorite.setOnClickListener {
-            }
-
-        }
 
         detailsViewModel.loading.observe(this) { isLoading ->
             // TODO:
@@ -132,13 +129,43 @@ class DetailsActivity : AppCompatActivity() {
             binding.tvGenre.text = (sbGenre.toString())
 
             binding.ivFavorite.setOnClickListener {
-                detailsViewModel.setDataMovies(FavoriteMovies(
-                    id=data.id,
-                    name = data.title+".",
-                    title = data.title,
-                    poster = data.posterPath
-                ))
-                setCustomSnackBar()
+                val mCategory = category
+
+                if (mCategory=="movies"){
+                    detailsViewModel.setDataMovies(
+                        FavoriteMovies(
+                            id = data.id,
+                            name = null,
+                            title = data.title,
+                            poster = data.posterPath
+                        )
+                    )
+                } else {
+                    detailsViewModel.setDataMovies(
+                        FavoriteMovies(
+                            id = data.id,
+                            name = data.title,
+                            title = null,
+                            poster = data.posterPath
+                        )
+                    )
+                }
+                Log.d("Detail Activity",data.title!!)
+                Log.d("Snack Detail",category)
+                val snackBar = binding.root.let {
+                    Snackbar.make(
+                        it,
+                        "Has Been Added in Your Favorite",
+                        Snackbar.LENGTH_LONG)
+                }
+
+                snackBar.setAction("OPEN") { snackBar.also {
+                    val intent = Intent(this,FavoriteActivity::class.java)
+                    startActivity(intent)
+                }
+                }
+                snackBar.setActionTextColor(applicationContext.getColor(R.color.white))
+                snackBar.show()
             }
         }
         detailsViewModel.error.observe(this) { error ->
@@ -161,19 +188,8 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCustomSnackBar () {
-        val snackBar = binding.root.let {
-            Snackbar.make(
-                it,
-                "Has Been Added in Your Favorite",
-                Snackbar.LENGTH_LONG)
-        }
-        snackBar.setAction("OPEN") { snackBar.also { startActivity(Intent(this,FavoriteActivity::class.java)) } }
-        snackBar.setActionTextColor(applicationContext.getColor(R.color.white))
-        snackBar.show()
-    }
-
     companion object {
         private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
+        const val MCATEGORY = "mcategory"
     }
 }
