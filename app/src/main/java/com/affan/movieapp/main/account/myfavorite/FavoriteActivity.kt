@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.affan.movieapp.databinding.ActivityFavoriteBinding
@@ -46,10 +47,19 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun getObserveLiveData(){
+
+        favoriteViewModel.isLoading.observe(this) { isLoading ->
+            if (isLoading){
+                binding.rvFavorite.visibility = View.GONE
+            } else {
+                binding.rvFavorite.visibility = View.VISIBLE
+            }
+        }
+
         favoriteViewModel.cinemaFavorite.observe(this) { data ->
             favoriteAdapter.setDataFavorite(data)
         }
-        favoriteViewModel.deleteFavorite.observe(this) { data ->
+        favoriteViewModel.deleteFavorite.observe(this) {
             favoriteViewModel.getDataFavorite()
         }
     }

@@ -14,8 +14,8 @@ class FavoriteViewModel(
     private val repository: Repository
 ) : ViewModel() {
 
-    private val _loading = MutableLiveData<Boolean>()
-    val loading: LiveData<Boolean> = _loading
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _cinemaFavorite = MutableLiveData<List<FavoriteMovies>>()
     val cinemaFavorite : LiveData<List<FavoriteMovies>> = _cinemaFavorite
@@ -24,16 +24,21 @@ class FavoriteViewModel(
     val deleteFavorite : LiveData<Unit> = _deleteFavorite
 
     fun getDataFavorite () {
+        _isLoading.value = true
         viewModelScope.launch {
             withContext(Dispatchers.Main){
+                _isLoading.value = false
                 _cinemaFavorite.value = repository.getFavorite()
             }
         }
     }
 
     fun deleteDataFavorite (favoriteMovies: FavoriteMovies){
+        _isLoading.value = true
         viewModelScope.launch {
+            _isLoading.value = false
             _deleteFavorite.value = repository.deleteFavorite(favoriteMovies)
+
         }
     }
 
