@@ -66,9 +66,11 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun setDialog(favoriteMovies: FavoriteMovies){
-        val dialogFragment = DeleteDialogFragment(
-            {favoriteViewModel.deleteDataFavorite(favoriteMovies)},
-        )
+        val dialogFragment = DeleteDialogFragment {
+            favoriteViewModel.deleteDataFavorite(
+                favoriteMovies
+            )
+        }
         dialogFragment.show(supportFragmentManager,null)
     }
 

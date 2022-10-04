@@ -25,6 +25,7 @@ class FavoriteViewModel(
 
     fun getDataFavorite () {
         _isLoading.value = true
+        kotlin.runCatching {  }
         viewModelScope.launch {
             withContext(Dispatchers.Main){
                 _isLoading.value = false

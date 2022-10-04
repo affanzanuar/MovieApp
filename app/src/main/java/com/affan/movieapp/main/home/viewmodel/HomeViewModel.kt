@@ -63,13 +63,11 @@ class HomeViewModel (
                             viewModelScope.launch {
                                 withContext(Dispatchers.Main){
                                     body.results
-                                        .let {
-                                            if (it != null) {
-                                                _isLoading.value = false
-                                                _trending.value = it
-                                                Log.d("Home Presenter adalah",
-                                                    it.toString())
-                                            }
+                                        ?.let {
+                                            _isLoading.value = false
+                                            _trending.value = it
+                                            Log.d("Home Presenter adalah",
+                                                it.toString())
                                         }
                                 }
                             }
