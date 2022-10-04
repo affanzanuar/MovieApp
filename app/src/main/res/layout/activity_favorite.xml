@@ -38,17 +38,10 @@
         android:id="@+id/rvFavorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="62dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tbFavorite" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/rvFavorite"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
