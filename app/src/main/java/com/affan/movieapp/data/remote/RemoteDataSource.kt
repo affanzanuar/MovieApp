@@ -15,23 +15,23 @@ import retrofit2.Response
 class RemoteDataSource (
     private val apiService: ApiService
         ) : DataSource {
-    override fun getTopMoviesOrSeries(apiKey: String): Call<TrendingResponse> {
+    override suspend fun getTopMoviesOrSeries(apiKey: String): TrendingResponse {
         return apiService.getTopMoviesOrSeries(apiKey)
     }
 
-    override fun getNowPlaying(apiKey: String): Call<MovieResponse> {
+    override suspend fun getNowPlaying(apiKey: String): MovieResponse {
         return apiService.getNowPlaying(apiKey)
     }
 
-    override fun getMostPopularMovie(apiKey: String): Call<MovieResponse> {
+    override suspend fun getMostPopularMovie(apiKey: String): MovieResponse {
         return apiService.getMostPopularMovie(apiKey)
     }
 
-    override fun getMostPopularSeries(apiKey: String): Call<SeriesResponse> {
+    override suspend fun getMostPopularSeries(apiKey: String): SeriesResponse {
         return apiService.getMostPopularSeries(apiKey)
     }
 
-    override fun getComingSoon(
+    override suspend fun getComingSoon(
         apiKey: String,
         language: String,
         sortBy: String,
@@ -39,7 +39,7 @@ class RemoteDataSource (
         releaseDateGte: String,
         releaseDateLte: String,
         monetizationTypes: String
-    ): Call<ComingSoonResponse> {
+    ): ComingSoonResponse {
         return apiService.getComingSoon(
             apiKey,
             language,

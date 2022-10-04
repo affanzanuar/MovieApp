@@ -20,42 +20,45 @@ class HomePresenterImp(
     private val homeView: HomeView,
     private val coroutineScope : CoroutineScope
     ) : HomePresenter {
-
-    override fun getTopMoviesOrSeries(){
-        coroutineScope.launch {
-            withContext(Dispatchers.IO){
-                ApiClient.instance.getTopMoviesOrSeries(Data.apiKey)
-                    .enqueue(object : Callback<TrendingResponse> {
-                        override fun onResponse(
-                            call: Call<TrendingResponse>,
-                            response: Response<TrendingResponse>
-                        ) {
-                            val body = response.body()!!
-                            coroutineScope.launch {
-                                withContext(Dispatchers.Main){
-                                    body.results
-                                        .let {
-                                            if (it != null) {
-                                                homeView.onSuccessReceiveTopMoviesOrSeries(it)
-                                                Log.d("Main Presenter adalah",
-                                                    response.body()?.results.toString())
-                                            }
-                                        }
-                                }
-                            }
-                        }
-
-                        override fun onFailure(call: Call<TrendingResponse>, t: Throwable) {
-                            coroutineScope.launch {
-                                withContext(Dispatchers.Main){
-                                    homeView.onFailureReceiveTopMoviesOrSeries(t.message!!)
-                                }
-                            }
-                        }
-                    })
-            }
-        }
+    override fun getTopMoviesOrSeries() {
+        TODO("Not yet implemented")
     }
+
+//    override fun getTopMoviesOrSeries(){
+//        coroutineScope.launch {
+//            withContext(Dispatchers.IO){
+//                ApiClient.instance.getTopMoviesOrSeries(Data.apiKey)
+//                    .enqueue(object : Callback<TrendingResponse> {
+//                        override fun onResponse(
+//                            call: Call<TrendingResponse>,
+//                            response: Response<TrendingResponse>
+//                        ) {
+//                            val body = response.body()!!
+//                            coroutineScope.launch {
+//                                withContext(Dispatchers.Main){
+//                                    body.results
+//                                        .let {
+//                                            if (it != null) {
+//                                                homeView.onSuccessReceiveTopMoviesOrSeries(it)
+//                                                Log.d("Main Presenter adalah",
+//                                                    response.body()?.results.toString())
+//                                            }
+//                                        }
+//                                }
+//                            }
+//                        }
+//
+//                        override fun onFailure(call: Call<TrendingResponse>, t: Throwable) {
+//                            coroutineScope.launch {
+//                                withContext(Dispatchers.Main){
+//                                    homeView.onFailureReceiveTopMoviesOrSeries(t.message!!)
+//                                }
+//                            }
+//                        }
+//                    })
+//            }
+//        }
+//    }
 
     override fun getInTheaters(){
         coroutineScope.launch {

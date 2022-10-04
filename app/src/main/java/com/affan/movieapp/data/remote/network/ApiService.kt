@@ -16,19 +16,19 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("trending/all/day")
-    fun getTopMoviesOrSeries(
+    suspend fun getTopMoviesOrSeries(
         @Query("api_key") apiKey: String
-    ) : Call<TrendingResponse>
+    ) : TrendingResponse
 
     @GET("movie/now_playing")
-    fun getNowPlaying(
+    suspend fun getNowPlaying(
         @Query("api_key") apiKey : String
-    ) : Call<MovieResponse>
+    ) : MovieResponse
 
     @GET("movie/popular")
-    fun getMostPopularMovie(
+    suspend fun getMostPopularMovie(
         @Query("api_key") apiKey : String
-    ) : Call<MovieResponse>
+    ) : MovieResponse
 
     @GET("movie/popular")
     suspend fun getMostPopularMovies2(
@@ -42,9 +42,9 @@ interface ApiService {
     ) : retrofit2.Response<MovieResponse>
 
     @GET("tv/popular")
-    fun getMostPopularSeries(
+    suspend fun getMostPopularSeries(
         @Query("api_key") apiKey : String
-    ) : Call<SeriesResponse>
+    ) : SeriesResponse
 
     @GET("tv/popular")
     suspend fun getMostPopularSeries2(
@@ -58,7 +58,7 @@ interface ApiService {
     ) : retrofit2.Response<SeriesResponse>
 
     @GET("discover/movie")
-    fun getComingSoon(
+    suspend fun getComingSoon(
         @Query("api_key") apiKey: String,
         @Query("language") language : String,
         @Query("sort_by") sortBy : String,
@@ -66,7 +66,7 @@ interface ApiService {
         @Query("primary_release_date.gte") releaseDateGte : String,
         @Query("primary_release_date.lte") releaseDateLte : String,
         @Query("with_watch_monetization_types") monetizationTypes : String,
-    ) : Call<ComingSoonResponse>
+    ) : ComingSoonResponse
 
     @GET("movie/{movie_id}")
     suspend fun getMovieDetails(

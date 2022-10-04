@@ -15,23 +15,23 @@ import retrofit2.Response
 class LocalDataSource(
     private val moviesDatabase: MovieDatabase,
 ) : DataSource {
-    override fun getTopMoviesOrSeries(apiKey: String): Call<TrendingResponse> {
+    override suspend fun getTopMoviesOrSeries(apiKey: String): TrendingResponse {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
-    override fun getNowPlaying(apiKey: String): Call<MovieResponse> {
+    override suspend fun getNowPlaying(apiKey: String): MovieResponse {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
-    override fun getMostPopularMovie(apiKey: String): Call<MovieResponse> {
+    override suspend fun getMostPopularMovie(apiKey: String): MovieResponse {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
-    override fun getMostPopularSeries(apiKey: String): Call<SeriesResponse> {
+    override suspend fun getMostPopularSeries(apiKey: String): SeriesResponse {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
-    override fun getComingSoon(
+    override suspend fun getComingSoon(
         apiKey: String,
         language: String,
         sortBy: String,
@@ -39,7 +39,7 @@ class LocalDataSource(
         releaseDateGte: String,
         releaseDateLte: String,
         monetizationTypes: String
-    ): Call<ComingSoonResponse> {
+    ): ComingSoonResponse {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 

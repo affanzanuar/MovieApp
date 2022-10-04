@@ -47,41 +47,21 @@ class HomeViewModel (
 
     fun getTrending(){
         viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                withContext(Dispatchers.Main){
-                    _isLoading.value = true
+            runCatching {
+                _isLoading.value = true
+                withContext(Dispatchers.IO){
+                    repository.getTopMoviesOrSeries(Data.apiKey).results
                 }
-                repository.getTopMoviesOrSeries(Data.apiKey)
-                    .enqueue(object : Callback<TrendingResponse> {
-                        override fun onResponse(
-                            call: Call<TrendingResponse>,
-                            response: Response<TrendingResponse>
-                        ) {
-                            val body = response.body()!!
-                            Log.d("Home Presenter body",
-                                body.toString())
-                            viewModelScope.launch {
-                                withContext(Dispatchers.Main){
-                                    body.results
-                                        ?.let {
-                                            _isLoading.value = false
-                                            _trending.value = it
-                                            Log.d("Home Presenter adalah",
-                                                it.toString())
-                                        }
-                                }
-                            }
-                        }
-
-                        override fun onFailure(call: Call<TrendingResponse>, t: Throwable) {
-                            viewModelScope.launch {
-                                withContext(Dispatchers.Main){
-                                    _isLoading.value = false
-                                    _errorMessage.value = t.message
-                                }
-                            }
-                        }
-                    })
+            }.onSuccess { data ->
+                withContext(Dispatchers.Main){
+                    _trending.value = data
+                    _isLoading.value = false
+                }
+            }.onFailure { error ->
+                withContext(Dispatchers.Main){
+                    _errorMessage.value = error.message
+                    _isLoading.value = false
+                }
             }
         }
     }

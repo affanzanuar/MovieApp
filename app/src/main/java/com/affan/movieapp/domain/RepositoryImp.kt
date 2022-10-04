@@ -15,23 +15,23 @@ class RepositoryImp (
     private val localDataSource: DataSource,
     private val remoteDataSource : DataSource
         ) : Repository {
-    override fun getTopMoviesOrSeries(apiKey: String): Call<TrendingResponse> {
+    override suspend fun getTopMoviesOrSeries(apiKey: String): TrendingResponse {
         return remoteDataSource.getTopMoviesOrSeries(apiKey)
     }
 
-    override fun getNowPlaying(apiKey: String): Call<MovieResponse> {
+    override suspend fun getNowPlaying(apiKey: String): MovieResponse {
         return remoteDataSource.getNowPlaying(apiKey)
     }
 
-    override fun getMostPopularMovie(apiKey: String): Call<MovieResponse> {
+    override suspend fun getMostPopularMovie(apiKey: String): MovieResponse {
         return remoteDataSource.getMostPopularMovie(apiKey)
     }
 
-    override fun getMostPopularSeries(apiKey: String): Call<SeriesResponse> {
+    override suspend fun getMostPopularSeries(apiKey: String): SeriesResponse {
         return remoteDataSource.getMostPopularSeries(apiKey)
     }
 
-    override fun getComingSoon(
+    override suspend fun getComingSoon(
         apiKey: String,
         language : String,
         sortBy : String,
@@ -39,7 +39,7 @@ class RepositoryImp (
         releaseDateGte : String,
         releaseDateLte : String,
         monetizationTypes : String,
-    ): Call<ComingSoonResponse> {
+    ): ComingSoonResponse {
         return remoteDataSource.getComingSoon(
             apiKey,
             language,
