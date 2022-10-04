@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.affan.movieapp.databinding.ActivityFavoriteBinding
@@ -63,6 +64,10 @@ class FavoriteActivity : AppCompatActivity() {
         favoriteViewModel.deleteFavorite.observe(this) {
             favoriteViewModel.getDataFavorite()
         }
+
+        favoriteViewModel.errorMessage.observe(this) {error ->
+            Toast.makeText(this,error,Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun setDialog(favoriteMovies: FavoriteMovies){
@@ -86,8 +91,6 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun intentToDetails ( item : FavoriteMovies) {
 
-        val category : String
-
         val intent = Intent(this, DetailsActivity::class.java)
         val parcelable = FavoriteMovies(
             id = item.id,
@@ -96,10 +99,10 @@ class FavoriteActivity : AppCompatActivity() {
             poster = item.poster
         )
 
-        if (item.name?.isNotEmpty() == true){
-            category = "series"
+        val category = if (item.name?.isNotEmpty() == true){
+            "series"
         } else {
-            category = "movies"
+            "movies"
         }
 
         Log.d("FavoriteActivity",item.name.toString())
