@@ -31,7 +31,7 @@ class DetailsViewModel(
 
     private val _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String> = _error
-    
+
     fun setDataMovies (favoriteMovies: FavoriteMovies){
         viewModelScope.launch {
             runCatching {

@@ -50,7 +50,7 @@ class ViewModelFactory(
             .addInterceptor(logging)
             .build()
 
-        private val remoteDataSource : ApiService by lazy {
+        private val remote : ApiService by lazy {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(client)
@@ -59,14 +59,14 @@ class ViewModelFactory(
             retrofit.create(ApiService::class.java)
         }
 
-        private val remote = RemoteDataSource(remoteDataSource)
+        private val remoteDataSource = RemoteDataSource(remote)
 
         @Volatile
         private var INSTANCE : ViewModelFactory? = null
         fun getInstance(context : Context)= synchronized(ViewModelFactory::class.java){
             INSTANCE ?: ViewModelFactory(
                 RepositoryImp(
-                    remoteDataSource = remote,
+                    remoteDataSource = remoteDataSource,
                     localDataSource = LocalDataSource(MovieDatabase.getInstance(context))
                 )
             ). also { INSTANCE = it }
