@@ -47,23 +47,24 @@ class FavoriteViewModel(
         }
     }
 
-    fun getDataFavoritee () {
-        _isLoading.value = true
-        kotlin.runCatching {  }
+    fun deleteDataFavorite (favoriteMovies : FavoriteMovies){
         viewModelScope.launch {
-            withContext(Dispatchers.Main){
-                _isLoading.value = false
-                _cinemaFavorite.value = repository.getFavorite()
+            runCatching {
+                _isLoading.value = true
+                withContext(Dispatchers.IO) {
+                    repository.deleteFavorite(favoriteMovies)
+                }
+            }.onSuccess { data ->
+                withContext(Dispatchers.Main){
+                    _deleteFavorite.value = data
+                    _isLoading.value = false
+                }
+            }.onFailure { error ->
+                withContext(Dispatchers.Main){
+                    _errorMessage.value = error.message
+                    _isLoading.value = false
+                }
             }
-        }
-    }
-
-    fun deleteDataFavorite (favoriteMovies: FavoriteMovies){
-        _isLoading.value = true
-        viewModelScope.launch {
-            _isLoading.value = false
-            _deleteFavorite.value = repository.deleteFavorite(favoriteMovies)
-
         }
     }
 
