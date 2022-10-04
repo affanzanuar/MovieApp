@@ -23,7 +23,31 @@ class FavoriteViewModel(
     private val _deleteFavorite = MutableLiveData<Unit>()
     val deleteFavorite : LiveData<Unit> = _deleteFavorite
 
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage : LiveData<String> = _errorMessage
+
     fun getDataFavorite () {
+        viewModelScope.launch {
+            runCatching {
+                _isLoading.value = true
+                withContext(Dispatchers.IO){
+                    repository.getFavorite()
+                }
+            }.onSuccess { data ->
+                withContext(Dispatchers.Main){
+                    _cinemaFavorite.value = data
+                    _isLoading.value = false
+                }
+            }.onFailure { error ->
+                withContext(Dispatchers.Main){
+                    _errorMessage.value = error.message
+                    _isLoading.value = false
+                }
+            }
+        }
+    }
+
+    fun getDataFavoritee () {
         _isLoading.value = true
         kotlin.runCatching {  }
         viewModelScope.launch {
