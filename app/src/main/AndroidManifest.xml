@@ -30,7 +30,7 @@
         <activity
             android:name=".welcoming.LoginActivity"
             android:exported="false"/>
-        <activity android:name="com.affan.movieapp.main.account.myfavorite.FavoriteActivity"
+        <activity android:name="com.affan.movieapp.main.account.myfavorite.view.FavoriteActivity"
             android:exported="false"/>
         <activity
             android:name="com.affan.movieapp.main.details.DetailsActivity"

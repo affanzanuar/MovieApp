@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.affan.movieapp.databinding.FragmentAccountBinding
-import com.affan.movieapp.main.account.myfavorite.FavoriteActivity
+import com.affan.movieapp.main.account.myfavorite.view.FavoriteActivity
 import com.affan.movieapp.main.account.about.AboutActivity
 import com.affan.movieapp.main.account.editprofile.EditProfileActivity
 
@@ -29,7 +29,7 @@ class AccountFragment : Fragment() {
 //      (activity as AppCompatActivity).supportActionBar?.hide()
 
         binding.optMyFavorite.setOnClickListener {
-            Intent(context,FavoriteActivity::class.java).also {
+            Intent(context, FavoriteActivity::class.java).also {
                 startActivity(it)
             }
         }

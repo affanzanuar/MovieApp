@@ -1,4 +1,4 @@
-package com.affan.movieapp.main.account.myfavorite
+package com.affan.movieapp.main.account.myfavorite.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
