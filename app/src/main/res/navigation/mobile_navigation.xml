@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_movies"
-        android:name="com.affan.movieapp.main.movies.MoviesFragment"
+        android:name="com.affan.movieapp.main.movies.view.MoviesFragment"
         android:label="Movies"
         tools:layout="@layout/fragment_movies" />
 

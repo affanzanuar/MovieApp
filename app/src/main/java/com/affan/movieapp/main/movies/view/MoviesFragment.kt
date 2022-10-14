@@ -1,4 +1,4 @@
-package com.affan.movieapp.main.movies
+package com.affan.movieapp.main.movies.view
 
 import android.content.Intent
 import android.os.Bundle

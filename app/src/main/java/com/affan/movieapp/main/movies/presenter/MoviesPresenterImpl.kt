@@ -1,4 +1,4 @@
-package com.affan.movieapp.main.movies
+package com.affan.movieapp.main.movies.presenter
 
 import android.util.Log
 import com.affan.movieapp.data.Data
