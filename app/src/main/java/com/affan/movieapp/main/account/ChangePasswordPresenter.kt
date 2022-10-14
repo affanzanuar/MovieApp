@@ -1,7 +1,5 @@
 package com.affan.movieapp.main.account
 
-import com.affan.movieapp.main.ChangePasswordView
-
 class ChangePasswordPresenter(
     private val changePasswordView: ChangePasswordView,
     private val pass: String

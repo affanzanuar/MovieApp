@@ -1,4 +1,4 @@
-package com.affan.movieapp.main
+package com.affan.movieapp.main.account
 
 interface ChangePasswordView {
 

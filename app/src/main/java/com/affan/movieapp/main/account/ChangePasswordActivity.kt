@@ -5,9 +5,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ActivityChangePasswordBinding
-import com.affan.movieapp.main.ChangePasswordView
 
-class ChangePasswordActivity : AppCompatActivity(),ChangePasswordView {
+class ChangePasswordActivity : AppCompatActivity(), ChangePasswordView {
 
     private lateinit var binding: ActivityChangePasswordBinding
 
