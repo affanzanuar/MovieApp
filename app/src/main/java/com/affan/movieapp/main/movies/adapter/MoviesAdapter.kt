@@ -12,7 +12,8 @@ import com.bumptech.glide.Glide
 class MoviesAdapter(
     private val onClickToDetails : (data : Movie) -> Unit
 ) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
-    private val movies = mutableListOf<Movie?>()
+
+    private val itemMovies = mutableListOf<Movie?>()
 
     inner class MoviesViewHolder(
         val binding: CardLayoutBinding,
@@ -22,7 +23,6 @@ class MoviesAdapter(
                 .load(moviesData.loadPoster())
                 .into(binding.ivPoster)
             binding.tvTitle.text = moviesData.title
-//            binding.tvDescription.text = moviesData.voteAverage.toString() + "/10"
         }
     }
 
@@ -37,29 +37,21 @@ class MoviesAdapter(
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        movies[position]?.let { holder.bind(it) }
+        itemMovies[position]?.let { holder.bind(it) }
 
         holder.binding.root.setOnClickListener {
-            movies[position]?.let { it1 -> onClickToDetails(it1) }
+            itemMovies[position]?.let { it1 -> onClickToDetails(it1) }
         }
     }
 
     override fun getItemCount(): Int {
-        return movies.size
-    }
-
-    private fun add(dataMovies: Movie?) {
-        movies.add(dataMovies)
-        notifyItemInserted(movies.size - 1)
+        return itemMovies.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addAll(movieResults: List<Movie?>) {
-        for (result in movieResults) {
-            add(result)
-        }
+    fun addAll(item : List<Movie?>) {
+        itemMovies.addAll(item)
         notifyDataSetChanged()
     }
-
 
 }
