@@ -8,7 +8,7 @@ data class SeriesResponse(
     @SerializedName("page")
     val page: Int?,
     @SerializedName("results")
-    val series: List<Series>,
+    val series: MutableList<Series?>,
     @SerializedName("total_pages")
     val totalPages: Int?,
     @SerializedName("total_results")

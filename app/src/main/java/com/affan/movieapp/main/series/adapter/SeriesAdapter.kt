@@ -1,5 +1,6 @@
 package com.affan.movieapp.main.series.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ class SeriesAdapter(
     private val onClickToDetails: (data: Series) -> Unit
 ) : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
 
-    private val series = mutableListOf<Series?>()
+    private val itemSeries = mutableListOf<Series?>()
 
     inner class SeriesViewHolder(
         val binding: CardLayoutBinding,
@@ -21,7 +22,6 @@ class SeriesAdapter(
                 .load(seriesData.loadPoster())
                 .into(binding.ivPoster)
             binding.tvTitle.text = seriesData.name
-//            binding.tvDescription.text = seriesData.voteAverage.toString() + "/10"
         }
     }
 
@@ -36,26 +36,27 @@ class SeriesAdapter(
     }
 
     override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
-        series[position]?.let { holder.bind(it) }
+        itemSeries[position]?.let { holder.bind(it) }
 
         holder.binding.root.setOnClickListener {
-            series[position]?.let { it1 -> onClickToDetails(it1) }
+            itemSeries[position]?.let { it1 -> onClickToDetails(it1) }
         }
     }
 
     override fun getItemCount(): Int {
-        return series.size
+        return itemSeries.size
     }
 
-    private fun add(dataSeries: Series?) {
-        series.add(dataSeries)
-        notifyItemInserted(series.size - 1)
+    @SuppressLint("NotifyDataSetChanged")
+    fun addAll(item: List<Series?>) {
+        itemSeries.addAll(item)
+        notifyDataSetChanged()
     }
 
-    fun addAll(seriesResult: List<Series?>) {
-        for (result in seriesResult) {
-            add(result)
-        }
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearData (){
+        itemSeries.clear()
+        notifyDataSetChanged()
     }
 
 }

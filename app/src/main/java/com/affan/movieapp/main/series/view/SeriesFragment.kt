@@ -6,15 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.databinding.FragmentSeriesBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
-import com.affan.movieapp.main.series.adapter.PaginationRecyclerView
 import com.affan.movieapp.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
 import com.affan.movieapp.model.series.Series
@@ -25,15 +27,19 @@ class SeriesFragment : Fragment() {
 
     private lateinit var seriesAdapter: SeriesAdapter
 
+    private lateinit var mLayoutManager : LinearLayoutManager
+
     private val viewModel: SeriesViewModel by activityViewModels(
         factoryProducer = {
             ViewModelFactory.getInstance(requireContext())
         }
     )
 
-    private var page = 1
+    private var isLoading = false
 
-    private var isLoadDataOnProgress = false
+    private var isLastPage = false
+
+    private var isScrolling = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,41 +52,57 @@ class SeriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mLayoutManager = GridLayoutManager(context, 2)
         setSeriesAdapter()
-        viewModel.getPopularSeries(page)
         getObserve()
-
+        seriesAdapter.clearData()
+        viewModel.page = 1
+        viewModel.getPopularSeries()
     }
 
     private fun setSeriesAdapter() {
+        binding.rvSeries.setHasFixedSize(true)
         seriesAdapter = SeriesAdapter { series: Series ->
             intentToDetails(series)
         }
         binding.rvSeries.adapter = seriesAdapter
-        val layoutManager = GridLayoutManager(context, 2)
+        binding.rvSeries.layoutManager = mLayoutManager
+        binding.rvSeries.addOnScrollListener(this.scrollListener)
 
-        binding.rvSeries.layoutManager = layoutManager
-        binding.rvSeries.addOnScrollListener(object : PaginationRecyclerView(layoutManager) {
-            override fun loadMoreItems() {
-                page++
-                Log.d("checkPageMoreItems", "$page ")
-                isLoadDataOnProgress = true
-                viewModel.getPopularSeries(page)
+    }
+
+    private var scrollListener = object : RecyclerView.OnScrollListener(){
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+            val mChildCount = layoutManager.childCount
+            val mItemCount = layoutManager.itemCount
+            val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
+            val isLastItem = firstVisibleItemPosition + mChildCount >= mItemCount
+            val isNotBeginning = firstVisibleItemPosition >= 0
+            val isTotalMoreThanVisible = mItemCount >= 20
+            val shouldPaginate = isNotLoadingAndNotLastPage && isLastItem &&
+                    isNotBeginning && isTotalMoreThanVisible && isScrolling
+
+            if (shouldPaginate){
+                viewModel.getPopularSeries()
+                isScrolling = false
             }
+            Log.e("why SeriesFragment", mItemCount.toString())
+        }
 
-            override val isLastPage: Boolean
-                get() = false
-
-            override val isLoading: Boolean
-                get() = isLoadDataOnProgress
-
-        })
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                isScrolling = true
+            }
+        }
     }
 
     private fun getObserve(){
         viewModel.series.observe(requireActivity()) { data ->
-            binding.skSeriesFragment.visibility = View.VISIBLE
-            isLoadDataOnProgress = false
             binding.skSeriesFragment.visibility = View.GONE
             seriesAdapter.addAll(data!!)
         }
