@@ -7,7 +7,6 @@ import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
-import retrofit2.Call
 
 interface DataSource {
     suspend fun getTopMoviesOrSeries(apiKey: String) : TrendingResponse
