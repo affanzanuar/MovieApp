@@ -32,6 +32,7 @@ class SeriesFragment : Fragment() {
     )
 
     private var page = 1
+
     private var isLoadDataOnProgress = false
 
     override fun onCreateView(
