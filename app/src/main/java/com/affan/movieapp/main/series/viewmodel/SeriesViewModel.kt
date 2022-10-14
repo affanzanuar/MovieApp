@@ -1,6 +1,5 @@
 package com.affan.movieapp.main.series.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.series.Series
-import com.affan.movieapp.model.series.SeriesResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -20,11 +18,6 @@ class SeriesViewModel(private val repository: Repository) : ViewModel() {
 
     private val _series = MutableLiveData<MutableList<Series?>?>()
     val series : LiveData<MutableList<Series?>?> = _series
-
-//    private var new = mutableListOf<Series?>()
-//    private var old = mutableListOf<Series?>()
-
-    private var seriesResponse : SeriesResponse? = null
 
     var page = 1
 
@@ -42,12 +35,6 @@ class SeriesViewModel(private val repository: Repository) : ViewModel() {
                 withContext(Dispatchers.Main){
                     _series.value = data.series
                     page++
-//                    if (seriesResponse == null) {
-//                        seriesResponse = data
-//                    } else {
-//                        seriesResponse!!.series.addAll(data.series)
-//                    }
-//                    _series.value = seriesResponse?.series ?: data.series
                 }
             }.onFailure { error ->
                 withContext(Dispatchers.Main){

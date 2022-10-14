@@ -68,13 +68,11 @@ class SeriesFragment : Fragment() {
         binding.rvSeries.adapter = seriesAdapter
         binding.rvSeries.layoutManager = mLayoutManager
         binding.rvSeries.addOnScrollListener(this.scrollListener)
-
     }
 
     private var scrollListener = object : RecyclerView.OnScrollListener(){
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-
             val layoutManager = recyclerView.layoutManager as LinearLayoutManager
             val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
             val mChildCount = layoutManager.childCount
@@ -85,7 +83,6 @@ class SeriesFragment : Fragment() {
             val isTotalMoreThanVisible = mItemCount >= 20
             val shouldPaginate = isNotLoadingAndNotLastPage && isLastItem &&
                     isNotBeginning && isTotalMoreThanVisible && isScrolling
-
             if (shouldPaginate){
                 viewModel.getPopularSeries()
                 isScrolling = false
