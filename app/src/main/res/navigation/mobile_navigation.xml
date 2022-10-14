@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_series"
-        android:name="com.affan.movieapp.main.series.SeriesFragment"
+        android:name="com.affan.movieapp.main.series.view.SeriesFragment"
         android:label="Series"
         tools:layout="@layout/fragment_series" />
 
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_movies"
-        android:name="com.affan.movieapp.main.movies.MoviesFragment"
+        android:name="com.affan.movieapp.main.movies.view.MoviesFragment"
         android:label="Movies"
         tools:layout="@layout/fragment_movies" />
 

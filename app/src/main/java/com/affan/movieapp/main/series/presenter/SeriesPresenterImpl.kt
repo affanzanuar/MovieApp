@@ -1,11 +1,11 @@
-package com.affan.movieapp.main.movies
+package com.affan.movieapp.main.series.presenter
 
 import android.util.Log
 import com.affan.movieapp.data.Data
-import com.affan.movieapp.model.movie.MovieResponse
+import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.data.remote.network.ApiClient
-import com.affan.movieapp.main.movies.presenter.MoviesPresenter
-import com.affan.movieapp.main.movies.presenter.MoviesView
+import com.affan.movieapp.main.series.presenter.SeriesPresenter
+import com.affan.movieapp.main.series.presenter.SeriesView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,30 +14,30 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-@Deprecated("IMPLEMENT MVVM")
-class MoviesPresenterImpl(
-    private val moviesView: MoviesView,
+@Deprecated("Moved to MVVM")
+class SeriesPresenterImpl(
+    private val seriesView: SeriesView,
     private val coroutineScope: CoroutineScope
-) : MoviesPresenter {
-    override fun getPopularMovies() {
+) : SeriesPresenter {
+    override fun getPopularSeries() {
 //        coroutineScope.launch {
 //            withContext(Dispatchers.IO) {
-//                ApiClient.instance.getMostPopularMovie(Data.apiKey)
-//                    .enqueue(object : Callback<MovieResponse> {
+//                ApiClient.instance.getMostPopularSeries(Data.apiKey)
+//                    .enqueue(object : Callback<SeriesResponse> {
 //                        override fun onResponse(
-//                            call: Call<MovieResponse>,
-//                            response: Response<MovieResponse>
+//                            call: Call<SeriesResponse>,
+//                            response: Response<SeriesResponse>
 //                        ) {
 //                            val body = response.body()!!
 //                            coroutineScope.launch {
 //                                withContext(Dispatchers.Main) {
-//                                    body.results
+//                                    body.series
 //                                        .let {
 //                                            if (it != null) {
-//                                                moviesView.onSuccessGetPopularMovies(it)
+//                                                seriesView.onSuccessGetPopularSeries(it)
 //                                                Log.d(
 //                                                    "Main Presenter adalah",
-//                                                    response.body()?.results.toString()
+//                                                    response.body()?.series.toString()
 //                                                )
 //                                            }
 //                                        }
@@ -45,10 +45,10 @@ class MoviesPresenterImpl(
 //                            }
 //                        }
 //
-//                        override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+//                        override fun onFailure(call: Call<SeriesResponse>, t: Throwable) {
 //                            coroutineScope.launch {
 //                                withContext(Dispatchers.Main) {
-//                                    moviesView.onFailGetPopularMovies(t.message!!)
+//                                    seriesView.onFailGetPopularSeries(t.message!!)
 //                                }
 //                            }
 //                        }

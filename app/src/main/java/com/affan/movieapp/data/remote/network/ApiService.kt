@@ -6,8 +6,6 @@ import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
-import com.google.gson.annotations.JsonAdapter
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -27,35 +25,15 @@ interface ApiService {
 
     @GET("movie/popular")
     suspend fun getMostPopularMovie(
-        @Query("api_key") apiKey : String
-    ) : MovieResponse
-
-    @GET("movie/popular")
-    suspend fun getMostPopularMovies2(
-        @Query("api_key") apiKey : String
-    ) : retrofit2.Response<MovieResponse>
-
-    @GET("movie/popular")
-    suspend fun getMostPopularMovies3(
         @Query("api_key") apiKey : String,
         @Query("page") page: Int
-    ) : retrofit2.Response<MovieResponse>
+    ) : MovieResponse
 
     @GET("tv/popular")
     suspend fun getMostPopularSeries(
-        @Query("api_key") apiKey : String
-    ) : SeriesResponse
-
-    @GET("tv/popular")
-    suspend fun getMostPopularSeries2(
-        @Query("api_key") apiKey : String
-    ) : retrofit2.Response<SeriesResponse>
-
-    @GET("tv/popular")
-    suspend fun getMostPopularSeries3(
         @Query("api_key") apiKey : String,
         @Query("page") page: Int
-    ) : retrofit2.Response<SeriesResponse>
+    ) : SeriesResponse
 
     @GET("discover/movie")
     suspend fun getComingSoon(

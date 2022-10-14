@@ -1,5 +1,6 @@
 package com.affan.movieapp.main.movies.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -52,10 +53,12 @@ class MoviesAdapter(
         notifyItemInserted(movies.size - 1)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addAll(movieResults: List<Movie?>) {
         for (result in movieResults) {
             add(result)
         }
+        notifyDataSetChanged()
     }
 
 

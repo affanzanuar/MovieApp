@@ -1,4 +1,4 @@
-package com.affan.movieapp.model
+package com.affan.movieapp.model.favorite
 
 import android.os.Parcelable
 import androidx.room.Entity

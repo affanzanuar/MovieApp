@@ -1,7 +1,7 @@
 package com.affan.movieapp.data.remote
 
 import com.affan.movieapp.data.DataSource
-import com.affan.movieapp.model.FavoriteMovies
+import com.affan.movieapp.model.favorite.FavoriteMovies
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse
@@ -9,12 +9,11 @@ import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.data.remote.network.ApiService
-import retrofit2.Call
-import retrofit2.Response
 
 class RemoteDataSource (
     private val apiService: ApiService
         ) : DataSource {
+
     override suspend fun getTopMoviesOrSeries(apiKey: String): TrendingResponse {
         return apiService.getTopMoviesOrSeries(apiKey)
     }
@@ -23,12 +22,12 @@ class RemoteDataSource (
         return apiService.getNowPlaying(apiKey)
     }
 
-    override suspend fun getMostPopularMovie(apiKey: String): MovieResponse {
-        return apiService.getMostPopularMovie(apiKey)
+    override suspend fun getMostPopularMovie(apiKey: String, page : Int): MovieResponse {
+        return apiService.getMostPopularMovie(apiKey, page)
     }
 
-    override suspend fun getMostPopularSeries(apiKey: String): SeriesResponse {
-        return apiService.getMostPopularSeries(apiKey)
+    override suspend fun getMostPopularSeries(apiKey: String, page : Int): SeriesResponse {
+        return apiService.getMostPopularSeries(apiKey, page)
     }
 
     override suspend fun getComingSoon(
@@ -79,14 +78,4 @@ class RemoteDataSource (
         throw UnsupportedOperationException("Use Local Data Source!")
     }
 
-    override suspend fun getMostPopularSeries3(
-        apiKey: String,
-        page: Int
-    ): Response<SeriesResponse> {
-        return apiService.getMostPopularSeries3(apiKey, page)
-    }
-
-    override suspend fun getMostPopularMovies3(apiKey: String, page: Int): Response<MovieResponse> {
-        return apiService.getMostPopularMovies3(apiKey, page)
-    }
 }

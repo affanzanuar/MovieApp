@@ -33,15 +33,18 @@ import kotlinx.coroutines.withContext
 class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
+
     private lateinit var trendingAdapter: TrendingAdapter
+
     private lateinit var inTheaterAdapter: HomeMoviesAdapter
+
     private lateinit var mostPopularMovieAdapter: HomeMoviesAdapter
+
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
+
     private lateinit var comingSoonAdapter: ComingSoonAdapter
 
     private lateinit var homeViewModel: HomeViewModel
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,14 +53,11 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         homeViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[HomeViewModel::class.java]
-
         trendingAdapter = TrendingAdapter { data: Trending -> intentTrendingToDetails(data) }
         binding.vpTopMovies.adapter = trendingAdapter
         inTheaterAdapter = setMovieAdapter(binding.rvInTheatres)
@@ -191,28 +191,6 @@ class HomeFragment : Fragment() {
 
     private fun intentTrendingToDetails ( item : Trending) {
         val intent = Intent(context,DetailsActivity::class.java)
-        val parcelable = Trending (
-            item.adult,
-            item.backdropPath,
-            item.firstAirDate,
-            item.genreIds,
-            item.id,
-            item.mediaType,
-            item.name,
-            item.originCountry,
-            item.originalLanguage,
-            item.originalName,
-            item.originalTitle,
-            item.overview,
-            item.popularity,
-            item.posterPath,
-            item.releaseDate,
-            item.title,
-            item.video,
-            item.voteAverage,
-            item.voteCount
-        )
-        intent.putExtra(EXTRA_DATA_MS,parcelable)
         if (item.title.isNullOrEmpty()){
             intent.putExtra(CATEGORY,"series")
         } else {
@@ -224,23 +202,6 @@ class HomeFragment : Fragment() {
 
     private fun intentMoviesToDetails ( item : Movie) {
         val intent = Intent(context,DetailsActivity::class.java)
-        val parcelable = Movie (
-            item.adult,
-            item.backdropPath,
-            item.genreIds,
-            item.id,
-            item.originalLanguage,
-            item.originalTitle,
-            item.overview,
-            item.popularity,
-            item.posterPath,
-            item.releaseDate,
-            item.title,
-            item.video,
-            item.voteAverage,
-            item.voteCount
-        )
-        intent.putExtra(EXTRA_DATA_MS,parcelable)
         intent.putExtra(CATEGORY,"movies")
         intent.putExtra(ID,item.id)
         startActivity(intent)
@@ -248,22 +209,6 @@ class HomeFragment : Fragment() {
 
     private fun intentSeriesToDetails ( item : Series) {
         val intent = Intent(context,DetailsActivity::class.java)
-        val parcelable = Series (
-            item.backdropPath,
-            item.firstAirDate,
-            item.genreIds,
-            item.id,
-            item.name,
-            item.originCountry,
-            item.originalLanguage,
-            item.originalName,
-            item.overview,
-            item.popularity,
-            item.posterPath,
-            item.voteAverage,
-            item.voteCount
-        )
-        intent.putExtra(EXTRA_DATA_MS,parcelable)
         intent.putExtra(CATEGORY,"series")
         intent.putExtra(ID,item.id)
         startActivity(intent)
@@ -271,23 +216,6 @@ class HomeFragment : Fragment() {
 
     private fun intentComingSoonToDetails ( item : ComingSoon) {
         val intent = Intent(context,DetailsActivity::class.java)
-        val parcelable = ComingSoon (
-            item.adult,
-            item.backdropPath,
-            item.genreIds,
-            item.id,
-            item.originalLanguage,
-            item.originalTitle,
-            item.overview,
-            item.popularity,
-            item.posterPath,
-            item.releaseDate,
-            item.title,
-            item.video,
-            item.voteAverage,
-            item.voteCount
-        )
-        intent.putExtra(EXTRA_DATA_MS,parcelable)
         intent.putExtra(CATEGORY,"movies")
         intent.putExtra(ID,item.id)
         startActivity(intent)

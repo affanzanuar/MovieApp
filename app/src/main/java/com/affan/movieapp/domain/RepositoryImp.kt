@@ -1,20 +1,20 @@
 package com.affan.movieapp.domain
 
 import com.affan.movieapp.data.DataSource
-import com.affan.movieapp.model.FavoriteMovies
+import com.affan.movieapp.model.favorite.FavoriteMovies
 import com.affan.movieapp.model.comingsoon.ComingSoonResponse
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
-import retrofit2.Call
 import retrofit2.Response
 
 class RepositoryImp (
     private val localDataSource: DataSource,
     private val remoteDataSource : DataSource
         ) : Repository {
+
     override suspend fun getTopMoviesOrSeries(apiKey: String): TrendingResponse {
         return remoteDataSource.getTopMoviesOrSeries(apiKey)
     }
@@ -23,12 +23,12 @@ class RepositoryImp (
         return remoteDataSource.getNowPlaying(apiKey)
     }
 
-    override suspend fun getMostPopularMovie(apiKey: String): MovieResponse {
-        return remoteDataSource.getMostPopularMovie(apiKey)
+    override suspend fun getMostPopularMovie(apiKey: String, page : Int): MovieResponse {
+        return remoteDataSource.getMostPopularMovie(apiKey,page)
     }
 
-    override suspend fun getMostPopularSeries(apiKey: String): SeriesResponse {
-        return remoteDataSource.getMostPopularSeries(apiKey)
+    override suspend fun getMostPopularSeries(apiKey: String, page : Int): SeriesResponse {
+        return remoteDataSource.getMostPopularSeries(apiKey, page)
     }
 
     override suspend fun getComingSoon(
@@ -79,11 +79,4 @@ class RepositoryImp (
         return localDataSource.deleteFavorite(favoriteMovies)
     }
 
-    override suspend fun getPopularSeries(page: Int, apiKey: String): Response<SeriesResponse> {
-        return remoteDataSource.getMostPopularSeries3(apiKey, page)
-    }
-
-    override suspend fun getPopularMovies(page: Int, apiKey: String): Response<MovieResponse> {
-        return remoteDataSource.getMostPopularMovies3(apiKey, page)
-    }
 }

@@ -1,4 +1,4 @@
-package com.affan.movieapp.main.series
+package com.affan.movieapp.main.series.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -22,15 +22,17 @@ import com.affan.movieapp.model.series.Series
 class SeriesFragment : Fragment() {
 
     private lateinit var binding: FragmentSeriesBinding
+
     private lateinit var seriesAdapter: SeriesAdapter
 
-    private val seriesViewModel: SeriesViewModel by activityViewModels(
+    private val viewModel: SeriesViewModel by activityViewModels(
         factoryProducer = {
             ViewModelFactory.getInstance(requireContext())
         }
     )
 
     private var page = 1
+
     private var isLoadDataOnProgress = false
 
     override fun onCreateView(
@@ -45,17 +47,9 @@ class SeriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setSeriesAdapter()
-        seriesViewModel.series.observe(requireActivity()) {
-            binding.skSeriesFragment.visibility = View.VISIBLE
-            it.series.let { data ->
-                isLoadDataOnProgress = false
-                binding.skSeriesFragment.visibility = View.GONE
-                seriesAdapter.addAll(data)
-            }
-        }
-        seriesViewModel.errorMessage.observe(requireActivity()) {
-            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
-        }
+        viewModel.getPopularSeries(page)
+        getObserve()
+
     }
 
     private fun setSeriesAdapter() {
@@ -71,7 +65,7 @@ class SeriesFragment : Fragment() {
                 page++
                 Log.d("checkPageMoreItems", "$page ")
                 isLoadDataOnProgress = true
-                seriesViewModel.getPopularSeries(page)
+                viewModel.getPopularSeries(page)
             }
 
             override val isLastPage: Boolean
@@ -83,26 +77,21 @@ class SeriesFragment : Fragment() {
         })
     }
 
+    private fun getObserve(){
+        viewModel.series.observe(requireActivity()) { data ->
+            binding.skSeriesFragment.visibility = View.VISIBLE
+            isLoadDataOnProgress = false
+            binding.skSeriesFragment.visibility = View.GONE
+            seriesAdapter.addAll(data!!)
+        }
+        viewModel.errorMessage.observe(requireActivity()) {
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun intentToDetails(series: Series) {
         val intent = Intent(context, DetailsActivity::class.java)
-        val parcelable = Series(
-            series.backdropPath,
-            series.firstAirDate,
-            series.genreIds,
-            series.id,
-            series.name,
-            series.originCountry,
-            series.originalLanguage,
-            series.originalName,
-            series.overview,
-            series.popularity,
-            series.posterPath,
-            series.voteAverage,
-            series.voteCount
-        )
-        intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
-        intent.putExtra("id", series.id)
-        intent.putExtra("category", "series")
+        intent.putExtra(HomeFragment.ID, series.id)
         intent.putExtra(HomeFragment.CATEGORY, "series")
         startActivity(intent)
     }

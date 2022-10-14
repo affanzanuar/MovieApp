@@ -19,6 +19,8 @@ class HomeViewModel (
     private val _isLoading : MutableLiveData<Boolean> = MutableLiveData()
     val isLoading : LiveData<Boolean> = _isLoading
 
+    private val page : Int = 1
+
     private val _trending : MutableLiveData<List<Trending?>> = MutableLiveData()
     val trending : LiveData<List<Trending?>> = _trending
 
@@ -85,7 +87,7 @@ class HomeViewModel (
            runCatching {
                _isLoading.value = true
                withContext(Dispatchers.IO){
-                   repository.getMostPopularMovie(Data.apiKey).results
+                   repository.getMostPopularMovie(Data.apiKey, page).results
                }
            }.onSuccess { data ->
                withContext(Dispatchers.Main){
@@ -106,7 +108,7 @@ class HomeViewModel (
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO){
-                    repository.getMostPopularSeries(Data.apiKey).series
+                    repository.getMostPopularSeries(Data.apiKey, page).series
                 }
             }.onSuccess { data ->
                 withContext(Dispatchers.Main) {

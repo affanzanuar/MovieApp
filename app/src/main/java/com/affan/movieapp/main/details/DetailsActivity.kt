@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.affan.movieapp.R
-import com.affan.movieapp.model.FavoriteMovies
+import com.affan.movieapp.model.favorite.FavoriteMovies
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.account.myfavorite.view.FavoriteActivity
@@ -190,6 +190,5 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
-        const val MCATEGORY = "mcategory"
     }
 }

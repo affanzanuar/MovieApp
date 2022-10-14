@@ -1,10 +1,10 @@
 package com.affan.movieapp.main.series.presenter
 
 import com.affan.movieapp.model.series.Series
-import com.affan.movieapp.main.series.SeriesData
 
+@Deprecated("unused anymore")
 interface SeriesView {
-    fun onReceiveSeries(series: List<SeriesData>)
+    fun onReceiveSeries(series: List<Series>)
     fun onSuccessGetPopularSeries(series: List<Series?>)
     fun onFailGetPopularSeries(string: String)
 }
