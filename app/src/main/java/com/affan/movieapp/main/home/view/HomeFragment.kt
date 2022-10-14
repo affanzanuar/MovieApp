@@ -33,10 +33,15 @@ import kotlinx.coroutines.withContext
 class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
+
     private lateinit var trendingAdapter: TrendingAdapter
+
     private lateinit var inTheaterAdapter: HomeMoviesAdapter
+
     private lateinit var mostPopularMovieAdapter: HomeMoviesAdapter
+
     private lateinit var mostPopularSeriesAdapter: HomeSeriesAdapter
+
     private lateinit var comingSoonAdapter: ComingSoonAdapter
 
     private lateinit var homeViewModel: HomeViewModel

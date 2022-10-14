@@ -23,9 +23,10 @@ import com.affan.movieapp.model.movie.Movie
 class MoviesFragment : Fragment() {
 
     private lateinit var binding: FragmentMoviesBinding
+
     private lateinit var moviesAdapter: MoviesAdapter
 
-    private val moviesViewModel: MoviesViewModel by activityViewModels(
+    private val viewModel: MoviesViewModel by activityViewModels(
         factoryProducer = {
             ViewModelFactory.getInstance(requireContext())
         }
@@ -46,16 +47,24 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setMoviesAdapter()
+        viewModel.getPopularMovies(page)
+        getObserve()
+    }
 
-        moviesViewModel.movies.observe(requireActivity()) {
-            binding.skMoviesFragment.visibility = View.VISIBLE
-            it.results?.let { data ->
+    private fun getObserve(){
+        viewModel.isLoading.observe(requireActivity()) { isLoading ->
+            if (isLoading){
+                binding.skMoviesFragment.visibility = View.VISIBLE
+            } else {
                 binding.skMoviesFragment.visibility = View.GONE
-                isLoadDataOnProgress = false
-                moviesAdapter.addAll(data)
             }
         }
-        moviesViewModel.errorMessage.observe(requireActivity()) {
+
+        viewModel.movies.observe(requireActivity()) { data ->
+            isLoadDataOnProgress = false
+            moviesAdapter.addAll(data!!)
+        }
+        viewModel.errorMessage.observe(requireActivity()) {
             Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
         }
     }
@@ -73,7 +82,7 @@ class MoviesFragment : Fragment() {
                 page++
                 Log.d("checkPageMoreItems", "$page ")
                 isLoadDataOnProgress = true
-                moviesViewModel.getPopularMovies(page)
+                viewModel.getPopularMovies(page)
             }
 
             override val isLastPage: Boolean
@@ -86,26 +95,8 @@ class MoviesFragment : Fragment() {
 
     private fun intentToDetails(movies: Movie) {
         val intent = Intent(context, DetailsActivity::class.java)
-        val parcelable = Movie(
-            movies.adult,
-            movies.backdropPath,
-            movies.genreIds,
-            movies.id,
-            movies.originalLanguage,
-            movies.originalTitle,
-            movies.overview,
-            movies.popularity,
-            movies.posterPath,
-            movies.releaseDate,
-            movies.title,
-            movies.video,
-            movies.voteAverage,
-            movies.voteCount
-        )
-        intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
         intent.putExtra(HomeFragment.CATEGORY, "movies")
-        intent.putExtra("id",movies.id)
-        intent.putExtra("category","movies")
+        intent.putExtra(HomeFragment.ID,movies.id)
         startActivity(intent)
     }
 }
