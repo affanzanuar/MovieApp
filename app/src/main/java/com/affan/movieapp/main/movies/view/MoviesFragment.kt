@@ -2,7 +2,6 @@ package com.affan.movieapp.main.movies.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.main.movies.adapter.MoviesAdapter
 import com.affan.movieapp.main.movies.viewmodel.MoviesViewModel
-import com.affan.movieapp.main.series.adapter.PaginationRecyclerView
 import com.affan.movieapp.model.movie.Movie
 
 

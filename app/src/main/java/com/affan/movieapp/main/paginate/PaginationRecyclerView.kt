@@ -1,4 +1,4 @@
-package com.affan.movieapp.main.series.adapter
+package com.affan.movieapp.main.paginate
 
 import android.util.Log
 import android.widget.AbsListView
