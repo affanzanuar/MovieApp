@@ -17,6 +17,7 @@ import com.affan.movieapp.databinding.FragmentSeriesBinding
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.details.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
+import com.affan.movieapp.main.series.adapter.PaginationRecyclerView
 import com.affan.movieapp.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
 import com.affan.movieapp.model.series.Series
@@ -27,7 +28,7 @@ class SeriesFragment : Fragment() {
 
     private lateinit var seriesAdapter: SeriesAdapter
 
-    private lateinit var mLayoutManager : LinearLayoutManager
+    private lateinit var mLayoutManager : GridLayoutManager
 
     private val viewModel: SeriesViewModel by activityViewModels(
         factoryProducer = {
@@ -67,7 +68,21 @@ class SeriesFragment : Fragment() {
         }
         binding.rvSeries.adapter = seriesAdapter
         binding.rvSeries.layoutManager = mLayoutManager
-        binding.rvSeries.addOnScrollListener(this.scrollListener)
+//        binding.rvSeries.addOnScrollListener(this.scrollListener)
+
+        binding.rvSeries.addOnScrollListener(object : PaginationRecyclerView({ viewModel.getPopularSeries() }) {
+
+//            override fun loadMoreItems() {
+////                page++
+////                Log.d("checkPageMoreItems", "$page ")
+////                isLoadDataOnProgress = true
+////                viewModel.getPopularSeries(page)
+//                viewModel.getPopularSeries()
+//            }
+
+
+
+        })
     }
 
     private var scrollListener = object : RecyclerView.OnScrollListener(){
@@ -78,9 +93,9 @@ class SeriesFragment : Fragment() {
             val mChildCount = layoutManager.childCount
             val mItemCount = layoutManager.itemCount
             val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
-            val isLastItem = firstVisibleItemPosition + mChildCount >= mItemCount
+            val isLastItem = firstVisibleItemPosition + mChildCount >= mItemCount * 0.5
             val isNotBeginning = firstVisibleItemPosition >= 0
-            val isTotalMoreThanVisible = mItemCount >= 20
+            val isTotalMoreThanVisible = mItemCount >= 10
             val shouldPaginate = isNotLoadingAndNotLastPage && isLastItem &&
                     isNotBeginning && isTotalMoreThanVisible && isScrolling
             if (shouldPaginate){

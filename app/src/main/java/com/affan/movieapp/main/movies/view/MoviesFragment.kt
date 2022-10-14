@@ -78,20 +78,20 @@ class MoviesFragment : Fragment() {
         val layoutManager = GridLayoutManager(context, 2)
 
         binding.rvMovies.layoutManager = layoutManager
-        binding.rvMovies.addOnScrollListener(object : PaginationRecyclerView(layoutManager) {
-            override fun loadMoreItems() {
-                page++
-                Log.d("checkPageMoreItems", "$page ")
-                isLoadDataOnProgress = true
-                viewModel.getPopularMovies(page)
-            }
-
-            override val isLastPage: Boolean
-                get() = false
-
-            override val isLoading: Boolean
-                get() = isLoadDataOnProgress
-        })
+//        binding.rvMovies.addOnScrollListener(object : PaginationRecyclerView(layoutManager) {
+//            override fun loadMoreItems() {
+//                page++
+//                Log.d("checkPageMoreItems", "$page ")
+//                isLoadDataOnProgress = true
+//                viewModel.getPopularMovies(page)
+//            }
+//
+//            override val isLastPage: Boolean
+//                get() = false
+//
+//            override val isLoading: Boolean
+//                get() = isLoadDataOnProgress
+//        })
     }
 
     private fun intentToDetails(movies: Movie) {
