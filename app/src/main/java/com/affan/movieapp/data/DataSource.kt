@@ -10,11 +10,11 @@ import com.affan.movieapp.model.trending.TrendingResponse
 import retrofit2.Call
 
 interface DataSource {
-    fun getTopMoviesOrSeries(apiKey: String) : Call<TrendingResponse>
-    fun getNowPlaying(apiKey: String) : Call<MovieResponse>
-    fun getMostPopularMovie(apiKey: String) : Call<MovieResponse>
-    fun getMostPopularSeries(apiKey: String) : Call<SeriesResponse>
-    fun getComingSoon(
+    suspend fun getTopMoviesOrSeries(apiKey: String) : TrendingResponse
+    suspend fun getNowPlaying(apiKey: String) : MovieResponse
+    suspend fun getMostPopularMovie(apiKey: String) : MovieResponse
+    suspend fun getMostPopularSeries(apiKey: String) : SeriesResponse
+    suspend fun getComingSoon(
         apiKey: String,
         language : String,
         sortBy : String,
@@ -22,7 +22,7 @@ interface DataSource {
         releaseDateGte : String,
         releaseDateLte : String,
         monetizationTypes : String,
-    ) : Call<ComingSoonResponse>
+    ) : ComingSoonResponse
 
     suspend fun getMovieDetails(
         id:Int,

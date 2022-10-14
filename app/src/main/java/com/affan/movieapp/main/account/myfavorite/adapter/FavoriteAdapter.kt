@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemContainerFavoriteBinding
 import com.affan.movieapp.model.FavoriteMovies
 import com.bumptech.glide.Glide
@@ -21,6 +22,7 @@ class FavoriteAdapter(
                 val item = itemFavorite[position]
                 Glide.with(binding.root)
                     .load(BASE_URL+item.poster)
+                    .placeholder(R.drawable.ic_default_poster)
                     .into(binding.ivPosterFavorite)
 
                 binding.tvTitleFavorite.text = item.name ?: item.title

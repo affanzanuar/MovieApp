@@ -23,22 +23,48 @@ class FavoriteViewModel(
     private val _deleteFavorite = MutableLiveData<Unit>()
     val deleteFavorite : LiveData<Unit> = _deleteFavorite
 
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage : LiveData<String> = _errorMessage
+
     fun getDataFavorite () {
-        _isLoading.value = true
         viewModelScope.launch {
-            withContext(Dispatchers.Main){
-                _isLoading.value = false
-                _cinemaFavorite.value = repository.getFavorite()
+            runCatching {
+                _isLoading.value = true
+                withContext(Dispatchers.IO){
+                    repository.getFavorite()
+                }
+            }.onSuccess { data ->
+                withContext(Dispatchers.Main){
+                    _cinemaFavorite.value = data
+                    _isLoading.value = false
+                }
+            }.onFailure { error ->
+                withContext(Dispatchers.Main){
+                    _errorMessage.value = error.message
+                    _isLoading.value = false
+                }
             }
         }
     }
 
-    fun deleteDataFavorite (favoriteMovies: FavoriteMovies){
-        _isLoading.value = true
+    fun deleteDataFavorite (favoriteMovies : FavoriteMovies){
         viewModelScope.launch {
-            _isLoading.value = false
-            _deleteFavorite.value = repository.deleteFavorite(favoriteMovies)
-
+            runCatching {
+                _isLoading.value = true
+                withContext(Dispatchers.IO) {
+                    repository.deleteFavorite(favoriteMovies)
+                }
+            }.onSuccess { data ->
+                withContext(Dispatchers.Main){
+                    _deleteFavorite.value = data
+                    _isLoading.value = false
+                }
+            }.onFailure { error ->
+                withContext(Dispatchers.Main){
+                    _errorMessage.value = error.message
+                    _isLoading.value = false
+                }
+            }
         }
     }
 

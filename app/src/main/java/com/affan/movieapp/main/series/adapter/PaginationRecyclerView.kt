@@ -6,6 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class PaginationRecyclerView(private val layoutManager: GridLayoutManager) :
     RecyclerView.OnScrollListener() {
+
+    abstract val isLastPage: Boolean
+
+    abstract val isLoading: Boolean
+
+    protected abstract fun loadMoreItems()
+
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
         val visibleItemCount = layoutManager.childCount
@@ -20,7 +27,5 @@ abstract class PaginationRecyclerView(private val layoutManager: GridLayoutManag
         }
     }
 
-    protected abstract fun loadMoreItems()
-    abstract val isLastPage: Boolean
-    abstract val isLoading: Boolean
+
 }

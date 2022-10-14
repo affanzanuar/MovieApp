@@ -34,7 +34,15 @@ class DetailsViewModel(
 
     fun setDataMovies (favoriteMovies: FavoriteMovies){
         viewModelScope.launch {
-            repository.insertFavorite(favoriteMovies)
+            runCatching {
+                withContext(Dispatchers.IO){
+                    repository.insertFavorite(favoriteMovies)
+                }
+            }.onFailure { error ->
+                withContext(Dispatchers.Main){
+                    _error.value = error.message
+                }
+            }
         }
     }
 

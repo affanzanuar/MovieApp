@@ -11,7 +11,7 @@ import com.affan.movieapp.R
 import com.affan.movieapp.model.FavoriteMovies
 import com.affan.movieapp.databinding.ActivityDetailsBinding
 import com.affan.movieapp.di.ViewModelFactory
-import com.affan.movieapp.main.account.myfavorite.FavoriteActivity
+import com.affan.movieapp.main.account.myfavorite.view.FavoriteActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -160,7 +160,7 @@ class DetailsActivity : AppCompatActivity() {
                 }
 
                 snackBar.setAction("OPEN") { snackBar.also {
-                    val intent = Intent(this,FavoriteActivity::class.java)
+                    val intent = Intent(this, FavoriteActivity::class.java)
                     startActivity(intent)
                 }
                 }
