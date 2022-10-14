@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.affan.movieapp.data.Data
+import com.affan.movieapp.data.Utility
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.comingsoon.ComingSoon
 import com.affan.movieapp.model.movie.Movie
@@ -44,7 +44,7 @@ class HomeViewModel (
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO){
-                    repository.getTopMoviesOrSeries(Data.apiKey).results
+                    repository.getTopMoviesOrSeries(Utility.apiKey).results
                 }
             }.onSuccess { data ->
                 withContext(Dispatchers.Main){
@@ -65,7 +65,7 @@ class HomeViewModel (
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO){
-                    repository.getNowPlaying(Data.apiKey).results
+                    repository.getNowPlaying(Utility.apiKey).results
                 }
             }.onSuccess { data ->
                 withContext(Dispatchers.Main){
@@ -87,7 +87,7 @@ class HomeViewModel (
            runCatching {
                _isLoading.value = true
                withContext(Dispatchers.IO){
-                   repository.getMostPopularMovie(Data.apiKey, page).results
+                   repository.getMostPopularMovie(Utility.apiKey, page).results
                }
            }.onSuccess { data ->
                withContext(Dispatchers.Main){
@@ -108,7 +108,7 @@ class HomeViewModel (
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO){
-                    repository.getMostPopularSeries(Data.apiKey, page).series
+                    repository.getMostPopularSeries(Utility.apiKey, page).series
                 }
             }.onSuccess { data ->
                 withContext(Dispatchers.Main) {
@@ -130,13 +130,13 @@ class HomeViewModel (
                 _isLoading.value = true
                 withContext(Dispatchers.IO){
                     repository.getComingSoon(
-                        Data.apiKey,
-                        Data.language,
-                        Data.sortBy,
-                        Data.page,
-                        Data.releaseDateGte,
-                        Data.releaseDateLte,
-                        Data.monetizationTypes
+                        Utility.apiKey,
+                        Utility.language,
+                        Utility.sortBy,
+                        Utility.page,
+                        Utility.releaseDateGte,
+                        Utility.releaseDateLte,
+                        Utility.monetizationTypes
                     ).results
                 }
             }.onSuccess { data ->

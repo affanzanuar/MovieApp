@@ -3,7 +3,7 @@ package com.affan.movieapp.data
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-object Data {
+object Utility {
 
     const val apiKey = "b19b7218066efbe56b3d9d35f71e509a"
     const val language = "en-US"

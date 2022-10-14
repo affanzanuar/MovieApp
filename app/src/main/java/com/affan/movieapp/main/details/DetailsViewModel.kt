@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.affan.movieapp.data.Data
+import com.affan.movieapp.data.Utility
 import com.affan.movieapp.model.favorite.FavoriteMovies
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
@@ -52,9 +52,9 @@ class DetailsViewModel(
                 withContext(Dispatchers.Main) {
                     _loading.value = true
                     if (category == _defaultCategory) {
-                        repository.getMovieDetails(id, Data.apiKey)
+                        repository.getMovieDetails(id, Utility.apiKey)
                     } else {
-                        repository.getTvDetails(id, Data.apiKey)
+                        repository.getTvDetails(id, Utility.apiKey)
                     }
                 }
             }.onSuccess { data ->
@@ -78,9 +78,9 @@ class DetailsViewModel(
                 withContext(Dispatchers.Main) {
                     _loading.value = true
                     if (category == _defaultCategory) {
-                        repository.getMovieVideos(id, Data.apiKey)
+                        repository.getMovieVideos(id, Utility.apiKey)
                     } else {
-                        repository.getTvVideos(id, Data.apiKey)
+                        repository.getTvVideos(id, Utility.apiKey)
                     }
                 }
             }.onSuccess { data ->

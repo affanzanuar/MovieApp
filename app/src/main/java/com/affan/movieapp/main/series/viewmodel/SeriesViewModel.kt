@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.affan.movieapp.data.Data
+import com.affan.movieapp.data.Utility
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.series.Series
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +29,7 @@ class SeriesViewModel(private val repository: Repository) : ViewModel() {
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO){
-                    repository.getMostPopularSeries(Data.apiKey, pageSeries)
+                    repository.getMostPopularSeries(Utility.apiKey, pageSeries)
                 }
             }.onSuccess { data ->
                 withContext(Dispatchers.Main){

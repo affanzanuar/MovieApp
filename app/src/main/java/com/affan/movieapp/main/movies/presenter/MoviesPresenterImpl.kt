@@ -1,18 +1,6 @@
 package com.affan.movieapp.main.movies.presenter
 
-import android.util.Log
-import com.affan.movieapp.data.Data
-import com.affan.movieapp.model.movie.MovieResponse
-import com.affan.movieapp.data.remote.network.ApiClient
-import com.affan.movieapp.main.movies.presenter.MoviesPresenter
-import com.affan.movieapp.main.movies.presenter.MoviesView
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @Deprecated("IMPLEMENT MVVM")
 class MoviesPresenterImpl(

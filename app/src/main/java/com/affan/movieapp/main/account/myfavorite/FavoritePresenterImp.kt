@@ -1,6 +1,5 @@
 package com.affan.movieapp.main.account.myfavorite
 
-import com.affan.movieapp.data.Data
 import com.affan.movieapp.main.account.myfavorite.presenter.FavoritePresenter
 import com.affan.movieapp.main.account.myfavorite.presenter.FavoriteView
 
