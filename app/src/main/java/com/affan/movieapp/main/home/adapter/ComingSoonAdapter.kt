@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemHorizontalContainerBinding
-import com.affan.movieapp.model.comingsoon.ComingSoon
+import com.affan.movieapp.data.model.comingsoon.ComingSoon
 import com.bumptech.glide.Glide
 
 class ComingSoonAdapter(

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemHorizontalContainerBinding
-import com.affan.movieapp.model.series.Series
+import com.affan.movieapp.data.model.series.Series
 import com.bumptech.glide.Glide
 
 class HomeSeriesAdapter (

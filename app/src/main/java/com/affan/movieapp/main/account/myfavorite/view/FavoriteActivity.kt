@@ -9,11 +9,11 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.affan.movieapp.databinding.ActivityFavoriteBinding
-import com.affan.movieapp.model.favorite.FavoriteMovies
+import com.affan.movieapp.data.model.favorite.FavoriteMovies
 import com.affan.movieapp.di.ViewModelFactory
 import com.affan.movieapp.main.account.myfavorite.adapter.FavoriteAdapter
 import com.affan.movieapp.main.account.myfavorite.viewmodel.FavoriteViewModel
-import com.affan.movieapp.main.details.DetailsActivity
+import com.affan.movieapp.main.details.view.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 
 class FavoriteActivity : AppCompatActivity() {

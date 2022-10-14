@@ -2,13 +2,13 @@ package com.affan.movieapp.data.local
 
 import com.affan.movieapp.data.DataSource
 import com.affan.movieapp.data.local.room.MovieDatabase
-import com.affan.movieapp.model.favorite.FavoriteMovies
-import com.affan.movieapp.model.comingsoon.ComingSoonResponse
-import com.affan.movieapp.model.details.movies.DetailsMovieResponse
-import com.affan.movieapp.model.details.videos.VideosResponse
-import com.affan.movieapp.model.movie.MovieResponse
-import com.affan.movieapp.model.series.SeriesResponse
-import com.affan.movieapp.model.trending.TrendingResponse
+import com.affan.movieapp.data.model.favorite.FavoriteMovies
+import com.affan.movieapp.data.model.comingsoon.ComingSoonResponse
+import com.affan.movieapp.data.model.details.movies.DetailsMovieResponse
+import com.affan.movieapp.data.model.details.videos.VideosResponse
+import com.affan.movieapp.data.model.movie.MovieResponse
+import com.affan.movieapp.data.model.series.SeriesResponse
+import com.affan.movieapp.data.model.trending.TrendingResponse
 
 class LocalDataSource(
     private val moviesDatabase: MovieDatabase,

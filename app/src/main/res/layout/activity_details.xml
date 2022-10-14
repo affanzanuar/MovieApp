@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/id_background_detail_movies"
-    tools:context=".main.details.DetailsActivity">
+    tools:context=".main.details.view.DetailsActivity">
 
     <ImageView
         android:id="@+id/ivBack"

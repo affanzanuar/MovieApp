@@ -11,12 +11,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.affan.movieapp.databinding.FragmentSeriesBinding
 import com.affan.movieapp.di.ViewModelFactory
-import com.affan.movieapp.main.details.DetailsActivity
+import com.affan.movieapp.main.details.view.DetailsActivity
 import com.affan.movieapp.main.home.view.HomeFragment
 import com.affan.movieapp.main.paginate.PaginationRecyclerView
 import com.affan.movieapp.main.series.adapter.SeriesAdapter
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel
-import com.affan.movieapp.model.series.Series
+import com.affan.movieapp.data.model.series.Series
 
 class SeriesFragment : Fragment() {
 

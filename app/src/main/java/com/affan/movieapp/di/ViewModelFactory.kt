@@ -9,7 +9,7 @@ import com.affan.movieapp.data.remote.RemoteDataSource
 import com.affan.movieapp.domain.RepositoryImp
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.main.account.myfavorite.viewmodel.FavoriteViewModel
-import com.affan.movieapp.main.details.DetailsViewModel
+import com.affan.movieapp.main.details.viewmodel.DetailsViewModel
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
 import com.affan.movieapp.main.movies.viewmodel.MoviesViewModel
 import com.affan.movieapp.main.series.viewmodel.SeriesViewModel

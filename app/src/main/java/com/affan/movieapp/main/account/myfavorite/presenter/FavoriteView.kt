@@ -1,6 +1,6 @@
 package com.affan.movieapp.main.account.myfavorite.presenter
 
-import com.affan.movieapp.model.favorite.FavoriteMovies
+import com.affan.movieapp.data.model.favorite.FavoriteMovies
 
 @Deprecated("Not Used Anymore")
 interface FavoriteView {

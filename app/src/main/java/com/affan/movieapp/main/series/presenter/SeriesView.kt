@@ -1,6 +1,6 @@
 package com.affan.movieapp.main.series.presenter
 
-import com.affan.movieapp.model.series.Series
+import com.affan.movieapp.data.model.series.Series
 
 @Deprecated("unused anymore")
 interface SeriesView {

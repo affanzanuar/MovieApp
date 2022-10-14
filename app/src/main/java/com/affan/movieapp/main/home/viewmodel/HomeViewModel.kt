@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Utility
 import com.affan.movieapp.domain.Repository
-import com.affan.movieapp.model.comingsoon.ComingSoon
-import com.affan.movieapp.model.movie.Movie
-import com.affan.movieapp.model.series.Series
-import com.affan.movieapp.model.trending.Trending
+import com.affan.movieapp.data.model.comingsoon.ComingSoon
+import com.affan.movieapp.data.model.movie.Movie
+import com.affan.movieapp.data.model.series.Series
+import com.affan.movieapp.data.model.trending.Trending
 import kotlinx.coroutines.*
 
 class HomeViewModel (

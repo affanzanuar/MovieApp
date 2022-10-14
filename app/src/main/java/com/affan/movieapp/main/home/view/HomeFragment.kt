@@ -15,16 +15,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.affan.movieapp.databinding.FragmentHomeBinding
 import com.affan.movieapp.di.ViewModelFactory
-import com.affan.movieapp.main.details.DetailsActivity
+import com.affan.movieapp.main.details.view.DetailsActivity
 import com.affan.movieapp.main.home.adapter.ComingSoonAdapter
 import com.affan.movieapp.main.home.adapter.HomeMoviesAdapter
 import com.affan.movieapp.main.home.adapter.HomeSeriesAdapter
 import com.affan.movieapp.main.home.adapter.TrendingAdapter
 import com.affan.movieapp.main.home.viewmodel.HomeViewModel
-import com.affan.movieapp.model.comingsoon.ComingSoon
-import com.affan.movieapp.model.movie.Movie
-import com.affan.movieapp.model.series.Series
-import com.affan.movieapp.model.trending.Trending
+import com.affan.movieapp.data.model.comingsoon.ComingSoon
+import com.affan.movieapp.data.model.movie.Movie
+import com.affan.movieapp.data.model.series.Series
+import com.affan.movieapp.data.model.trending.Trending
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -190,7 +190,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun intentTrendingToDetails ( item : Trending) {
-        val intent = Intent(context,DetailsActivity::class.java)
+        val intent = Intent(context, DetailsActivity::class.java)
         if (item.title.isNullOrEmpty()){
             intent.putExtra(CATEGORY,"series")
         } else {
@@ -201,21 +201,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun intentMoviesToDetails ( item : Movie) {
-        val intent = Intent(context,DetailsActivity::class.java)
+        val intent = Intent(context, DetailsActivity::class.java)
         intent.putExtra(CATEGORY,"movies")
         intent.putExtra(ID,item.id)
         startActivity(intent)
     }
 
     private fun intentSeriesToDetails ( item : Series) {
-        val intent = Intent(context,DetailsActivity::class.java)
+        val intent = Intent(context, DetailsActivity::class.java)
         intent.putExtra(CATEGORY,"series")
         intent.putExtra(ID,item.id)
         startActivity(intent)
     }
 
     private fun intentComingSoonToDetails ( item : ComingSoon) {
-        val intent = Intent(context,DetailsActivity::class.java)
+        val intent = Intent(context, DetailsActivity::class.java)
         intent.putExtra(CATEGORY,"movies")
         intent.putExtra(ID,item.id)
         startActivity(intent)

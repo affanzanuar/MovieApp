@@ -1,6 +1,6 @@
 package com.affan.movieapp.main.movies.presenter
 
-import com.affan.movieapp.model.movie.Movie
+import com.affan.movieapp.data.model.movie.Movie
 
 @Deprecated("unused anymore")
 interface MoviesView {

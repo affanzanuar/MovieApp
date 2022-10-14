@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.affan.movieapp.R
 import com.affan.movieapp.databinding.ItemTopMoviesBinding
-import com.affan.movieapp.model.trending.Trending
+import com.affan.movieapp.data.model.trending.Trending
 import com.bumptech.glide.Glide
 
 class TrendingAdapter (
