@@ -65,7 +65,9 @@ class SeriesFragment : Fragment() {
 
     private fun getObserve(){
         viewModel.isLoading.observe(requireActivity()){ isLoading ->
-            if (!isLoading){
+            if (isLoading){
+                binding.skSeriesFragment.visibility = View.VISIBLE
+            } else {
                 binding.skSeriesFragment.visibility = View.GONE
             }
         }

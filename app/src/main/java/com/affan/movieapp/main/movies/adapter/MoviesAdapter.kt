@@ -53,4 +53,8 @@ class MoviesAdapter(
         notifyDataSetChanged()
     }
 
+    fun clearData(){
+        itemMovies.clear()
+    }
+
 }

@@ -31,10 +31,6 @@ class MoviesFragment : Fragment() {
         }
     )
 
-//    private var page = 1
-
-//    private var isLoadDataOnProgress = false
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +44,8 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setMoviesAdapter()
         getObserve()
+        moviesAdapter.clearData()
+        viewModel.pageMovies = 1
         viewModel.getPopularMovies()
     }
 
@@ -79,20 +77,6 @@ class MoviesFragment : Fragment() {
 
         binding.rvMovies.addOnScrollListener(
             object : PaginationRecyclerView({viewModel.getPopularMovies()}){})
-//        binding.rvMovies.addOnScrollListener(object : PaginationRecyclerView(layoutManager) {
-//            override fun loadMoreItems() {
-//                page++
-//                Log.d("checkPageMoreItems", "$page ")
-//                isLoadDataOnProgress = true
-//                viewModel.getPopularMovies(page)
-//            }
-//
-//            override val isLastPage: Boolean
-//                get() = false
-//
-//            override val isLoading: Boolean
-//                get() = isLoadDataOnProgress
-//        })
     }
 
     private fun intentToDetails(movies: Movie) {
