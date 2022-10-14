@@ -9,10 +9,15 @@ import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 
 interface DataSource {
+
     suspend fun getTopMoviesOrSeries(apiKey: String) : TrendingResponse
+
     suspend fun getNowPlaying(apiKey: String) : MovieResponse
+
     suspend fun getMostPopularMovie(apiKey: String, page : Int) : MovieResponse
+
     suspend fun getMostPopularSeries(apiKey: String, page : Int) : SeriesResponse
+
     suspend fun getComingSoon(
         apiKey: String,
         language : String,
@@ -54,13 +59,4 @@ interface DataSource {
         favoriteMovies: FavoriteMovies
     )
 
-    suspend fun getMostPopularSeries3(
-        apiKey : String,
-        page: Int
-    ) : retrofit2.Response<SeriesResponse>
-
-    suspend fun getMostPopularMovies3(
-        apiKey : String,
-        page: Int
-    ) : retrofit2.Response<MovieResponse>
 }

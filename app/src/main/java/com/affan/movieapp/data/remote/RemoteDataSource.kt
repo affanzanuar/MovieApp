@@ -9,11 +9,11 @@ import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
 import com.affan.movieapp.data.remote.network.ApiService
-import retrofit2.Response
 
 class RemoteDataSource (
     private val apiService: ApiService
         ) : DataSource {
+
     override suspend fun getTopMoviesOrSeries(apiKey: String): TrendingResponse {
         return apiService.getTopMoviesOrSeries(apiKey)
     }
@@ -78,14 +78,4 @@ class RemoteDataSource (
         throw UnsupportedOperationException("Use Local Data Source!")
     }
 
-    override suspend fun getMostPopularSeries3(
-        apiKey: String,
-        page: Int
-    ): Response<SeriesResponse> {
-        return apiService.getMostPopularSeries3(apiKey, page)
-    }
-
-    override suspend fun getMostPopularMovies3(apiKey: String, page: Int): Response<MovieResponse> {
-        return apiService.getMostPopularMovies3(apiKey, page)
-    }
 }

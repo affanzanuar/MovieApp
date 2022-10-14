@@ -14,6 +14,7 @@ class RepositoryImp (
     private val localDataSource: DataSource,
     private val remoteDataSource : DataSource
         ) : Repository {
+
     override suspend fun getTopMoviesOrSeries(apiKey: String): TrendingResponse {
         return remoteDataSource.getTopMoviesOrSeries(apiKey)
     }
@@ -78,11 +79,4 @@ class RepositoryImp (
         return localDataSource.deleteFavorite(favoriteMovies)
     }
 
-    override suspend fun getPopularSeries(page: Int, apiKey: String): Response<SeriesResponse> {
-        return remoteDataSource.getMostPopularSeries3(apiKey, page)
-    }
-
-    override suspend fun getPopularMovies(page: Int, apiKey: String): Response<MovieResponse> {
-        return remoteDataSource.getMostPopularMovies3(apiKey, page)
-    }
 }

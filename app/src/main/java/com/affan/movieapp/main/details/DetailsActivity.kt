@@ -190,6 +190,5 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
-        const val MCATEGORY = "mcategory"
     }
 }

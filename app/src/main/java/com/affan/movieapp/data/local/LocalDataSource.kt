@@ -9,11 +9,11 @@ import com.affan.movieapp.model.details.videos.VideosResponse
 import com.affan.movieapp.model.movie.MovieResponse
 import com.affan.movieapp.model.series.SeriesResponse
 import com.affan.movieapp.model.trending.TrendingResponse
-import retrofit2.Response
 
 class LocalDataSource(
     private val moviesDatabase: MovieDatabase,
 ) : DataSource {
+
     override suspend fun getTopMoviesOrSeries(apiKey: String): TrendingResponse {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
@@ -70,14 +70,4 @@ class LocalDataSource(
         moviesDatabase.moviesDao().deleteFavorite(favoriteMovies)
     }
 
-    override suspend fun getMostPopularSeries3(
-        apiKey: String,
-        page: Int
-    ): Response<SeriesResponse> {
-        throw UnsupportedOperationException("Use Remote Data Source!")
-    }
-
-    override suspend fun getMostPopularMovies3(apiKey: String, page: Int): Response<MovieResponse> {
-        throw UnsupportedOperationException("Use Remote Data Source!")
-    }
 }
