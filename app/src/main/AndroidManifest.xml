@@ -16,30 +16,30 @@
         android:theme="@style/Theme.MovieApp"
         tools:targetApi="31">
         <activity
-            android:name="com.affan.movieapp.main.account.ChangePasswordActivity"
+            android:name="com.affan.movieapp.presentation.main.account.ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name="com.affan.movieapp.main.account.editprofile.EditProfileActivity"
+            android:name="com.affan.movieapp.presentation.main.account.editprofile.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.affan.movieapp.main.account.about.AboutActivity"
+            android:name="com.affan.movieapp.presentation.main.account.about.AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".welcoming.RegisterActivity"
+            android:name="com.affan.movieapp.presentation.welcoming.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".welcoming.LoginActivity"
+            android:name="com.affan.movieapp.presentation.welcoming.LoginActivity"
             android:exported="false"/>
-        <activity android:name="com.affan.movieapp.main.account.myfavorite.view.FavoriteActivity"
+        <activity android:name="com.affan.movieapp.presentation.main.account.myfavorite.view.FavoriteActivity"
             android:exported="false"/>
         <activity
-            android:name="com.affan.movieapp.main.details.DetailsActivity"
+            android:name="com.affan.movieapp.presentation.main.details.view.DetailsActivity"
             android:exported="false" />
          <activity
-            android:name="com.affan.movieapp.main.MainActivity"
+            android:name="com.affan.movieapp.presentation.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".welcoming.LandingPage"
+            android:name="com.affan.movieapp.presentation.welcoming.LandingPage"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>

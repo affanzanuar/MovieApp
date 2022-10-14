@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="4"
-    tools:context=".main.account.about.AboutActivity"
+    tools:context=".presentation.main.account.about.AboutActivity"
     android:background="@drawable/id_background_app_movies">
 
     <androidx.appcompat.widget.Toolbar

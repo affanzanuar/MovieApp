@@ -7,37 +7,37 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.affan.movieapp.main.home.view.HomeFragment"
+        android:name="com.affan.movieapp.presentation.main.home.view.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_series"
-        android:name="com.affan.movieapp.main.series.view.SeriesFragment"
+        android:name="com.affan.movieapp.presentation.main.series.view.SeriesFragment"
         android:label="Series"
         tools:layout="@layout/fragment_series" />
 
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_logo"-->
-<!--        android:name="com.affan.movieapp.main.home.view.HomeFragment"-->
+<!--        android:name="com.affan.movieapp.presentation.main.home.view.HomeFragment"-->
 <!--        android:label="Home"-->
 <!--        />-->
 
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_movies"-->
-<!--        android:name="com.affan.movieapp.main.account.AccountFragment"-->
+<!--        android:name="com.affan.movieapp.presentation.main.account.AccountFragment"-->
 <!--        android:label="Movies"-->
 <!--        tools:layout="@layout/fragment_movies"  />-->
 
     <fragment
         android:id="@+id/navigation_movies"
-        android:name="com.affan.movieapp.main.movies.view.MoviesFragment"
+        android:name="com.affan.movieapp.presentation.main.movies.view.MoviesFragment"
         android:label="Movies"
         tools:layout="@layout/fragment_movies" />
 
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.affan.movieapp.main.account.AccountFragment"
+        android:name="com.affan.movieapp.presentation.main.account.AccountFragment"
         android:label="Account"
         tools:layout="@layout/fragment_account" />
 
