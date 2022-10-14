@@ -22,6 +22,7 @@ import com.affan.movieapp.model.series.Series
 class SeriesFragment : Fragment() {
 
     private lateinit var binding: FragmentSeriesBinding
+
     private lateinit var seriesAdapter: SeriesAdapter
 
     private val viewModel: SeriesViewModel by activityViewModels(
@@ -89,24 +90,7 @@ class SeriesFragment : Fragment() {
 
     private fun intentToDetails(series: Series) {
         val intent = Intent(context, DetailsActivity::class.java)
-        val parcelable = Series(
-            series.backdropPath,
-            series.firstAirDate,
-            series.genreIds,
-            series.id,
-            series.name,
-            series.originCountry,
-            series.originalLanguage,
-            series.originalName,
-            series.overview,
-            series.popularity,
-            series.posterPath,
-            series.voteAverage,
-            series.voteCount
-        )
-        intent.putExtra(HomeFragment.EXTRA_DATA_MS, parcelable)
-        intent.putExtra("id", series.id)
-        intent.putExtra("category", "series")
+        intent.putExtra(HomeFragment.ID, series.id)
         intent.putExtra(HomeFragment.CATEGORY, "series")
         startActivity(intent)
     }
