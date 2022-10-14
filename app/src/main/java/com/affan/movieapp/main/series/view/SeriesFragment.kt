@@ -47,7 +47,7 @@ class SeriesFragment : Fragment() {
         setSeriesAdapter()
         getObserve()
         seriesAdapter.clearData()
-        viewModel.page = 1
+        viewModel.pageSeries = 1
         viewModel.getPopularSeries()
     }
 
@@ -64,8 +64,12 @@ class SeriesFragment : Fragment() {
     }
 
     private fun getObserve(){
+        viewModel.isLoading.observe(requireActivity()){ isLoading ->
+            if (!isLoading){
+                binding.skSeriesFragment.visibility = View.GONE
+            }
+        }
         viewModel.series.observe(requireActivity()) { data ->
-            binding.skSeriesFragment.visibility = View.GONE
             seriesAdapter.addAll(data!!)
         }
         viewModel.errorMessage.observe(requireActivity()) {

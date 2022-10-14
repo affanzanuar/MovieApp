@@ -19,7 +19,7 @@ class SeriesViewModel(private val repository: Repository) : ViewModel() {
     private val _series = MutableLiveData<MutableList<Series?>?>()
     val series : LiveData<MutableList<Series?>?> = _series
 
-    var page = 1
+    var pageSeries = 1
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage : LiveData<String> = _errorMessage
@@ -29,12 +29,13 @@ class SeriesViewModel(private val repository: Repository) : ViewModel() {
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO){
-                    repository.getMostPopularSeries(Data.apiKey, page)
+                    repository.getMostPopularSeries(Data.apiKey, pageSeries)
                 }
             }.onSuccess { data ->
                 withContext(Dispatchers.Main){
                     _series.value = data.series
-                    page++
+                    _isLoading.value = false
+                    pageSeries++
                 }
             }.onFailure { error ->
                 withContext(Dispatchers.Main){

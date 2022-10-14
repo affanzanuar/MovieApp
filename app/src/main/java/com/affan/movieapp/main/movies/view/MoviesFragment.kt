@@ -30,7 +30,7 @@ class MoviesFragment : Fragment() {
         }
     )
 
-    private var page = 1
+//    private var page = 1
 
     private var isLoadDataOnProgress = false
 
@@ -46,8 +46,8 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setMoviesAdapter()
-        viewModel.getPopularMovies(page)
         getObserve()
+        viewModel.getPopularMovies()
     }
 
     private fun getObserve(){
