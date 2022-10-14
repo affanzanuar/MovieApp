@@ -24,7 +24,7 @@ class SeriesFragment : Fragment() {
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var seriesAdapter: SeriesAdapter
 
-    private val seriesViewModel: SeriesViewModel by activityViewModels(
+    private val viewModel: SeriesViewModel by activityViewModels(
         factoryProducer = {
             ViewModelFactory.getInstance(requireContext())
         }
@@ -45,15 +45,9 @@ class SeriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setSeriesAdapter()
-        seriesViewModel.series.observe(requireActivity()) { data ->
-            binding.skSeriesFragment.visibility = View.VISIBLE
-            isLoadDataOnProgress = false
-            binding.skSeriesFragment.visibility = View.GONE
-            seriesAdapter.addAll(data!!)
-        }
-        seriesViewModel.errorMessage.observe(requireActivity()) {
-            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
-        }
+        viewModel.getPopularSeries(page)
+        getObserve()
+
     }
 
     private fun setSeriesAdapter() {
@@ -69,7 +63,7 @@ class SeriesFragment : Fragment() {
                 page++
                 Log.d("checkPageMoreItems", "$page ")
                 isLoadDataOnProgress = true
-                seriesViewModel.getPopularSeries(page)
+                viewModel.getPopularSeries(page)
             }
 
             override val isLastPage: Boolean
@@ -79,6 +73,18 @@ class SeriesFragment : Fragment() {
                 get() = isLoadDataOnProgress
 
         })
+    }
+
+    private fun getObserve(){
+        viewModel.series.observe(requireActivity()) { data ->
+            binding.skSeriesFragment.visibility = View.VISIBLE
+            isLoadDataOnProgress = false
+            binding.skSeriesFragment.visibility = View.GONE
+            seriesAdapter.addAll(data!!)
+        }
+        viewModel.errorMessage.observe(requireActivity()) {
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun intentToDetails(series: Series) {

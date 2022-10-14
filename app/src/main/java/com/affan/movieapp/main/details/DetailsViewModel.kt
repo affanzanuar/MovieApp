@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
-import com.affan.movieapp.model.FavoriteMovies
+import com.affan.movieapp.model.favorite.FavoriteMovies
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.details.movies.DetailsMovieResponse
 import com.affan.movieapp.model.details.videos.VideosResult
