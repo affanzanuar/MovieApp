@@ -23,12 +23,12 @@ class RemoteDataSource (
         return apiService.getNowPlaying(apiKey)
     }
 
-    override suspend fun getMostPopularMovie(apiKey: String): MovieResponse {
-        return apiService.getMostPopularMovie(apiKey)
+    override suspend fun getMostPopularMovie(apiKey: String, page : Int): MovieResponse {
+        return apiService.getMostPopularMovie(apiKey, page)
     }
 
-    override suspend fun getMostPopularSeries(apiKey: String): SeriesResponse {
-        return apiService.getMostPopularSeries(apiKey)
+    override suspend fun getMostPopularSeries(apiKey: String, page : Int): SeriesResponse {
+        return apiService.getMostPopularSeries(apiKey, page)
     }
 
     override suspend fun getComingSoon(

@@ -12,8 +12,8 @@ import retrofit2.Call
 interface DataSource {
     suspend fun getTopMoviesOrSeries(apiKey: String) : TrendingResponse
     suspend fun getNowPlaying(apiKey: String) : MovieResponse
-    suspend fun getMostPopularMovie(apiKey: String) : MovieResponse
-    suspend fun getMostPopularSeries(apiKey: String) : SeriesResponse
+    suspend fun getMostPopularMovie(apiKey: String, page : Int) : MovieResponse
+    suspend fun getMostPopularSeries(apiKey: String, page : Int) : SeriesResponse
     suspend fun getComingSoon(
         apiKey: String,
         language : String,

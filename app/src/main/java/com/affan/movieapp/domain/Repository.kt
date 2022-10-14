@@ -20,11 +20,13 @@ interface Repository {
     ) : MovieResponse
 
     suspend fun getMostPopularMovie(
-        apiKey: String
+        apiKey: String,
+        page : Int
     ) : MovieResponse
 
     suspend fun getMostPopularSeries(
-        apiKey: String
+        apiKey: String,
+        page : Int
     ) : SeriesResponse
 
     suspend fun getComingSoon(

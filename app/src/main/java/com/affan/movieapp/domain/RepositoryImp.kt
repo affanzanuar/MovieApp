@@ -23,12 +23,12 @@ class RepositoryImp (
         return remoteDataSource.getNowPlaying(apiKey)
     }
 
-    override suspend fun getMostPopularMovie(apiKey: String): MovieResponse {
-        return remoteDataSource.getMostPopularMovie(apiKey)
+    override suspend fun getMostPopularMovie(apiKey: String, page : Int): MovieResponse {
+        return remoteDataSource.getMostPopularMovie(apiKey,page)
     }
 
-    override suspend fun getMostPopularSeries(apiKey: String): SeriesResponse {
-        return remoteDataSource.getMostPopularSeries(apiKey)
+    override suspend fun getMostPopularSeries(apiKey: String, page : Int): SeriesResponse {
+        return remoteDataSource.getMostPopularSeries(apiKey, page)
     }
 
     override suspend fun getComingSoon(

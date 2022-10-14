@@ -23,11 +23,11 @@ class LocalDataSource(
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
-    override suspend fun getMostPopularMovie(apiKey: String): MovieResponse {
+    override suspend fun getMostPopularMovie(apiKey: String, page : Int): MovieResponse {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
-    override suspend fun getMostPopularSeries(apiKey: String): SeriesResponse {
+    override suspend fun getMostPopularSeries(apiKey: String, page : Int): SeriesResponse {
         throw UnsupportedOperationException("Use Remote Data Source!")
     }
 
