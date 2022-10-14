@@ -1,4 +1,4 @@
-package com.affan.movieapp.main.series
+package com.affan.movieapp.main.series.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -45,13 +45,11 @@ class SeriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setSeriesAdapter()
-        seriesViewModel.series.observe(requireActivity()) {
+        seriesViewModel.series.observe(requireActivity()) { data ->
             binding.skSeriesFragment.visibility = View.VISIBLE
-            it.series.let { data ->
-                isLoadDataOnProgress = false
-                binding.skSeriesFragment.visibility = View.GONE
-                seriesAdapter.addAll(data)
-            }
+            isLoadDataOnProgress = false
+            binding.skSeriesFragment.visibility = View.GONE
+            seriesAdapter.addAll(data!!)
         }
         seriesViewModel.errorMessage.observe(requireActivity()) {
             Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()

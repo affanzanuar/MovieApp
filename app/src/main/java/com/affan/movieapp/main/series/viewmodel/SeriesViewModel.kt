@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.affan.movieapp.data.Data
 import com.affan.movieapp.domain.Repository
 import com.affan.movieapp.model.series.Series
-import com.affan.movieapp.model.series.SeriesResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -44,24 +43,4 @@ class SeriesViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-//    init {
-//        viewModelScope.launch {
-//            val response = repository.getPopularSeries(1, Data.apiKey)
-//            if (response.isSuccessful) {
-//                _series.postValue(response.body())
-//            } else {
-//                errorMessage.postValue(response.message())
-//            }
-//        }
-//    }
-//    fun getPopularSeriess(page: Int){
-//        viewModelScope.launch {
-//            val response = repository.getPopularSeries(page, Data.apiKey)
-//            if (response.isSuccessful) {
-//                _series.postValue(response.body())
-//            }else{
-//                errorMessage.postValue(response.message())
-//            }
-//        }
-//    }
 }
