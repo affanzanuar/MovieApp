@@ -1,5 +1,6 @@
 package com.affan.movieapp.presentation.main.details.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -53,21 +54,47 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun observeLiveData() {
 
         detailsViewModel.loading.observe(this) { isLoading ->
-            // TODO:
             if (isLoading){
                 binding.pbBuffering.visibility = View.VISIBLE
-                binding.ivBackdropDetails.visibility  = View.VISIBLE
+                binding.ivBackdropDetails.visibility  = View.GONE
                 binding.ytTrailer.visibility = View.GONE
+                binding.tvOriginalLanguage.visibility = View.GONE
+                binding.ivPosterDetail.visibility = View.GONE
+                binding.tvVoteCount.visibility = View.GONE
+                binding.tvReleaseDate.visibility = View.GONE
+                binding.tvRelease.visibility = View.GONE
+                binding.tvIsAdult.visibility = View.GONE
+                binding.tvDescriptionMS.visibility = View.GONE
+                binding.ivRating.visibility = View.GONE
+                binding.tvLanguage.visibility = View.GONE
+                binding.tvSlash.visibility = View.GONE
+                binding.tvTitleDetail.visibility = View.GONE
+                binding.tvOverviewMS.visibility = View.GONE
+                binding.tvGenre.visibility = View.GONE
+                binding.tvRatingResult.visibility = View.GONE
             } else {
                 binding.pbBuffering.visibility = View.GONE
                 binding.ivBackdropDetails.visibility  = View.GONE
                 binding.ytTrailer.visibility = View.VISIBLE
+                binding.tvOriginalLanguage.visibility = View.VISIBLE
+                binding.ivPosterDetail.visibility = View.VISIBLE
+                binding.tvVoteCount.visibility = View.VISIBLE
+                binding.tvReleaseDate.visibility = View.VISIBLE
+                binding.tvRelease.visibility = View.VISIBLE
+                binding.tvDescriptionMS.visibility = View.VISIBLE
+                binding.ivRating.visibility = View.VISIBLE
+                binding.tvLanguage.visibility = View.VISIBLE
+                binding.tvSlash.visibility = View.VISIBLE
+                binding.tvTitleDetail.visibility = View.VISIBLE
+                binding.tvOverviewMS.visibility = View.VISIBLE
+                binding.tvGenre.visibility = View.VISIBLE
+                binding.tvRatingResult.visibility = View.VISIBLE
             }
         }
-
 
         //detail response
         detailsViewModel.detailResponse.observe(this) { data ->
