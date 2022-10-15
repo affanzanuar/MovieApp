@@ -49,8 +49,8 @@ class DetailsViewModel(
     fun getDetailsMovie(id: Int, category: String) {
         viewModelScope.launch {
             runCatching {
-                withContext(Dispatchers.Main) {
-                    _loading.value = true
+                _loading.value = true
+                withContext(Dispatchers.IO) {
                     if (category == _defaultCategory) {
                         repository.getMovieDetails(id, Utility.apiKey)
                     } else {
@@ -59,13 +59,13 @@ class DetailsViewModel(
                 }
             }.onSuccess { data ->
                 withContext(Dispatchers.Main) {
-                    _loading.value = false
                     _detailResponse.value = data
+                    _loading.value = false
                 }
             }.onFailure { error ->
                 withContext(Dispatchers.Main) {
-                    _loading.value = false
                     _error.value = error.message
+                    _loading.value = false
                 }
             }
         }
@@ -75,8 +75,8 @@ class DetailsViewModel(
     fun getVideos(id: Int, category: String) {
         viewModelScope.launch {
             runCatching {
-                withContext(Dispatchers.Main) {
-                    _loading.value = true
+                _loading.value = true
+                withContext(Dispatchers.IO) {
                     if (category == _defaultCategory) {
                         repository.getMovieVideos(id, Utility.apiKey)
                     } else {
@@ -85,19 +85,19 @@ class DetailsViewModel(
                 }
             }.onSuccess { data ->
                 withContext(Dispatchers.Main) {
-                    _loading.value = false
                     _videoKey.value = data.results?.takeOfficialTrailer()?.key
                         ?: data.results?.takeYoutubeSite()?.key
                                 ?: "Not Available"
 
+                    _loading.value = false
                     Log.d("DetailViewModel Key", _videoKey.value.toString())
 
                 }
             }.onFailure { error ->
                 withContext(Dispatchers.Main) {
-                    _loading.value = false
                     _error.value = error.message
                     _videoKey.value = "Not Available"
+                    _loading.value = false
                 }
             }
         }
