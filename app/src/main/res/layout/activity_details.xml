@@ -66,13 +66,13 @@
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/pbBuffering"
-        style="@style/SpinKitView.Large.Wave"
+        style="@style/SpinKitView.Large.DoubleBounce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:SpinKit_Color="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/flDummy"
-        app:layout_constraintEnd_toEndOf="@+id/flDummy"
-        app:layout_constraintStart_toStartOf="@+id/flDummy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/flDummy" />
 
     <ScrollView
@@ -261,7 +261,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="4dp"
                 android:justificationMode="inter_word"
-                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"

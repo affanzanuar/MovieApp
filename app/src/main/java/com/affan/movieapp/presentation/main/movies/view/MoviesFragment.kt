@@ -51,9 +51,7 @@ class MoviesFragment : Fragment() {
 
     private fun getObserve(){
         viewModel.isLoading.observe(requireActivity()) { isLoading ->
-            if (isLoading){
-                binding.skMoviesFragment.visibility = View.VISIBLE
-            } else {
+            if (!isLoading){
                 binding.skMoviesFragment.visibility = View.GONE
             }
         }
