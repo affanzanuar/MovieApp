@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">Movie App</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_version">Version 0.0.0</string>
     <string name="devs">1. Krisna Pande Raja Sirait\n2. Nuaim Hammad Ausi\n3. Affan Zanuar Rafsanjani</string>
+    <string name="title_search">Search</string>
+    <string name="title_home">Home</string>
+    <string name="title_main">Main</string>
+    <string name="title_resource">Module Title</string>
+    <string name="title_common">Common</string>
+    <string name="title_movies">Movies</string>
+    <string name="title_series">Series</string>
+    <string name="title_detail_cinema">DetailCinema</string>
 
 
 </resources>
