@@ -11,6 +11,9 @@
     <string name="title_movies">Movies</string>
     <string name="title_series">Series</string>
     <string name="title_detail_cinema">DetailCinema</string>
+    <string name="title_core_common">CoreCommon</string>
+    <string name="title_core_resource">CoreResource</string>
+    <string name="title_core_api">CoreApi</string>
 
 
 </resources>
