@@ -113,8 +113,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-
-
         homeViewModel.trending.observe(viewLifecycleOwner) { data ->
             trendingAdapter.setDataTrending(data)
             binding.ciTrending.setViewPager(binding.vpTopMovies)
