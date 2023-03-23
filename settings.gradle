@@ -16,14 +16,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Movie App"
 include ':app'
-include ':feature:search'
-include ':feature:home'
-include ':feature:main'
-include ':core:resource'
-include ':core:common'
-include ':feature:movies'
-include ':feature:series'
-include ':feature:detail_cinema'
-include ':core:core_common'
-include ':core:core_resource'
-include ':core:core_api'
