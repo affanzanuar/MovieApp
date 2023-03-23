@@ -35,7 +35,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-    dynamicFeatures = [':feature:search', ':feature:home', ':feature:main', ':core:resource', ':core:common', ':feature:movies', ':feature:series', ':feature:detail_cinema', ':core:core_common', ':core:core_resource', ':core:core_api']
     kotlinOptions{
         freeCompilerArgs += [
                 "-Xjvm-default=all",
