@@ -6,13 +6,17 @@ plugins {
     id 'kotlin-kapt'
 }
 
+androidExtensions {
+    experimental = true
+}
+
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.affan.movieapp"
-        minSdk 26
-        targetSdk 32
+        minSdk 21
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -35,6 +39,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    dynamicFeatures = [':feature:search']
     kotlinOptions{
         freeCompilerArgs += [
                 "-Xjvm-default=all",
@@ -43,6 +48,8 @@ android {
 }
 
 dependencies {
+
+    api(project(":core:core_common"))
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'

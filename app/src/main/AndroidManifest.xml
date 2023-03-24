@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.affan.movieapp">
+
+    <dist:module dist:instant="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -29,13 +32,14 @@
             android:exported="false" />
         <activity
             android:name="com.affan.movieapp.presentation.welcoming.LoginActivity"
-            android:exported="false"/>
-        <activity android:name="com.affan.movieapp.presentation.main.account.myfavorite.view.FavoriteActivity"
-            android:exported="false"/>
+            android:exported="false" />
+        <activity
+            android:name="com.affan.movieapp.presentation.main.account.myfavorite.view.FavoriteActivity"
+            android:exported="false" />
         <activity
             android:name="com.affan.movieapp.presentation.main.details.view.DetailsActivity"
             android:exported="false" />
-         <activity
+        <activity
             android:name="com.affan.movieapp.presentation.main.MainActivity"
             android:exported="false" />
         <activity
