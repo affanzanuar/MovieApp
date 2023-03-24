@@ -4,16 +4,16 @@ plugins {
 }
 android {
     namespace 'com.movieapp.search'
-    compileSdk 33
+    compileSdk Config.COMPILE_SDK_VERSION
 
     defaultConfig {
-        minSdk 21
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk Config.MIN_SDK_VERSION
+        testInstrumentationRunner Config.TEST_INSTRUMENTATION_RUNNER
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled Config.MINIFY_ENABLE_RELEASE
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

@@ -11,27 +11,27 @@ androidExtensions {
 }
 
 android {
-    compileSdk 33
+    compileSdk Config.COMPILE_SDK_VERSION
 
     defaultConfig {
         applicationId "com.affan.movieapp"
-        minSdk 21
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        minSdk Config.MIN_SDK_VERSION
+        targetSdk Config.TARGET_SDK_VERSION
+        versionCode Config.VERSION_CODE
+        versionName Config.VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled Config.MINIFY_ENABLE_RELEASE
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility Config.COMPILE_OPTIONS_COMPATIBILITY
+        targetCompatibility Config.COMPILE_OPTIONS_COMPATIBILITY
     }
     kotlinOptions {
         jvmTarget = '1.8'

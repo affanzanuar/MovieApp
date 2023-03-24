@@ -5,25 +5,25 @@ plugins {
 
 android {
     namespace 'com.movieapp.core_common'
-    compileSdk 33
+    compileSdk Config.COMPILE_SDK_VERSION
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk Config.MIN_SDK_VERSION
+        targetSdk Config.TARGET_SDK_VERSION
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner Config.TEST_INSTRUMENTATION_RUNNER
         consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled Config.MINIFY_ENABLE_RELEASE
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility Config.COMPILE_OPTIONS_COMPATIBILITY
+        targetCompatibility Config.COMPILE_OPTIONS_COMPATIBILITY
     }
     kotlinOptions {
         jvmTarget = '1.8'
