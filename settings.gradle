@@ -18,3 +18,4 @@ rootProject.name = "Movie App"
 include ':app'
 include ':core:core_common'
 include ':feature:search'
+include ':core:core_resource'
